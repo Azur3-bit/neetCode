@@ -6,6 +6,13 @@
 // Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
 
 
+// Brute Force Solution Not the Optimal Solution
+
+//? Todo - Learn About hashMaping 
+//?        unOrdered Maps
+//?        Ordered Maping 
+
+
 
 #include <bits/stdc++.h>
 #include <vector>
