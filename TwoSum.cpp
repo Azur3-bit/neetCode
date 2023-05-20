@@ -57,7 +57,7 @@ using namespace std;
             for(int i = 0;i<size;i++){
 
                 if(elementTobePicked == nums[i]){
-
+           
                     cout << "Value of i "<< i << endl;
                     cout << "Value of a "<< a << endl;
                     // cout << endl;
@@ -66,12 +66,10 @@ using namespace std;
                     cout << "\t\tElement at " << a << " and " << i << " add upto " << "target "<< target <<endl;  
                     cout << "Element picked at starting :: " << pickedElement<<endl;
 
-                    cout << "Element after selection is  :: " << nums[i]<<endl;
-
-
-                    
+                    cout << "Element after selection is  :: " << nums[i]<<endl; 
                 }
-                // break; <-  add break for single answer single answer 
+                // break; 
+                // <-  add break for single answer single answer 
 
             }
             a++;
