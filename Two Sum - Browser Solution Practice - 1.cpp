@@ -98,10 +98,19 @@ void SolutionOnePass(vector<int> nums, int target)
 			cout << i << "====" << HashMap[complement] << "\n";
 			// break;
 		}
+
+		cout << "Printing HashMap" << endl;
+		ShowHashMap(HashMap);
+		cout << "\t\t\t-------------------------" << endl;
+
 		cout << "\t\t\tIteration Count " << iterationCount << endl;
+		cout << "\t\t\t-------------------------" << endl;
 		cout << "Value by the Function - hashMap[complement] ::" << HashMap[complement] << endl;
+		cout << "-------------------------" << endl;
 		cout << "Value by the Function - i  :: " << i << endl;
+		cout << "-------------------------" << endl;
 		cout << "Value by the Function - count[complement] :: " << HashMap.count(complement) << endl;
+		cout << "-------------------------" << endl;
 	}
 }
 
@@ -109,10 +118,14 @@ int main()
 {
 	// Main Code Function
 	//  0  1  2  3  4
-	vector<int> nums = {3, 3};
-
+	vector<int> nums = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+	cout << "\t\t:: Printing HashMap ::" << endl;
+	ShowVector(nums);
 	// ShowVector(nums);
+	cout << "\t\t::Using OnePass ::" << endl;
 	SolutionOnePass(nums, 6);
+	cout << "\t\t::Using TwoPass ::" << endl;
+	SolutionTwoPass(nums, 6);
 
 	return 0;
 }
