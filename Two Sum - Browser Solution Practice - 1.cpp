@@ -105,6 +105,7 @@ void SolutionOnePass(vector<int> nums, int target)
 
 		cout << "\t\t\tIteration Count " << iterationCount << endl;
 		cout << "\t\t\t-------------------------" << endl;
+		cout << endl;
 		cout << "Value by the Function - hashMap[complement] ::" << HashMap[complement] << endl;
 		cout << "-------------------------" << endl;
 		cout << "Value by the Function - i  :: " << i << endl;
