@@ -38,21 +38,61 @@ vector<string> SortingFunc(vector<string> &vecString)
     return vecString;
 }
 
-void Solution(vector<string> vecString)
+// Show HashMap
+
+void ShowHashMap(map<string, int> HashMap)
+{
+
+    cout << "Key"
+         << "\t\t"
+         << "Value" << endl;
+
+    for (auto it : HashMap)
+    {
+        cout << it.first << "\t\t" << it.second << endl;
+    }
+}
+
+void creatingHashMap(vector<string> vecString)
 {
 
     map<string, int> hashMap;
     int size = vecString.size();
+
+    // Getting the size of each word
     for (int i = 0; i < size; i++)
     {
-        int TotalSizeOfWord = 0;
-        string CurrentWord = vecString[i];
-        int CurrentSize = CurrentWord.size();
-        // for (int j = 0; j < CurrentSize;j++){
+        string currentWord = vecString[i];
+        // int currentWordSize = 0;
+        int currentWordLenght = currentWord.size();
+        int currentWordSize = 0;
 
-        //     hashMap[vecString[i]] =
-        // }
+        cout << "Lenght of : " << currentWord << " is - " << currentWordLenght << endl;
+        for (int j = 0; j < currentWordLenght; j++)
+        {
+
+            int tempSize = currentWord[j];
+            currentWordSize += tempSize;
+        }
+        hashMap[vecString[i]] = currentWordSize;
     }
+    ShowHashMap(hashMap);
+
+    // Grouping Elements based on their Value - Scrapped Because it worsen the time complexity 
+    // while is already (n*m)
+    // n - total number of element in the list 
+    // m - size of each character in the list 
+
+    // Still trying to find the solution
+
+    for (int i = 0; i < vecString.size();i++){
+        vector<string> solution = {};
+        
+
+
+    }
+
+
 }
 
 int main(int argc, char const *argv[])
@@ -67,15 +107,17 @@ int main(int argc, char const *argv[])
     string str_1 = strTest[0];
     string str_2 = strTest[1];
 
-    int Element_1Size = sizeof(str_1);
-    int Element_2Size = sizeof(str_2);
-    cout << str_1 << " ELement_1size " << Element_1Size << endl;
-    cout << str_2 << " ELement_2size " << Element_2Size << endl;
+    // int Element_1Size = sizeof(str_1);
+    // int Element_2Size = sizeof(str_2);
+    // cout << str_1 << " ELement_1size " << Element_1Size << endl;
+    // cout << str_2 << " ELement_2size " << Element_2Size << endl;
     // cout << "word_2size" << word_1size;
 
     // Sorting Vector
     // SortingFunc(strVec);
     // showVector(strVec);
+
+    creatingHashMap(strVec);
 
     return 0;
 }
