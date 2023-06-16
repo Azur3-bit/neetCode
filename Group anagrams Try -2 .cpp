@@ -78,6 +78,7 @@ void creatingHashMap(vector<string> vecString)
     }
     ShowHashMap(hashMap);
 
+
     // Grouping Elements based on their Value - Scrapped Because it worsen the time complexity 
     // while is already (n*m)
     // n - total number of element in the list 
@@ -85,12 +86,12 @@ void creatingHashMap(vector<string> vecString)
 
     // Still trying to find the solution
 
-    for (int i = 0; i < vecString.size();i++){
-        vector<string> solution = {};
+    // for (int i = 0; i < vecString.size();i++){
+    //     vector<string> solution = {};
         
 
 
-    }
+    // }
 
 
 }
