@@ -82,24 +82,26 @@ void showNestedVector(const vector<vector<string>> &temp)
 void Solution(const vector<string> &strs)
 {
 
-    unordered_map<string, vector<string>> groups;
-    for (auto str : strs)
+    unordered_map<string, vector<string>> mp{};
+    vector<vector<string>> res;
+    for (string s : strs)
     {
-        string sortedStr = str;
-        sort(sortedStr.begin(), sortedStr.end());
-        groups[sortedStr].push_back(str);
+        string t = s;
+        sort(t.begin(), t.end());
+        mp[t].push_back(s);
     }
-    ShowBeautifulUnorderedMap(groups);
+    ShowBeautifulUnorderedMap(mp);
 
     // getting the Final Answer
 
-    vector<vector<string>> result;
-    for(auto it : groups){
-        result.push_back(it.second);
+    for(auto &it : mp){
+        res.push_back(it.second);
     }
 
-    showNestedVector(result);
+    showNestedVector(res);
 }
+
+
 
 int main(int argc, char const *argv[])
 {
