@@ -20,22 +20,6 @@ using namespace std;
 
 // Functions
 
-void showNestedVector(const vector<vector<string>> &temp)
-{
-    cout << "Printing Nested Vector "
-         << "\n";
-    cout << "{ ";
-    for (auto it : temp)
-    {
-        cout << "{ ";
-        for (auto i : it)
-        {
-            cout << i << " ";
-        }
-        cout << "} ";
-    }
-    cout << "} ";
-}
 
 // Printing Unordered Map
 void ShowBeautifulUnorderedMap(const unordered_map<string, vector<string>> &strs)
@@ -57,8 +41,16 @@ void ShowBeautifulUnorderedMap(const unordered_map<string, vector<string>> &strs
          << "\n";
     for (auto it : strs)
     {
-        cout << "\t\t\t\t" << it.first;
+        cout << "\t\t\t\t" << it.first << "\t\t";
         // showNestedVector(it.second);
+        vector<string> tempo = it.second;
+        for(auto i : tempo){
+            // cout << "[ ";
+            cout << i << " ";
+            // cout << "] ";
+        }
+        cout << endl;
+
     }
 
     cout << "\n";
@@ -67,22 +59,24 @@ void ShowBeautifulUnorderedMap(const unordered_map<string, vector<string>> &strs
          << "______ Unordered Hash-Map Printed ______ "
          << "\n";
 }
-
-void ShowUnorderedMap(const unordered_map<string,vector<string>> &temp){
-
-    cout << "KEY" << "\t" << "VAL" << endl;
-    for (auto it : temp)
-    {
-        cout << it.first << "\t" ;
-        // cout << it.second << endl;
-        vector<string> tempo = it.second;
-        for(auto i : tempo){
-            // cout << "[ ";
-            cout << i << " ";
-            // cout << "] ";
-        }
-        cout << endl;
-    }
+void showNestedVector(const vector<vector<string>> &temp)
+{
+    cout << "\n";
+    cout << "\n";
+    cout << "Printing Nested Vector "
+		 << "\n";
+    cout << "\n";
+	cout << "\t\t{ ";
+	for (auto it : temp)
+	{
+		cout << "{ ";
+		for (auto i : it)
+		{
+			cout << i << " ";
+		}
+		cout << "} ";
+	}
+	cout << "} ";
 }
 
 void Solution(const vector<string> &strs)
@@ -95,7 +89,16 @@ void Solution(const vector<string> &strs)
         sort(sortedStr.begin(), sortedStr.end());
         groups[sortedStr].push_back(str);
     }
-    ShowUnorderedMap(groups);
+    ShowBeautifulUnorderedMap(groups);
+
+    // getting the Final Answer
+
+    vector<vector<string>> result;
+    for(auto it : groups){
+        result.push_back(it.second);
+    }
+
+    showNestedVector(result);
 }
 
 int main(int argc, char const *argv[])
