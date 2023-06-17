@@ -1,6 +1,24 @@
 // Group anagrams try - 6
 
 // Sorting String Vector Approach
+// ? Algorithm START
+
+// select 1 element
+// find its value
+// Loop Start
+
+// now check for elements with the same value using find().
+// if Found then push it in a vector result.
+// and popout those elemets which have been found using erase().
+// complete the loop to find all elements.
+// Loop end
+
+// select 2nd element and so on ...
+// ? Algorithm END
+
+// finding size of the map
+
+// ShowUnorderedMap(UnOrderedMap);
 
 // Problem Description
 // Input: strs = ["eat","tea","tan","ate","nat","bat"]
@@ -83,87 +101,34 @@ void ShowUnorderedMap(const unordered_map<string, string> &strs)
 // --- Function ___ Solution Vector
 void solution(vector<string> strs)
 {
-
-	// Sorting Entire String
-	// sort(strs.begin(), strs.end());
-	// ShowVector(strs);
 	unordered_map<string, string> UnOrderedMap;
 	vector<string> copyStirng = strs;
 	vector<vector<string>> result;
+	// vector<vector<string>> result;
 	int size = strs.size();
 	for (int i = 0; i < size; i++)
 	{
-		cout << "Sorting : - " << strs[i] << "\n";
+		// cout << "Sorting : - " << strs[i] << "\n";
 		sort(copyStirng[i].begin(), copyStirng[i].end());
-
-		// UnOrderedMap[strs[i]] =
 	}
-
 	for (int i = 0; i < strs.size(); i++)
 	{
 		UnOrderedMap[strs[i]] = copyStirng[i];
 	}
-	// cout << "---UnSorted---"
-	// 	 << "\n";
-	// cout << "\n";
-	// ShowVector(strs);
-	// cout << "\n";
-	// cout << "---Sorted---"
-	// 	 << "\n";
-	// ShowVector(copyStirng);
 
+	ShowUnorderedMap(UnOrderedMap);
 
-	// ? Algorithm START 
-
-	// select 1 element
-	// find its value
-	// Loop Start
-
-	// now check for elements with the same value using find().
-	// if Found then push it in a vector result.
-	// and popout those elemets which have been found using erase().
-	// complete the loop to find all elements.
-	// Loop end
-
-	// select 2nd element
-	// ? Algorithm END 
-
-	// finding size of the map
-	int sizeMp = UnOrderedMap.size();
-	cout << "Size : " << size;
-
-	// ShowUnorderedMap(UnOrderedMap);
-
-	unordered_map<string, string>::iterator it = UnOrderedMap.begin();
-	while (sizeMp--)
+	for (auto it : UnOrderedMap)
 	{
 		vector<string> temp = {};
-		string firstElemntValue = it->second;
-		// Checking Elements With same value;
-		unordered_map<string, string>::iterator itForKeyelement = UnOrderedMap.find(firstElemntValue);
-		string valueByIt = itForKeyelement->second;
-		string keyByIt = itForKeyelement->first;
-		if (valueByIt == firstElemntValue)
+		int size = UnOrderedMap.size();
+		for (auto i : UnOrderedMap)
 		{
-			temp.push_back(keyByIt);
-			UnOrderedMap.erase(keyByIt);
-		}
-		result.push_back(temp);
-		itForKeyelement++;
-	}
-
-	for (auto itKeyElement : UnOrderedMap)
-	{
-		vector<string> temp = {};
-		string firstElementValue = it->second;
-		string firstElementKey = it->first;
-		unordered_map<string, string>::iterator itForKeyelement = UnOrderedMap.find(firstElementValue);
-		string convertedFoundKey = itForKeyelement->first;
-		if (convertedFoundKey == firstElementKey)
-		{
-			temp.push_back(firstElementValue);
-			UnOrderedMap.erase(firstElementKey);
-			itForKeyelement++;
+			if (i.second == it.second)
+			{
+				i.second = "Done";
+				temp.push_back(i.first);
+			}
 		}
 		result.push_back(temp);
 	}
@@ -180,6 +145,7 @@ int main()
 
 	// -- Main Code Function
 	vector<string> strs = {"eat", "tea", "tan", "ate", "nat", "bat"};
+	// cout << "Working :: " << endl;
 	solution(strs);
 	// ShowVector(strs);
 
