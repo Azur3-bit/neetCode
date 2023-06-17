@@ -22,6 +22,25 @@ using namespace std;
 
 // Functions
 
+// --- Function ___ Show NestedVector
+
+void showNestedVector(const vector<vector<string>> &temp)
+{
+	cout << "Printing Nested Vector "
+		 << "\n";
+	cout << "{ ";
+	for (auto it : temp)
+	{
+		cout << "{ ";
+		for (auto i : it)
+		{
+			cout << i << " ";
+		}
+		cout << "} ";
+	}
+	cout << "} ";
+}
+
 // --- Function ___ Show Vector
 void ShowVector(vector<string> strs)
 {
@@ -70,8 +89,9 @@ void solution(vector<string> strs)
 	// ShowVector(strs);
 	unordered_map<string, string> UnOrderedMap;
 	vector<string> copyStirng = strs;
-
-	for (int i = 0; i < strs.size(); i++)
+	vector<vector<string>> result;
+	int size = strs.size();
+	for (int i = 0; i < size; i++)
 	{
 		cout << "Sorting : - " << strs[i] << "\n";
 		sort(copyStirng[i].begin(), copyStirng[i].end());
@@ -83,19 +103,75 @@ void solution(vector<string> strs)
 	{
 		UnOrderedMap[strs[i]] = copyStirng[i];
 	}
-	cout << "---UnSorted---"
-		 << "\n";
-	cout << "\n";
-	ShowVector(strs);
-	cout << "\n";
-	cout << "---Sorted---"
-		 << "\n";
-	ShowVector(copyStirng);
+	// cout << "---UnSorted---"
+	// 	 << "\n";
+	// cout << "\n";
+	// ShowVector(strs);
+	// cout << "\n";
+	// cout << "---Sorted---"
+	// 	 << "\n";
+	// ShowVector(copyStirng);
 
-	ShowUnorderedMap(UnOrderedMap);
+
+	// ? Algorithm START 
+
+	// select 1 element
+	// find its value
+	// Loop Start
+
+	// now check for elements with the same value using find().
+	// if Found then push it in a vector result.
+	// and popout those elemets which have been found using erase().
+	// complete the loop to find all elements.
+	// Loop end
+
+	// select 2nd element
+	// ? Algorithm END 
+
+	// finding size of the map
+	int sizeMp = UnOrderedMap.size();
+	cout << "Size : " << size;
+
+	// ShowUnorderedMap(UnOrderedMap);
+
+	unordered_map<string, string>::iterator it = UnOrderedMap.begin();
+	while (sizeMp--)
+	{
+		vector<string> temp = {};
+		string firstElemntValue = it->second;
+		// Checking Elements With same value;
+		unordered_map<string, string>::iterator itForKeyelement = UnOrderedMap.find(firstElemntValue);
+		string valueByIt = itForKeyelement->second;
+		string keyByIt = itForKeyelement->first;
+		if (valueByIt == firstElemntValue)
+		{
+			temp.push_back(keyByIt);
+			UnOrderedMap.erase(keyByIt);
+		}
+		result.push_back(temp);
+		itForKeyelement++;
+	}
+
+	for (auto itKeyElement : UnOrderedMap)
+	{
+		vector<string> temp = {};
+		string firstElementValue = it->second;
+		string firstElementKey = it->first;
+		unordered_map<string, string>::iterator itForKeyelement = UnOrderedMap.find(firstElementValue);
+		string convertedFoundKey = itForKeyelement->first;
+		if (convertedFoundKey == firstElementKey)
+		{
+			temp.push_back(firstElementValue);
+			UnOrderedMap.erase(firstElementKey);
+			itForKeyelement++;
+		}
+		result.push_back(temp);
+	}
+
+	showNestedVector(result);
 }
 
-int main(int argc, char const *argv[])
+int main()
 {
 
 	// -- faster I/O operations
