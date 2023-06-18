@@ -64,17 +64,18 @@ void ShowHashMap(map<int, int> hashMap)
 void ShowVector(const vector<int> &nums)
 {
     cout << "\t\t--- Printing Vector ---\n";
-
+    cout << "\t\t";
     for (int it : nums)
     {
         cout << it << " ";
     }
 
-    cout << "\t\t--- Vector Printed ---\n";
+    cout << "\n\t\t--- Vector Printed ---\n";
 }
 
 // Actual Solution Function
-vector<int> topKFrequentElement(const vector<int> &nums, int k)
+// vector<int> topKFrequentElement(const vector<int> &nums, int k)
+void topKFrequentElement(const vector<int> &nums, int k)
 {
 
     cout << ":: inside Function ::"
@@ -95,14 +96,14 @@ vector<int> topKFrequentElement(const vector<int> &nums, int k)
     ShowVector(nums);
 
     ShowHashMap(hashMap);
-    map<int, int>::iterator it = hashMap.begin();
+    // map<int, int>::iterator it = hashMap.begin();
    
-    while (k--)
-    {
-        result.push_back(it->first);
-        it++;
-    }
-    return result;
+    // while (k--)
+    // {
+    //     result.push_back(it->first);
+    //     it++;
+    // }
+    // return result;
 
 
 
@@ -152,9 +153,10 @@ int main(int argc, char const *argv[])
     int k = 2;
     // topKFrequentElement(nums, k);
 
-    vector<int> result;
-    result = topKFrequentElement(nums, k);
-    ShowVector(result);
+    // vector<int> result;
+    // result = topKFrequentElement(nums, k);
+    topKFrequentElement(nums, k);
+    // ShowVector(result);
 
     return 0;
 }
