@@ -30,18 +30,18 @@ using namespace std;
 
 // Functions
 
-int main(int argc, char const *argv[])
+int main()
 {
 
     // -- faster I/O operations
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
+    // ios_base::sync_with_stdio(false);
+    // cin.tie(NULL);
 
     // -- Main Code Function
 
     {
         timer time;
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 20; i++)
         {
             cout << "\t\t\t Value of i ----" << i << "\n";
         }
