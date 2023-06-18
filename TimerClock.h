@@ -4,7 +4,7 @@
 #include <iostream>
 // using namespace std;
 
-// -- additional_libraries -- Imported From Custom BoilerPlate -=- Azure  
+// -- additional_libraries -- Imported From Custom BoilerPlate -=- Azure
 // #include <vector>
 // #include <algorithm>
 // #include <array>
@@ -38,8 +38,15 @@ public:
 
         auto duration = end - start;
         double ms = duration * 0.001;
-
-        std::cout << duration << "us ( " << ms << "ms )\n";
+        std::cout << "\n";
+        std::cout << "\n";
+        // std::cout << "\t-----------------------------------------------------------------\n";
+        std::cout << "\t-----------------------------------------------\n";
+        std::cout << "\tTime taken for Execution : " << duration << "us ( " << ms << "ms )\n";
+        std::cout << "\t-----------------------------------------------\n";
+        // std::cout << "\t--------------------------------------------------------\n";
+        // std::cout << "\n";
+        // std::cout << "\t-------------\n";
     }
 
 private:
