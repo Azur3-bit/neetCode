@@ -20,7 +20,6 @@ using namespace std;
 
 // Functions
 
-
 // Printing Unordered Map
 void ShowBeautifulUnorderedMap(const unordered_map<string, vector<string>> &strs)
 {
@@ -44,13 +43,13 @@ void ShowBeautifulUnorderedMap(const unordered_map<string, vector<string>> &strs
         cout << "\t\t\t\t" << it.first << "\t\t";
         // showNestedVector(it.second);
         vector<string> tempo = it.second;
-        for(auto i : tempo){
+        for (auto i : tempo)
+        {
             // cout << "[ ";
             cout << i << " ";
             // cout << "] ";
         }
         cout << endl;
-
     }
 
     cout << "\n";
@@ -64,19 +63,19 @@ void showNestedVector(const vector<vector<string>> &temp)
     cout << "\n";
     cout << "\n";
     cout << "Printing Nested Vector "
-		 << "\n";
+         << "\n";
     cout << "\n";
-	cout << "\t\t{ ";
-	for (auto it : temp)
-	{
-		cout << "{ ";
-		for (auto i : it)
-		{
-			cout << i << " ";
-		}
-		cout << "} ";
-	}
-	cout << "} ";
+    cout << "\t\t{ ";
+    for (auto it : temp)
+    {
+        cout << "{ ";
+        for (auto i : it)
+        {
+            cout << i << " ";
+        }
+        cout << "} ";
+    }
+    cout << "} ";
 }
 
 void Solution(const vector<string> &strs)
@@ -94,14 +93,13 @@ void Solution(const vector<string> &strs)
 
     // getting the Final Answer
 
-    for(auto &it : mp){
+    for (auto &it : mp)
+    {
         res.push_back(it.second);
     }
 
     showNestedVector(res);
 }
-
-
 
 int main(int argc, char const *argv[])
 {

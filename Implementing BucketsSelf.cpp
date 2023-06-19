@@ -20,10 +20,10 @@ using namespace std;
 
 
 
-void ShowHashMap(map<int, int> hashMap)
+void ShowHashMap(unordered_map<int, int> hashMap)
 {
     cout << "\t\t\t"
-         << "______ Printing Ordered Hash-Map ______"
+         << "______ Printing UnOrdered Hash-Map ______"
          << "\n";
     cout << "\n";
     // cout << "\n";
@@ -46,7 +46,7 @@ void ShowHashMap(map<int, int> hashMap)
     cout << "\n";
     // cout << "\n";
     cout << "\t\t\t"
-         << "______ Ordered Hash-Map Printed ______ "
+         << "______ UnOrdered Hash-Map Printed ______ "
          << "\n";
 }
 
@@ -60,7 +60,7 @@ int main(int argc, char const *argv[])
 
     // -- Main Code Function
 
-    map<int, int> HashMap{};
+    unordered_map<int, int> HashMap{};
 
     HashMap = {
         {1, 100},
@@ -71,6 +71,17 @@ int main(int argc, char const *argv[])
     };
 
     ShowHashMap(HashMap);
+
+    cout << "Bucket Count : " << HashMap.bucket_count() << "\n";
+
+    // for(auto it : HashMap){
+
+    //     HashMap.bucket(it.first)
+
+    // }
+
+
+    
 
     return 0;
 }

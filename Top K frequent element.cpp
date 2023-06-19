@@ -30,10 +30,10 @@ using namespace std;
 
 // Functions
 
-void ShowHashMap(map<int, int> hashMap)
+void ShowHashMap(unordered_map<int, int> hashMap)
 {
     cout << "\t\t\t"
-         << "______ Printing Ordered Hash-Map ______"
+         << "______ Printing UnOrdered Hash-Map ______"
          << "\n";
     cout << "\n";
     // cout << "\n";
@@ -56,7 +56,7 @@ void ShowHashMap(map<int, int> hashMap)
     cout << "\n";
     // cout << "\n";
     cout << "\t\t\t"
-         << "______ Ordered Hash-Map Printed ______ "
+         << "______ UnOrdered Hash-Map Printed ______ "
          << "\n";
 }
 
@@ -67,10 +67,55 @@ void ShowVector(const vector<int> &nums)
     cout << "\t\t";
     for (int it : nums)
     {
-        cout << it << " ";
+        cout << "\t" << it << " ";
     }
 
     cout << "\n\t\t--- Vector Printed ---\n";
+}
+
+// Try - 2 pair method
+
+void topKFrequentElement_pairingMethod(const vector<int> &nums, const int &k)
+{
+
+    int size = nums.size();
+    vector<int> result{};
+    unordered_map<int, int> HashMap;
+    for (int i = 0; i < size; i++)
+    {
+        int currentElement = nums[i];
+        int count_ofCurrentElement = count(nums.begin(), nums.end(), currentElement);
+        HashMap.insert(pair<int, int>(currentElement, count_ofCurrentElement));
+    }
+    // cout << "k : " << k << "\n";
+    int count = k;
+    ShowHashMap(HashMap);
+    ShowVector(nums);
+
+    // unordered_map<int, int>::iterator it = HashMap.end();
+
+    for(auto it : HashMap){
+        while (count--)
+        {
+            cout << "it.first : " << it.first << "\n";
+            result.push_back(it.first);
+            break;
+        }
+        
+    }
+
+    // cout << "Result : \n";
+    // ShowVector(result);
+
+
+    // for (it = HashMap.end(); count >= 0; it--)
+    // {
+    //     cout << "Count : " << count << "\n";
+    //     result.push_back(it->first);
+    //     --count;
+    // }
+
+    // cout << "it at the end :: " << it->first << "\n";
 }
 
 // Actual Solution Function
@@ -81,8 +126,11 @@ void topKFrequentElement(const vector<int> &nums, int k)
     cout << ":: inside Function ::"
          << "\n";
 
-    map<int, int> hashMap{};
-    vector<int> result = {};
+    unordered_map<int, int> hashMap{};
+    // map<int, int> hashMap{};
+    vector<int> result{};
+    vector<int> Organized{};
+
     int size = nums.size();
     for (int i = 0; i < size; i++)
     {
@@ -90,24 +138,17 @@ void topKFrequentElement(const vector<int> &nums, int k)
         int currentNumber = nums[i];
 
         // Counting NUmber of Occurance of that number
+        Organized.push_back(count(nums.begin(), nums.end(), currentNumber));
         hashMap[currentNumber] = count(nums.begin(), nums.end(), currentNumber);
     }
 
     ShowVector(nums);
-
+    ShowVector(Organized);
     ShowHashMap(hashMap);
+
     // map<int, int>::iterator it = hashMap.begin();
-   
-    // while (k--)
-    // {
-    //     result.push_back(it->first);
-    //     it++;
-    // }
-    // return result;
 
-
-
-// Problem Solution 
+// Problem Solution
 #if 0
 {
     // ? Algorithm For Problem Solution
@@ -149,13 +190,17 @@ int main(int argc, char const *argv[])
 
     // -- Main Code Function
 
-    vector<int> nums = {4,1,-1,2,-1,2,3};
+    // vector<int> nums = {4, 1, -1, 2, -1, 2, 3};
+    // vector<int> nums = {1,1,1,2,2,3};
+    vector<int> nums = {-1,-1};
+    // vector<int> nums = {1, 1, 1, 2, 2, 3};
     int k = 2;
     // topKFrequentElement(nums, k);
 
     // vector<int> result;
     // result = topKFrequentElement(nums, k);
-    topKFrequentElement(nums, k);
+    // topKFrequentElement(nums, k);
+    topKFrequentElement_pairingMethod(nums, k);
     // ShowVector(result);
 
     return 0;
