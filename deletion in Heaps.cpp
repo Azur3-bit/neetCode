@@ -101,27 +101,31 @@ int main(int argc, char const *argv[])
 
     // -- Main Code Function
 
-    // Creating Obj
-    Heaps_DevCreated userCreatedUser;
-    userCreatedUser.Insert_inHeaps(50);
-    userCreatedUser.Insert_inHeaps(55);
-    userCreatedUser.Insert_inHeaps(53);
-    userCreatedUser.Insert_inHeaps(52);
-    userCreatedUser.Insert_inHeaps(54);
-    // userCreatedUser.Insert_inHeaps(7);
-    // userCreatedUser.Insert_inHeaps(8);
-    // userCreatedUser.Insert_inHeaps(9);
-    // userCreatedUser.Insert_inHeaps(10);
+    {
+        timer Time;
+        // Creating Obj
+        Heaps_DevCreated userCreatedUser;
+        userCreatedUser.Insert_inHeaps(50);
+        userCreatedUser.Insert_inHeaps(55);
+        userCreatedUser.Insert_inHeaps(53);
+        userCreatedUser.Insert_inHeaps(52);
+        userCreatedUser.Insert_inHeaps(54);
+        // userCreatedUser.Insert_inHeaps(7);
+        // userCreatedUser.Insert_inHeaps(8);
+        // userCreatedUser.Insert_inHeaps(9);
+        // userCreatedUser.Insert_inHeaps(10);
+
+        // Printing Heap
+        userCreatedUser.ShowHeap();
+
+        // Deleting root Element of the heap
+        userCreatedUser.deletion();
+        cout << endl;
+        userCreatedUser.ShowHeap();
+        // userCreatedUser.ShowHeap();
+    }
 
     // Printing Heap
-    userCreatedUser.ShowHeap();
-
-    // Deleting root Element of the heap
-    userCreatedUser.deletion();
-    cout << endl;
-
-    // Printing Heap
-    userCreatedUser.ShowHeap();
 
     return 0;
 }
