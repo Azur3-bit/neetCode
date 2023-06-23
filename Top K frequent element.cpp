@@ -23,6 +23,7 @@ using namespace std;
 #include <unordered_map>
 #include <map>
 #include <set>
+#include <queue>
 
 #include "TimerClock.h"
 
@@ -90,19 +91,9 @@ void topKFrequentElement_pairingMethod(const vector<int> &nums, const int &k)
     // cout << "k : " << k << "\n";
     int count = k;
     ShowHashMap(HashMap);
-    ShowVector(nums);
+    // ShowVector(nums);
 
     // unordered_map<int, int>::iterator it = HashMap.end();
-
-    for(auto it : HashMap){
-        while (count--)
-        {
-            cout << "it.first : " << it.first << "\n";
-            result.push_back(it.first);
-            break;
-        }
-        
-    }
 
     // cout << "Result : \n";
     // ShowVector(result);
@@ -148,6 +139,11 @@ void topKFrequentElement(const vector<int> &nums, int k)
 
     // map<int, int>::iterator it = hashMap.begin();
 
+    // Using Priority queue 
+
+    
+
+
 // Problem Solution
 #if 0
 {
@@ -191,8 +187,8 @@ int main(int argc, char const *argv[])
     // -- Main Code Function
 
     // vector<int> nums = {4, 1, -1, 2, -1, 2, 3};
-    // vector<int> nums = {1,1,1,2,2,3};
-    vector<int> nums = {-1,-1};
+    vector<int> nums = {1,1,1,2,2,3};
+    // vector<int> nums = {-1,-1};
     // vector<int> nums = {1, 1, 1, 2, 2, 3};
     int k = 2;
     // topKFrequentElement(nums, k);
