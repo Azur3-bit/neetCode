@@ -1,5 +1,5 @@
 // TopK_frequent Elements
-// // INPUT :
+// INPUT :
 // Input - 1: nums = [1,1,1,2,2,3], k = 2
 // Output: [1,2]
 
@@ -62,14 +62,13 @@ vector<int> TopKFreqElements(const vector<int> &nums, int k)
     // Calculating Number of Occurance of each element
     for (int it : nums)
     {
-        int curr_count = count(nums.begin(), nums.end(), it);
-        mp[it] = curr_count;
+        mp[it]++;
     }
     // _showMap(mp);
 
     // Pushing it into a priority Queue - Min Heap
     priority_queue<pair<int, int>, vector<pair<int, int>>> pqm{};
-    for (auto it : mp)
+    for (auto it :  mp)
     {
         // Swaping First and Second
         int first = it.first;
@@ -104,8 +103,10 @@ int main(int argc, char const *argv[])
     vector<int> nums = {1, 1, 1, 2, 2, 3};
     int k = 2;
 
-    vector<int> result = TopKFreqElements(nums, k);
-    _showVector(result);
-
+{
+        timer time;
+        vector<int> result = TopKFreqElements(nums, k);
+        _showVector(result);
+}
     return 0;
 }
