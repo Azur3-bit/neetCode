@@ -18,42 +18,59 @@ using namespace std;
 #include <map>
 #include <set>
 #include <queue>
-// -- additional_libraries -- azur3 
+// -- additional_libraries -- azur3
 #include "TimerClock.h"
 
-    // Classes
-    
-    // Functions
-    void _showVector(const vector<int> &nums){
-        cout << "Printing Vector \n";
-        for (int it : nums){
-            cout << it << " ";
-        }
-        cout << "Vector Printed \n";
+// Classes
+
+// Functions
+void _showVector(vector<int> &nums)
+{
+    cout << "Printing Vector \n";
+    for (int it : nums)
+    {
+        cout << it << " ";
     }
+    cout << "\nVector Printed \n";
+}
 
-
-    vector<int> prod_exceptSelf(vector<int> &nums){
-        vector<int> result{};
-
-        int preIndex = 1;
-        for (int i = 0; i < nums.size();i++){
-            result[i] = preIndex;
-            preIndex = preIndex * nums[i];
-        }
-        _showVector(result);
-    }
-
-int main(int argc, char const *argv[])
+void prod_exceptSelf(vector<int> &nums, int size)
 {
 
-    // -- faster I/O operations 
+    vector<int> result(size,1);
+    _showVector(nums);
+
+    int PreIndex = 1;
+    for (int i = 0; i < size;i++){
+        result[i] = PreIndex;
+        PreIndex = nums[i] * PreIndex;
+    }
+    _showVector(result);
+
+    int PostIndex = 1;
+    for(int j = size - 1; j >= 0;j--){
+        // cout << "Index Rev Loop :: ";
+        result[j] = result[j] * PostIndex ;
+        PostIndex = nums[j] * PostIndex;
+    }
+    _showVector(result);
+}
+
+int main()
+{
+
+    // -- faster I/O operations
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+    cout << "Inside Main Code \n";
 
     // -- Main Function code --
     vector<int> nums = {1, 2, 3, 4};
-    prod_exceptSelf(nums);
+
+    // int size = nums.size();
+    // vector<int> result =
+    prod_exceptSelf(nums, nums.size());
+    // _showVector(result);
 
     return 0;
 }
