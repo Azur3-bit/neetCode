@@ -85,27 +85,38 @@ void checkingOccurance_col(vector<vector<int>> &nums)
     cout << endl;
 
     // traversing Matrix Col Wise
-    cout << ": traversing Matrix Col Wise : \n";
+    // cout << ": traversing Matrix Col Wise : \n";
+    int iteration = 0;
     for (int i = 0; i < 3; i++)
     {
+        int count = 0;
         for (int j = 0; j < 3; j++)
         {
             // cout << nums[j][i] << " ";
             if ((nums[j][i] >= 0) && (nums[j][i] <= 300))
+            {
+                count++;
                 s1.insert(nums[j][i]);
+            }
         }
+        iteration++;
+        int actualSize = s1.size();
+        if (count != actualSize)
+        {
+            // TODO -- First Check the set Behavior
+            // ? --- *** Sub_Alogirthm ***---
+            // ? using a Brilliant Idea
+            // ? Checking The Number of ELements that has be pushed in the set
+            // ? if the total number of elements in the set is equal to the number
+            // ?      of elements that has to be pushed in the set
+            // ?  then all the elements are distinct
+            // ? Else One of the element is repeated
 
-
-    // TODO -- First Check the set Behavior 
-    // ? --- *** Sub_Alogirthm ***---
-        //? using a Brilliant Idea 
-        //? Checking The Number of ELements that has be pushed in the set 
-        //? if the total number of elements in the set is equal to the number
-        //?      of elements that has to be pushed in the set 
-        //?  then all the elements are distinct 
-        //? Else One of the element is repeated 
-
-
+            cout << "Iteration : " << iteration;
+            cout << "\nAll Elements are not Distinct\n";
+            // cout << "Size of the Set : " << actualSize << "\n";
+            // cout << "Number of items Inserted in the set : " << count << "\n";
+        }
         _showSet(s1);
         // _showVector(_disCol);
         s1 = {};
@@ -155,6 +166,33 @@ void checkingOccurance_col(vector<vector<int>> &nums)
 #endif
 }
 
+// void checking_SubSquare(vector<vector<int>> &nums)
+void checking_SubSquare()
+{
+    vector<vector<int>> sub_vec(4);
+    sub_vec[0] = {1, 2, 3, 4};
+    sub_vec[1] = {10, 20, 30, 40};
+    sub_vec[2] = {100, 200, 300, 400};
+    sub_vec[3] = {1000, 2000, 3000, 4000};
+
+    cout << " -- *** Nested VECTOR *** --\n";
+    _showNestedVector(sub_vec);
+    cout << " -- *** Nested VECTOR *** --\n";
+
+    for (int i = 0; i < 4; i++)
+    {
+        cout << "\n --- *** Current Vector *** --- ";
+        vector<int> currentVector = sub_vec[i];
+        _showVector(currentVector);
+        // cout << "\n --- *** Current Vector *** --- \n";
+        // for (int j = 0; j < 4; j++)
+        // {
+        //     cout << "item : " << i << " , " << j << "\n";
+        //     cout << "Division : " << i / j << endl;
+        //     cout << "--- --- --- --- --- --- \n";
+        // }
+    }
+}
 int main(int argc, char const *argv[])
 {
 
@@ -169,10 +207,11 @@ int main(int argc, char const *argv[])
     cout << "\n--------------\n";
     _showNestedVector(nums);
     cout << "--------------\n";
-
     // _showNestedVector(nums);
     // checkingOccurace_row(nums);
-    checkingOccurance_col(nums);
+    // checkingOccurance_col(nums);
+
+    checking_SubSquare();
 
     return 0;
 }
