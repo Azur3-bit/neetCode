@@ -46,6 +46,17 @@ void _traverseVector(vector<int> &singVec)
     cout << "} ";
 }
 
+// -- Traverse Set
+void _traverseSet(set<int> &usr_set)
+{
+    cout << "\n:: Printing Set :: \n";
+    for (int it : usr_set)
+    {
+        cout << it << " ";
+    }
+    cout << "\n:: Set Printed :: \n";
+}
+
 // -- Checking Row
 void _checkingRow(vector<vector<int>> usr_input)
 {
@@ -88,19 +99,30 @@ void _checkingRow(vector<vector<int>> usr_input)
 void _checkingCol(vector<vector<int>> &usr_input)
 {
     cout << "\nChecking Column \n";
-    vector<int> tmep;
 
     cout << "\n printing Matrix Column-Wise \n";
+    set<int> temp_set;
     for (int i = 0; i < 3; i++)
     {
+        temp_set = {};
+        int counter = 0;
         for (int j = 0; j < 3; j++)
         {
-            cout << usr_input[j][i] << " ";
-            // tmep.push_back(usr_input[j][i]);
+            int curr_element = usr_input[j][i];
+            if (curr_element >= 0 && curr_element < 10)
+            {
+                temp_set.insert(usr_input[j][i]);
+                counter++;
+            }
         }
-        cout << endl;
+
+        if (counter != temp_set.size())
+        {
+            cout << "Error -- Counter and Set Size not Equal : ";
+            _traverseSet(temp_set);
+            break;
+        }
     }
-    // _traverseVector(tmep);
 }
 
 int main()
@@ -112,7 +134,7 @@ int main()
 
     // -- Main Function code --
 
-    vector<vector<int>> usr_input = {{1, 2, 1}, {4, 5, 6}, {7, 8, 9}};
+    vector<vector<int>> usr_input = {{1, 2, 3}, {1, 5, 6}, {7, 8, 9}};
     // _traverseNestedVector(usr_input);
     // _checkingRow(usr_input);
     _checkingCol(usr_input);
