@@ -58,7 +58,7 @@ void _traverseSet(set<int> &usr_set)
 }
 
 // -- Checking Row
-void _checkingRow(vector<vector<int>> usr_input)
+bool _checkingRow(vector<vector<int>> usr_input)
 {
     cout << "\nChecking Row\n";
     for (int i = 0; i < 3; i++)
@@ -74,29 +74,13 @@ void _checkingRow(vector<vector<int>> usr_input)
                 counter++;
             }
         }
-
-        // -- Debug Code
-        // cout << "\n----------\n";
-        // cout << "set Size : " << rowSet.size() << endl;
-        // cout << "Counter : " << counter << endl;
-        // cout << "\n----------\n";
-        // -- Debug Code
-
         if (counter != rowSet.size())
-        {
-            cout << ":: Size is not Equal to counter :: \n";
-        }
-        else
-        {
-
-            cout << "\nEverything is Good :: ";
-            _traverseVector(curr_vector);
-        }
+            return false;
     }
 }
 
 // -- Column Checker
-void _checkingCol(vector<vector<int>> &usr_input)
+bool _checkingCol(vector<vector<int>> &usr_input)
 {
     cout << "\nChecking Column \n";
 
@@ -117,11 +101,7 @@ void _checkingCol(vector<vector<int>> &usr_input)
         }
 
         if (counter != temp_set.size())
-        {
-            cout << "Error -- Counter and Set Size not Equal : ";
-            _traverseSet(temp_set);
-            break;
-        }
+            return false;
     }
 }
 
