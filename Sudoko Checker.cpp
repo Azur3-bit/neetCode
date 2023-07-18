@@ -107,45 +107,51 @@ bool _checkingCol(vector<vector<int>> &usr_input)
     }
 }
 
-void _matrixRowColGenerator(vector<vector<int>> &vec)
+bool _matrixRowColGenerator(vector<vector<int>> &vec)
 {
-    vector<vector<int>> divEleCollection = {
-        {}, // --> 1
-        {}, // --> 2
-        {}, // --> 3
-        {}, // --> 4
-        {}, // --> 5
-        {}, // --> 6
-        {}, // --> 7
-        {}, // --> 8
-        {}, // --> 9
-    };
+    vector<set<int>> divEleCollection(9);
 
-    int k = 0;
+    // int k = 0;
+    // bool flagBit = true;
     for (int i = 0; i < 9; i++)
     {
         for (int j = 0; j < 9; j++)
         {
-            k = (((i / 3) * 3) + (j / 3));
+            int ctr = 0;
+            int k = (((i / 3) * 3) + (j / 3));
             cout << " Pushing : " << vec[i][j] << " in : " << k << "\n";
-            divEleCollection[k].push_back(vec[i][j]);
+
+            if (vec[i][j] >= 0 && vec[i][j] < 10)
+            {
+                ctr++;
+                divEleCollection[k].insert(vec[i][j]);
+            }
+            cout << "Counter : " << ctr << endl;
+            cout << "divEleCollection[k].size() : " << divEleCollection[k].size() << "\n";
+            if (divEleCollection[k].size() != ctr)
+            {
+                // flagBit = false;
+                cout << "\n|| Error : divEleCollection[k].size() != counter ||  in " << k << endl;
+                return false;
+            }
         }
-        cout << "\n\t-- -- --- -- -- -- ";
-
-        cout << "\n\t-- Printing Kth Part of Vector -- ";
-        _traverseVector(divEleCollection[k]);
-
-        cout << endl;
     }
+
+    // Printing all the Divisions
+
+    // for (int i = 0; i < 9; i++)
+    // {
+    //     set<int> curr_set = divEleCollection[i];
+    //     cout << "--*--*--*--*--*--*";
+    //     _traverseSet(curr_set);
+    // }
 }
 
 // * Done -- Verified after using this function
 void TestFunction()
 {
-    vector<vector<int>> divEleCollection = {{}, {}, {}};
-    divEleCollection[0].push_back(0);
-    divEleCollection[1].push_back(1);
-    divEleCollection[2].push_back(2);
+    // vector<vector<int>> divEleCollection = {{}, {}, {}};
+    vector<vector<int>> divEleCollection(9, vector<int>(9, -1));
 
     // Traversing divEleCollection
     _traverseNestedVector(divEleCollection);
@@ -178,8 +184,17 @@ int main()
     // _traverseNestedVector(usr_input);
     // _checkingRow(usr_input);
     // _checkingCol(usr_input);
-    _matrixRowColGenerator(usr_input);
+    // _matrixRowColGenerator(usr_input);
 
     // TestFunction();
+
+    if ((_matrixRowColGenerator(usr_input) && _checkingCol(usr_input) && _checkingRow(usr_input)))
+    {
+        cout << "\n:: Valid Sudoku :: \n";
+    }
+    else
+    {
+        cout << "\n:: In - Valid Sudoku :: \n";
+    }
     return 0;
 }
