@@ -10,6 +10,7 @@ using namespace std;
 #include <unordered_map>
 #include <map>
 #include <set>
+#include <unordered_set>
 #include <queue>
 // -- additional_libraries -- azur3-bit
 #include "TimerClock.h"
@@ -34,6 +35,26 @@ void _traverseNestedVector(vector<vector<int>> &temp)
         cout << endl;
     }
     cout << "} \n";
+}
+
+// -- Traversing a Vector of Unordered Set
+void _traverseVectorSet(vector<unordered_set<long int>> &usr_dataSet)
+{
+    // Printing a vector of Sets
+    int ctr = 0;
+    for (unordered_set<long int> vec : usr_dataSet)
+    {
+        cout << "Size of " << ctr << " : " << vec.size() << endl;
+        ctr++;
+        cout << "{ ";
+        for (int it : vec)
+        {
+            cout << it << " ";
+        }
+        cout << "}";
+        cout << "\n--- --- --- --- ";
+        cout << endl;
+    }
 }
 
 // -- Traversing Vector
@@ -107,6 +128,10 @@ bool _checkingCol(vector<vector<int>> &usr_input)
     }
 }
 
+/*
+Todo -- Proeblelm - Counter is not reliable for cross
+todo                checking either Create multiple sets of find other solutions
+*/
 bool _matrixRowColGenerator(vector<vector<int>> &vec)
 {
     vector<set<int>> divEleCollection(9);
@@ -115,14 +140,15 @@ bool _matrixRowColGenerator(vector<vector<int>> &vec)
     // bool flagBit = true;
     for (int i = 0; i < 9; i++)
     {
+        int ctr = 0;
         for (int j = 0; j < 9; j++)
         {
-            int ctr = 0;
+            // ctr = 0;
             int k = (((i / 3) * 3) + (j / 3));
-            cout << " Pushing : " << vec[i][j] << " in : " << k << "\n";
 
             if (vec[i][j] >= 0 && vec[i][j] < 10)
             {
+                cout << " Pushing : " << vec[i][j] << " in : " << k << "\n";
                 ctr++;
                 divEleCollection[k].insert(vec[i][j]);
             }
@@ -136,15 +162,60 @@ bool _matrixRowColGenerator(vector<vector<int>> &vec)
             }
         }
     }
+}
 
-    // Printing all the Divisions
+// -- repeated Funtion to find Div using Row and Col
+void _matrixDicGenerator(vector<vector<long int>> &usr_input)
+{
+    // -- Create a data structure to store their values properly
+    // -- options -- 1. set 2. maps (finalized unordered Set)
 
-    // for (int i = 0; i < 9; i++)
-    // {
-    //     set<int> curr_set = divEleCollection[i];
-    //     cout << "--*--*--*--*--*--*";
-    //     _traverseSet(curr_set);
-    // }
+    // -- Problem -- Keep track of both number of members and the actual set of values
+
+    vector<unordered_set<long int>> MapingSet(9);
+
+    // Checking Code till now
+    cout << "\n-- Code Checker ---" << endl;
+    _traverseVectorSet(MapingSet);
+    cout << "-- Code Checker ---\n"
+         << endl;
+
+    // printing divs after Calculation
+    // * divs Printed Sucessfully
+    int counterPrincipal = 0;
+    int counter = 0;
+    int k;
+    for (int i = 0; i < 9; i++)
+    {
+        for (int j = 0; j < 9; j++)
+        {
+            if (usr_input[i][j] >= 0 && usr_input[i][j] < 10000)
+            {
+                counter++;
+                // cout << usr_input[i][j] << " ";
+                k = (i / 3) * 3 + j / 3;
+                MapingSet[k].insert(usr_input[i][j]);
+            }
+        }
+    }
+
+    for (int i = 0; i < 9; i++)
+    {
+
+        counterPrincipal++;
+        if (counter == MapingSet[i].size())
+        {
+            cout << "Sucessfull in " << k << " Attempt : " << counterPrincipal << endl;
+        }
+        else
+        {
+            cout << "Caution ! un-Sucessfull in " << k << " Attempt : " << counterPrincipal << endl;
+        }
+        cout << endl;
+    }
+
+    // Printing Every Divisions
+    // _traverseVectorSet(MapingSet);
 }
 
 // * Done -- Verified after using this function
@@ -166,7 +237,7 @@ int main()
 
     // -- Main Function code --
 
-    vector<vector<int>> usr_input = {
+    vector<vector<long int>> usr_input = {
         // <-- ROW - 1 -->
         {1, 2, 3, 4, 5, 6, 7, 8, 9},
         {10, 20, 30, 40, 50, 60, 70, 80, 90},
@@ -185,9 +256,10 @@ int main()
     // _checkingRow(usr_input);
     // _checkingCol(usr_input);
     // _matrixRowColGenerator(usr_input);
-
+    _matrixDicGenerator(usr_input);
     // TestFunction();
 
+#if 0
     if ((_matrixRowColGenerator(usr_input) && _checkingCol(usr_input) && _checkingRow(usr_input)))
     {
         cout << "\n:: Valid Sudoku :: \n";
@@ -196,5 +268,7 @@ int main()
     {
         cout << "\n:: In - Valid Sudoku :: \n";
     }
+#endif
+
     return 0;
 }
