@@ -50,11 +50,11 @@ void _traverseNestedVector(vector<vector<int>> &temp)
 }
 
 // -- Traversing a Vector of Unordered Set
-void _traverseVectorSet(vector<unordered_set<long int>> &usr_dataSet)
+void _traverseVectorSet(vector<unordered_set<int>> &usr_dataSet)
 {
     // Printing a vector of Sets
     int ctr = 0;
-    for (unordered_set<long int> vec : usr_dataSet)
+    for (unordered_set<int> vec : usr_dataSet)
     {
         cout << "Size of " << ctr << " : " << vec.size() << endl;
         ctr++;
@@ -117,7 +117,7 @@ bool _checkingRow(vector<vector<int>> usr_input)
 // -- Column Checker
 bool _checkingCol(vector<vector<int>> &usr_input)
 {
-    cout << "\nChecking Column \n";
+    // cout << "\nChecking Column \n";
 
     // cout << "\n printing Matrix Column-Wise \n";
     set<int> temp_set;
@@ -177,28 +177,25 @@ bool _matrixRowColGenerator(vector<vector<int>> &vec)
 }
 
 // -- repeated Funtion to find Div using Row and Col
-void _matrixDicGenerator(vector<vector<long int>> &usr_input)
+bool _matrixDicGenerator(vector<vector<int>> &usr_input)
 {
     // -- Create a data structure to store their values properly
     // -- options -- 1. set 2. maps (finalized unordered Set)
 
     // -- Problem -- Keep track of both number of members and the actual set of values
 
-    vector<unordered_set<long int>> MapingSet(9);
+    vector<unordered_set<int>> MapingSet(9);
+    vector<int> k_CounterValueVector(9, 0);
 
     // Checking Code till now
-    cout << "\n-- Code Checker ---" << endl;
-    _traverseVectorSet(MapingSet);
-    cout << "-- Code Checker ---\n"
-         << endl;
+    // _traverseVectorSet(MapingSet);
 
     // printing divs after Calculation
     // * divs Printed Sucessfully
-    int counterPrincipal = 0;
-    int counter = 0;
     int k;
     for (int i = 0; i < 9; i++)
     {
+        int counter = 0;
         for (int j = 0; j < 9; j++)
         {
             if (usr_input[i][j] >= 0 && usr_input[i][j] < 10000)
@@ -206,39 +203,25 @@ void _matrixDicGenerator(vector<vector<long int>> &usr_input)
                 counter++;
                 // cout << usr_input[i][j] << " ";
                 k = (i / 3) * 3 + j / 3;
+                // cout << "k : " << k << " \n";
                 MapingSet[k].insert(usr_input[i][j]);
             }
         }
+        k_CounterValueVector[i] = counter;
     }
 
+    // -- Final Code Checker
     for (int i = 0; i < 9; i++)
     {
-
-        counterPrincipal++;
-        if (counter == MapingSet[i].size())
+        if (MapingSet[i].size() != k_CounterValueVector[i])
         {
-            cout << "Sucessfull in " << k << " Attempt : " << counterPrincipal << endl;
+            return false;
         }
-        else
-        {
-            cout << "Caution ! un-Sucessfull in " << k << " Attempt : " << counterPrincipal << endl;
-        }
-        cout << endl;
     }
-
-    // Printing Every Divisions
-    // _traverseVectorSet(MapingSet);
+    return true;
 }
 
-// * Done -- Verified after using this function
-void TestFunction()
-{
-    // vector<vector<int>> divEleCollection = {{}, {}, {}};
-    vector<vector<int>> divEleCollection(9, vector<int>(9, -1));
-
-    // Traversing divEleCollection
-    _traverseNestedVector(divEleCollection);
-}
+// -- Using a HashMap to Solve ((ERROR) -- Vector<int> Cannot be used as key -- )
 
 int main()
 {
@@ -249,13 +232,13 @@ int main()
 
     // -- Main Function code --
 
-    vector<vector<long int>> usr_input = {
+    vector<vector<int>> usr_input = {
         // <-- ROW - 1 -->
         {1, 2, 3, 4, 5, 6, 7, 8, 9},
         {10, 20, 30, 40, 50, 60, 70, 80, 90},
         {11, 12, 13, 14, 15, 16, 17, 18, 19},
         // <-- ROW - 2 -->
-        {101, 201, 301, 401, 501, 601, 701, 801, 901},
+        {100, 201, 301, 401, 501, 601, 701, 801, 901},
         {102, 202, 302, 402, 502, 602, 702, 802, 902},
         {103, 203, 303, 403, 503, 603, 703, 803, 903},
         // <-- ROW - 3 -->
@@ -269,18 +252,20 @@ int main()
     // _checkingCol(usr_input);
     // _matrixRowColGenerator(usr_input);
     _matrixDicGenerator(usr_input);
+
+    //  -- Test Function
     // TestFunction();
 
-#if 0
-    if ((_matrixRowColGenerator(usr_input) && _checkingCol(usr_input) && _checkingRow(usr_input)))
+    // #if 0
+    if ((_matrixDicGenerator(usr_input) && _checkingCol(usr_input) && _checkingRow(usr_input)))
     {
-        cout << "\n:: Valid Sudoku :: \n";
+        cout << ":: Valid Sudoku :: \n";
     }
     else
     {
-        cout << "\n:: In - Valid Sudoku :: \n";
+        cout << ":: In - Valid Sudoku :: \n";
     }
-#endif
+    // #endif
 
     return 0;
 }
