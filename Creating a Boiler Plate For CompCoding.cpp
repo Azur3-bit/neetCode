@@ -1,5 +1,3 @@
-// Creating a Boiler Plate For CompCoding
-
 // -- essential_libraries_and_namespace
 #include <iostream>
 using namespace std;
@@ -23,19 +21,15 @@ using namespace std;
 int main(int argc, char const *argv[])
 {
 
+#ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+#endif
     // -- faster I/O operations
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-#ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-
-#endif
-
     // -- Main Function code --
-
-    // -- Testing input and Output Files
 
     return 0;
 }
