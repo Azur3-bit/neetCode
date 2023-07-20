@@ -141,7 +141,7 @@ bool _checkingCol(vector<vector<int>> &usr_input)
 }
 
 /*
-Todo -- Proeblelm - Counter is not reliable for cross
+Todo -- Problem - Counter is not reliable for cross
 todo                checking either Create multiple sets of find other solutions
 */
 bool _matrixRowColGenerator(vector<vector<int>> &vec)
