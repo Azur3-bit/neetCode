@@ -232,6 +232,46 @@ int main()
 
     // -- Main Function code --
 
+    timer time;
+    {
+        vector<vector<int>> usr_input = {
+            // <-- ROW - 1 -->
+            {1, 2, 3, 4, 5, 6, 7, 8, 9},
+            {10, 20, 30, 40, 50, 60, 70, 80, 90},
+            {11, 12, 13, 14, 15, 16, 17, 18, 19},
+            // <-- ROW - 2 -->
+            {100, 201, 301, 401, 501, 601, 701, 801, 901},
+            {102, 202, 302, 402, 502, 602, 702, 802, 902},
+            {103, 203, 303, 403, 503, 603, 703, 803, 903},
+            // <-- ROW - 3 -->
+            {100, 200, 300, 400, 500, 600, 700, 800, 900},
+            {110, 210, 310, 41, 510, 610, 710, 810, 910},
+            {1001, 2001, 3001, 4001, 5001, 6001, 7001, 8001, 9001},
+        };
+
+        // _traverseNestedVector(usr_input);
+        // _checkingRow(usr_input);
+        // _checkingCol(usr_input);
+        // _matrixRowColGenerator(usr_input);
+        _matrixDicGenerator(usr_input);
+
+        //  -- Test Function
+        // TestFunction();
+
+        // #if 0
+        if ((_matrixDicGenerator(usr_input) && _checkingCol(usr_input) && _checkingRow(usr_input)))
+        {
+            cout << ":: Valid Sudoku :: \n";
+        }
+        else
+        {
+            cout << ":: In - Valid Sudoku :: \n";
+        }
+        // #endif
+
+        return 0;
+    }
+
     vector<vector<int>> usr_input = {
         // <-- ROW - 1 -->
         {1, 2, 3, 4, 5, 6, 7, 8, 9},
