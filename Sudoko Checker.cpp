@@ -202,7 +202,7 @@ bool _matrixDicGenerator(vector<vector<int>> &usr_input)
             {
                 counter++;
                 // cout << usr_input[i][j] << " ";
-                k = (i / 3) * 3 + j / 3;
+                k = (i / 3)*3 + j / 3;
                 // cout << "k : " << k << " \n";
                 MapingSet[k].insert(usr_input[i][j]);
             }
