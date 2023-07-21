@@ -14,16 +14,19 @@ using namespace std;
 // -- additional_libraries -- azur3
 #include "TimerClock.h"
 
+#define row 9
+#define col 9
+
 // Classes
 
 // Functions
 
-void _showBoard(vector<vector<int>> &board)
+void _showBoard(vector<vector<char>> &board)
 {
     cout << ": Printing borad :\n";
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < row; i++)
     {
-        for (int j = 0; j < 3; j++)
+        for (int j = 0; j < col; j++)
         {
             cout << board[i][j] << " ";
         }
@@ -33,25 +36,24 @@ void _showBoard(vector<vector<int>> &board)
 
 int main()
 {
-    #ifndef ONLINE_JUDGE
-        freopen("input.txt", "r", stdin);
-        freopen("output.txt", "w", stdout);
-    #endif
+    // #ifndef ONLINE_JUDGE
+    //     freopen("input.txt", "r", stdin);
+    //     freopen("output.txt", "w", stdout);
+    // #endif
 
     // -- Main Function code --
 
-    vector<vector<int>> board(3, vector<int>(3));
+    vector<vector<char>> board = {
+        {'5', '3', '.', '.', '7', '.', '.', '.', '.'},
+        {'6', '.', '.', '1', '9', '5', '.', '.', '.'},
+        {'.', '9', '8', '.', '.', '.', '.', '6', '.'},
+        {'8', '.', '.', '.', '6', '.', '.', '.', '3'},
+        {'4', '.', '.', '8', '.', '3', '.', '.', '1'},
+        {'7', '.', '.', '.', '2', '.', '.', '.', '6'},
+        {'.', '6', '.', '.', '.', '.', '2', '8', '.'},
+        {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
+        {'.', '.', '.', '.', '8', '.', '.', '7', '9'}};
 
-    for (int i = 0; i < 3; i++)
-    {
-        int current_input;
-        for (int j = 0; j < 3; j++)
-        {
-            // cout << "Enter item at position : " << i << "," << j << ": ";
-            cin >> current_input;
-            board[i][j] = current_input;
-        }
-    }
     _showBoard(board);
 
     return 0;
