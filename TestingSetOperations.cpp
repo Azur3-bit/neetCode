@@ -45,7 +45,10 @@ int main(int argc, char const *argv[])
     set<int> s1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     // _showSet(s1);
     auto result = s1.find(1);
-    cout << typeid(result).name();
+    // cout << typeid(result).name();
 
+    set<int> :: iterator iter_eleTop = s1.begin();
+
+    cout << *iter_eleTop << endl;
     return 0;
 }

@@ -17,6 +17,17 @@ using namespace std;
 
 // Classes
 
+// -- Printing HashMap
+void _showHashMap(unordered_map<int, bool> &hashMap)
+{
+	cout << ":: Printing HashMap :: \n";
+	cout << "Key \t Value\n";
+	for (auto it : hashMap)
+	{
+		cout << it.first << "\t" << it.second << "\n";
+	}
+}
+
 //  -- Prints Vector
 void _showVector(const vector<int> &nums)
 {
@@ -45,24 +56,21 @@ void _showSet(const set<int> &setNums)
 
 void _consecutiveSequence(vector<int> &nums)
 {
-	set<int> setNums{};
-	int counter = 0;
-	cout << ":: Pushing Elements into an Ordered Set :: \n";
-	for (int i = 0; i < nums.size();i++)
-	{
-		setNums.insert(nums[i]);
-	}
 
-	// -- Working Fine 
+	unordered_map<int, bool> hashMap{};
+	for (int it : nums)
+	{
+		hashMap[it] = false;
+	}
+	// -- Working Fine
 	// cout << "-- -- --- --- -- -- \n";
 	// _showSet(setNums);
-	// -- Working Fine 
+	// -- Working Fine
 
-
+	_showHashMap(hashMap);
 }
 
 // TODO Check weather sets also have indexing values
-
 
 int main(int argc, char const *argv[])
 {
