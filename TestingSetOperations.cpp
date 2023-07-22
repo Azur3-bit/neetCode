@@ -11,6 +11,7 @@ using namespace std;
 #include <set>
 #include <unordered_set>
 #include <queue>
+#include <typeinfo>
 // -- additional_libraries -- azur3
 #include "TimerClock.h"
 
@@ -21,12 +22,16 @@ using namespace std;
 void _showSet(const set<int> &usr_Set)
 {
     cout << ":: Printing Set ::\n";
+    cout << "{";
     for (int it : usr_Set)
     {
         cout << it << " ";
     }
+    cout << "}";
     cout << endl;
 }
+
+
 
 int main(int argc, char const *argv[])
 {
@@ -38,7 +43,9 @@ int main(int argc, char const *argv[])
     // -- Main Function code --
 
     set<int> s1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-    _showSet(s1);
+    // _showSet(s1);
+    auto result = s1.find(1);
+    cout << typeid(result).name();
 
     return 0;
 }
