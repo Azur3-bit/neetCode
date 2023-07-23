@@ -65,28 +65,33 @@ void _showNestedVector(vector<vector<int>> &nums)
 void _3Sum(vector<int> &nums)
 {
     vector<vector<int>> result;
+    // -- sorted Vector
     sort(nums.begin(), nums.end());
+    cout << "\n:: Sorted vector :: " << endl;
+    _showVector(nums);
 
     for (int i = 0; i < nums.size() - 1; i++)
     {
         vector<int> ansVector{};
+
+        // cout << "\nBreakpoint - 1" << endl;
+        // return;
         int j = i + 1;
         int k = nums.size() - 1;
         while (j < k)
         {
             if (nums[i] + nums[j] + nums[k] == 0)
             {
-                ansVector.push_back(i);
-                ansVector.push_back(k);
-                ansVector.push_back(j);
-                result.push_back(ansVector);
+                cout << "\nresult : " << nums[i] << " + " << nums[j] << " + " << nums[k] << endl;
+                return;
             }
 
-            else if (nums[i] + nums[j] + nums[k] > 0)
+            if (nums[i] + nums[j] + nums[k] > 0)
             {
                 k--;
             }
-            else if (nums[i] + nums[j] + nums[k] < 0){
+            if (nums[i] + nums[j] + nums[k] < 0)
+            {
                 j++;
             }
         }
@@ -96,7 +101,6 @@ void _3Sum(vector<int> &nums)
 }
 int main(int argc, char const *argv[])
 {
-
 #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
