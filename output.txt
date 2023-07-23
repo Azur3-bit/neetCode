@@ -1,14 +1,14 @@
 
 -*-  -*- -*- 
-
 Printing HashMap
+
 key		value
 ----	-----
-1		100
-2		200
-3		300
-4		600
-HashMap Printed
+1		--100--
+2		--200--
+3		--300--
+4		--600--
 
+HashMap Printed
 -*-  -*- -*- 
 

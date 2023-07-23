@@ -18,6 +18,7 @@ using namespace std;
 // Classes
 
 // Functions
+template <typename type_1>
 void _inputVector(vector<int> &nums)
 {
     int input;
@@ -28,11 +29,12 @@ void _inputVector(vector<int> &nums)
     cout << endl;
 }
 
-void _showVector(vector<int> &nums)
+template <typename type_2>
+void _showVector(const vector<type_2> &nums)
 {
     cout << ":: Printing Vector :: " << endl;
     cout << "{ ";
-    for (int it : nums)
+    for (type_2 it : nums)
     {
         cout << it << " ";
     }
@@ -46,8 +48,8 @@ void _showHashMap(const std::map<KeyType, ValueType> &hashMap)
 {
     std::cout << std::endl;
     std::cout << "-*-  -*- -*- " << std::endl;
-    std::cout << std::endl;
     std::cout << "Printing HashMap" << std::endl;
+    std::cout << std::endl;
     std::cout << "key\t\tvalue" << std::endl;
     std::cout << "----\t-----" << std::endl;
 
@@ -56,8 +58,8 @@ void _showHashMap(const std::map<KeyType, ValueType> &hashMap)
         std::cout << it.first << "\t\t" << it.second << std::endl;
     }
 
-    std::cout << "HashMap Printed" << std::endl;
     std::cout << std::endl;
+    std::cout << "HashMap Printed" << std::endl;
     std::cout << "-*-  -*- -*- " << std::endl;
     std::cout << std::endl;
 }
@@ -73,21 +75,11 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-    // -- Main Function code --
-    // string name;
-    // cin >> name;
-    // cout << "Hello master ! " << name;
-
-    // vector<int> nums = {1,2,3,4};
-    // vector<int> nums{};
-    // _inputVector(nums);
-    // _showVector(nums);
-
-    map<int, int> hashMap{};
-    hashMap[1] = 100;
-    hashMap[2] = 200;
-    hashMap[3] = 300;
-    hashMap[4] = 600;
+    map<int, string> hashMap{};
+    hashMap[1] = "--100--";
+    hashMap[2] = "--200--";
+    hashMap[3] = "--300--";
+    hashMap[4] = "--600--";
 
     _showHashMap(hashMap);
 
