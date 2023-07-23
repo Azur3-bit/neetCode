@@ -23,7 +23,6 @@ using namespace std;
 #include "TimerClock.h"
 
 // Classes
-
 // Functions
 template <typename type_1>
 void _input(vector<type_1> &nums)
@@ -87,16 +86,27 @@ void _showSet(const std::set<T> &numsSet)
     std::cout << "-*-  -*- -*-" << std::endl;
 }
 
+void matrixProblem()
+{
+    for (int i = 0; i < 9; i++)
+    {
+        for (int j = 0; j < 9; j++)
+        {
+            cout << (i / 3) * 3 + (j / 3) << " ";
+        }
+        cout << endl;
+    }
+}
+
 int consecutiveOccrance(vector<int> &nums)
 {
     // using vector to store all the counter values
-    vector<int> allCounterValues{};  // * - not needed now 
+    vector<int> allCounterValues{}; // * - not needed now
     set<int> allCounterValuesSet{};
     // using set instead of vector to store all the values
     set<int> hashSet{};
     map<int, bool> hashmap{}; // * - not needed now
     int occranceCounter = 0;
-
     if (nums.size() == 0)
     {
         return occranceCounter;
@@ -105,10 +115,10 @@ int consecutiveOccrance(vector<int> &nums)
     {
         hashSet.insert(it);
     }
-    std::cout << "-*-  -*- -*-" << std::endl;
+    std::cout << "-*-  -*- #1 START -*-" << std::endl;
     cout << "breakpoint - 1" << endl;
     _showSet(hashSet);
-    std::cout << "-*-  -*- -*-" << std::endl;
+    std::cout << "-*-  -*- # 1 END -*-" << std::endl;
 
 #if 0
     for (int it : nums)
@@ -137,10 +147,8 @@ int consecutiveOccrance(vector<int> &nums)
             allCounterValuesSet.insert(occranceCounter);
         }
     }
-
     // Printing the entire set
     _showSet(allCounterValuesSet);
-
     auto maxElement = allCounterValuesSet.end();
     cout << "Maxiumum Occarnce : " << *maxElement + 1;
     return occranceCounter + 1;
@@ -161,6 +169,14 @@ int main(int argc, char const *argv[])
 
     // -- Actual funciton code
     consecutiveOccrance(nums);
+
+    // -- Matrix issue
+
+#if 0
+    cout << "\n-- Matrix issue -- \n";
+    matrixProblem();
+    cout << "\n-- Matrix issue -- \n";
+#endif
 
     return 0;
 }
