@@ -28,8 +28,6 @@ void _inputVector(vector<int> &nums)
     cout << endl;
 }
 
-
-
 void _showVector(vector<int> &nums)
 {
     cout << ":: Printing Vector :: " << endl;
@@ -41,6 +39,27 @@ void _showVector(vector<int> &nums)
     cout << "}";
     cout << endl;
     cout << ":: Vector Printed :: ";
+}
+
+template <typename KeyType, typename ValueType>
+void _showHashMap(const std::map<KeyType, ValueType> &hashMap)
+{
+    std::cout << std::endl;
+    std::cout << "-*-  -*- -*- " << std::endl;
+    std::cout << std::endl;
+    std::cout << "Printing HashMap" << std::endl;
+    std::cout << "key\t\tvalue" << std::endl;
+    std::cout << "----\t-----" << std::endl;
+
+    for (const auto &it : hashMap)
+    {
+        std::cout << it.first << "\t\t" << it.second << std::endl;
+    }
+
+    std::cout << "HashMap Printed" << std::endl;
+    std::cout << std::endl;
+    std::cout << "-*-  -*- -*- " << std::endl;
+    std::cout << std::endl;
 }
 
 int main(int argc, char const *argv[])
@@ -60,9 +79,17 @@ int main(int argc, char const *argv[])
     // cout << "Hello master ! " << name;
 
     // vector<int> nums = {1,2,3,4};
-    vector<int> nums{};
-    _inputVector(nums);
-    _showVector(nums);
+    // vector<int> nums{};
+    // _inputVector(nums);
+    // _showVector(nums);
+
+    map<int, int> hashMap{};
+    hashMap[1] = 100;
+    hashMap[2] = 200;
+    hashMap[3] = 300;
+    hashMap[4] = 600;
+
+    _showHashMap(hashMap);
 
     return 0;
 }

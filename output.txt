@@ -1,4 +1,14 @@
 
-:: Printing Vector :: 
-{ 100 4 200 1 3 2 }
-:: Vector Printed :: 
+-*-  -*- -*- 
+
+Printing HashMap
+key		value
+----	-----
+1		100
+2		200
+3		300
+4		600
+HashMap Printed
+
+-*-  -*- -*- 
+

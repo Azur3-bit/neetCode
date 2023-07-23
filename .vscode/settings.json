@@ -8,6 +8,9 @@
         "unordered_set": "cpp",
         "xhash": "cpp",
         "algorithm": "cpp",
-        "xstring": "cpp"
+        "xstring": "cpp",
+        "chrono": "cpp",
+        "utility": "cpp",
+        "map": "cpp"
     }
 }
