@@ -7,3 +7,10 @@
 { -4 -1 -1 0 1 2 }
 :: Vector Printed :: 
 result : -1 + -1 + 2
+
+result : -1 + 0 + 1
+
+:: Printing Nested Vector :: 
+
+{ { -1 -1 2 } { -1 0 1 } } 
+:: Printed Nested Vector :: 

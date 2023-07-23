@@ -47,7 +47,8 @@ void _showVector(const vector<type_2> &nums)
 
 void _showNestedVector(vector<vector<int>> &nums)
 {
-    std::cout << ":: Printing Nested Vector :: " << endl;
+    std::cout << "\n:: Printing Nested Vector :: \n"
+              << endl;
     std::cout << "{ ";
     for (auto it : nums)
     {
@@ -59,10 +60,10 @@ void _showNestedVector(vector<vector<int>> &nums)
         std::cout << "} ";
     }
     std::cout << "} ";
-    std::cout << ":: Printed Nested Vector :: " << endl;
+    std::cout << "\n:: Printed Nested Vector :: " << endl;
 }
 
-void _3Sum(vector<int> &nums)
+vector<vector<int>> _3Sum(vector<int> &nums)
 {
     vector<vector<int>> result;
     // -- sorted Vector
@@ -83,21 +84,28 @@ void _3Sum(vector<int> &nums)
             if (nums[i] + nums[j] + nums[k] == 0)
             {
                 cout << "\nresult : " << nums[i] << " + " << nums[j] << " + " << nums[k] << endl;
-                return;
+                ansVector.push_back(nums[i]);
+                ansVector.push_back(nums[j]);
+                ansVector.push_back(nums[k]);
+                // _showVector(ansVector);
+                result.push_back(ansVector);
+
+                break;
             }
 
-            if (nums[i] + nums[j] + nums[k] > 0)
+            else if (nums[i] + nums[j] + nums[k] > 0)
             {
                 k--;
             }
-            if (nums[i] + nums[j] + nums[k] < 0)
+            else if (nums[i] + nums[j] + nums[k] < 0)
             {
                 j++;
             }
         }
     }
 
-    _showNestedVector(result);
+    // cout << endl;
+    return result;
 }
 int main(int argc, char const *argv[])
 {
@@ -114,6 +122,8 @@ int main(int argc, char const *argv[])
     _input(nums);
     _showVector(nums);
 
-    _3Sum(nums);
+    vector<vector<int>> result = _3Sum(nums);
+    _showNestedVector(result);
+
     return 0;
 }
