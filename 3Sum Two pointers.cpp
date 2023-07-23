@@ -1,5 +1,9 @@
 // 3Sum Two pointers
 
+// TODO problem START
+// ? Test Case -- [0,0,0,0] -- o/p [[0,0,0]]
+
+// TODO problem END 
 // -- essential_libraries_and_namespace
 #include <iostream>
 using namespace std;
@@ -47,8 +51,7 @@ void _showVector(const vector<type_2> &nums)
 
 void _showNestedVector(vector<vector<int>> &nums)
 {
-    std::cout << "\n:: Printing Nested Vector :: \n"
-              << endl;
+    std::cout << "\n:: Printing Nested Vector :: \n";
     std::cout << "{ ";
     for (auto it : nums)
     {
@@ -73,10 +76,10 @@ vector<vector<int>> _3Sum(vector<int> &nums)
 
     for (int i = 0; i < nums.size() - 1; i++)
     {
+        if(nums[i] == nums[i-1]){
+            break;
+        }
         vector<int> ansVector{};
-
-        // cout << "\nBreakpoint - 1" << endl;
-        // return;
         int j = i + 1;
         int k = nums.size() - 1;
         while (j < k)
@@ -87,24 +90,19 @@ vector<vector<int>> _3Sum(vector<int> &nums)
                 ansVector.push_back(nums[i]);
                 ansVector.push_back(nums[j]);
                 ansVector.push_back(nums[k]);
-                // _showVector(ansVector);
                 result.push_back(ansVector);
-
                 break;
             }
-
-            else if (nums[i] + nums[j] + nums[k] > 0)
+            if (nums[i] + nums[j] + nums[k] > 0)
             {
                 k--;
             }
-            else if (nums[i] + nums[j] + nums[k] < 0)
+            if (nums[i] + nums[j] + nums[k] < 0)
             {
                 j++;
             }
         }
     }
-
-    // cout << endl;
     return result;
 }
 int main(int argc, char const *argv[])
