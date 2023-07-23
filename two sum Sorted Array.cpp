@@ -44,6 +44,40 @@ void _showVector(const vector<type_2> &nums)
     cout << ":: Vector Printed :: ";
 }
 
+vector<int> _twoSumSorted(vector<int> &nums, int target)
+{
+
+    // intialize two pointers
+    int s = 0;
+    int d = nums.size() - 1;
+
+    vector<int> result{};
+    // cout << "\nLast Element : " << nums[d] << endl;
+
+    while (s < d)
+    {
+        int sum = nums[s] + nums[d];
+
+        // cout << sum << " = " << nums[s] << " + " << nums[d] << endl;
+
+        if (sum == target)
+        {
+            result.push_back(s);
+            result.push_back(d);
+            return result;
+        }
+
+        if (sum > target)
+        {
+            d--;
+        }
+        if (sum < target)
+        {
+            s++;
+        }
+    }
+    return result;
+}
 int main(int argc, char const *argv[])
 {
 
@@ -58,8 +92,13 @@ int main(int argc, char const *argv[])
     // -- Main Function code --
 
     vector<int> nums{};
+    int target;
+    cin >> target;
+    cout << "target : " << target << endl;
     _input(nums);
     _showVector(nums);
+    vector<int> result =  _twoSumSorted(nums, target);
+    _showVector(result);
 
     return 0;
 }
