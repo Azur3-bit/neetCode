@@ -6,6 +6,9 @@
 //  -- test Case - 2
 // 0 3 7 2 5 8 4 6 0 1 - o/p 9
 
+//  -- test Case - 3
+//  9 1 4 7 3 -1 0 5 8 -1 6  - o/p 7
+
 // -- essential_libraries_and_namespace
 #include <iostream>
 using namespace std;
@@ -70,6 +73,22 @@ void _showHashMap(const std::map<KeyType, ValueType> &hashMap)
 }
 
 template <typename T>
+void _showUnOrderedSet(const std::unordered_set<T> &numsSet)
+{
+    std::cout << "-*-  -*- -*-" << std::endl;
+    std::cout << "Printing Set" << std::endl;
+    std::cout << std::endl;
+    std::cout << "{ ";
+    for (auto it = numsSet.begin(); it != numsSet.end(); ++it)
+    {
+        std::cout << *it;
+        if (std::next(it) != numsSet.end())
+            std::cout << ", ";
+    }
+    std::cout << " }" << std::endl;
+    std::cout << "-*-  -*- -*-" << std::endl;
+}
+template <typename T>
 void _showSet(const std::set<T> &numsSet)
 {
     std::cout << "-*-  -*- -*-" << std::endl;
@@ -120,6 +139,11 @@ int consecutiveOccrance(vector<int> &nums)
     _showSet(hashSet);
     std::cout << "-*-  -*- # 1 END -*-" << std::endl;
 
+    // * Done till here
+
+    // TODO Problem -- Prev elment has to be take in count maybe
+    // TODO [9,1,4,7,3,-1,0,5,8,-1,6]
+
 #if 0
     for (int it : nums)
     {
@@ -132,14 +156,12 @@ int consecutiveOccrance(vector<int> &nums)
         int prevElement = it - 1;
         int nextElement = it + 1;
 
-        if (hashSet.find(prevElement) != hashSet.end())
+        if (hashSet.find(prevElement) != hashSet.end() && hashSet.find(nextElement) != hashSet.end())
         {
-
             cout << "--- --- --- ---" << endl;
             cout << prevElement << " -> ";
             cout << "for item - " << it << " <- ";
-            ++occranceCounter;
-
+            occranceCounter++;
             cout << nextElement << " " << endl;
             cout << "current counter " << occranceCounter;
             cout << endl;
@@ -151,8 +173,45 @@ int consecutiveOccrance(vector<int> &nums)
     _showSet(allCounterValuesSet);
     auto maxElement = allCounterValuesSet.end();
     cout << "Maxiumum Occarnce : " << *maxElement + 1;
-    return occranceCounter + 1;
+    return +1;
 }
+
+void approach2_ConsecutiveSequence(vector<int> &nums)
+{
+
+    // creating a set to store all the values
+    unordered_set<int> userSet{};
+
+    // int answer;
+    for (int it : nums)
+    {
+        userSet.insert(it);
+    }
+    int maxConsecutiveSequence = 0;
+    // -- Printing Set
+    // _showUnOrderedSet(userSet);
+
+    for (int number : nums)
+    {
+        if (userSet.find(number - 1) == userSet.end())
+        {
+            int currNumber = number;
+            int currentConsecutiveSequnce = 1;
+
+            while (userSet.find(currNumber + 1) != userSet.end())
+            {
+                currNumber++;
+                currentConsecutiveSequnce++;
+            }
+
+            // maximum Consecutive Sequence
+            maxConsecutiveSequence = max(currentConsecutiveSequnce, maxConsecutiveSequence);
+        }
+    }
+    cout << "maximum Consecutive Sequence : " << maxConsecutiveSequence << endl;
+    // return maxConsecutiveSequence;
+}
+
 int main(int argc, char const *argv[])
 {
 
@@ -168,9 +227,12 @@ int main(int argc, char const *argv[])
     _input(nums);
 
     // -- Actual funciton code
-    consecutiveOccrance(nums);
+    // consecutiveOccrance(nums);
+    approach2_ConsecutiveSequence(nums);
 
-    // -- Matrix issue
+    // -- after sorting
+    // sort(nums.begin(), nums.end());
+    // _showVector(nums);
 
 #if 0
     cout << "\n-- Matrix issue -- \n";
