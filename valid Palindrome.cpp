@@ -19,12 +19,34 @@ using namespace std;
 
 // Functions
 
-
-void ValidPalindrome(string &str){
+bool ValidPalindrome(string &str)
+{
 
     cout << "Entered String : " << str << endl;
+    int i = 0;
+    int j = str.size() - 1;
 
-    
+    cout << "last element : " << str[j] << endl;
+
+    while (i < j)
+    {
+        int i_Element = str[tolower(i)];
+        int j_Element = str[tolower(j)];
+
+        cout << i_Element << " -- " << j_Element << endl;
+
+        if (i_Element != j_Element)
+        {
+            cout << "not a palindrom " << endl;
+            return false;
+        }
+        j--;
+        i++;
+    }
+
+    cout << "palindrome" << endl;
+    return true;
+    // cout << "not valid Palindrome" << endl;
 }
 
 int main(int argc, char const *argv[])
@@ -39,14 +61,17 @@ int main(int argc, char const *argv[])
     cin.tie(NULL);
 
     // -- Main Function code --
-    string palin;
 
     // string name;
     // cin >> name;
     // cout << "hello "<< name;
 
-    cin >> palin;
-    validPalindrome(palin);
+    // string palin;
+    // puts(palin);
+    string palin = "A man, a plan, a canal: Panama";
+    // cout << "Answer " << ValidPalindrome(palin);
+
+    ValidPalindrome(palin);
 
     return 0;
 }
