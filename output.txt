@@ -1,14 +1,38 @@
+-*-  -*- -*-
+breakpoint - 1
+-*-  -*- -*-
+Printing Set
 
--*-  -*- -*- 
-Printing HashMap
+{ 0, 1, 2, 3, 4, 5, 6, 7, 8 }
+-*-  -*- -*-
+-*-  -*- -*-
+--- --- --- ---
+0 -> for item - 1 <- 2 
+current counter 1
+--- --- --- ---
+1 -> for item - 2 <- 3 
+current counter 2
+--- --- --- ---
+2 -> for item - 3 <- 4 
+current counter 3
+--- --- --- ---
+3 -> for item - 4 <- 5 
+current counter 4
+--- --- --- ---
+4 -> for item - 5 <- 6 
+current counter 5
+--- --- --- ---
+5 -> for item - 6 <- 7 
+current counter 6
+--- --- --- ---
+6 -> for item - 7 <- 8 
+current counter 7
+--- --- --- ---
+7 -> for item - 8 <- 9 
+current counter 8
+-*-  -*- -*-
+Printing Set
 
-key		value
-----	-----
-1		--100--
-2		--200--
-3		--300--
-4		--600--
-
-HashMap Printed
--*-  -*- -*- 
-
+{ 1, 2, 3, 4, 5, 6, 7, 8 }
+-*-  -*- -*-
+Maxiumum Occarnce : 9

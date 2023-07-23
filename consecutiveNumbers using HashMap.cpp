@@ -1,4 +1,11 @@
 // consecutiveNumbers using HashMap
+
+//  -- test Case - 1
+// 100 4 200 1 3 2  -    o/p 4
+
+//  -- test Case - 2
+// 0 3 7 2 5 8 4 6 0 1 - o/p 9
+
 // -- essential_libraries_and_namespace
 #include <iostream>
 using namespace std;
@@ -19,14 +26,13 @@ using namespace std;
 
 // Functions
 template <typename type_1>
-void _inputVector(vector<int> &nums)
+void _input(vector<type_1> &nums)
 {
-    int input;
+    type_1 input;
     while (cin >> input)
     {
         nums.push_back(input);
     }
-    cout << endl;
 }
 
 template <typename type_2>
@@ -64,6 +70,81 @@ void _showHashMap(const std::map<KeyType, ValueType> &hashMap)
     std::cout << std::endl;
 }
 
+template <typename T>
+void _showSet(const std::set<T> &numsSet)
+{
+    std::cout << "-*-  -*- -*-" << std::endl;
+    std::cout << "Printing Set" << std::endl;
+    std::cout << std::endl;
+    std::cout << "{ ";
+    for (auto it = numsSet.begin(); it != numsSet.end(); ++it)
+    {
+        std::cout << *it;
+        if (std::next(it) != numsSet.end())
+            std::cout << ", ";
+    }
+    std::cout << " }" << std::endl;
+    std::cout << "-*-  -*- -*-" << std::endl;
+}
+
+int consecutiveOccrance(vector<int> &nums)
+{
+    // using vector to store all the counter values
+    vector<int> allCounterValues{};  // * - not needed now 
+    set<int> allCounterValuesSet{};
+    // using set instead of vector to store all the values
+    set<int> hashSet{};
+    map<int, bool> hashmap{}; // * - not needed now
+    int occranceCounter = 0;
+
+    if (nums.size() == 0)
+    {
+        return occranceCounter;
+    }
+    for (int it : nums)
+    {
+        hashSet.insert(it);
+    }
+    std::cout << "-*-  -*- -*-" << std::endl;
+    cout << "breakpoint - 1" << endl;
+    _showSet(hashSet);
+    std::cout << "-*-  -*- -*-" << std::endl;
+
+#if 0
+    for (int it : nums)
+    {
+        hashmap[it] = true;
+    }
+#endif
+    // _showHashMap(hashmap);
+    for (auto it : hashSet)
+    {
+        int prevElement = it - 1;
+        int nextElement = it + 1;
+
+        if (hashSet.find(prevElement) != hashSet.end())
+        {
+
+            cout << "--- --- --- ---" << endl;
+            cout << prevElement << " -> ";
+            cout << "for item - " << it << " <- ";
+            ++occranceCounter;
+
+            cout << nextElement << " " << endl;
+            cout << "current counter " << occranceCounter;
+            cout << endl;
+            // allCounterValues.push_back(occranceCounter);
+            allCounterValuesSet.insert(occranceCounter);
+        }
+    }
+
+    // Printing the entire set
+    _showSet(allCounterValuesSet);
+
+    auto maxElement = allCounterValuesSet.end();
+    cout << "Maxiumum Occarnce : " << *maxElement + 1;
+    return occranceCounter + 1;
+}
 int main(int argc, char const *argv[])
 {
 
@@ -74,14 +155,12 @@ int main(int argc, char const *argv[])
     // -- faster I/O operations
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+    // -- input vector by input file
+    vector<int> nums;
+    _input(nums);
 
-    map<int, string> hashMap{};
-    hashMap[1] = "--100--";
-    hashMap[2] = "--200--";
-    hashMap[3] = "--300--";
-    hashMap[4] = "--600--";
-
-    _showHashMap(hashMap);
+    // -- Actual funciton code
+    consecutiveOccrance(nums);
 
     return 0;
 }
