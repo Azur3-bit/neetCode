@@ -3,7 +3,7 @@
 // TODO problem START
 // ? Test Case -- [0,0,0,0] -- o/p [[0,0,0]]
 
-// TODO problem END 
+// TODO problem END
 // -- essential_libraries_and_namespace
 #include <iostream>
 using namespace std;
@@ -46,10 +46,26 @@ void _showVector(const vector<type_2> &nums)
     }
     std::cout << "}";
     std::cout << endl;
-    std::cout << ":: Vector Printed :: ";
+    std::cout << ":: Vector Printed :: " << endl;
 }
 
 void _showNestedVector(vector<vector<int>> &nums)
+{
+    std::cout << "\n:: Printing Nested Vector :: \n";
+    std::cout << "{ ";
+    for (auto it : nums)
+    {
+        std::cout << "{ ";
+        for (int ij : it)
+        {
+            std::cout << ij << " ";
+        }
+        std::cout << "} ";
+    }
+    std::cout << "} ";
+    std::cout << "\n:: Printed Nested Vector :: " << endl;
+}
+void _showVectorNestedSet(set<vector<int>> &nums)
 {
     std::cout << "\n:: Printing Nested Vector :: \n";
     std::cout << "{ ";
@@ -76,7 +92,8 @@ vector<vector<int>> _3Sum(vector<int> &nums)
 
     for (int i = 0; i < nums.size() - 1; i++)
     {
-        if(nums[i] == nums[i-1]){
+        if (nums[i] == nums[i - 1])
+        {
             break;
         }
         vector<int> ansVector{};
@@ -105,6 +122,74 @@ vector<vector<int>> _3Sum(vector<int> &nums)
     }
     return result;
 }
+
+// vector<vector<int>> threeSum_try2(vector<int> &nums)
+void threeSum_try2(vector<int> &nums)
+{
+
+    vector<vector<int>> result{};
+
+    cout << "\n: Entered Vector :" << endl;
+    _showVector(nums);
+    cout << endl;
+    // sorting
+    sort(nums.begin(), nums.end());
+
+    cout << "\n: Printing Sorted Vector : " << endl;
+    _showVector(nums);
+
+    cout << "Last Element : " << nums[nums.size() - 1];
+    cout << "\n-- - -- Testing Loop -- - --" << endl;
+
+    for (int i = 0; i < nums.size() - 2; i++)
+    {
+        if (i > 0 && nums[i] == nums[i - 1])
+        {
+            continue;
+        }
+
+        cout << "\t\t:: Values ::" << endl;
+        cout << "i \t\t j \t\t k \t\t sum " << endl;
+
+        cout << i << " -*- " << nums[i] << endl;
+        int j = i + 1;
+        int k = nums.size() - 1;
+        while (j < k)
+        {
+            int sum = nums[i] + nums[j] + nums[k];
+            cout << nums[i] << "\t\t " << nums[j] << "\t\t " << nums[k] << "\t\t " << sum << endl;
+
+            if (sum == 0)
+            {
+
+                cout << "Result : " << nums[i] << " __ " << nums[j] << " __ " << nums[k] << endl;
+
+                result.push_back({nums[i], nums[j], nums[k]});
+
+                while (j < k && nums[k] == nums[k + 1])
+                {
+                    k--;
+                }
+                while (j < k && nums[j] == nums[j + 1])
+                {
+                    j++;
+                }
+                j++;
+                k--;
+            }
+            if (sum > 0)
+            {
+                k--;
+            }
+            if (sum < 0)
+            {
+                j++;
+            }
+        }
+        // return result;
+    }
+    _showNestedVector(result);
+}
 int main(int argc, char const *argv[])
 {
 #ifndef ONLINE_JUDGE
@@ -118,10 +203,13 @@ int main(int argc, char const *argv[])
     // -- Main Function code --'
     vector<int> nums{};
     _input(nums);
-    _showVector(nums);
-
-    vector<vector<int>> result = _3Sum(nums);
-    _showNestedVector(result);
+    // _showVector(nums);
+    // vector<vector<int>> result = _3Sum(nums);
+    // Final Result :
+    // cout << "Final Result :: " << endl;
+    // _showNestedVector(result);
+    // TRY - 2
+    threeSum_try2(nums);
 
     return 0;
 }
