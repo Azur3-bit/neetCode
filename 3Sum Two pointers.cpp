@@ -166,7 +166,7 @@ void threeSum_try2(vector<int> &nums)
 
                 result.push_back({nums[i], nums[j], nums[k]});
 
-                while (j < k && nums[k] == nums[k + 1])
+                while (j < k && nums[k] == nums[k - 1])
                 {
                     k--;
                 }
