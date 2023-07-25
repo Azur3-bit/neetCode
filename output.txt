@@ -1,22 +1,10 @@
 
 :: Printing Vector :: 
-{ -1 0 1 2 -1 -4 }
+{ 1 8 6 2 5 4 8 3 7 }
 :: Vector Printed :: 
-
-	:: Sorting Vector :: 
-:: -- -- -- -- -- -- -- :: 
-:: Printing Vector :: 
-{ -4 -1 -1 0 1 2 }
-:: Vector Printed :: 
-i		j		k		sum
--4		-1		 2		-3
--4		-1		 2		-3
--4		0		 2		-2
--4		1		 2		-1
--1		-1		 2		0
--1		0		 1		0
-0		1		 2		3
--- -- -- -- -- -- 
--- Final Output -- 
--- -- -- -- -- -- 
-{ { -1 -1 2 }{ -1 0 1 }}
+ i 1 -- j 7-- vol -- 8
+ i 6 -- j 7-- vol -- 36
+ i 5 -- j 7-- vol -- 20
+ i 8 -- j 7-- vol -- 14
+ i 3 -- j 3-- vol -- 0
+Final Answer : 36
