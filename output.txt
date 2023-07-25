@@ -1,36 +1,22 @@
 
-
-: Entered Vector :
 :: Printing Vector :: 
 { -1 0 1 2 -1 -4 }
 :: Vector Printed :: 
 
-
-: Printing Sorted Vector : 
+	:: Sorting Vector :: 
+:: -- -- -- -- -- -- -- :: 
 :: Printing Vector :: 
 { -4 -1 -1 0 1 2 }
 :: Vector Printed :: 
-Last Element : 2
--- - -- Testing Loop -- - --
-		:: Values ::
-i 		 j 		 k 		 sum 
-0 -*- -4
--4		 -1		 2		 -3
--4		 -1		 2		 -3
--4		 0		 2		 -2
--4		 1		 2		 -1
-		:: Values ::
-i 		 j 		 k 		 sum 
-1 -*- -1
--1		 -1		 2		 0
-Result : -1 __ -1 __ 2
--1		 0		 1		 0
-Result : -1 __ 0 __ 1
-		:: Values ::
-i 		 j 		 k 		 sum 
-3 -*- 0
-0		 1		 2		 3
-
-:: Printing Nested Vector :: 
-{ { -1 -1 2 } { -1 0 1 } } 
-:: Printed Nested Vector :: 
+i		j		k		sum
+-4		-1		 2		-3
+-4		-1		 2		-3
+-4		0		 2		-2
+-4		1		 2		-1
+-1		-1		 2		0
+-1		0		 1		0
+0		1		 2		3
+-- -- -- -- -- -- 
+-- Final Output -- 
+-- -- -- -- -- -- 
+{ { -1 -1 2 }{ -1 0 1 }}
