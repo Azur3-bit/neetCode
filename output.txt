@@ -1,25 +1,2 @@
--- -- -- -- -- -- 
-printing Stack 
--- -- -- -- -- -- 
-}
-{
-}
-{
-)
-(
--- -- -- -- -- -- 
-Stack printed 
--- -- -- -- -- -- 
-prevElement : }
-currElement : {
-
-if condition passed 
-prevElement : }
-currElement : {
-
-if condition passed 
-prevElement : )
-currElement : (
-
-if condition passed 
-:: Perfect String ::
+Pushing 
+:: Correct String :: 
