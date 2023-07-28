@@ -1,5 +1,11 @@
 // Generate Parentheses
 
+// Intution - BackTracking
+
+// Define choice
+// Define Constraints - have to be very precise
+// goal - exit condition
+
 // -- essential_libraries_and_namespace
 #include <iostream>
 using namespace std;
@@ -22,6 +28,41 @@ using namespace std;
 
 // Functions
 
+// neetcode -- void generate(int n, int open, int close, string str, vector<string>& result) {
+void generateParenthesis(vector<string> result, int n, string strResult, int currOpen, int currClose, int maxOpen = 3, int MaxClose = 3)
+{
+
+    int maxOpen = n;
+    int maxClose = n;
+    int currOpen = 0;
+    int currClose = 0;
+
+    /* // ? algorithm
+    first element has to be an open bracket
+    Base case -= Exit condition -
+
+    if (maxOpen == maxClose == n)
+        pushback in the vector<string>
+        return
+
+    constraints -
+    putting close bracket
+    putting open bracket
+
+    if(currOpen >= currClose)
+        {
+        can put close bracket
+        increment close+1
+        }
+
+    if(currOpen <= MaxOpen){
+        can put open Bracket
+        increment open+1
+    }
+    */
+    // ? Algorithm Ends
+}
+
 int main(int argc, char const *argv[])
 {
 
@@ -35,9 +76,16 @@ int main(int argc, char const *argv[])
 
     // -- Main Function code --
 
-    string s;
-    cin >> s;
-    cout << "Hello " << s << endl;
+    int n;
+    cin >> n;
+
+    int maxOpen = n;
+    int maxClose = n;
+    int currOpen = 0;
+    int currClose = 0;
+
+    string result = "";
+    vector<string> vecResult{};
 
     return 0;
 }
