@@ -18,8 +18,6 @@ using namespace std;
 // -- additional_libraries -- azur3
 #include "TimerClock.h"
 
-#define testCase 3
-
 // Classes
 
 // Functions
@@ -30,30 +28,12 @@ void _input(vector<type_1> &nums)
 
     // take a single line for input
     // traverse it and push all the elements into the vector of stirng
-
-    while (testCase--)
-    {
-        string str;
-        getline(cin, str);
-
-        cout << "current Input line " << str << endl;
-
-        for (auto it : str)
-        {
-            nums.push_back(it);
-        }
-
-        cout << "string has been conve"
-    }
-
-#if 0
     type_1 input;
     while (cin >> input)
     {
         nums.push_back(input);
     }
     cout << endl;
-#endif
 }
 
 template <typename type_2>
@@ -126,7 +106,7 @@ void RevPolishNotiaion(vector<string> &tokens)
             if (it == "/")
             {
                 int result = intOP_1 / intOP_2;
-                if (result <= 0)
+                if (result == 0)
                 {
                     RPN.push("0");
                 }
@@ -160,16 +140,11 @@ int main(int argc, char const *argv[])
     // -- Main Function code --
 
     // run for multiple inputs
-    // int testCase = 3;
-    int test = testCase;
-    while (test--)
-    {
-        vector<string> tokens{};
-        _input(tokens);
-        _showVector(tokens);
-        RevPolishNotiaion(tokens);
-    }
 
+    vector<string> tokens{};
+    _input(tokens);
+    _showVector(tokens);
+    RevPolishNotiaion(tokens);
 #if 0
     // checking string comparions
     string s = "*";
