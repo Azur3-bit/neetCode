@@ -1,2 +1,6 @@
-Pushing 
-:: Correct String :: 
+:: Element pushed :: 
+:: Element pushed :: 
+:: Element pushed :: 
+-3
+0
+-2
