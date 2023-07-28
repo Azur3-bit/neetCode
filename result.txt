@@ -1,0 +1,3 @@
+Comparing files output.txt and EXPECTEDOUTPUT.TXT
+FC: no differences encountered
+
