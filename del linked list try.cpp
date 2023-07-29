@@ -33,11 +33,34 @@ void TraverseLL(node *ptr)
         cout << ptr->data << endl;
         ptr = ptr->next;
     }
-    cout << "\nEnd of linked list " << endl;
+    cout << "End of linked list " << endl;
+}
+
+node *findItem(node *ptr, int findItem)
+{
+    while (ptr->data != findItem)
+    {
+        // cout << ptr->data << endl;
+        ptr = ptr->next;
+    }
+    cout << "\nReached Element " << endl;
+    cout << "Item at this Node : " << ptr->data << endl;
+    return ptr;
 }
 
 void insert(node *ptr, int data)
 {
+    node *newNode = new node;
+    newNode->data = data;
+    newNode->next = NULL;
+
+    while (ptr->next != NULL)
+    {
+        ptr = ptr->next;
+    }
+    cout << "reached Node " << endl;
+
+    ptr->next = newNode;
 }
 // Functions
 
@@ -53,6 +76,35 @@ int main(int argc, char const *argv[])
     cin.tie(NULL);
 
     // -- Main Function code --
+
+    node *first = new node;
+    node *second = new node;
+    node *third = new node;
+    node *forth = new node;
+    node *fifth = new node;
+
+    // linkage
+    first->next = second;
+    second->next = third;
+    third->next = forth;
+    forth->next = fifth;
+    fifth->next = NULL;
+
+    // Data item
+    first->data = 1;
+    second->data = 2;
+    third->data = 3;
+    forth->data = 4;
+    fifth->data = 5;
+
+    // Travese Linked list
+    TraverseLL(first);
+    // insert(first, 6);
+    // TraverseLL(first);
+
+    node *delPtr = findItem(first, 3);
+    delete delPtr;
+    TraverseLL(first);
 
     return 0;
 }

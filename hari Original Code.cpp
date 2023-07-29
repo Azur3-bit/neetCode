@@ -251,9 +251,12 @@ int main()
 
     // deleting node.
     int num = 0;
-    cout << "Enter the number to delete from the tree ";
-    cin >> num;
-    Delete_Node(root, num);
+    // cout << "Enter the number to delete from the tree ";
+    // cin >> num;
+    // Delete_Node(root, num);
+
+    Node *delPtr = searching(root, 85);
+    delete delPtr;
     Levelprinting(root);
 
     return 0;

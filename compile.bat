@@ -45,4 +45,4 @@ if %result% equ 0 (
 )
 
 echo.
-pause
+REM pause
