@@ -1,3 +1,2 @@
-:: Printing Vector :: 
-{ (()) ,()() ,}
-:: Vector Printed :: 
+a : 20
+b : 0x61ff08
