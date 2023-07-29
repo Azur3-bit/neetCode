@@ -1,4 +1,4 @@
-// BracketGenerate
+// linked list try
 
 // -- essential_libraries_and_namespace
 #include <iostream>
@@ -20,21 +20,26 @@ using namespace std;
 
 // Classes
 
-// Functions
-
-template <typename type_2>
-void _showVector(const vector<type_2> &nums)
+struct node
 {
-    cout << ":: Printing Vector :: " << endl;
-    cout << "{ ";
-    for (type_2 it : nums)
+    int data;
+    node *next;
+};
+
+void TraverseLL(node *ptr)
+{
+    while (ptr != NULL)
     {
-        cout << it << " ";
+        cout << ptr->data << endl;
+        ptr = ptr->next;
     }
-    cout << "}";
-    cout << endl;
-    cout << ":: Vector Printed :: " << endl;
+    cout << "\nEnd of linked list " << endl;
 }
+
+void insert(node *ptr, int data)
+{
+}
+// Functions
 
 int main(int argc, char const *argv[])
 {
@@ -48,10 +53,6 @@ int main(int argc, char const *argv[])
     cin.tie(NULL);
 
     // -- Main Function code --
-    int n;
-    cin >> n;
-
-    cout << "Entered Value : " << n;
 
     return 0;
 }

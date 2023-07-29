@@ -46,31 +46,6 @@ void _showVector(const vector<type_2> &nums)
     cout << ":: Vector Printed :: " << endl;
 }
 
-void NEETCODE_generate(int n, int open, int close, string str, vector<string> &result)
-{
-    if (open == n && close == n)
-    {
-        result.push_back(str);
-        return;
-    }
-    if (open < n)
-    {
-        NEETCODE_generate(n, open + 1, close, str + '(', result);
-    }
-    if (open > close)
-    {
-        NEETCODE_generate(n, open, close + 1, str + ')', result);
-    }
-}
-vector<string> NEETCODE_generateParenthesis(int n)
-{
-    vector<string> result;
-    NEETCODE_generate(n, 0, 0, "", result);
-
-    _showVector(result);
-    return result;
-}
-
 void generateParenthesis(vector<string> &result, int n, string strResult, int currOpen, int currClose)
 {
     if (currOpen == n && currClose == n)
@@ -103,21 +78,17 @@ vector<string> GenerateAnswer(int n)
 /* // ? algorithm
 first element has to be an open bracket
 Base case -= Exit condition -
-
 if (maxOpen == maxClose == n)
     pushback in the vector<string>
     return
-
 constraints -
 putting close bracket
 putting open bracket
-
 if(currOpen >= currClose)
     {
     can put close bracket
     increment close+1
     }
-
 if(currOpen <= MaxOpen){
     can put open Bracket
     increment open+1
@@ -145,13 +116,13 @@ int main(int argc, char const *argv[])
     int currClose = 0;
 
     // Solution obj;
-
+    vector<string> finalRes{};
     string result = "";
     vector<string> vecResult{};
 
     // NEETCODE_generateParenthesis(n);
 
-    GenerateAnswer(n);
+    finalRes = GenerateAnswer(n);
     // obj.generateParenthesis(n);
 
     return 0;
