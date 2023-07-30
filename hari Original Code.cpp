@@ -208,9 +208,6 @@ void Delete_Node(Node *&root, int num)
     }
     else if (temp->right == NULL)
     {
-
-        // cout << "This Block " << endl;
-
         // Node has only left child.
         Node *temp1 = temp->left;
         temp->data = temp1->data;

@@ -37,8 +37,10 @@ int main(int argc, char const *argv[])
     int a = 10;
     int *b = &a;
     *b = 20;
-    cout << "a : " << a << endl;
-    cout << "b : " << b << endl;
+    cout << "value of a using a : " << a << endl;
+    cout << "value of a using b : " << *b << endl;
+    cout << "location of a using a : " << &a << endl;
+    cout << "location of a using b : " << *&b << endl;
 
     return 0;
 }
