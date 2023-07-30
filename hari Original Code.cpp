@@ -192,18 +192,25 @@ void Delete_Node(Node *&root, int num)
         // Node to be deleted has no children
         if (temp == root)
         {
+            cout << "This Block " << endl;
+
             delete root;
             root = NULL;
         }
         else
         {
-            delete temp;
-            temp = NULL;
+            cout << "Test -- Breakpoint - 1 (AZUR3)" << endl;
+            // making the 85 -> using a reference pointer
+            *temp = NULL;
+            delete &temp;
         }
         return;
     }
     else if (temp->right == NULL)
     {
+
+        // cout << "This Block " << endl;
+
         // Node has only left child.
         Node *temp1 = temp->left;
         temp->data = temp1->data;
@@ -213,6 +220,7 @@ void Delete_Node(Node *&root, int num)
     }
     else
     {
+
         // Node has both left and right children.
         Node *temp1 = temp->left;
         while (temp1->right != NULL)
@@ -251,12 +259,12 @@ int main()
 
     // deleting node.
     int num = 0;
-    // cout << "Enter the number to delete from the tree ";
-    // cin >> num;
-    // Delete_Node(root, num);
+    cout << "Enter the number to delete from the tree ";
+    cin >> num;
+    Delete_Node(root, num);
 
-    Node *delPtr = searching(root, 85);
-    delete delPtr;
+    // Node *delPtr = searching(root, 85);
+    // delete delPtr;
     Levelprinting(root);
 
     return 0;
