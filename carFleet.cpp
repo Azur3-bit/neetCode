@@ -46,6 +46,34 @@ void _showVector(const vector<type_2> &nums)
     cout << endl;
     cout << ":: Vector Printed :: " << endl;
 }
+template <typename type_3>
+void _showSet(const unordered_set<type_3> &nums)
+{
+    cout << ":: Printing Set :: " << endl;
+    cout << "{ ";
+    for (type_3 it : nums)
+    {
+        cout << it << " ";
+    }
+    cout << "}";
+    cout << endl;
+    cout << ":: Set Printed :: " << endl;
+}
+
+void carFleet(int target, vector<int> position, vector<int> speed)
+{
+
+    // rather than using a set use a stack or array
+
+    // use this may this may help
+    // All the car will take a time to reach the target and
+    // time = velocity/(length to the finish)
+    // car with the smaller time will reach the car with higher time create a fleet
+
+    // take in count the slowest car for making a car fleet 
+
+
+}
 
 int main(int argc, char const *argv[])
 {
@@ -60,6 +88,8 @@ int main(int argc, char const *argv[])
 
     // -- Main Function code --
 
+    int target = 12;
+
     vector<int> position{};
     vector<int> speed{};
     _input(position);
@@ -68,10 +98,10 @@ int main(int argc, char const *argv[])
     _input(speed);
     cout << "Speed :: " << endl;
     _showVector(speed);
+
+    carFleet(target, position, speed);
     return 0;
 }
-
-
 
 // app - 1
 // find the total time required by a car to reach finish line

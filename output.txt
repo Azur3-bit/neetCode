@@ -8,3 +8,6 @@ Speed ::
 :: Printing Vector :: 
 { 2 4 1 1 3 }
 :: Vector Printed :: 
+:: Printing Set :: 
+{ 8 5 0 10 }
+:: Set Printed :: 
