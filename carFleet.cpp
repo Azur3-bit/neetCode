@@ -78,10 +78,10 @@ void carFleet(int target, vector<int> position, vector<int> speed)
 int main(int argc, char const *argv[])
 {
 
-#ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-#endif
+// #ifndef ONLINE_JUDGE
+//     freopen("input.txt", "r", stdin);
+//     freopen("output.txt", "w", stdout);
+// #endif
     // -- faster I/O operations
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
