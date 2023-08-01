@@ -1,18 +1,13 @@
 Comparing files output.txt and EXPECTEDOUTPUT.TXT
 ***** output.txt
-
-Positions :: 
+postion !
 :: Printing Vector :: 
 { 10 8 0 5 3 }
 :: Vector Printed :: 
-
-Speed :: 
+speed !
 :: Printing Vector :: 
 { 2 4 1 1 3 }
 :: Vector Printed :: 
-:: Printing Set :: 
-{ 8 5 0 10 }
-:: Set Printed :: 
 ***** EXPECTEDOUTPUT.TXT
 *****
 
