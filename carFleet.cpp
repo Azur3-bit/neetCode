@@ -70,18 +70,16 @@ void carFleet(int target, vector<int> position, vector<int> speed)
     // time = velocity/(length to the finish)
     // car with the smaller time will reach the car with higher time create a fleet
 
-    // take in count the slowest car for making a car fleet 
-
-
+    // take in count the slowest car for making a car fleet
 }
 
 int main(int argc, char const *argv[])
 {
 
-// #ifndef ONLINE_JUDGE
-//     freopen("input.txt", "r", stdin);
-//     freopen("output.txt", "w", stdout);
-// #endif
+    // #ifndef ONLINE_JUDGE
+    //     freopen("input.txt", "r", stdin);
+    //     freopen("output.txt", "w", stdout);
+    // #endif
     // -- faster I/O operations
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
@@ -99,7 +97,7 @@ int main(int argc, char const *argv[])
     cout << "Speed :: " << endl;
     _showVector(speed);
 
-    carFleet(target, position, speed);
+    // carFleet(target, position, speed);
     return 0;
 }
 
