@@ -38,6 +38,33 @@ void _showVector(const vector<type_2> &nums)
     cout << ":: Vector Printed :: " << endl;
 }
 
+void _showStack(stack<int> stk)
+{
+
+    cout << ":: printing stack :: " << endl;
+    while (!stk.empty())
+    {
+        cout << stk.top() << endl;
+        stk.pop();
+    }
+    cout << ":: stack Printed :: " << endl;
+}
+
+int carFleet(const vector<int> &speed, const vector<int> &postion, int target)
+{
+
+    // calculating time to reach
+    int size = speed.size();
+    vector<int> timeToTarget(size, 0);
+
+    for (int i = 0; i < size; i++)
+    {
+        timeToTarget[i] = (target - postion[i]) / speed[i];
+    }
+
+    _showVector(timeToTarget);
+}
+
 int main(int argc, char const *argv[])
 {
 
@@ -58,11 +85,24 @@ int main(int argc, char const *argv[])
 
     // cout << "Working !" << endl;
 
+    cout << "target : " << target << endl;
     cout << "postion !" << endl;
     _showVector(postion);
     cout << "speed !" << endl;
 
     _showVector(speed);
+
+    // testing stack
+    stack<int> temp;
+    temp.push(1);
+    temp.push(2);
+    temp.push(3);
+    temp.push(4);
+    temp.push(5);
+
+    _showStack(temp);
+
+    carFleet(speed, postion, target);
 
     return 0;
 }

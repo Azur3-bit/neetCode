@@ -1,5 +1,6 @@
 Comparing files output.txt and EXPECTEDOUTPUT.TXT
 ***** output.txt
+target : 12
 postion !
 :: Printing Vector :: 
 { 10 8 0 5 3 }
@@ -7,6 +8,16 @@ postion !
 speed !
 :: Printing Vector :: 
 { 2 4 1 1 3 }
+:: Vector Printed :: 
+:: printing stack :: 
+5
+4
+3
+2
+1
+:: stack Printed :: 
+:: Printing Vector :: 
+{ 1 1 12 7 3 }
 :: Vector Printed :: 
 ***** EXPECTEDOUTPUT.TXT
 *****
