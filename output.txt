@@ -1,10 +1,14 @@
-target : 10
-postion !
+
 :: Printing Vector :: 
-{ 6 8 }
+{ 2 4 }
 :: Vector Printed :: 
-speed !
+working 
 :: Printing Vector :: 
-{ 3 2 }
+{ 2 4 }
 :: Vector Printed :: 
-2
+for max element : 2
+for max element - right: 4
+for max element - left : 0
+count : 4
+answer : 2
+final Answer : 4
