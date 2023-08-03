@@ -50,21 +50,114 @@ void _showStack(stack<int> stk)
     cout << ":: stack Printed :: " << endl;
 }
 
+// template<typename T1>
+void _showVectorPair(vector<pair<int, int>> &temp)
+{
+
+    cout << "printing vector pair " << endl;
+
+    for (auto it : temp)
+    {
+        cout << it.first << " " << it.second << endl;
+    }
+    cout << "vector pair printed " << endl;
+}
+
 int carFleet(const vector<int> &speed, const vector<int> &postion, int target)
 {
+
+    // stack intialization
+    stack<int> finalStack{};
 
     // calculating time to reach
     int size = speed.size();
     vector<int> timeToTarget(size, 0);
+    vector<pair<int, int>> postion_time{};
 
     for (int i = 0; i < size; i++)
     {
-        timeToTarget[i] = (target - postion[i]) / speed[i];
+        postion_time.push_back(make_pair(postion[i], ((target - postion[i]) / speed[i])));
     }
 
-    _showVector(timeToTarget);
+    _showVectorPair(postion_time);
+
+    sort(postion_time.begin(), postion_time.end());
+    _showVectorPair(postion_time);
+
+    finalStack.push(postion_time[size - 1].second);
+
+    cout << " -- Stack -- " << endl;
+    _showStack(finalStack);
+
+    cout << " -- Loop -- " << endl;
+    for (int i = size - 1; i >= 0; i--)
+    {
+        cout << postion_time[i].first << " " << postion_time[i].second << endl;
+
+        if (finalStack.top() < postion_time[i].second)
+        {
+            cout << "pushing : " << postion_time[i].second << endl;
+            finalStack.push(postion_time[i].second);
+        }
+    }
+
+    cout << "Elements : " << finalStack.size() << endl;
 }
 
+int LeetcodeSubmission(const vector<int> &speed, const vector<int> &postion, int target)
+{
+
+    // calculating time to reach
+    int size = speed.size();
+
+    vector<pair<int, double>> postion_time;
+
+    for (int i = 0; i < size; i++)
+    {
+        postion_time.push_back(make_pair(postion[i], (double)(target - postion[i]) / speed[i]));
+    }
+    sort(postion_time.begin(), postion_time.end());
+    int currentTime = 0;
+    double fleetCounter = 0;
+    for (int i = size - 1; i >= 0; i--)
+    {
+        if (postion_time[i].second > currentTime)
+        {
+            currentTime = postion_time[i].second;
+            fleetCounter++;
+        }
+    }
+    return fleetCounter;
+}
+
+// AI
+
+int AIcarFleet(const vector<int> &speed, const vector<int> &position, int target)
+{
+    int size = speed.size();
+    vector<pair<int, double>> position_time;
+
+    for (int i = 0; i < size; i++)
+    {
+        position_time.push_back(make_pair(position[i], (double)(target - position[i]) / speed[i]));
+    }
+
+    sort(position_time.begin(), position_time.end());
+
+    int fleetCount = 0;
+    double currentTime = 0;
+
+    for (int i = size - 1; i >= 0; i--)
+    {
+        if (position_time[i].second > currentTime)
+        {
+            currentTime = position_time[i].second;
+            fleetCount++;
+        }
+    }
+
+    return fleetCount;
+}
 int main(int argc, char const *argv[])
 {
 
@@ -78,10 +171,10 @@ int main(int argc, char const *argv[])
 
     // -- Main Function code --
 
-    int target = 12;
+    int target = 10;
 
-    vector<int> postion = {10, 8, 0, 5, 3};
-    vector<int> speed = {2, 4, 1, 1, 3};
+    vector<int> postion = {6, 8};
+    vector<int> speed = {3, 2};
 
     // cout << "Working !" << endl;
 
@@ -92,17 +185,18 @@ int main(int argc, char const *argv[])
 
     _showVector(speed);
 
-    // testing stack
-    stack<int> temp;
-    temp.push(1);
-    temp.push(2);
-    temp.push(3);
-    temp.push(4);
-    temp.push(5);
+    // // testing stack
+    // stack<int> temp;
+    // temp.push(1);
+    // temp.push(2);
+    // temp.push(3);
+    // temp.push(4);
+    // temp.push(5);
 
-    _showStack(temp);
+    // _showStack(temp);
 
-    carFleet(speed, postion, target);
+    // carFleet(speed, postion, target);
+    cout << LeetcodeSubmission(speed, postion, target) << endl;
 
     return 0;
 }
