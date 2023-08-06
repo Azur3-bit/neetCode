@@ -130,9 +130,7 @@ int LeetcodeSubmission(const vector<int> &speed, const vector<int> &postion, int
     return fleetCounter;
 }
 
-// AI
-
-int AIcarFleet(const vector<int> &speed, const vector<int> &position, int target)
+int a_carFleet(const vector<int> &speed, const vector<int> &position, int target)
 {
     int size = speed.size();
     vector<pair<int, double>> position_time;

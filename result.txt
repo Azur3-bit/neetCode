@@ -2,18 +2,18 @@ Comparing files output.txt and EXPECTEDOUTPUT.TXT
 ***** output.txt
 
 :: Printing Vector :: 
-{ 2 4 }
+{ 2 1 3 3 2 }
 :: Vector Printed :: 
 working 
 :: Printing Vector :: 
-{ 2 4 }
+{ 2 1 3 3 2 }
 :: Vector Printed :: 
-for max element : 2
-for max element - right: 4
-for max element - left : 0
-count : 4
-answer : 2
-final Answer : 4
+for max element : 3
+for max element - right: 3
+for max element - left : 1
+count : 3
+answer : 3
+final Answer : 6
 ***** EXPECTEDOUTPUT.TXT
 *****
 

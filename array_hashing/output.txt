@@ -1,0 +1,22 @@
+
+:: Printing Vector :: 
+{ 2 4 }
+:: Vector Printed :: 
+try - 2
+:: Printing Vector :: 
+{ -1 0 }
+:: Vector Printed :: 
+size : 2
+:: printing Stack ::
+first	second
+4		1
+4		1
+2		0
+:: Stack printed ::
+Current ELement : 4
+Current ELement : 2
+Printing nxt smaller vector : 
+:: Printing Vector :: 
+{ 2 2 }
+:: Vector Printed :: 
+final Answer : 4
