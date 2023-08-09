@@ -1,25 +1,20 @@
-100 -> 200 -> 300 -> 400 -> 500 -> NULL
 
-0 -> 100 -> 200 -> 300 -> 400 -> 500 -> NULL
+:: Printing Vector :: 
+{ 1 2 3 4 5 }
+:: Vector Printed :: 
+size : 5
+total Number of ELment Entered : 5
+1 -> 2 -> 3 -> 4 -> 5 -> NULL
 
-element : 400 at : 4
-0 -> 100 -> 200 -> 201 -> 300 -> 400 -> 500 -> NULL
+Adding at head : 1
+1 
+Adding node at head : 2
+2 
+Adding node at head : 3
+3 
+Adding node at head : 4
+4 
+Adding node at head : 5
+5 
+5 -> 4 -> 3 -> 2 -> 1 -> NULL
 
- -- Deletion in Linked list 
-deleting node from head !
-delete Node
-Address of temp 0x61fedc
-Checking at he address of temp 
-2064936
- -- -- --  
-100 -> 200 -> 201 -> 300 -> 400 -> 500 -> NULL
-
-Element after nodes : 2
-data of node to be deleted : 201
- -- node has been deleted !
-100 -> 200 -> 300 -> 400 -> 500 -> NULL
-
-node which will be deleted : 500
-100 -> 200 -> 300 -> 400 -> NULL
-
-done !

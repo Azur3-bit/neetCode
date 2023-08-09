@@ -166,7 +166,6 @@ void Delete_Node_Tail(node *head) {
         temp = temp->next;
         c++;
     }
-
     node *nodeDel = temp;
     nodeDel = nodeDel->next;
     cout << "node which will be deleted : " << nodeDel->data << endl;
@@ -186,26 +185,19 @@ int main(int argc, char const *argv[])
     // -- faster I/O operations
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-
     // -- Main Function code --
-
     node *head = NULL;
     insertAt_tail(head, 100);
     insertAt_tail(head, 200);
     insertAt_tail(head, 300);
     insertAt_tail(head, 400);
     insertAt_tail(head, 500);
-
     _showLinkedList(head);
-
     insert_Head(head, 0);
     _showLinkedList(head);
-
     // insert_Head(head, -1);
     // _showLinkedList(head);
-
     searchingAValue(head, 400);
-
     insertNode_Between(head, 201, 200);
     _showLinkedList(head);
     cout << " -- Deletion in Linked list \n";
@@ -218,16 +210,11 @@ int main(int argc, char const *argv[])
 
     Delete_Node_Tail(head);
     _showLinkedList(head);
-
-
-
     cout << "done !" << endl;
-
     // std::vector<int> v = {1, 2, 3, 4, 5};
     // for (auto it : v) {
     //     cout << it << endl;
     // }
-
     // cout << "Working !!" << endl;
 
     return 0;
