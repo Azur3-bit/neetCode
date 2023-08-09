@@ -113,9 +113,72 @@ void insertNode_Between(node *&head, int value, int after_Value)
     newNode->next = temp1;
 }
 
+void Delete_Node_Head(node * &head) {
+#if 0
+    // not - by reference code
+    node *temp = head;
+    temp = temp->next;
+    head->next = temp;
+    return temp;
+#endif
+    cout << "delete Node" << endl;
+    // return head ;
+
+    node * temp = head;
+    head = head->next;
+    cout << "Address of temp " << &temp << endl;
+    delete temp;
+    cout << "Checking at he address of temp " << endl;
+    cout << temp->data << endl;
+    cout << " -- -- --  " << endl;
+}
+
+void Delete_Node_after_Element(node *&head, int item) {
+
+    // problems => infinte loop
+    // problems => what if elemnt does not exist in the linked list
+
+    node * temp_previousElement = head;
+    // node * temp_nxtElement = head;
+    int counter = 1;
+    while (temp_previousElement->next != nullptr && temp_previousElement->next->data != item ) {
+        temp_previousElement = temp_previousElement->next;
+        counter++;
+    }
+    cout << "Element after nodes : " << counter << endl;
+    if (temp_previousElement->next != nullptr) {
+        node * node_delete = temp_previousElement->next;
+        cout << "data of node to be deleted : " << node_delete->data << endl;
+        temp_previousElement->next = node_delete->next;
+        delete node_delete;
+        cout << " -- node has been deleted !" << endl;
+    }
+    else {
+        cout << "node not found !" << endl;
+    }
+}
+
+//  -- Delete node at the tail
+void Delete_Node_Tail(node *head) {
+    node * temp = head;
+    int c = 1;
+    while (temp->next->next != nullptr) {
+        temp = temp->next;
+        c++;
+    }
+
+    node *nodeDel = temp;
+    nodeDel = nodeDel->next;
+    cout << "node which will be deleted : " << nodeDel->data << endl;
+    temp->next = nullptr;
+    delete nodeDel;
+    // cout << " -- -- \n";
+    // cout << "Current Node : " << temp->data << endl;
+    // cout << "lenght of linked list : " << c << endl;
+}
+
 int main(int argc, char const *argv[])
 {
-
 #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
@@ -145,15 +208,27 @@ int main(int argc, char const *argv[])
 
     insertNode_Between(head, 201, 200);
     _showLinkedList(head);
+    cout << " -- Deletion in Linked list \n";
+    cout << "deleting node from head !" << endl;
+    Delete_Node_Head(head);
+    _showLinkedList(head);
 
-    cout << "Working now as !" << endl;
+    Delete_Node_after_Element(head, 201);
+    _showLinkedList(head);
 
-    std::vector<int> v = {1, 2, 3, 4, 5};
-    for (auto it : v) {
-        cout << it << endl;
-    }
+    Delete_Node_Tail(head);
+    _showLinkedList(head);
 
-    cout << "Working !!" << endl;
+
+
+    cout << "done !" << endl;
+
+    // std::vector<int> v = {1, 2, 3, 4, 5};
+    // for (auto it : v) {
+    //     cout << it << endl;
+    // }
+
+    // cout << "Working !!" << endl;
 
     return 0;
 }

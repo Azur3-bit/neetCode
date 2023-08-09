@@ -5,10 +5,21 @@
 element : 400 at : 4
 0 -> 100 -> 200 -> 201 -> 300 -> 400 -> 500 -> NULL
 
-Working now as !
-1
-2
-3
-4
-5
-Working !!
+ -- Deletion in Linked list 
+deleting node from head !
+delete Node
+Address of temp 0x61fedc
+Checking at he address of temp 
+2064936
+ -- -- --  
+100 -> 200 -> 201 -> 300 -> 400 -> 500 -> NULL
+
+Element after nodes : 2
+data of node to be deleted : 201
+ -- node has been deleted !
+100 -> 200 -> 300 -> 400 -> 500 -> NULL
+
+node which will be deleted : 500
+100 -> 200 -> 300 -> 400 -> NULL
+
+done !
