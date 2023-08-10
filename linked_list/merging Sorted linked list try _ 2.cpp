@@ -37,6 +37,8 @@ public:
 	}
 };
 
+
+
 void _showLinkedList(node *head)
 {
 	while (head != NULL)
@@ -65,6 +67,8 @@ void insertAt_tail(node *&head, int value)
 	}
 	temp->next = newNode;
 }
+
+
 
 
 template <typename type_1>
@@ -104,6 +108,53 @@ void AddingNode_Vector(node *& head , const vector<int>&nums) {
 }
 
 
+node * MergingSortedLinkedList(node *head_1, node *head_2) {
+
+	vector<int> ans{};
+	node * head = nullptr;
+	node * temp_1 = head_1;
+	node * temp_2 = head_2;
+
+	while (temp_1 != nullptr && temp_2 != nullptr) {
+		if ((temp_1->data) <= (temp_2->data)) {
+			cout << "pushing : " << temp_1->data << endl;
+			insertAt_tail(head, temp_1->data);
+			ans.push_back(temp_1->data);
+			temp_1 = temp_1->next;
+		}
+		else {
+			cout << "pushing : " << temp_2->data << endl;
+			insertAt_tail(head, temp_2->data);
+			ans.push_back(temp_2->data);
+			temp_2 = temp_2->next;
+		}
+	}
+	_showVector(ans);
+
+	// add all the remaining elments from both the linked list
+	// cout << "temp_2 -> data : " << temp_2->data << endl;
+	while (temp_2 != nullptr) {
+		cout << "pushing : " << temp_2->data << endl;
+		insertAt_tail(head, temp_2->data);
+		ans.push_back(temp_2->data);
+		temp_2 = temp_2->next;
+	}
+
+	while (temp_1 != nullptr) {
+		cout << "pushing : " << temp_1->data << endl;
+		insertAt_tail(head, temp_1->data);
+		ans.push_back(temp_1->data);
+		temp_1 = temp_1->next;
+	}
+
+	cout << "final Answer : " << endl;
+	_showVector(ans);
+
+	return head;
+
+
+}
+
 int main(int argc, char const *argv[])
 {
 #ifndef ONLINE_JUDGE
@@ -132,5 +183,13 @@ int main(int argc, char const *argv[])
 	AddingNode_Vector(head_2, n2);
 	_showLinkedList(head_1);
 	_showLinkedList(head_2);
+
+	// -- Actual Function To solve code
+	node * answer = nullptr;
+	answer = MergingSortedLinkedList(head_1, head_2);
+
+	_showLinkedList(answer);
+
+
 	return 0;
 }

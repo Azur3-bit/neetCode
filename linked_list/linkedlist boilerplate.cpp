@@ -21,16 +21,16 @@ using namespace std;
 
 // -- Classes
 
-class node
+class ListNode
 {
 
 public:
-    int data;
-    node *next;
+    int val;
+    ListNode *next;
 
-    node(int value)
+    ListNode(int value)
     {
-        data = value;
+        val = value;
         next = NULL;
     }
 };
@@ -38,52 +38,52 @@ public:
 // -- Functions
 
 
-// insert node at tail
-void insertAt_tail(node *&head, int value)
+// insert ListNode at tail
+void insertAt_tail(ListNode *&head, int value)
 {
-    node *newNode = new node(value);
+    ListNode *ListNode = new ListNode(value);
 
     if (head == NULL)
     {
-        head = newNode;
+        head = ListNode;
         return;
     }
 
-    node *temp = head;
+    ListNode *temp = head;
     while (temp->next != NULL)
     {
         temp = temp->next;
     }
-    temp->next = newNode;
+    temp->next = ListNode;
 }
 
 
 // traversal linked list
-void _showLinkedList(node *head)
+void _showLinkedList(ListNode *head)
 {
     while (head != NULL)
     {
-        cout << head->data << " -> ";
+        cout << head->val << " -> ";
         head = head->next;
     }
     cout << "NULL" << endl
          << endl;
 }
 
-// insert node at head
-void insert_Head(node *&head, int value)
+// insert ListNode at head
+void insert_Head(ListNode *&head, int value)
 {
 
-    node *newNode = new node(value);
-    newNode->next = head;
-    head = newNode;
+    ListNode *ListNode = new ListNode(value);
+    ListNode->next = head;
+    head = ListNode;
 }
 
-// searching a node in the linked list
-void searchingAValue(node *head, int val)
+// searching a ListNode in the linked list
+void searchingAValue(ListNode *head, int val)
 {
     int counter = 0;
-    while (head->data != val)
+    while (head->val != val)
     {
         counter++;
         head = head->next;
@@ -97,15 +97,15 @@ void searchingAValue(node *head, int val)
     cout << "element : " << val << " at : " << counter << endl;
 }
 
-// insert node in between nodes of linked list
-void insertNode_Between(node *&head, int value, int after_Value)
+// insert ListNode in between ListNodes of linked list
+void ListNode_Between(ListNode *&head, int value, int after_Value)
 {
-    node *temp = head;
-    node *temp1 = head;
+    ListNode *temp = head;
+    ListNode *temp1 = head;
 
-    node *newNode = new node(value);
+    ListNode *ListNode = new ListNode(value);
 
-    while (temp->data !=  after_Value)
+    while (temp->val !=  after_Value)
     {
         if (temp->next == NULL)
         {
@@ -116,72 +116,72 @@ void insertNode_Between(node *&head, int value, int after_Value)
         // temp1 = temp1->next;
     }
     temp1 = temp->next;
-    temp->next = newNode;
-    newNode->next = temp1;
+    temp->next = ListNode;
+    ListNode->next = temp1;
 }
 
-// delete node from head of linked list
-void Delete_Node_Head(node * &head) {
+// delete ListNode from head of linked list
+void ListNode_Head(ListNode * &head) {
 #if 0
     // not - by reference code
-    node *temp = head;
+    ListNode *temp = head;
     temp = temp->next;
     head->next = temp;
     return temp;
 #endif
-    cout << "delete Node" << endl;
+    cout << "delete ListNode" << endl;
     // return head ;
 
-    node * temp = head;
+    ListNode * temp = head;
     head = head->next;
     cout << "Address of temp " << &temp << endl;
     delete temp;
     cout << "Checking at he address of temp " << endl;
-    cout << temp->data << endl;
+    cout << temp->val << endl;
     cout << " -- -- --  " << endl;
 }
 
-// delete node with given value
-void Delete_Node_after_Element(node *&head, int item) {
+// delete ListNode with given value
+void ListNode_after_Element(ListNode *&head, int item) {
 
     // problems => infinte loop
     // problems => what if elemnt does not exist in the linked list
 
-    node * temp_previousElement = head;
-    // node * temp_nxtElement = head;
+    ListNode * temp_previousElement = head;
+    // ListNode * temp_nxtElement = head;
     int counter = 1;
-    while (temp_previousElement->next != nullptr && temp_previousElement->next->data != item ) {
+    while (temp_previousElement->next != nullptr && temp_previousElement->next->val != item ) {
         temp_previousElement = temp_previousElement->next;
         counter++;
     }
-    cout << "Element after nodes : " << counter << endl;
+    cout << "Element after ListNodes : " << counter << endl;
     if (temp_previousElement->next != nullptr) {
-        node * node_delete = temp_previousElement->next;
-        cout << "data of node to be deleted : " << node_delete->data << endl;
-        temp_previousElement->next = node_delete->next;
-        delete node_delete;
-        cout << " -- node has been deleted !" << endl;
+        ListNode * ListNode_delete = temp_previousElement->next;
+        cout << "val of ListNode to be deleted : " << ListNode_delete->val << endl;
+        temp_previousElement->next = ListNode_delete->next;
+        delete ListNode_delete;
+        cout << " -- ListNode has been deleted !" << endl;
     }
     else {
-        cout << "node not found !" << endl;
+        cout << "ListNode not found !" << endl;
     }
 }
 
-//  -- Delete node at the tail
-void Delete_Node_Tail(node *head) {
-    node * temp = head;
+//  -- Delete ListNode at the tail
+void ListNode_Tail(ListNode *head) {
+    ListNode * temp = head;
     int c = 1;
     while (temp->next->next != nullptr) {
         temp = temp->next;
         c++;
     }
-    node *nodeDel = temp;
-    nodeDel = nodeDel->next;
-    cout << "node which will be deleted : " << nodeDel->data << endl;
+    ListNode *ListNodeDel = temp;
+    ListNodeDel = ListNodeDel->next;
+    cout << "ListNode which will be deleted : " << ListNodeDel->val << endl;
     temp->next = nullptr;
-    delete nodeDel;
+    delete ListNodeDel;
     // cout << " -- -- \n";
-    // cout << "Current Node : " << temp->data << endl;
+    // cout << "Current ListNode : " << temp->val << endl;
     // cout << "lenght of linked list : " << c << endl;
 }
 
@@ -195,7 +195,7 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     // -- Main Function code --
-    node *head = NULL;
+    ListNode *head = NULL;
     insertAt_tail(head, 100);
     insertAt_tail(head, 200);
     insertAt_tail(head, 300);
@@ -207,17 +207,17 @@ int main(int argc, char const *argv[])
     // insert_Head(head, -1);
     // _showLinkedList(head);
     searchingAValue(head, 400);
-    insertNode_Between(head, 201, 200);
+    ListNode_Between(head, 201, 200);
     _showLinkedList(head);
     cout << " -- Deletion in Linked list \n";
-    cout << "deleting node from head !" << endl;
-    Delete_Node_Head(head);
+    cout << "deleting ListNode from head !" << endl;
+    ListNode_Head(head);
     _showLinkedList(head);
 
-    Delete_Node_after_Element(head, 201);
+    ListNode_after_Element(head, 201);
     _showLinkedList(head);
 
-    Delete_Node_Tail(head);
+    ListNode_Tail(head);
     _showLinkedList(head);
     cout << "done !" << endl;
     // std::vector<int> v = {1, 2, 3, 4, 5};
