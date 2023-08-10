@@ -37,6 +37,8 @@ public:
 
 // -- Functions
 
+
+// insert node at tail
 void insertAt_tail(node *&head, int value)
 {
     node *newNode = new node(value);
@@ -55,6 +57,8 @@ void insertAt_tail(node *&head, int value)
     temp->next = newNode;
 }
 
+
+// traversal linked list
 void _showLinkedList(node *head)
 {
     while (head != NULL)
@@ -66,6 +70,7 @@ void _showLinkedList(node *head)
          << endl;
 }
 
+// insert node at head
 void insert_Head(node *&head, int value)
 {
 
@@ -74,6 +79,7 @@ void insert_Head(node *&head, int value)
     head = newNode;
 }
 
+// searching a node in the linked list
 void searchingAValue(node *head, int val)
 {
     int counter = 0;
@@ -91,6 +97,7 @@ void searchingAValue(node *head, int val)
     cout << "element : " << val << " at : " << counter << endl;
 }
 
+// insert node in between nodes of linked list
 void insertNode_Between(node *&head, int value, int after_Value)
 {
     node *temp = head;
@@ -113,6 +120,7 @@ void insertNode_Between(node *&head, int value, int after_Value)
     newNode->next = temp1;
 }
 
+// delete node from head of linked list
 void Delete_Node_Head(node * &head) {
 #if 0
     // not - by reference code
@@ -133,6 +141,7 @@ void Delete_Node_Head(node * &head) {
     cout << " -- -- --  " << endl;
 }
 
+// delete node with given value
 void Delete_Node_after_Element(node *&head, int item) {
 
     // problems => infinte loop

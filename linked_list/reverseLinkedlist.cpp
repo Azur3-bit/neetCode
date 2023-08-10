@@ -90,6 +90,21 @@ void _input(vector<type_1> &nums)
 	cout << endl;
 }
 
+// template <typename T>
+void _showStack(stack<int>& numsSet) {
+	std::cout << "-*-  -*- -*-" << std::endl;
+	std::cout << "Printing stack" << std::endl;
+	std::cout << std::endl;
+	// std::cout << "{ ";
+
+	while (!numsSet.empty()) {
+		cout << numsSet.top() << endl;
+		numsSet.pop();
+	}
+	// std::cout << " }" << std::endl;
+	std::cout << "-*-  -*- -*-" << std::endl;
+}
+
 template <typename type_2>
 void _showVector(const vector<type_2> &nums)
 {
@@ -132,7 +147,7 @@ void add_elementHead(node *&head, int Nodedata) {
 	newNode->next = head;
 	head = newNode;
 }
-node * Reving_linkedList(node *&head) {
+node * Reving_linkedList_recursive(node *head) {
 	// -- Max complexity - O(n^2)
 	node *REV_head = NULL;
 	node *temp = head;
@@ -141,7 +156,39 @@ node * Reving_linkedList(node *&head) {
 		cout << temp->data << " " << endl;
 		temp = temp->next;
 	}
+
+	cout << "-- Fianl output --\n";
+
+	_showLinkedList(REV_head);
 	return REV_head;
+}
+
+node * Iterative_revingLinkedList(node *head) {
+	cout << "-- iterative method -- " << endl;
+	// using data structures to reverse a linked list
+	stack<int> store{};
+	node *traversal_stack = head;
+	node *changing_data = head;
+	node *finalTraversal = head;
+	while (traversal_stack != nullptr) {
+		store.push(traversal_stack->data);
+		cout << "item : " << traversal_stack->data << endl;
+		traversal_stack = traversal_stack->next;
+	}
+	while (changing_data != nullptr) {
+		cout << "changing_data->data : " << changing_data->data << endl;
+		changing_data->data = store.top();
+		store.pop();
+		changing_data = changing_data->next;
+	}
+
+	// while (finalTraversal != nullptr) {
+	// 	cout << finalTraversal->data << " -> ";
+	// 	finalTraversal = finalTraversal->next;
+	// }
+
+	return finalTraversal;
+
 }
 
 int main(int argc, char const *argv[])
@@ -155,6 +202,8 @@ int main(int argc, char const *argv[])
 	cin.tie(NULL);
 	// -- Main Function code --
 	// taking input in linked list using the provided vector -- maybe using vector
+
+
 	vector<int> nums {};
 	_input(nums);
 	_showVector(nums);
@@ -162,10 +211,17 @@ int main(int argc, char const *argv[])
 	input_LinkedList(head, nums);
 	_showLinkedList(head);
 
-	head = Reving_linkedList(head);
-	_showLinkedList(head);
+	Reving_linkedList_recursive(head);
 	// add_elementHead(head, 0);
 	// _showLinkedList(head);
+
+	//  -- DONE with Recursive algo for reving a linked list
+	// Iterative_revingLinkedList(head);
+
+	cout << "-- reving linked list using stack -- \n";
+	head = Iterative_revingLinkedList(head);
+	cout << "-- Printing list main function -- \n";
+	_showLinkedList(head);
 
 
 	return 0;

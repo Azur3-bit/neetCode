@@ -1,20 +1,12 @@
 
-:: Printing Vector :: 
-{ 1 2 3 4 5 }
-:: Vector Printed :: 
-size : 5
-total Number of ELment Entered : 5
-1 -> 2 -> 3 -> 4 -> 5 -> NULL
 
-Adding at head : 1
-1 
-Adding node at head : 2
-2 
-Adding node at head : 3
-3 
-Adding node at head : 4
-4 
-Adding node at head : 5
-5 
-5 -> 4 -> 3 -> 2 -> 1 -> NULL
+:: Printing Vector :: 
+{ 1 2 4 }
+:: Vector Printed :: 
+:: Printing Vector :: 
+{ 1 3 4 }
+:: Vector Printed :: 
+1 -> 2 -> 4 -> NULL
+
+1 -> 3 -> 4 -> NULL
 
