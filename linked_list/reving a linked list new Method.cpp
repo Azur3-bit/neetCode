@@ -89,20 +89,22 @@ void TraverseLinkedlist(ListNode *head) {
 }
 
 void Rev_linkedlist(ListNode * &head ) {
+
 	if (head == nullptr || head->next == nullptr) {
 		return;
 	}
-
-	ListNode * curr = head;
-	ListNode * prev = nullptr;
-	// current
-	while (curr != nullptr) {
-		ListNode * temp = curr->next;
-		curr->next = prev;
-		prev = curr;
-		curr = temp;
+// current
+	ListNode * currentELe = head;
+// prev
+	ListNode * prevEle = nullptr;
+	while (currentELe != nullptr) {
+		ListNode*temp = currentELe->next;
+		currentELe->next = prevEle;
+		prevEle = currentELe;
+		currentELe = temp;
 	}
-	head = prev;
+	head = prevEle;
+
 }
 
 int main(int argc, char const *argv[])

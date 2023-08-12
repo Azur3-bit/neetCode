@@ -1,4 +1,13 @@
 
+:: Printing Vector :: 
+{ 1 2 3 4 5 }
+:: Vector Printed :: 
+Elements entered in LinkedList
+printing Linked list 
 1 -> 2 -> 3 -> 4 -> 5 -> null
-reving 
-5 -> 4 -> 3 -> 2 -> 1 -> null
+back.val : 1
+head.val : 1
+new forward.val : 5
+new back.val : 4
+printing Linked list 
+1 -> 2 -> 3 -> 4 -> null
