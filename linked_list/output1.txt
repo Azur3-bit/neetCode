@@ -12,3 +12,57 @@ printing random Link List vector
 -- Elements have been entered in LinkList 
 printing Link list 
 7 -> 13 -> 11 -> 10 -> 1 -> null
+head.val : 7
+inserting Node* of nullptr  
+
+-*-  -*- -*- 
+Printing HashMap
+
+Value_i		Mem_add
+------		-------
+0			0x7881c8
+1			0x788240
+2			0x788258
+3			0x788270
+4			0x788288
+5			0
+
+HashMap Printed
+-*-  -*- -*- 
+
+printing Link list 
+ --- --- --- ---- --- --- --- 
+head.val : 7
+head.random : 0
+ --- --- --- ---- --- --- --- 
+head.val : 13
+head.random : 0
+ --- --- --- ---- --- --- --- 
+head.val : 11
+head.random : 0
+ --- --- --- ---- --- --- --- 
+head.val : 10
+head.random : 0
+ --- --- --- ---- --- --- --- 
+head.val : 1
+head.random : 0
+--- --- --- ---- --- --- ---> 
+null
+printing Link list 
+ --- --- --- ---- --- --- --- 
+head.val : 7
+head.random : 0x788270
+ --- --- --- ---- --- --- --- 
+head.val : 13
+head.random : 0x7881c8
+ --- --- --- ---- --- --- --- 
+head.val : 11
+head.random : 0x788288
+ --- --- --- ---- --- --- --- 
+head.val : 10
+head.random : 0x788258
+ --- --- --- ---- --- --- --- 
+head.val : 1
+head.random : 0x788240
+--- --- --- ---- --- --- ---> 
+null
