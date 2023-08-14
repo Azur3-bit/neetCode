@@ -153,7 +153,6 @@ ListNode* OnePass_removeNthNode(ListNode *&head, int n) {
 	back->next = back->next->next;
 	return head;
 
-
 }
 
 int main(int argc, char const * argv[])

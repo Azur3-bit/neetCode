@@ -1,0 +1,14 @@
+Working !
+
+
+printing Link List vector 
+:: Printing Vector :: 
+{ 7 13 11 10 1 }
+:: Vector Printed :: 
+printing random Link List vector 
+:: Printing Vector :: 
+{ 3 0 4 2 1 }
+:: Vector Printed :: 
+-- Elements have been entered in LinkList 
+printing Link list 
+7 -> 13 -> 11 -> 10 -> 1 -> null
