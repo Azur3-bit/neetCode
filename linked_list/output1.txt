@@ -8,7 +8,7 @@ printing Link List vector
 :: Vector Printed :: 
 printing random Link List vector 
 :: Printing Vector :: 
-{ -1 0 4 2 1 }
+{ -1 0 4 2 0 }
 :: Vector Printed :: 
 -- Elements have been entered in LinkList 
 printing Link list 
@@ -21,11 +21,11 @@ Printing HashMap
 
 Value_i		Mem_add
 ------		-------
-0			0x1581c8
-1			0x158240
-2			0x158258
-3			0x158270
-4			0x158288
+0			0xe581c8
+1			0xe58240
+2			0xe58258
+3			0xe58270
+4			0xe58288
 5			0
 
 HashMap Printed
@@ -55,16 +55,16 @@ head.val : 7
 head.random : 0
  --- --- --- ---- --- --- --- 
 head.val : 13
-head.random : 0x1581c8
+head.random : 0xe581c8
  --- --- --- ---- --- --- --- 
 head.val : 11
-head.random : 0x158288
+head.random : 0xe58288
  --- --- --- ---- --- --- --- 
 head.val : 10
-head.random : 0x158258
+head.random : 0xe58258
  --- --- --- ---- --- --- --- 
 head.val : 1
-head.random : 0x158240
+head.random : 0xe581c8
 --- --- --- ---- --- --- ---> 
 null
 Inside Function 
@@ -74,16 +74,16 @@ head.val : 7
 head.random : 0
  --- --- --- ---- --- --- --- 
 head.val : 13
-head.random : 0x1581c8
+head.random : 0xe581c8
  --- --- --- ---- --- --- --- 
 head.val : 11
-head.random : 0x158288
+head.random : 0xe58288
  --- --- --- ---- --- --- --- 
 head.val : 10
-head.random : 0x158258
+head.random : 0xe58258
  --- --- --- ---- --- --- --- 
 head.val : 1
-head.random : 0x158240
+head.random : 0xe581c8
 --- --- --- ---- --- --- ---> 
 null
 prev..val : 7
@@ -96,11 +96,11 @@ Printing unordered_map HashMap
 
 Value_i		Mem_add
 ------		-------
-1			0x1583c0
-7			0x158360
-13			0x158378
-11			0x158390
-10			0x1583a8
+1			0xe583c0
+7			0xe58360
+13			0xe58378
+11			0xe58390
+10			0xe583a8
 
 HashMap unordered_map Printed
 -*-  -*- -*- 
@@ -109,5 +109,23 @@ HashMap unordered_map Printed
 { 7 13 11 10 1 }
 :: Vector Printed :: 
 :: Printing Vector :: 
-{ 0 7 1 11 13 }
+{ 0 7 1 11 7 }
 :: Vector Printed :: 
+printing Link list 
+ --- --- --- ---- --- --- --- 
+head.val : 7
+head.random : 0
+ --- --- --- ---- --- --- --- 
+head.val : 13
+head.random : 0xe58360
+ --- --- --- ---- --- --- --- 
+head.val : 11
+head.random : 0xe583c0
+ --- --- --- ---- --- --- --- 
+head.val : 10
+head.random : 0xe58390
+ --- --- --- ---- --- --- --- 
+head.val : 1
+head.random : 0xe58360
+--- --- --- ---- --- --- ---> 
+null

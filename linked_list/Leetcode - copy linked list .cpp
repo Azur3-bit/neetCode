@@ -219,12 +219,23 @@ void Submit(Node *head) {
 // vector Operations
 		curr = curr->next;
 	}
-
-
-// find vecRandom.i in hashMap and store their location in list.random
-
 	_showVector(nums);
 	_showVector(vecRandom);
+
+// find vecRandom.i in hashMap and store their location in list.random
+	Node * linkingRandom = newHead;
+	for (auto it : vecRandom) {
+		if (it == 0) {
+			linkingRandom->random = nullptr;
+		}
+		else if (HashMapPointer.find(it) != HashMapPointer.end()) {
+			linkingRandom->random = HashMapPointer[it];
+			linkingRandom->random = linkingRandom->random;
+		}
+		linkingRandom = linkingRandom->next;
+	}
+	// printing final Link list
+	Modi_showLinkedList(newHead);
 
 }
 
