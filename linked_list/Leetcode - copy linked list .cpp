@@ -16,6 +16,7 @@ using namespace std;
 #include <set>
 #include <unordered_set>
 #include <queue>
+#include <typeinfo>
 
 // -- additional_libraries -- azur3
 #include "TimerClock.h" // For Performance Monitor
@@ -64,7 +65,6 @@ void Modi_showLinkedList(Node *head) {
 		cout << " --- --- --- ---- --- --- --- \n";
 		cout << "head.val : " << head->val << endl;
 		cout << "head.random : " << head->random << endl;
-		// cout << head->random << endl;
 		head = head->next ;
 	}
 	cout << "--- --- --- ---- --- --- ---> \n";
@@ -105,8 +105,8 @@ void _showVector(const vector<type_2> &nums)
 	cout << ":: Vector Printed :: " << endl;
 }
 // show hashMap
-// template <typename KeyType, typename ValueType>
-void _showHashMap(std::map<int, Node *> &hashMap)
+template <typename KeyType, typename ValueType>
+void _showHashMap(std::map<KeyType, ValueType > &hashMap)
 {
 	std::cout << std::endl;
 	std::cout << "-*-  -*- -*- " << std::endl;
@@ -118,11 +118,32 @@ void _showHashMap(std::map<int, Node *> &hashMap)
 
 	for (const auto &it : hashMap)
 	{
-		std::cout << it.first << "\t\t\t" << it.second << std::endl;
+		std::cout << it.first << "\t\t\t" << it.second << endl;
 	}
 
 	std::cout << std::endl;
 	std::cout << "HashMap Printed" << std::endl;
+	std::cout << "-*-  -*- -*- " << std::endl;
+	std::cout << std::endl;
+}
+// template <typename KeyType, typename ValueType>
+void unordered_showHashMap(unordered_map<int, Node *> &hashMap)
+{
+	std::cout << std::endl;
+	std::cout << "-*-  -*- -*- " << std::endl;
+	std::cout << "Printing unordered_map HashMap" << std::endl;
+	std::cout << std::endl;
+
+	std::cout << "Value_i\t\tMem_add" << std::endl;
+	std::cout << "------\t\t-------" << std::endl;
+
+	for (const auto &it : hashMap)
+	{
+		std::cout << it.first << "\t\t\t" << it.second << endl;
+	}
+
+	std::cout << std::endl;
+	std::cout << "HashMap unordered_map Printed" << std::endl;
 	std::cout << "-*-  -*- -*- " << std::endl;
 	std::cout << std::endl;
 }
@@ -143,14 +164,71 @@ map<int, Node *> gen_hashMap(Node*head) {
 void LinkingRandom_pointer(Node *&head, vector<int> r, map<int, Node*> &hashMap) {
 	Node *temp = head;
 	for (auto it : r) {
-		if (hashMap.find(it) != hashMap.end()) {
+		if (it < 0) {
+			temp->random = nullptr;
+			temp = temp->next;
+		}
+		else if (hashMap.find(it) != hashMap.end()) {
 			temp->random = hashMap[it];
 			temp = temp->next;
 		}
 	}
 }
 
-int main(int argc, char const *argv[])
+void Submit(Node *head) {
+	cout << "Inside Function \n";
+
+	// Done create a hashMap
+	Modi_showLinkedList(head);
+	vector<int> nums{};
+	vector<int> vecRandom{};
+	Node * curr = head;
+
+// new Link list
+	Node * newHead = new Node(head->val);
+	Node * prev = newHead;
+	cout << "prev..val : " << prev ->val << endl;
+	Node * temp = head->next;
+	while (temp != nullptr) {
+		Node * tempCurr =  new Node(temp->val);
+		prev -> next = tempCurr;
+		prev = prev->next;
+		temp = temp->next;
+	}
+	cout << "printing New Link list \n";
+	_showLinkedList(newHead);
+
+	// Done store karne hai inke Node * location
+	Node * hashPointer = newHead;
+	int counter = -1;
+	unordered_map<int, Node*> HashMapPointer {};
+	while (hashPointer != nullptr) {
+		HashMapPointer.insert(make_pair(hashPointer->val, hashPointer));
+		hashPointer = hashPointer->next;
+	}
+	unordered_showHashMap(HashMapPointer);
+
+
+	while (curr != nullptr) {
+// vector Operations
+		nums.push_back(curr->val);
+		if (curr->random == nullptr)
+			vecRandom.push_back(0);
+		else
+			vecRandom.push_back(curr->random->val);
+// vector Operations
+		curr = curr->next;
+	}
+
+
+// find vecRandom.i in hashMap and store their location in list.random
+
+	_showVector(nums);
+	_showVector(vecRandom);
+
+}
+
+int main(int argc, char const * argv[])
 {
 #ifndef ONLINE_JUDGE
 	freopen("input.txt", "r", stdin);
@@ -161,10 +239,7 @@ int main(int argc, char const *argv[])
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 
-	// -- Main Function code --
-
-	// get both the vectors :- v , r
-
+	cout << "working \n";
 	cout << "Working !" << endl;
 	vector<int> v{};
 	vector<int> r{};
@@ -176,21 +251,13 @@ int main(int argc, char const *argv[])
 	_showVector(r);
 	Node * head = nullptr;
 	vec_linkedlist(head, v);
-
 	_showLinkedList(head);
-
-	//checking current location of head
 	cout << "head.val : " << head->val << endl;
 	map<int, Node *> hashMap = gen_hashMap(head);
 	_showHashMap(hashMap);
-
-
-// print Modified Linked list
 	Modi_showLinkedList(head);
-// linking random POinter
 	LinkingRandom_pointer(head, r, hashMap);
-// print Modified Linked list
 	Modi_showLinkedList(head);
-
+	Submit(head);
 	return 0;
 }

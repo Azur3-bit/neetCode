@@ -1,3 +1,4 @@
+working 
 Working !
 
 
@@ -7,7 +8,7 @@ printing Link List vector
 :: Vector Printed :: 
 printing random Link List vector 
 :: Printing Vector :: 
-{ 3 0 4 2 1 }
+{ -1 0 4 2 1 }
 :: Vector Printed :: 
 -- Elements have been entered in LinkList 
 printing Link list 
@@ -20,11 +21,11 @@ Printing HashMap
 
 Value_i		Mem_add
 ------		-------
-0			0x7881c8
-1			0x788240
-2			0x788258
-3			0x788270
-4			0x788288
+0			0x1581c8
+1			0x158240
+2			0x158258
+3			0x158270
+4			0x158288
 5			0
 
 HashMap Printed
@@ -51,18 +52,62 @@ null
 printing Link list 
  --- --- --- ---- --- --- --- 
 head.val : 7
-head.random : 0x788270
+head.random : 0
  --- --- --- ---- --- --- --- 
 head.val : 13
-head.random : 0x7881c8
+head.random : 0x1581c8
  --- --- --- ---- --- --- --- 
 head.val : 11
-head.random : 0x788288
+head.random : 0x158288
  --- --- --- ---- --- --- --- 
 head.val : 10
-head.random : 0x788258
+head.random : 0x158258
  --- --- --- ---- --- --- --- 
 head.val : 1
-head.random : 0x788240
+head.random : 0x158240
 --- --- --- ---- --- --- ---> 
 null
+Inside Function 
+printing Link list 
+ --- --- --- ---- --- --- --- 
+head.val : 7
+head.random : 0
+ --- --- --- ---- --- --- --- 
+head.val : 13
+head.random : 0x1581c8
+ --- --- --- ---- --- --- --- 
+head.val : 11
+head.random : 0x158288
+ --- --- --- ---- --- --- --- 
+head.val : 10
+head.random : 0x158258
+ --- --- --- ---- --- --- --- 
+head.val : 1
+head.random : 0x158240
+--- --- --- ---- --- --- ---> 
+null
+prev..val : 7
+printing New Link list 
+printing Link list 
+7 -> 13 -> 11 -> 10 -> 1 -> null
+
+-*-  -*- -*- 
+Printing unordered_map HashMap
+
+Value_i		Mem_add
+------		-------
+1			0x1583c0
+7			0x158360
+13			0x158378
+11			0x158390
+10			0x1583a8
+
+HashMap unordered_map Printed
+-*-  -*- -*- 
+
+:: Printing Vector :: 
+{ 7 13 11 10 1 }
+:: Vector Printed :: 
+:: Printing Vector :: 
+{ 0 7 1 11 13 }
+:: Vector Printed :: 

@@ -1,4 +1,5 @@
-// remove nth Node
+// remove nth Node
+
 // -- essential_libraries_and_namespace
 #include <iostream>
 using namespace std;
@@ -145,8 +146,6 @@ ListNode* OnePass_removeNthNode(ListNode *&head, int n) {
 		back = back->next;
 	}
 // corner case when head node has to be deleted
-
-
 	cout << "new forward.val : " << forward->val << endl;
 	cout << "new back.val : " << back->val << endl;
 
