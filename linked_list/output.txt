@@ -1,22 +1,32 @@
 
-printing first Vector 
 
+
+printing first vector 
 :: Printing Vector :: 
 { 9 9 9 9 9 9 9 }
 :: Vector Printed :: 
-printing second Vector 
+
+printing second vector 
 :: Printing Vector :: 
 { 9 9 9 9 }
 :: Vector Printed :: 
-all elements entered in the linked list 
-all elements entered in the linked list 
-printing first linked list 
-printing Linked list 
+9
+9
+9
+9
+9
+9
+9
+Elements -> linked list (done)
+9
+9
+9
+9
+Elements -> linked list (done)
+printing linked list 
 9 -> 9 -> 9 -> 9 -> 9 -> 9 -> 9 -> null
-printing second linked list 
-printing Linked list 
+printing linked list 
 9 -> 9 -> 9 -> 9 -> null
-printing Linked list 
-null
-printing Linked list 
+Printing final anwer -> 
+printing linked list 
 8 -> 9 -> 9 -> 9 -> 0 -> 0 -> 0 -> 1 -> null

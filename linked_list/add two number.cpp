@@ -88,8 +88,7 @@ void vec_linkedlist(ListNode *&head, vector<int> nums ) {
 }
 
 ListNode * AddTwoNumber(ListNode*l1, ListNode *l2) {
-	ListNode * ans = new ListNode(0);
-	ListNode * finalans = ans;
+	ListNode * ans = nullptr;
 	int c = 0;
 	while ((l1 != nullptr) || (l2 != nullptr)) {
 		int sum = c;
@@ -111,9 +110,7 @@ ListNode * AddTwoNumber(ListNode*l1, ListNode *l2) {
 	if (c > 0) {
 		AddNode_end(ans, c);
 	}
-	ListNode * result = finalans->next;
-	delete finalans;
-	return result;
+	return ans;
 }
 int main(int argc, char const * argv[])
 {
