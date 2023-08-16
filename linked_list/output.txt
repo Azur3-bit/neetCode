@@ -1,91 +1,22 @@
 
+printing first Vector 
+
 :: Printing Vector :: 
-{ 7 13 11 10 1 }
+{ 9 9 9 9 9 9 9 }
 :: Vector Printed :: 
-adding node 
-adding node 
-adding node 
-adding node 
-adding node 
-All elements Entered in linked list 
-printing Linked list 
-7 -> 13 -> 11 -> 10 -> nullptr
-printing Modified_traverseLinkedList 
-printing Linked list 
- -- --- --- --- --- --
-index : 0
-head.val : 7
-head.random : 0
- -- --- --- --- --- --
-index : 1
-head.val : 13
-head.random : 0
- -- --- --- --- --- --
-index : 2
-head.val : 11
-head.random : 0
- -- --- --- --- --- --
-index : 3
-head.val : 10
-head.random : 0
- -- --- --- --- --- --
-index : 4
-head.val : 1
-head.random : 0
------------------------------>
-nullptr
-
--*-  -*- -*- 
-Printing HashMap
-
-Ele_i	Mem_Add
-----	-----
-0		0xf18218
-1		0xf18230
-2		0xf18248
-3		0xf18260
-4		0xf18278
-
-HashMap Printed
--*-  -*- -*- 
-
-printing random Connection vector
+printing second Vector 
 :: Printing Vector :: 
-{ 3 0 4 2 1 }
+{ 9 9 9 9 }
 :: Vector Printed :: 
-
------------------------------
-after connecting Random Pointers 
-hashMap[currNode_connection] : 0xf18260
-
-hashMap[currNode_connection] : 0xf18218
-
-hashMap[currNode_connection] : 0xf18278
-
-hashMap[currNode_connection] : 0xf18248
-
-hashMap[currNode_connection] : 0xf18230
-
+all elements entered in the linked list 
+all elements entered in the linked list 
+printing first linked list 
 printing Linked list 
- -- --- --- --- --- --
-index : 0
-head.val : 7
-head.random : 0xf18260
- -- --- --- --- --- --
-index : 1
-head.val : 13
-head.random : 0xf18218
- -- --- --- --- --- --
-index : 2
-head.val : 11
-head.random : 0xf18278
- -- --- --- --- --- --
-index : 3
-head.val : 10
-head.random : 0xf18248
- -- --- --- --- --- --
-index : 4
-head.val : 1
-head.random : 0xf18230
------------------------------>
-nullptr
+9 -> 9 -> 9 -> 9 -> 9 -> 9 -> 9 -> null
+printing second linked list 
+printing Linked list 
+9 -> 9 -> 9 -> 9 -> null
+printing Linked list 
+null
+printing Linked list 
+8 -> 9 -> 9 -> 9 -> 0 -> 0 -> 0 -> 1 -> null
