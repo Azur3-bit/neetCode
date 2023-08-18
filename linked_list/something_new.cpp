@@ -1,24 +1,24 @@
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
+// *
+// * Definition for singly-linked list.
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
 
-/*ostream& operator<<(ostream& stream, ListNode node) {
-   ListNode* nodePointer = &node;
-   stream << "[";
-   while(nodePointer != nullptr) {
-       stream << nodePointer->val << ", ";
-       nodePointer = nodePointer->next;
-   }
-   stream << "]";
-   return stream;
-}*/
+
+ostream& operator<<(ostream& stream, ListNode node) {
+    ListNode* nodePointer = &node;
+    stream << "[";
+    while (nodePointer != nullptr) {
+        stream << nodePointer->val << ", ";
+        nodePointer = nodePointer->next;
+    }
+    stream << "]";
+    return stream;
+}
 #pragma GCC optimize("Ofast,unroll-loops")
 #pragma GCC target("avx2,tune=native")
 auto _ = []() {
@@ -52,6 +52,7 @@ int solution = []() {
     exit(0);
     return 0;
 }();
+
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {

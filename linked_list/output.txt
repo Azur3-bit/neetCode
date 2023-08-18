@@ -1,32 +1,3 @@
-
-
-
-printing first vector 
-:: Printing Vector :: 
-{ 9 9 9 9 9 9 9 }
-:: Vector Printed :: 
-
-printing second vector 
-:: Printing Vector :: 
-{ 9 9 9 9 }
-:: Vector Printed :: 
-9
-9
-9
-9
-9
-9
-9
-Elements -> linked list (done)
-9
-9
-9
-9
-Elements -> linked list (done)
-printing linked list 
-9 -> 9 -> 9 -> 9 -> 9 -> 9 -> 9 -> null
-printing linked list 
-9 -> 9 -> 9 -> 9 -> null
-Printing final anwer -> 
-printing linked list 
-8 -> 9 -> 9 -> 9 -> 0 -> 0 -> 0 -> 1 -> null
+inside Solve Function 
+Loop Found 
+Ans value : 1
