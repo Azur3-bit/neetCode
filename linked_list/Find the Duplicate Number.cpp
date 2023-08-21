@@ -22,6 +22,54 @@ using namespace std;
 // Classes
 
 // Functions
+template <typename type_1>
+void _input(vector<type_1> &nums)
+{
+	type_1 input;
+	while (cin >> input)
+	{
+		nums.push_back(input);
+		if (cin.peek() == '\n')
+			break;
+	}
+	cout << endl;
+}
+template <typename type_2>
+void _showVector(const vector<type_2> &nums)
+{
+	cout << ":: Printing Vector :: " << endl;
+	cout << "{ ";
+	for (type_2 it : nums)
+	{
+		cout << it << " ";
+	}
+	cout << "}";
+	cout << endl;
+	cout << ":: Vector Printed :: " << endl;
+}
+
+int answer(vector<int> &nums) {
+
+	// Creating a fast And a Slow Pointer
+
+	int fast = nums[0];
+	int slow = nums[0];
+
+
+	fast = nums[nums[fast]];
+	slow = nums[slow];
+
+	while (fast != slow) {
+		fast = nums[nums[fast]];
+		slow = nums[slow];
+	}
+	fast = nums[0];
+	while (fast != slow) {
+		fast = nums[fast];
+		slow = nums[slow];
+	}
+	return fast;
+}
 
 int main(int argc, char const *argv[])
 {
@@ -36,5 +84,11 @@ int main(int argc, char const *argv[])
 
 	// -- Main Function code --
 
+	vector<int> nums {};
+	_input(nums);
+	_showVector(nums);
+
+	int ans = answer(nums);
+	cout << "ans : " << ans << endl;
 	return 0;
 }
