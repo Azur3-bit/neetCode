@@ -1,4 +1,6 @@
-// Linked List Cycle
+// final LinkedList BoilerPlate
+// Linked List Cycle
+
 
 
 // -- essential_libraries_and_namespace
@@ -92,29 +94,13 @@ void _showVector(const vector<type_2> &nums)
 	cout << ":: Vector Printed :: " << endl;
 }
 
-bool Solve(ListNode * head) {
-	cout << "inside Solve Function \n";
-	ListNode * fast = head->next;
-	ListNode * slow = head;
+ListNode * Solve(ListNode * head) {
 
-	while (fast != nullptr && fast->next != nullptr) {
-		if (fast == slow) {
-			cout << "Loop Found \n";
-			return true;
-		}
-		fast = fast->next->next;
-		slow = slow->next;
-
-	}
-	cout << "loop Not Found \n";
-	return false;
 }
 
-void testing(ListNode * head) {
-	for (int i = 0; i < 20; i++) {
-		cout << "i : " << i << " value : " << head->val << endl;
-		head = head->next;
-	}
+void testing(ListNode * head, const vector<int> v) {
+	_showVector(v);
+	_showLinkedList(head);
 }
 int main(int argc, char const *argv[])
 {
@@ -145,7 +131,7 @@ int main(int argc, char const *argv[])
 	forth->next = second;
 
 
-	bool ansValue = Solve(head);
+	ListNode * ansValue = Solve(head);
 	cout << "Ans value : " << ansValue << endl;
 
 

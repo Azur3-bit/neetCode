@@ -39,7 +39,7 @@ public:
 
 
 // insert ListNode at tail
-void insertAt_tail(ListNode *&head, int value)
+void AddNode_end(ListNode *&head, int value)
 {
     ListNode *ListNode = new ListNode(value);
 
@@ -122,13 +122,6 @@ void ListNode_Between(ListNode *&head, int value, int after_Value)
 
 // delete ListNode from head of linked list
 void ListNode_Head(ListNode * &head) {
-#if 0
-    // not - by reference code
-    ListNode *temp = head;
-    temp = temp->next;
-    head->next = temp;
-    return temp;
-#endif
     cout << "delete ListNode" << endl;
     // return head ;
 
@@ -195,6 +188,7 @@ int main(int argc, char const *argv[])
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     // -- Main Function code --
+#if 0
     ListNode *head = NULL;
     insertAt_tail(head, 100);
     insertAt_tail(head, 200);
@@ -225,6 +219,7 @@ int main(int argc, char const *argv[])
     //     cout << it << endl;
     // }
     // cout << "Working !!" << endl;
+#endif
 
     return 0;
 }
