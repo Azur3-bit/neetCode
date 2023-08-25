@@ -1,4 +1,2 @@
-1 -> 2 -> 3 -> 4 -> null
---
-revTraversal 
-end
+printing Linked list 
+1 -> 2 -> 3 -> end

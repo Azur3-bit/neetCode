@@ -50,11 +50,11 @@ void AddNode_end(ListNode * &head, int data) {
 		temp = temp->next;
 		PrevTemp = PrevTemp->next;
 	}
-	newNode->prev = PrevTemp;
+
 	temp->next = newNode;
+	newNode->prev = temp;
 }
 // traversal of linked list
-
 void _showDoublyLinkedList(ListNode * head) {
 	cout << "Printing Doubly Linked list \n";
 	while (head != nullptr) {
@@ -64,7 +64,22 @@ void _showDoublyLinkedList(ListNode * head) {
 	cout << "null\n";
 }
 // end pointer of linked list
+ListNode * _endPointer(ListNode * head) {
+	while (head->next != nullptr) {
+		head = head->next;
+	}
+	return head;
+}
+
 // reverse linked list
+void _revTraversalLinkedList(ListNode * head) {
+	cout << "printing Rev Linked list \n";
+	while (head != nullptr) {
+		cout << head->val << " <- " ;
+		head = head->prev;
+	}
+	cout << "end\n";
+}
 
 int main(int argc, char const *argv[])
 {
@@ -87,5 +102,18 @@ int main(int argc, char const *argv[])
 
 	_showDoublyLinkedList(head);
 
+	ListNode * endPointer = _endPointer(head);
+	// cout << "endPointer->val : " << endPointer->val << endl;
+
+	// endPointer = endPointer->prev;
+	// cout << "endPointer->val : " << endPointer->val << endl;
+
+	// endPointer = endPointer->prev;
+	// cout << "endPointer->val : " << endPointer->val << endl;
+	// endPointer = endPointer->prev;
+	// cout << "endPointer->val : " << endPointer->val << endl;
+
+
+	_revTraversalLinkedList(endPointer);
 	return 0;
 }
