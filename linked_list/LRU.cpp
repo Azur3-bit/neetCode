@@ -20,6 +20,13 @@ using namespace std;
 #include "TimerClock.h" // For Performance Monitor
 
 // Classes
+struct Node {
+	int key;
+	int val;
+	Node * next;
+	Node * prev;
+	Node(int _xKey , int _cValue ) : key(_xKey) , val(_cValue) , next(nullptr) , prev(nullptr) {}
+};
 
 // Functions
 
@@ -40,5 +47,7 @@ int main(int argc, char const *argv[])
 	// if put then add element in the LRU
 	// if get then counter++ and return element
 	cout << "LRU Cache \n";
+
+
 	return 0;
 }
