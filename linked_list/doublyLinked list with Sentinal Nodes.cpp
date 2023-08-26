@@ -39,6 +39,7 @@ void AddNode_end(Node * &senHead, Node *& senTail, int _newKey, int _newVal) {
 		newNode->prev = senHead;
 		newNode->next = senTail;
 		senTail->prev = newNode;
+		return;
 	}
 
 	Node * temp = senHead;
@@ -71,6 +72,7 @@ Node * endPointer(Node * senHead) {
 // reverse traversal
 void _revTraversalLinkedList(Node * tail) {
 	while (tail != nullptr) {
+		cout << " ___ --- ____ \n";
 		cout << "tail->val : " << tail->val  << "\ntail->key : " << tail->key << endl;
 		tail = tail->prev;
 	}
@@ -88,7 +90,6 @@ int main(int argc, char const *argv[])
 	cin.tie(NULL);
 
 	// -- Main Function code --
-
 	Node * senHead = new Node(100, 100);
 	cout <<  "senHead->val : " << senHead->val <<  "\nsenHead->key : " << senHead->key << endl;
 
@@ -104,16 +105,17 @@ int main(int argc, char const *argv[])
 	cout << "senHead->next->val : " << senHead->next->val  << endl;
 	cout << "senTail->prev->val: " << senTail->prev->val << endl;
 
-
 	AddNode_end(senHead, senTail, 1, 1);
 	AddNode_end(senHead, senTail, 2, 2);
-
 	_showLinkedList(senHead , senTail);
 
 	Node * end_pointer = endPointer(senHead);
 	cout << "end_pointer.val : " << end_pointer->val << endl;
-	// _revTraversalLinkedList(end_pointer);
+	_revTraversalLinkedList(end_pointer);
 	cout << "end_pointer.prev.val : " << end_pointer->prev->val << endl;
 	cout << "end_pointer.prev.prev.val : " << end_pointer->prev->prev->val << endl;	cout << "end_pointer.prev.prev.prev.val : " << end_pointer->prev->prev->prev->val << endl;
+	// cout << "end_pointer.prev.prev.prev.prev.val : " << end_pointer->prev->prev->prev->prev->val << endl;
+
+	// ?- Problem -> Sen_head->next(index 1) -> prev != Senhead
 	return 0;
 }
