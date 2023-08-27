@@ -163,6 +163,8 @@ int main(int argc, char const *argv[])
 	_showDoublyLinkedList(head);
 
 
+// -- algo
+
 
 	return 0;
 }
