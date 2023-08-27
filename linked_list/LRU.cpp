@@ -84,7 +84,6 @@ public:
 		// -> addNode_end -> newNode
 		AddNode_end(key, value);
 	}
-
 	Node * AddNode_end(int key, int value) {
 		cout << "--- AddNode_end\n";
 		Node * newNode = new Node(key, value);
@@ -93,7 +92,6 @@ public:
 		senTail->prev = newNode;
 		newNode->next = senTail;
 	}
-
 	// printing Linked list
 	void _showLinkedList_inOrder_forward() {
 		cout << "printing Linked list -- forward\n";
@@ -132,23 +130,17 @@ int main(int argc, char const *argv[])
 	// obj->put(key, value);
 	obj->put(1, 1);
 	obj->put(2, 2);
-
 	obj->get(1);
-
 	obj->put(3, 3);
 	obj->get(2);
-
 	obj->put(4, 4);
-
 	obj->get(1);
 	obj->get(3);
 	obj->get(4);
-
 	// obj->_showLinkedList_inOrder_backward();
 	// obj->_showLinkedList_inOrder_forward();
 	// int result = obj->get(100);
 	// cout << "result : " << result << endl;
-
 	return 0;
 }
 
