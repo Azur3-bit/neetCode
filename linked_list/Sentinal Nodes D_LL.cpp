@@ -122,7 +122,7 @@ void Put(unordered_map<int, Node * > &HM , Node * &senHead, Node * &senTail , in
 int Get(unordered_map<int, Node * > &HM , Node * senHead , Node* senTail , int _usrKey) {
 	auto iter = HM.find(_usrKey);
 	if (iter != HM.end()) {
-		cout << "found Element :-> " <<
+		cout << "found Element :-> " << "iter->val : " << iter->val << iter->key << iter->key << endl;
 	}
 
 }
