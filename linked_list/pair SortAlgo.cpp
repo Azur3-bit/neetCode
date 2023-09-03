@@ -33,7 +33,6 @@ void pairSort(vector<pair<type_1, type_2>> &nums) {
 	}
 	return;
 }
-
 void testing_pairSort_int_int() {
 	vector<pair<int, int>> nums{};
 	nums.push_back(make_pair(1, 5000));
@@ -44,7 +43,6 @@ void testing_pairSort_int_int() {
 	nums.push_back(make_pair(1, 500));
 	pairSort(nums);
 }
-
 void testing_pairSort_string_string() {
 	vector<pair<string, string>> strs{};
 	strs.push_back(make_pair("abc", "asdf"));
