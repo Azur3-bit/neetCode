@@ -59,16 +59,13 @@ void _showLinkedList_using_vector(vector<ListNode * > &nums) {
 	for (auto it : nums)
 		_showLinkedList(it);
 }
-void solution(vector<ListNode * > &nums , priority_queue<int> &pq) {
-	// cout << "--------------------------\n";
-	cout << "inside the actual solution function\n";
-	cout << "nums[0] : " << nums[0] << endl;
-	// _showLinkedList_using_vector(nums);
-}
+
 
 int main(int argc, char const * argv[])
 {
 // #ifndef ONLINE_JUDGE
+
+	// this is a new line and i am testing this code
 // 	freopen("input.txt", "r", stdin);
 // 	freopen("output.txt", "w", stdout);
 // #endif
@@ -127,7 +124,7 @@ int main(int argc, char const * argv[])
 	pq.push(make_pair(-2, first_1));
 	pq.push(make_pair(-3, second_2));
 	_showPriortiyQueue_paired(pq);
-	solution(nums, pq);
+	// solution(nums, pq);
 
 	return 0;
 }
