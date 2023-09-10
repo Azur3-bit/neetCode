@@ -84,7 +84,7 @@ void _showLinkedList_using_vector(vector<ListNode *> &lists) {
 }
 
 // print Prioroty Queue
-void _showPriortiyQueue(priority_queue<pair<int, ListNode *>, vector<pair<int, ListNode *>> , greater<pair<int , ListNode *>>> &nums) {
+void _showPriortiyQueue(priority_queue<pair<int, ListNode *>, vector<pair<int, ListNode *>> , greater<pair<int , ListNode *>>> nums) {
 	cout << "int\tListNode *\n";
 	// cout << pq.top().first << "\t" << pq.top().second << "\n";
 	while (!nums.empty()) {
@@ -92,11 +92,8 @@ void _showPriortiyQueue(priority_queue<pair<int, ListNode *>, vector<pair<int, L
 		nums.pop();
 	}
 }
-
-// ListNode * solve(vector<ListNode *> &lists) {
-
-// #if 0
-void solve(vector<ListNode *> &lists) {
+// void solve(vector<ListNode *> &lists) {
+ListNode * solve(vector<ListNode *> &lists) {
 	// Main code goes here
 
 	// _showLinkedList(head_1);
@@ -104,13 +101,10 @@ void solve(vector<ListNode *> &lists) {
 	// _showLinkedList(head_3);
 	// cout << "printing using vector \n";
 	_showLinkedList_using_vector(lists);
-
 	// min heap has to be used
 	// queue -> key(sort) , value(ListNode * ) [adddress]
 	// link -> using an iterator one by one in the priority queue
-
 	priority_queue<pair<int, ListNode *> , vector<pair<int, ListNode *>>, greater<pair<int, ListNode *>>> nums {};
-
 	for (auto it : lists) {
 		ListNode * head = it;
 		cout << "it : " << it << "\n";
@@ -122,12 +116,21 @@ void solve(vector<ListNode *> &lists) {
 		}
 		cout << "end\n";
 	}
-
 	_showPriortiyQueue(nums);
 
+	cout << "------------" << endl;
+	cout << "nums.size : " << nums.size() << "\n";
+	ListNode * newNode = nums.top().second;
+	ListNode * newHead = newNode;
+	while (!nums.empty()) {
+		nums.pop();
+		newNode->next = nums.top().second;
+		newNode = newNode->next;
+	}
+	newNode->next = nullptr;
+	return newHead;
 
 }
-// #endif
 // ------------------------------------------------------------------
 int main(int argc, char const * argv[]) {
 #ifndef ONLINE_JUDGE
@@ -174,27 +177,25 @@ int main(int argc, char const * argv[]) {
 	ListNode * head_3 = first_3;
 
 	vector<ListNode * > lists = {head_1, head_2, head_3};
-
 #if 0
 	// testing Priority Queue
 	priority_queue<pair<int, ListNode *>, vector<pair<int, ListNode *>> , greater<pair<int, ListNode *>>> pq {};
-
-
 	cout << "first_1 : " << head_1 << endl;
 	cout << "first_2 : " << head_2 << endl;
 	cout << "first_3 : " << head_3 << endl;
 	pq.push(make_pair(head_1->val , head_1));
 	pq.push(make_pair(head_2->val , head_2));
 	pq.push(make_pair(head_3->val , head_3));
-
-
 	_showLinkedList_using_vector(lists);
-
 	// printing Priority Queue one by one
 	cout << "printing priority_queue one by one\n";
 	_showPriortiyQueue(pq);
 
 #endif
-	while (t--) {solve(lists);}
+	while (t--) {
+		cout << "testCase\n";
+		ListNode * ans = solve(lists);
+		_showLinkedList(ans);
+	}
 	return 0;
 }
