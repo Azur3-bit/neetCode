@@ -95,7 +95,6 @@ void _showPriortiyQueue(priority_queue<pair<int, ListNode *>, vector<pair<int, L
 // void solve(vector<ListNode *> &lists) {
 ListNode * solve(vector<ListNode *> &lists) {
 	// Main code goes here
-
 	// _showLinkedList(head_1);
 	// _showLinkedList(head_2);
 	// _showLinkedList(head_3);
@@ -117,7 +116,6 @@ ListNode * solve(vector<ListNode *> &lists) {
 		cout << "end\n";
 	}
 	_showPriortiyQueue(nums);
-
 	cout << "------------" << endl;
 	cout << "nums.size : " << nums.size() << "\n";
 	ListNode * newNode = nums.top().second;
@@ -129,7 +127,6 @@ ListNode * solve(vector<ListNode *> &lists) {
 	}
 	newNode->next = nullptr;
 	return newHead;
-
 }
 // ------------------------------------------------------------------
 int main(int argc, char const * argv[]) {
@@ -190,7 +187,6 @@ int main(int argc, char const * argv[]) {
 	// printing Priority Queue one by one
 	cout << "printing priority_queue one by one\n";
 	_showPriortiyQueue(pq);
-
 #endif
 	while (t--) {
 		cout << "testCase\n";
