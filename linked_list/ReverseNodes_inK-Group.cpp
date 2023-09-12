@@ -1,5 +1,4 @@
-// revise_reving_linked list
-
+// Reverse Nodes in k-Group
 // Essential libraries
 #include <iostream>
 // #include <bits/stdc++.h>
@@ -60,48 +59,10 @@ ostream& operator<<(ostream& os, const pair<T, S>& p) {
 	os << "(" << p.first << ", " << p.second << ")";
 	return os;
 }
-// structur of linked list
-struct ListNode {
-	int val;
-	ListNode * next;
-	ListNode (int _val) : val(_val), next(nullptr) {}
-};
-// show linked list
-void _showLinkedList(ListNode * head) {
-	while (head) {
-		cout << head->val << " -> ";
-		head = head->next;
-	}
-	cout << "nullptr\n";
-}
-ListNode * Reving_linkedList(ListNode * &head) {
-	// base cases
-	if (head == nullptr)
-		return nullptr;
-	if (head->next == nullptr)
-		return head;
-	// personal Stimulation
-	// 1 -> 2 -> 3 -> 4 -> 5 -> null
-	//                     prev curr nxt
-	ListNode * prev = nullptr;
-	ListNode * currNode = head;
-	while (currNode) {
-		ListNode * next = currNode->next;
-		currNode->next = prev;
-		prev = currNode;
-		currNode = next;
-	}
-	head = prev;
-	return head;
-}
 // ------------------------------------------------------------------
-void solve(ListNode * &head) {
+void solve() {
 	// Main code goes here
-	cout << "working\n";
-	_showLinkedList(head);
-	cout << "reving Linked list \n";
-	head = Reving_linkedList(head);
-	_showLinkedList(head);
+
 }
 // ------------------------------------------------------------------
 int main(int argc, char const* argv[]) {
@@ -115,19 +76,6 @@ int main(int argc, char const* argv[]) {
 	// Main function code here
 	int t = 1;
 	// cin >> t;
-	// Creating Nodes
-	ListNode * first = new ListNode(1);
-	ListNode * second = new ListNode(2);
-	ListNode * third = new ListNode(3);
-	ListNode * forth = new ListNode(4);
-	ListNode * fifth = new ListNode(5);
-	// Linking Nodes
-	first->next = second;
-	second->next = third;
-	third->next = forth;
-	forth->next = fifth;
-	fifth->next = nullptr;
-	ListNode * head = first;
-	while (t--) {solve(head);}
+	while (t--) {solve();}
 	return 0;
 }
