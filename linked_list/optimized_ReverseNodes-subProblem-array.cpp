@@ -151,8 +151,6 @@ ListNode * solve(ListNode *&head ) {
 	//  2 -> 1 ->	 4 -> 	3 -> 5 -> null
 
 	// ---------------------------------------------------- start temp fuction
-
-
 	// 1 -> 2 -> 3  -> nullptr
 	// p1   p2   p3
 	// creating new Linked list for testing
@@ -183,9 +181,6 @@ ListNode * solve(ListNode *&head ) {
 
 	// follow up store the prev of rev(start) ka start ka prev for example senHead for first iteration and link the p1 to prev_start
 	// ex: senHead->next = prev_start
-
-
-
 	// -------------------------------------------------------- end temp fuction
 	// while (currNode) {
 	// 	// cout << "current Node => " << currNode->val << " ";
