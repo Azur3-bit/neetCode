@@ -60,7 +60,6 @@ ostream& operator<<(ostream& os, const pair<T, S>& p) {
 // ------------------------------------------------------------------
 void solve() {
 	// Main code goes here
-
 }
 // ------------------------------------------------------------------
 int main(int argc, char const* argv[]) {

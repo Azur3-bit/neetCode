@@ -1,4 +1,3 @@
-// Reverse Nodes in k-Group
 // Essential libraries
 #include <iostream>
 // #include <bits/stdc++.h>
@@ -16,7 +15,7 @@
 #include <unordered_set>
 #include "TimerClock.h" // For Performance Monitor
 using namespace std;
-#define debug(x) cout << #x  << " : " << x << endl;
+#define debug(x) cout << "\n"<<  #x  << " : " << x << endl;
 // Operator overloads
 template <typename T>
 ostream& operator<<(ostream& os, const vector<T>& v) {
@@ -59,10 +58,28 @@ ostream& operator<<(ostream& os, const pair<T, S>& p) {
 	os << "(" << p.first << ", " << p.second << ")";
 	return os;
 }
+// Structure of ListNode
+struct ListNode {
+	int val;
+	ListNode * next;
+	ListNode(int x) : val(x), next(nullptr) {}
+	ListNode(int x, ListNode * _next) : val(x), next(_next) {}
+};
+// show Linked list
+void _showLinkedList(ListNode * head) {
+	while (head) {
+		cout << head->val << " -> ";
+		head = head->next;
+	}
+	cout << "null\n";
+}
+
+// 1 -> 2 -> 3 -> 4 -> 5 -> null
+// p1   	 p2   p3
 // ------------------------------------------------------------------
-void solve() {
-	// Main code goes here
-	cout << "working\n";
+void solve(ListNode * &head) {
+	// Main code goes her
+	_showLinkedList(head);
 }
 // ------------------------------------------------------------------
 int main(int argc, char const* argv[]) {
@@ -75,7 +92,22 @@ int main(int argc, char const* argv[]) {
 	cin.tie(NULL);
 	// Main function code here
 	int t = 1;
+
+	ListNode * first = new ListNode(1);
+	ListNode * second = new ListNode(2);
+	ListNode * third = new ListNode(3);
+	ListNode * forth = new ListNode(4);
+	ListNode * fifth = new ListNode(5);
+	// Linking Nodes
+	first->next = second;
+	second->next = third;
+	third->next = forth;
+	forth->next = fifth;
+	fifth->next = nullptr;
+	ListNode * head = first;
+
+	// _showLinkedList(head);
 	// cin >> t;
-	while (t--) {solve();}
+	while (t--) {solve(head);}
 	return 0;
 }
