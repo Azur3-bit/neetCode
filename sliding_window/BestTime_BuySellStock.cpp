@@ -12,6 +12,7 @@
 #include <stack>
 #include <array>
 #include <unordered_map>
+#include <climits>
 #include <unordered_set>
 #include "TimerClock.h" // For Performance Monitor
 using namespace std;
@@ -58,44 +59,55 @@ ostream& operator<<(ostream& os, const pair<T, S>& p) {
 	os << "(" << p.first << ", " << p.second << ")";
 	return os;
 }
-// Structure of ListNode
-struct ListNode {
-	int val;
-	ListNode * next;
-	ListNode(int x) : val(x), next(nullptr) {}
-	ListNode(int x, ListNode * _next) : val(x), next(_next) {}
-};
-// show Linked list
-void _showLinkedList(ListNode * head) {
-	while (head) {
-		cout << head->val << " -> ";
-		head = head->next;
+void sometime_correct_sometime_wrong(vector<int> &prices) {
+	cout << "input vector ";
+	debug(prices);
+
+	int minimum = INT_MAX, maximum = 0, profit = 0, i = 0;
+	int size = prices.size();
+	cout << "---------------------\n";
+	for (int i = 0; i < size - 1; i++) {
+		int j = i + 1;
+		if (minimum > min(minimum, prices[i])) {
+			minimum = min(minimum, prices[i]);
+			debug(prices[i]);
+		}
+		// else
+		// continue;
+		if (maximum < max(maximum, prices[j])) {
+			maximum = max(maximum, prices[j]);
+			debug(prices[j]);
+		}
+		profit = max(profit, maximum - minimum);
 	}
-	cout << "null\n";
-}
-void Reving_partLinkedList(ListNode *&head, ListNode *&end_next, ListNode *& nextnode_linkage) {
-	ListNode * currNode = head;
-	ListNode * original_head = head;
-	ListNode * prevNode = nullptr;
-	while (currNode != end_next) {
-		ListNode * nextnode = currNode->next;
-		currNode->next = prevNode;
-		prevNode = currNode;
-		currNode = nextnode;
-	}
-	head = prevNode;
-	original_head->next = nextnode_linkage;
-	_showLinkedList(head);
-}
-//-----------------------------------------------------------------
-void solve(ListNode * &head, ListNode *&end, ListNode *&nextnode_linkage) {
-	// Main code goes her
-	_showLinkedList(head);
-	ListNode * localNode_end = end;
-	Reving_partLinkedList(head, localNode_end, nextnode_linkage);
+	cout << "----------------final Answer\n";
+	debug(maximum);
+	debug(minimum);
+	debug(profit);
 }
 // ------------------------------------------------------------------
-int main(int argc, char const* argv[]) {
+void solve(vector<int> &prices) {
+	// Main code goes here
+	// sometime_correct_sometime_wrong(prices);
+	if
+	debug(prices.size());
+	int front = 0;
+	int profit = 0;
+	int minimum = INT_MAX;
+	// fixing the back pointer
+	while (front < prices.size()) {
+		// debug(prices[front]);
+		int back = front + 1;
+		minimum = min(minimum, prices[front]);
+		profit = max(profit, prices[back] - minimum);
+		front++;
+		back++;
+	}
+	debug(minimum);
+	debug(profit);
+}
+// ------------------------------------------------------------------
+int main(int argc, char const * argv[]) {
 #ifndef ONLINE_JUDGE
 	freopen("input.txt", "r", stdin);
 	// freopen("output.txt", "w", stdout);
@@ -105,24 +117,12 @@ int main(int argc, char const* argv[]) {
 	cin.tie(NULL);
 	// Main function code here
 	int t = 1;
-
-	ListNode * first = new ListNode(1);
-	ListNode * second = new ListNode(2);
-	ListNode * third = new ListNode(3);
-	ListNode * forth = new ListNode(4);
-	ListNode * fifth = new ListNode(5);
-	// Linking Nodes
-	first->next = second;
-	second->next = third;
-	third->next = forth;
-	forth->next = fifth;
-	fifth->next = nullptr;
-	ListNode * head = first;
-	ListNode * end = third;
-	ListNode * nextnode_linkage = forth;
-
-	// _showLinkedList(head);
 	// cin >> t;
-	while (t--) {solve(head, end, nextnode_linkage);}
+	while (t--) {
+		vector<int> v {};
+		cin >> v;
+		debug(v);
+		solve(v);
+	}
 	return 0;
 }

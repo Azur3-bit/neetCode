@@ -2,11 +2,12 @@
 #include <iostream>
 // #include <bits/stdc++.h>
 #include <vector>
-#include <string>
+#include <string.h>
 #include <algorithm>
 #include <map>
 #include <set>
 #include <cmath>
+#include <climits>
 #include <queue>
 // Additional libraries
 #include <stack>
@@ -58,41 +59,66 @@ ostream& operator<<(ostream& os, const pair<T, S>& p) {
 	os << "(" << p.first << ", " << p.second << ")";
 	return os;
 }
-// Structure of ListNode
-struct ListNode {
-	int val;
-	ListNode * next;
-	ListNode(int x) : val(x), next(nullptr) {}
-	ListNode(int x, ListNode * _next) : val(x), next(_next) {}
-};
-// show Linked list
-void _showLinkedList(ListNode * head) {
-	while (head) {
-		cout << head->val << " -> ";
-		head = head->next;
+// ------------------------------------------------------------------
+void solve() {
+	// Main code goes here
+	string s;
+	cin >> s;
+	debug(s);
+
+	// 0 	1 	2 	3 	4 	5 	6 	7
+	// a 	b 	c 	a 	b 	c 	b 	b
+	// 		front
+	// 			back
+
+	// a
+	int size = s.size();
+	if (size <= 1) {
+		cout << "size - 1\n";
+		return ;
 	}
-	cout << "null\n";
-}
-void Reving_partLinkedList(ListNode *&head, ListNode *&end_next, ListNode *& nextnode_linkage) {
-	ListNode * currNode = head;
-	ListNode * original_head = head;
-	ListNode * prevNode = nullptr;
-	while (currNode != end_next) {
-		ListNode * nextnode = currNode->next;
-		currNode->next = prevNode;
-		prevNode = currNode;
-		currNode = nextnode;
+	if (size == 2) {
+		int res = (count(s.begin(), s.end(), s[0]));
+		if (res >= 2 ) {
+			cout << "size - 2 repeated\n";
+			return ;
+		}
+		cout << "size - 2 non repeated\n";
+		return ;
 	}
-	head = prevNode;
-	original_head->next = nextnode_linkage;
-	_showLinkedList(head);
-}
-//-----------------------------------------------------------------
-void solve(ListNode * &head, ListNode *&end, ListNode *&nextnode_linkage) {
-	// Main code goes her
-	_showLinkedList(head);
-	ListNode * localNode_end = end;
-	Reving_partLinkedList(head, localNode_end, nextnode_linkage);
+	int front = 0;
+	int back = 1;
+	vector<int> ans{};
+	debug(size);
+	char s_first = s[0];
+	string s_temp = "";
+	s_temp += s_first;
+	debug(s[front]);
+	debug(s[back]);
+	while (front <= size && back <= size) {
+		debug(s_temp);
+		// cout << "going Inside Loop ----\n";
+		for (int i = 0; i < s_temp.size(); i++) {
+			// cout << s_temp[i] << " ";s
+			int counter = count(s_temp.begin(), s_temp.end(), s_temp[i]);
+			if (counter > 1) {
+				ans.push_back(back - front);
+				s_temp = s_temp.substr(1);
+				front++;
+			}
+		}
+		debug(front);
+		debug(back);
+		if (front == size) {
+			ans.push_back(s[back]);
+		}
+		s_temp += s[back];
+		back++;
+	}
+	cout << ans ;
+	int maxi = *max_element(ans.begin(), ans.end());
+	debug(maxi);
+	// return maxi;
 }
 // ------------------------------------------------------------------
 int main(int argc, char const* argv[]) {
@@ -105,24 +131,7 @@ int main(int argc, char const* argv[]) {
 	cin.tie(NULL);
 	// Main function code here
 	int t = 1;
-
-	ListNode * first = new ListNode(1);
-	ListNode * second = new ListNode(2);
-	ListNode * third = new ListNode(3);
-	ListNode * forth = new ListNode(4);
-	ListNode * fifth = new ListNode(5);
-	// Linking Nodes
-	first->next = second;
-	second->next = third;
-	third->next = forth;
-	forth->next = fifth;
-	fifth->next = nullptr;
-	ListNode * head = first;
-	ListNode * end = third;
-	ListNode * nextnode_linkage = forth;
-
-	// _showLinkedList(head);
 	// cin >> t;
-	while (t--) {solve(head, end, nextnode_linkage);}
+	while (t--) {solve();}
 	return 0;
 }
