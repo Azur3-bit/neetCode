@@ -70,7 +70,6 @@ void solve() {
 	// a 	b 	c 	a 	b 	c 	b 	b
 	// 		front
 	// 			back
-
 	// a
 	int size = s.size();
 	if (size <= 1) {

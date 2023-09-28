@@ -1,0 +1,46 @@
+understanding - Sliding Window
+
+
+Easy:
+
+Maximum Sum Subarray of Size K
+Fruits into Baskets
+Find All Anagrams in a String
+Smallest Subarray with a Given Sum
+Medium:
+5. Minimum Window Substring
+
+Longest Substring with K Distinct Characters
+Longest Subarray with Equal Number of 0s and 1s
+Hard:
+8. Constrained Subset Sum
+
+Max Consecutive Ones III
+Subarray Product Less Than K
+Maximum Erasure Value
+----------------------------------------------------------------
+
+Problem description
+Maximum Sum Subarray of Size K: Given an array of integers and a positive integer K, find the maximum sum of any contiguous subarray of size K using the sliding window technique.
+
+Minimum Window Substring: Given two strings, find the minimum window in the first string that contains all characters of the second string. This is often used for string manipulation with sliding windows.
+
+Longest Substring with K Distinct Characters: Given a string, find the length of the longest substring that contains at most K distinct characters. This is another common string manipulation problem.
+
+Fruits into Baskets: You have a row of trees, where each tree bears either fruit type 1 or fruit type 2. You are allowed to pick fruits from two adjacent trees, but you cannot pick from more than two types of trees in a row. Find the maximum number of fruits you can collect.
+
+Longest Subarray with Ones After Replacement: Given an array of 0s and 1s, you are allowed to replace at most one 0 with 1. Find the length of the longest subarray of 1s.
+
+Find All Anagrams in a String: Given a string S and a non-empty string P, find all the start indices of P's anagrams in S.
+
+Constrained Subset Sum: Given an array of integers and an integer K, find the maximum sum of any contiguous subarray of size K where you can skip at most one element.
+
+Smallest Subarray with a Given Sum: Given an array of positive integers and a target sum, find the length of the smallest contiguous subarray whose sum is at least the target.
+
+Max Consecutive Ones III: Given an array of 0s and 1s and an integer K, find the maximum number of consecutive 1s you can get by flipping at most K 0s to 1s.
+
+Subarray Product Less Than K: Given an array of positive integers and a positive integer K, find the number of contiguous subarrays where the product of all the elements in the subarray is less than K.
+
+Longest Subarray with Equal Number of 0s and 1s: Given an array of 0s and 1s, find the longest subarray with an equal number of 0s and 1s.
+
+Maximum Erasure Value: Given an array of positive integers, find the length of the maximum subarray you can get by erasing exactly one element.
