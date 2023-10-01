@@ -1,6 +1,6 @@
 understanding - Sliding Window
 
-
+---------------------------------------------------------------- Problem List 
 Easy:
 
 Maximum Sum Subarray of Size K
@@ -18,7 +18,8 @@ Hard:
 Max Consecutive Ones III
 Subarray Product Less Than K
 Maximum Erasure Value
-----------------------------------------------------------------
+
+---------------------------------------------------------------- Problem description
 
 Problem description
 Maximum Sum Subarray of Size K: Given an array of integers and a positive integer K, find the maximum sum of any contiguous subarray of size K using the sliding window technique.
@@ -44,3 +45,6 @@ Subarray Product Less Than K: Given an array of positive integers and a positive
 Longest Subarray with Equal Number of 0s and 1s: Given an array of 0s and 1s, find the longest subarray with an equal number of 0s and 1s.
 
 Maximum Erasure Value: Given an array of positive integers, find the length of the maximum subarray you can get by erasing exactly one element.
+
+
+---------------------------------------------------------------- Done
