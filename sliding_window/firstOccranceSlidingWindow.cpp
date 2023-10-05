@@ -1,0 +1,1 @@
+firstOccrance using sliding window 
