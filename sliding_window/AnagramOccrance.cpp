@@ -45,30 +45,39 @@ void solve() {
 	int win_size = short_s.size();
 	debug(win_size);
 
+	vector<string> ans {};
 	int start = 0;
 	int end = 0;
 	cout << "element at window end : " << s[end] << "\n";
-	// getting window size
-#if 0
-	while (end < s.size() - 1) {
-		string currElement = s.substr(start, end);
-		cout << "currElement : " << currElement << "\n";
-		// break;
-		cout << "element at start : " << s[start] << " ";
-		cout << "element at end : " << s[end] << "\n";
-
-		cout << "-------------------------\n";
-		start++;
-		end++;
+	sort(short_s.begin(), short_s.end());
+	debug(short_s);
+	while (end < s.size()) {
+		if (end - start + 1 < win_size)
+			++end;
+		else {
+			string temp_string = "";
+			for (int i = start; i <= end; i++)
+				temp_string += s[i];
+			string temp_originalString = temp_string;
+			sort(temp_string.begin(), temp_string.end());
+			// debug(temp_string);
+			if (short_s == temp_string) {
+				cout << "----------------------------\n";
+				cout << "start : " << start << "\n";
+				cout << "end : " << end << "\n";
+				cout << temp_originalString << "\n";
+				ans.push_back(temp_originalString);
+			}
+			++end; ++start;
+		}
 	}
-#endif
-	int count = 0;
-	while (end < s.size() - 1) {
-		cout << s[end] << "\n";
-		++end;
-		++count;
-	}
-	debug(count);
+	debug(ans);
+	// finding number of anagrams
+	unordered_set<string> set_HM{};
+	for (string it : ans)
+		set_HM.insert(it);
+	debug(ans.size());
+	debug(set_HM.size());
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
