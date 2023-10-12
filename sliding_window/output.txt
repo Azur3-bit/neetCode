@@ -1,0 +1,132 @@
+
+s : AABABBA
+
+k : 1
+=======================================
+
+		sliding window
+	-- Printing Window
+A 
+
+HM : ---- Printing Unordered - Map
+KEY	VALUE
+A	1
+
+
+HM : ---- Printing Unordered - Map
+KEY	VALUE
+A	1
+
+
+max_count : 1
+element : A occurened_count : 1
+	-- Printing Window
+A A 
+
+HM : ---- Printing Unordered - Map
+KEY	VALUE
+A	2
+
+
+HM : ---- Printing Unordered - Map
+KEY	VALUE
+A	2
+
+
+max_count : 2
+element : A occurened_count : 2
+	-- Printing Window
+A A B 
+
+HM : ---- Printing Unordered - Map
+KEY	VALUE
+B	1
+A	2
+
+
+HM : ---- Printing Unordered - Map
+KEY	VALUE
+B	1
+A	2
+
+
+max_count : 1
+element : B occurened_count : 1
+element : A occurened_count : 2
+current max occurened elment : B changing to :-> A
+	-- Printing Window
+A B A 
+
+HM : ---- Printing Unordered - Map
+KEY	VALUE
+B	1
+A	2
+
+
+HM : ---- Printing Unordered - Map
+KEY	VALUE
+B	1
+A	2
+
+
+max_count : 1
+element : B occurened_count : 1
+element : A occurened_count : 2
+current max occurened elment : B changing to :-> A
+	-- Printing Window
+B A B 
+
+HM : ---- Printing Unordered - Map
+KEY	VALUE
+B	2
+A	1
+
+
+HM : ---- Printing Unordered - Map
+KEY	VALUE
+B	2
+A	1
+
+
+max_count : 2
+element : B occurened_count : 2
+element : A occurened_count : 1
+	-- Printing Window
+A B B 
+
+HM : ---- Printing Unordered - Map
+KEY	VALUE
+B	2
+A	1
+
+
+HM : ---- Printing Unordered - Map
+KEY	VALUE
+B	2
+A	1
+
+
+max_count : 2
+element : B occurened_count : 2
+element : A occurened_count : 1
+	-- Printing Window
+B B A 
+
+HM : ---- Printing Unordered - Map
+KEY	VALUE
+B	2
+A	1
+
+
+HM : ---- Printing Unordered - Map
+KEY	VALUE
+B	2
+A	1
+
+
+max_count : 2
+element : B occurened_count : 2
+element : A occurened_count : 1
+
+final_ans : [2, 3, 3, 3, 3, 3, 3]
+answer : 3
