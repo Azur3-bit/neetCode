@@ -1,5 +1,6 @@
-left : 0
-right : 0
 
-max left : 0
-max right : 0
+nums : [4, -1, 2, -7, 3, 1]
+
+maxSum : 5
+left : 0
+right : 2

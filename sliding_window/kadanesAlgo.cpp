@@ -51,7 +51,6 @@ void basic_kadane() {
 	}
 	dbg(maxSum);
 }
-
 void index_kadane() {
 	// finding the index using kadance algorthms -> implementing using sliding window
 	int maxSum = 0;
@@ -59,12 +58,28 @@ void index_kadane() {
 	int Lmax = 0, Rmax = 0;
 	vector<int> nums {};
 	cin >> nums;
+	dbg(nums);
 	// sliding window
 	int L = 0, R = 0;
-	cout << "left : " << L << "\nright : " << R << "\n";
-	cout << "\n";
-	cout << "max left : " << Lmax << "\nmax right : " << Rmax << "\n";
-
+	// cout << "left : " << L << "\nright : " << R << "\n";
+	// cout << "\n";
+	// cout << "max left : " << Lmax << "\nmax right : " << Rmax << "\n";
+	while (R < nums.size()) {
+		if (currSum < 0) {
+			L = R;
+			currSum = 0;
+		}
+		currSum += nums[R];
+		if (currSum > maxSum) {
+			maxSum = currSum;
+			Lmax = L;
+			Rmax = R;
+		}
+		++R;
+	}
+	dbg(maxSum);
+	cout << "left : " << Lmax << "\n";
+	cout << "right : " << Rmax << "\n";
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
