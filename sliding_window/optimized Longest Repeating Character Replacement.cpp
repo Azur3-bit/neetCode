@@ -1,6 +1,4 @@
-// failed testCase ->
-// 1
-// AABABBA
+// optimized Longest Repeating Character Replacement
 
 // #include <bits/stdc++.h>
 #include <iostream>
@@ -38,87 +36,48 @@ void AddNode_end(ListNode *&head, int value) {ListNode *newNode = new ListNode(v
 void _showLinkedList(ListNode *head) {while (head != NULL) {cout << head->val << " -> "; head = head->next;} cout << "NULL" << endl;}
 void vec_linkedlist(ListNode*&head, vector<int> nums ) {for (auto it : nums) {AddNode_end(head, it);}}
 // ------------------------------------------------------------------ solve
-void maxOccurenedElement_in_HashMap(const unordered_map<char, int> &HM, int &maxOcc_count, char &pass_maxOccurenedElement_char) {
-	if (HM.empty()) {
-		maxOcc_count = 0;
-		pass_maxOccurenedElement_char = ' ';
-		return;
-	}
-	dbg(HM);
-	auto max_count = HM.begin()->second;
-	char maxOccurenedElement = HM.begin()->first;
-	dbg(max_count);
-	// dbg()
-	for (auto it : HM) {
-		cout << "element : " << it.first << " occurened_count : " << it.second << "\n";
-		if (it.second > max_count) {
-			cout << "current max occurened elment : " << maxOccurenedElement;
-			maxOccurenedElement = it.first;
-			cout << " changing to :-> " << maxOccurenedElement << "\n";
-			max_count = it.second;
-		}
-	}
-	pass_maxOccurenedElement_char = maxOccurenedElement;
-	maxOcc_count = max_count;
-#if 0
-	cout << "\n------ ANSWER ---- \n";
-	cout << "maxOccurenedElement : " << maxOccurenedElement;
-	cout << "\nmax count : " << maxOcc_count;
-	cout << "\n";
-	// cout << "\n\n--------------------------------------- Debugging \n\n";
-	// return ;
-#endif
+int mostFreq_HM(unordered_map<char, int> HM) {
+	int maxCount = 0;
+	for (auto it : HM)
+		maxCount = max(it.second, maxCount);
+	return maxCount;
 }
-void _printCurrentWindow(int a, int b, string s) {
-	cout << "\t-- Printing Window\n";
-	for (int i = a; i <= b; i++) {
-		cout << s[i] << " ";
-	}
-	cout << "\n";
-}
-bool _isWindowValid(int k, int i, int j, int max_count) {
-	int windowSize = j - i + 1;
-	if (windowSize - max_count <= k)
-		return true;
-	return false;
-}
+
 void solve() {
 	string s;
 	int k;
 	cin >> k;
 	cin >> s;
-	dbg(s);
 	dbg(k);
-	cout << "=======================================\n\n";
-	cout << "\t\tsliding window\n";
-	// sliding window
+	dbg(s);
+	cout << "--------------------------\n";
+
+	int maxCount = 0;
+	int result = 0;
 	int i = 0;
 	int j = 0;
-	vector<int> final_ans {};
-	int maxOCC_count = 0;
-	char maxOccurenedElement_char = 'a';
-	unordered_map<char, int> HM {} ;
+	vector<int> counts(26) ;
+	dbg(counts);
 	while (j < s.size()) {
-		cout << s[j] << " ";
-		_printCurrentWindow(i, j, s);
-		HM[s[j]]++;
-		dbg(HM);
-		maxOccurenedElement_in_HashMap(HM, maxOCC_count, maxOccurenedElement_char);
-		bool answer_isValid = _isWindowValid(k, i, j, maxOCC_count);
-		if (_isWindowValid(k, i, j, maxOCC_count) || (s[j] == maxOccurenedElement_char))
-			++j;
-		while (_isWindowValid(k, i, j, maxOCC_count) == false) {
-			HM[s[i]]--;
-			++i;
+		counts[s[j] - 'A']++;
+		maxCount = max(counts[s[j] - 'A'], maxCount);
+		if (j - i + 1 - maxCount > k) {
+			counts[s[i] - 'A']--;
+			i++;
 		}
-		final_ans.push_back(j - i + 1);
+		result = max(result, j - i + 1);
+		++j;
 	}
-	dbg(final_ans);
-	cout << "answer : " << *max_element(final_ans.begin(), final_ans.end());
-	// return final_ans;
+	dbg(result);
+	// cout <<  << " \n";
+	// return result;
+
+
 }
+
+
 // ------------------------------------------------------------------ main
-int main(int argc, char const * argv[]) {
+int main(int argc, char const* argv[]) {
 #ifndef ONLINE_JUDGE
 	freopen("input.txt", "r", stdin);
 	freopen("output.txt", "w", stdout);
@@ -128,23 +87,14 @@ int main(int argc, char const * argv[]) {
 	int t = 1;
 	// cin >> t;
 	while (t--) {solve();}
-
-
-#if 0
-	unordered_map<char, int> HM {};
-	string  s = "ioioiooioioiopp";
-	for (auto it : s) {
-		HM[it]++;
-	}
-	dbg(HM);
-	int maxOcc_count = 0;
-	char maxOcc_char = 'a';
-	maxOccurenedElement_in_HashMap(HM, maxOcc_count, maxOcc_char);
-	char fixedElement_char = maxOcc_char;
-	cout << "elment occured the most -> fixedElement_char : " << fixedElement_char << "\n";
-	cout << "number of fixed characters - maxOcc_count -> " << maxOcc_count << "\n";
-#endif
-
-
+	// testing mostfreq Count
+	// unordered_map<char, int> HM {};
+	// string s = "ABBBAAAAL";
+	// for (auto i : s) {
+	// 	HM[i]++;
+	// }
+	// dbg(HM);
+	// int ans = mostFreq_HM(HM);
+	// dbg(ans);
 	return 0;
 }
