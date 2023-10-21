@@ -1,3 +1,5 @@
+// leetcode_permutation
+
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -14,7 +16,7 @@
 #include <unordered_set>
 // #include "TimerClock.h" // For Performance Monitor
 using namespace std;
-#define dbg(x) cout <<  #x  << " : " << x << "\n";
+#define dbg(x) cout<<  #x  << " : " << x << "\n";
 template <typename T>
 ostream& operator<<(ostream& os, const vector<T>& v) {os << "["; for (int i = 0; i < v.size(); ++i) {os << v[i]; if (i != v.size() - 1)os << ", ";} os << "]"; return os;}
 template <typename T>
@@ -34,64 +36,40 @@ void AddNode_end(ListNode *&head, int value) {ListNode *newNode = new ListNode(v
 void _showLinkedList(ListNode *head) {while (head != NULL) {cout << head->val << " -> "; head = head->next;} cout << "NULL" << endl;}
 void vec_linkedlist(ListNode*&head, vector<int> nums ) {for (auto it : nums) {AddNode_end(head, it);}}
 // ------------------------------------------------------------------ solve
-void solve() {
-	string s1, s2;
-	cin >> s1;
-	cin >> s2;
-	dbg(s1);
-	dbg(s2);
-
-	unordered_map<char, int> HM {};
+bool checkInclusion(string s1, string s2) {
 	unordered_map<char, int> core_HM {};
-	int i = 0 , j = 0;
-	dbg(i);
-	dbg(j);
-	dbg(HM);
-	// creating the hashMap for base string for comparing
-	for (auto it : s1)
+	unordered_map<char, int> HM {};
+	if (s1.size() < s2.size()) {
+		swap(s1, s2);
+		cout << "s1 , s2 swaped\n";
+		dbg(s1);
+		dbg(s2);
+	}
+	for (auto it : s2)
 		core_HM[it]++;
+	// implementing static sliding window
+	int k = core_HM.size();
 	dbg(core_HM);
-	// creating fixed window
-	int win = core_HM.size();
-	dbg(win);
-#if 0
-	unordered_map<char, int> temp = {{'a', 1}, {'b', 1}};
-	dbg(temp);
-	// testing condition
-	if (temp == core_HM)
-		cout << "both the hashmaps are same \n";
-	else
-		cout << "both are different\n";
-#endif
-	bool flag = false;
+	int i = 0, j = 0;
 	while (j < s2.size()) {
-		// dbg(HM);
-		if (j - i + 1 < win) {
-			cout << "maintaing window size \n";
-			dbg(s2[j]);
-			HM[s2[j]]++;
-			j++; // getting the perfect window size
-		}
-		dbg(HM);
 		if (HM == core_HM) {
-			flag = true;
-			break;
+			return true;
 		}
-		if (j - i + 1 == win) {
+		if (j - i + 1 < k) {
+			HM[s2[j]]++;
+			++j;
+		}
+		if (j - i + 1 == k) {
 			HM.erase(s2[i]);
 			HM.erase(s2[j]);
 			HM[s2[++i]]++;
 			HM[s2[++j]]++;
 		}
 	}
-	if (flag == true) {
-		cout << "permutuation found in the hashmap \n";
-		return;
-	}
-	cout << "NO permutuations found \n";
+	return false;
 }
 // ------------------------------------------------------------------ main
-int main(int argc, char const * argv[]) {
+int main(int argc, char const* argv[]) {
 #ifndef ONLINE_JUDGE
 	freopen("input.txt", "r", stdin);
 	freopen("output.txt", "w", stdout);
@@ -100,6 +78,17 @@ int main(int argc, char const * argv[]) {
 	cin.tie(NULL);
 	int t = 1;
 	// cin >> t;
-	while (t--) {solve();}
+	while (t--) {
+		string s1, s2;
+		cin >> s1;
+		cin >> s2;
+		dbg(s1);
+		dbg(s2);
+		bool ans = checkInclusion(s1, s2);
+		if (ans == true)
+			cout << "permutation found in string s2\n";
+		else if (ans == false)
+			cout << "NO, permutation found in string s2\n";
+	}
 	return 0;
 }
