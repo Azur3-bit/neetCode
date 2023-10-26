@@ -1,8 +1,584 @@
 s : ADOBECODEBANC
 t : ABC
-HM_core : ---- Printing Unordered - Map
+t_HM : ---- Printing Unordered - Map
 KEY	VALUE
-2	C
-1	B
-0	A
+C	1
+B	1
+A	1
 
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+A	1
+
+-------------------------
+element found without same freq -- C
+A 
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+A	1
+
+-------------------------
+element found without same freq -- C
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+D	1
+A	1
+
+-------------------------
+element found without same freq -- C
+A D 
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+D	1
+A	1
+
+-------------------------
+element found without same freq -- C
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+O	1
+D	1
+A	1
+
+-------------------------
+element found without same freq -- C
+A D O 
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+O	1
+D	1
+A	1
+
+-------------------------
+element found without same freq -- C
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+B	1
+O	1
+D	1
+A	1
+
+-------------------------
+element found without same freq -- C
+A D O B 
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+B	1
+O	1
+D	1
+A	1
+
+-------------------------
+element found without same freq -- C
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+E	1
+A	1
+D	1
+O	1
+B	1
+
+-------------------------
+element found without same freq -- C
+A D O B E 
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+E	1
+A	1
+D	1
+O	1
+B	1
+
+-------------------------
+element found without same freq -- C
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+C	1
+E	1
+A	1
+D	1
+O	1
+B	1
+
+-------------------------
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+C	1
+E	1
+A	1
+D	1
+O	1
+B	1
+
+-------------------------
+valid window hit 
+i : 0
+j : 5
+------------------------ DEBUGGING 
+A D O B E C 
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+C	1
+E	1
+A	1
+D	1
+O	1
+B	1
+
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+C	1
+E	1
+A	1
+D	1
+O	1
+B	1
+
+D O B E C 
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+C	1
+E	1
+A	0
+D	1
+O	1
+B	1
+
+-------------------------
+element found without same freq -- A
+------------------------ DEBUGGING 
+invalid window achived
+i : 1
+j : 5
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+C	1
+E	1
+A	0
+D	1
+O	2
+B	1
+
+-------------------------
+element found without same freq -- A
+D O B E C O 
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+C	1
+E	1
+A	0
+D	1
+O	2
+B	1
+
+-------------------------
+element found without same freq -- A
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+C	1
+E	1
+A	0
+D	2
+O	2
+B	1
+
+-------------------------
+element found without same freq -- A
+D O B E C O D 
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+C	1
+E	1
+A	0
+D	2
+O	2
+B	1
+
+-------------------------
+element found without same freq -- A
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+C	1
+E	2
+A	0
+D	2
+O	2
+B	1
+
+-------------------------
+element found without same freq -- A
+D O B E C O D E 
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+C	1
+E	2
+A	0
+D	2
+O	2
+B	1
+
+-------------------------
+element found without same freq -- A
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+C	1
+E	2
+A	0
+D	2
+O	2
+B	2
+
+-------------------------
+element found without same freq -- A
+D O B E C O D E B 
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+C	1
+E	2
+A	0
+D	2
+O	2
+B	2
+
+-------------------------
+element found without same freq -- A
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+C	1
+E	2
+A	1
+D	2
+O	2
+B	2
+
+-------------------------
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+C	1
+E	2
+A	1
+D	2
+O	2
+B	2
+
+-------------------------
+valid window hit 
+i : 1
+j : 10
+------------------------ DEBUGGING 
+D O B E C O D E B A 
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+C	1
+E	2
+A	1
+D	2
+O	2
+B	2
+
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+C	1
+E	2
+A	1
+D	2
+O	2
+B	2
+
+O B E C O D E B A 
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+C	1
+E	2
+A	1
+D	1
+O	2
+B	2
+
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+C	1
+E	2
+A	1
+D	1
+O	2
+B	2
+
+B E C O D E B A 
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+C	1
+E	2
+A	1
+D	1
+O	1
+B	2
+
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+C	1
+E	2
+A	1
+D	1
+O	1
+B	2
+
+E C O D E B A 
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+C	1
+E	2
+A	1
+D	1
+O	1
+B	1
+
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+C	1
+E	2
+A	1
+D	1
+O	1
+B	1
+
+C O D E B A 
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+C	1
+E	1
+A	1
+D	1
+O	1
+B	1
+
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+C	1
+E	1
+A	1
+D	1
+O	1
+B	1
+
+O D E B A 
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+C	0
+E	1
+A	1
+D	1
+O	1
+B	1
+
+-------------------------
+element found without same freq -- C
+------------------------ DEBUGGING 
+invalid window achived
+i : 6
+j : 10
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+N	1
+C	0
+E	1
+A	1
+D	1
+O	1
+B	1
+
+-------------------------
+element found without same freq -- C
+O D E B A N 
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+N	1
+C	0
+E	1
+A	1
+D	1
+O	1
+B	1
+
+-------------------------
+element found without same freq -- C
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+N	1
+C	1
+E	1
+A	1
+D	1
+O	1
+B	1
+
+-------------------------
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+N	1
+C	1
+E	1
+A	1
+D	1
+O	1
+B	1
+
+-------------------------
+valid window hit 
+i : 6
+j : 12
+------------------------ DEBUGGING 
+O D E B A N C 
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+N	1
+C	1
+E	1
+A	1
+D	1
+O	1
+B	1
+
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+N	1
+C	1
+E	1
+A	1
+D	1
+O	1
+B	1
+
+D E B A N C 
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+N	1
+C	1
+E	1
+A	1
+D	1
+O	0
+B	1
+
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+N	1
+C	1
+E	1
+A	1
+D	1
+O	0
+B	1
+
+E B A N C 
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+N	1
+C	1
+E	1
+A	1
+D	0
+O	0
+B	1
+
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+N	1
+C	1
+E	1
+A	1
+D	0
+O	0
+B	1
+
+B A N C 
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+N	1
+C	1
+E	0
+A	1
+D	0
+O	0
+B	1
+
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+N	1
+C	1
+E	0
+A	1
+D	0
+O	0
+B	1
+
+A N C 
+-------------------------
+s_HM : ---- Printing Unordered - Map
+KEY	VALUE
+N	1
+C	1
+E	0
+A	1
+D	0
+O	0
+B	0
+
+-------------------------
+element found without same freq -- B
+------------------------ DEBUGGING 
+invalid window achived
+i : 10
+j : 12
+ans : [(0, 5), (0, 5), (1, 10), (1, 10), (2, 10), (3, 10), (4, 10), (5, 10), (6, 12), (6, 12), (7, 12), (8, 12), (9, 12)]
+
+size_ans : [6, 6, 10, 10, 9, 8, 7, 6, 7, 7, 6, 5, 4]
+final answer : 4

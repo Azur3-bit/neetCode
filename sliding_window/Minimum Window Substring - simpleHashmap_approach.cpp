@@ -1,4 +1,5 @@
-// Minimum Window Substring
+// Minimum Window Substring
+
 // simple HASH-Map Approach
 // #include <bits/stdc++.h>
 #include <iostream>
@@ -36,20 +37,64 @@ void AddNode_end(ListNode *&head, int value) {ListNode *newNode = new ListNode(v
 void _showLinkedList(ListNode *head) {while (head != NULL) {cout << head->val << " -> "; head = head->next;} cout << "NULL" << endl;}
 void vec_linkedlist(ListNode*&head, vector<int> nums ) {for (auto it : nums) {AddNode_end(head, it);}}
 // ------------------------------------------------------------------ solve
+char check_allElements(const unordered_map<int, char> &HM, string t) {
+	return 'a';
+}
+
 void solve() {
 	string s, t;
 	cin >> s;
 	cin >> t;
 	dbg(s);
 	dbg(t);
-	unordered_map<int, char> HM_core {};
-	unordered_map<int, char> HM {};
+	// unordered_map<int, char> HM_core {};
+	map<int, char> HM {};
 
+#if 0
 	// entering element in the core HashMap
+	// not very usefull
 	for (int i = 0; i < t.size(); i++) {
 		HM_core.insert(make_pair(i, t[i]));
 	}
 	dbg(HM_core);
+#endif
+	// vector<vector<char, int>> vec_map {};
+	for (int i = 0; i < t.size(); ++i) {
+		int index = 0;
+		char ele = t[i];
+		cout << "finding element : " << ele << "\n";
+		int size = s.size();
+		while (size--) {
+			if (s[index] == ele) {
+				HM.insert(make_pair(index, s[index]));
+			}
+			++index;
+		}
+	}
+	// creating set of all the elements in target string
+	unordered_set<char> set_map {};
+	for (auto it : t)
+		set_map.insert(it);
+	unordered_set<char> principle_setMap = set_map;
+	cout << "\n";
+	// getting the index of whole sequence by traversing the hashmap
+	vector<pair<int, int>> sequence_numbers;
+	for (auto it : HM) {
+		char element = it.first;
+		if (set_map.find(element) != set_map.end()) {
+			set_map.erase(element);
+		}
+		if (set_map.empty()) {
+			cout << "set_map found to be emp ty\n";
+			set_map = principle_setMap;
+			auto start = HM.begin()->first;
+			sequence_numbers.push_back({start, it.first});
+			HM.erase(start);
+		}
+	}
+	dbg(sequence_numbers);
+	dbg(set_map);
+	dbg(HM);
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
