@@ -77,7 +77,6 @@ void solve() {
 	unordered_map<char, int> t_HM{};
 	vector<pair<int, int>> ans {};
 	vector<int> size_ans{};
-	int ans_i = 0, ans_j = 0;
 	// adding all the elments of t into the hashMap
 	for (auto it : t)
 		t_HM[it]++;
@@ -86,6 +85,9 @@ void solve() {
 	// sliding window intialization
 	int i = 0;
 	int j = 0;
+	int ans_i = 0, ans_j = 0;
+
+	int curr_windowSize = INT_MAX;
 	while (j < s.size()) {
 		// cout << "inside while loop \n";
 		s_HM[s[j]]++;
@@ -99,9 +101,16 @@ void solve() {
 			dbg(j);
 			// break;
 			// pushing a possiable answer in the vector
+
+			if (curr_windowSize > (j - i + 1)) {
+				cout << "breakPoint - 1\n";
+				curr_windowSize = min(curr_windowSize, (j - i + 1));
+				ans_i = i;
+				ans_j = j;
+			}
 			ans.push_back(make_pair(i, j));
 			size_ans.push_back(j - i + 1);
-			cout << "------------------------ DEBUGGING \n";
+			// cout << "------------------------ DEBUGGING \n";
 			printWindow(i, j, s);
 			while (isValid(s_HM, t_HM)) {
 				// debuging
@@ -111,8 +120,14 @@ void solve() {
 				s_HM[s[i]]--;
 				++i;
 				printWindow(i, j, s);
+				if (curr_windowSize > (j - i + 1)) {
+					cout << "BreakPoint-2\n";
+					curr_windowSize = min(curr_windowSize, (j - i + 1));
+					ans_i = i;
+					ans_j = j;
+				}
 			}
-			cout << "------------------------ DEBUGGING \n";
+			// cout << "------------------------ DEBUGGING \n";
 			cout << "invalid window achived\n";
 			dbg(i);
 			dbg(j);
@@ -125,6 +140,16 @@ void solve() {
 	dbg(size_ans);
 	// auto final_ans = ;
 	cout << "final answer : " << *min_element(size_ans.begin(), size_ans.end()) << "\n";
+
+	// attempting answer format
+	dbg(--ans_i);
+	dbg(ans_j);
+	// getting all the elements in the final answer range
+	string answerString = "";
+	for (int i = ans_i; i <= ans_j; i++)
+		answerString += s[i];
+	dbg(answerString);
+	// return answerString;
 #if 0
 	// adding all the elements of s into the hashMap
 	for (auto it : s)
