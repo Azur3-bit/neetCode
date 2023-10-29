@@ -41,6 +41,7 @@ void solve() {
 	dbg(s);
 	dbg(t);
 	cout << "------------------\n";
+	cout << "new commit \n";
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
