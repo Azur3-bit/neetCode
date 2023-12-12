@@ -1,0 +1,6 @@
+Minimum Window Substring 
+
+-> Flow 
+p.s => 	s - bigger 
+		t - smaller (might be - edge case) 
+		

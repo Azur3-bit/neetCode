@@ -1,3 +1,4 @@
-s : ADOBECODEBANC
-t : ABC
-------------------
+working
+s : ab
+t : A
+p : [(hari, 3), (sunil, 1), (zaid, 2)]

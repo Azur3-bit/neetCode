@@ -1,0 +1,805 @@
+<html lang="en">
+
+<body>
+    CN EXPERIMENT 
+
+#1 -------------------------------------------------------------------------------------------------
+
+AIM : Study of necessary header files with respect of socket programming
+
+Socket header files contain data definitions, structures, constants, macros, and options used
+by socket subroutines.
+An application program must include the appropriate header file to make use of structures or
+other information a particular socket subroutine requires. Commonly used socket header files
+are:
+
+Item Description
+/usr/include/netinet/in.h Defines Internet constants and structures.
+/usr/include/arpa/nameser.h Contains Internet name server information.
+/usr/include/netdb.h Contains data definitions for socket subroutines.
+/usr/include/resolv.h Contains resolver global definitions and variables.
+/usr/include/sys/socket.h Contains data definitions and socket structures.
+/usr/include/sys/socketvar.h Defines the kernel structure per socket and contains buffer
+
+queues.
+
+/usr/include/sys/types.h Contains data type definitions.
+/usr/include/sys/un.h Defines structures for the UNIX interprocess communication
+
+domain.
+
+/usr/include/sys/ndd_var.h Defines structures for the operating system Network Device
+
+Driver (NDD) domain.
+
+/usr/include/sys/atmsock.h
+
+Contains constants and structures for the Asynchronous
+Transfer Mode (ATM) protocol in the operating system NDD
+domain.
+
+#2 -------------------------------------------------------------------------------------------------
+
+Aim: Study of necessary header files with respect to socket programming and of Basic
+Functions of Socket Programming.
+
+The primary socket API functions and methods in this module are:
+socket()
+.bind()
+.listen()
+.accept()
+.connect()
+.connect_ex()
+.send()
+.recv()
+.close()
+ ** SERVER CLIENT DIAGRAM **
+The basic socket system has the following calls:
+Create a socket: socket ()
+
+Bind local port: BIND ()
+Establish a connection: connect (), accept ()
+Listening port: Listen ()
+Data transmission: Send (), Recv ()
+Input/Output multiplexing: Select ()
+Disable socket only: closesocket ()
+Three Data Types
+Struct sockaddr
+{
+    Unsigned short sa_family; // address family, generally af_inet
+    Char sa_data [14]; // 14-byte Protocol address
+}
+Struct sockaddr_in
+{
+    Short int sin_family; // address family
+    Unsigned short int sin_port; // port number
+    Struct in_addr; // ip address
+    Unsigned char sin_zero [8]; // fill
+}
+Four common functions
+1 socket ()
+Header file:
+# Include "sys/types. h"
+# Include "sys/socket. h"
+Function prototype:
+Int socket (INT domain, int type, int Protocol)
+Domain: protocol type, generally af_inet
+Type: Socket Type
+Protocol: used to specify the number of the transport protocol used by the socket. It is usually
+set to 0.
+2 BIND ()
+Header file:
+# Include "sys/types. h"
+# Include "sys/socket. h"
+Function prototype:
+Int BIND (INT sockfd, struct sockaddr * my_addr, int addrlen)
+Sockfd: Socket Descriptor
+My_addr: A sockaddr pointer pointing to information including the local IP address and port
+number.
+Addrlen: usually set to sizeof (struct sockaddr)
+3 connect ()
+Header file:
+# Include "sys/types. h"
+# Include "sys/socket. h"
+Function prototype:
+
+Int connect (INT sockfd, struct sockaddr * serv_addr, int addrlen)
+Sockfd: Socket descriptor of the target server
+Serv_addr: pointer containing the IP address and port number of the target machine
+Addrlen: sizeof (struct sockaddr)
+4 listen ()
+Header file:
+# Include "sys/socket. h"
+Function prototype:
+Int listen (INT sockfd, int backlog );
+Sockfd: Socket descriptor returned by the socket () system call
+Backlog: specify the maximum number of requests in the Request queue. incoming
+connection requests will wait for accept () in the queue.
+5 accept ()
+Header file:
+# Include "sys/types. h"
+# Inlcude "sys/socket. h"
+Function prototype:
+Int accept (INT sockfd, void * ADDR, int addrlen)
+Sockfd: indicates the socket descriptor to be monitored.
+ADDR: Usually a pointer to the sockaddr_in variable, which is used to store the information
+of the host requesting the Connection Service.
+Addrlen: sizeof (struct sockaddr_in)
+6 send ()
+Header file:
+# Include "sys/socket. h"
+Function prototype:
+Int send (INT sockfd, const void * MSG, int Len, int flags );
+Sockfd: Socket descriptor used to transmit data
+MSG: pointer to send data
+Flags: 0
+7 Recv ()
+Header file:
+# Include "sys/types. h"
+# Include "sys/socket. h"
+Function prototype:
+Int Recv (INT sockfd, void * Buf, int Len, unsigned int flags)
+Sockfd: Socket descriptor for receiving data
+Buf: buffer for storing data
+Len: Buffer Length
+Flags: 0
+8 sendto ()
+Header file:
+# Include "sys/types. h"
+# Include "sys/socket. h"
+Function prototype:
+
+Int sendto (INT sockfd, const void * MSG, int Len, unsigned int flags, const struct sockaddr *
+To, int tolen );
+
+9 recvfrom ()
+Header file:
+# Include "sys/types. h"
+# Include "sys/socket. h"
+Function prototype:
+Int recvfrom (INT sockfd, void * Buf, int Len, unsigned int flags, struct sockaddr * From, int
+fromlen)
+
+10 read () write ()
+Int read (int fd, char * Buf, int Len)
+Int write (int fd, char * Buf, int Len)
+11 Shutdown ()
+Close (sockfd)
+Int Shutdown (INT sockfd, int how)
+
+RESULT: Various Functions related to socket programming were studied. Those are
+the part of Socket IO and Basic Functions of Socket Programming.
+
+
+
+#-------------------------------------------------------------------------------------------------
+
+AIM : Simple TCP/IP Client Server Communication
+
+
+Server
+import socket
+ 
+# Set up a TCP/IP server
+tcp_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+ 
+# Bind the socket to server address and port 81
+server_address = ('localhost', 81)
+tcp_socket.bind(server_address)
+ 
+# Listen on port 81
+tcp_socket.listen(1)
+ 
+while True:
+    print("Waiting for connection")
+    connection, client = tcp_socket.accept()
+ 
+    try:
+        print("Connected to client IP: {}".format(client))
+         
+        # Receive and print data 32 bytes at a time, as long as the client is sending something
+        while True:
+            data = connection.recv(32)
+            print("Received data: {}".format(data))
+ 
+            if not data:
+                break
+ 
+    finally:
+        connection.close()
+
+Client
+
+import socket
+ 
+# Create a connection to the server application on port 81
+tcp_socket = socket.create_connection(('localhost', 81))
+ 
+try:
+    data = str.encode(‘Hi. I am a TCP client sending data to the server’)
+    tcp_socket.sendall(data)
+ 
+finally:
+    print("Closing socket")
+    tcp_socket.close()
+
+
+#-------------------------------------------------------------------------------------------------
+
+AIM : UDP ECHO CLIENT SERVER
+
+UDP Echo Client Server Communication
+
+Client
+
+import socket
+msgFromClient = "Hello UDP Server"
+bytesToSend = str.encode(msgFromClient)
+serverAddressPort = ("127.0.0.1", 20001)
+bufferSize = 1024
+# Create a UDP socket at the client side
+UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+# Send to the server using the created UDP socket
+UDPClientSocket.sendto(bytesToSend, serverAddressPort)
+msgFromServer = UDPClientSocket.recvfrom(bufferSize)
+msg = "Message from Server: {}".format(msgFromServer[0].decode('utf-8'))
+print(msg)
+
+
+Server
+
+import socket
+localIP = "127.0.0.1"
+localPort = 20001
+bufferSize = 1024
+msgFromServer = "Hello UDP Client"
+bytesToSend = str.encode(msgFromServer)
+
+# Create a datagram socket
+UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+# Bind to address and ip
+UDPServerSocket.bind((localIP, localPort))
+print("UDP server up and listening")
+# Listen for incoming datagrams
+while(True):
+    bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
+    message = bytesAddressPair[0]
+    address = bytesAddressPair[1]
+    clientMsg = "Message from Client:{}".format(message)
+    clientIP = "Client IP Address:{}".format(address)
+    print(clientMsg)
+    print(clientIP)
+    # Sending a reply to client
+    UDPServerSocket.sendto(bytesToSend, address)
+
+
+
+#-------------------------------------------------------------------------------------------------
+
+AIM : Concurrent TCP/IP Date Time Server
+
+# Server
+
+import socket
+import datetime
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.bind(("127.0.0.1", 12345))
+s.listen(5)
+
+while 1:
+    cs, add = s.accept()
+    print(f"server: connection from {add} has been established")
+    val = ''
+    
+    while val != "exit":
+        msg = cs.recv(1024)
+        print("client:" + msg.decode("utf-8"))
+        
+        if msg.decode("utf-8") == "time":
+            val = str(datetime.datetime.now().time())
+            cs.send(bytes(val, "utf-8"))
+        elif msg.decode("utf-8") == "date":
+            val = str(datetime.datetime.now().date())
+            cs.send(bytes(val, "utf-8"))
+        elif msg.decode("utf-8") == "exit":
+            break
+        else:
+            val = "invalid request"
+            cs.send(bytes(val, "utf-8"))
+
+# Client
+
+import socket
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect(("127.0.0.1", 12345))
+
+while True:
+    my = input("client: msg")
+    s.send(bytes(my, "utf-8"))
+    
+    if my == "exit":
+        break
+    
+    msg = s.recv(1024)
+    print("server:", msg.decode("utf-8"))
+
+
+#-------------------------------------------------------------------------------------------------
+
+
+AIM : Half Duplex
+# Server
+import socket
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.bind(("127.0.0.1", 12345))
+s.listen(5)
+
+while 1:
+    cs, add = s.accept()
+    print(f"connection from {add} has been established")
+    val = "hi There"
+    while val != "exit":
+        val = input("server:")
+        cs.send(bytes(val, "utf-8"))
+        msg = cs.recv(1024)
+        print("client: " + msg.decode("utf-8"))
+
+# Client
+import socket
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect(("127.0.0.1", 12345))
+print("Sending connection request")
+print("Connection established")
+msg = ""
+while msg != "exit":
+    msg = s.recv(1024)
+    print("server:", msg.decode("utf-8"))
+    my = input("client:")
+    s.send(bytes(my, "utf-8"))
+
+
+#-------------------------------------------------------------------------------------------------
+
+AIM : FULL DUPLEX
+
+-X- SERVER
+import socket
+import threading
+import sys
+
+FLAG = False
+
+def recv_from_client(conn):
+    global FLAG
+    try:
+        while True:
+            if FLAG:
+                break
+            message = conn.recv(1024).decode()
+            if message == 'quit':
+                conn.send('quit'.encode())
+                conn.close()
+                print('Connection Closed')
+                FLAG = True
+                break
+            print('Client: ' + message)
+
+    except:
+        conn.close()
+
+def send_to_client(conn):
+    global FLAG
+    try:
+        while True:
+            if FLAG:
+                break
+            send_msg = input(' ')
+            if send_msg == 'quit':
+                conn.send('quit'.encode())
+                conn.close()
+                print('Connection Closed')
+                FLAG = True
+                break
+            conn.send(send_msg.encode())
+
+    except:
+        conn.close()
+
+def main():
+    threads = []
+    global FLAG
+    HOST = 'localhost'
+    serverPort = 6500
+    serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    serverSocket.bind((HOST, serverPort))
+    print("Socket binded.")
+    serverSocket.listen(1)
+    print("Listening......")
+    connectionSocket, addr = serverSocket.accept()
+    print('Connection Established with a client on', addr, '\n')
+    t_rcv = threading.Thread(target=recv_from_client, args=(connectionSocket,))
+    t_send = threading.Thread(target=send_to_client, args=(connectionSocket,))
+    threads.append(t_rcv)
+    threads.append(t_send)
+    t_rcv.start()
+    t_send.start()
+    t_rcv.join()
+    t_send.join()
+    print('EXITING')
+    serverSocket.close()
+    sys.exit()
+
+if __name__ == "__main__":
+    main()
+
+
+-X- Client 
+import socket
+import threading
+import sys
+
+FLAG = False
+
+def send_to_server(clsock):
+    global FLAG
+    while True:
+        if FLAG:
+            break
+        send_msg = input(' ')
+        clsock.sendall(send_msg.encode())
+
+def recv_from_server(clsock):
+    global FLAG
+    while True:
+        data = clsock.recv(1024).decode()
+        if data == 'quit':
+            print('Closing connection')
+            FLAG = True
+            break
+        print('Server: ' + data)
+
+def main():
+    threads = []
+    HOST = 'localhost'
+    PORT = 6500
+    clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    clientSocket.connect((HOST, PORT))
+    print('Client is connected to the Server\n')
+    t_send = threading.Thread(target=send_to_server, args=(clientSocket,))
+    t_rcv = threading.Thread(target=recv_from_server, args=(clientSocket,))
+
+    threads.append(t_send)
+    threads.append(t_rcv)
+    t_send.start()
+    t_rcv.start()
+    t_send.join()
+    t_rcv.join()
+    print('EXITING')
+    sys.exit()
+
+if __name__ == "__main__":
+    main()
+
+
+#-------------------------------------------------------------------------------------------------
+
+AIM : Remote Command Execution Using UDP
+
+-X- Server
+import socket
+import os
+
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+s.bind(("127.0.0.1", 6789))
+print("Connection created.. waiting for response\n")
+print(s.recvfrom(1024)[0].decode())
+
+while True:
+    x = s.recvfrom(1024)
+    if x[0].decode() == "stop":
+        break
+    
+    ops = os.popen(x[0].decode())
+    op = ops.read()
+    print(op)
+    s.sendto(op.encode(), x[1])
+
+-X- Client
+import socket
+import os
+
+cl = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+addr = ("127.0.0.1", 6789)
+cl.sendto("Connection established ".encode(), addr)
+
+while True:
+    x = input("Enter the command:")
+    cl.sendto(x.encode(), addr)
+    y = cl.recvfrom(1024)
+    print("Server's output:", y[0].decode())
+
+
+
+#-------------------------------------------------------------------------------------------------
+
+AIM : Implementation of File Transfer Protocol
+
+Server
+
+import socket
+s= socket.socket()
+host= socket.gethostname()
+port= 55004
+s.connect(('127.0.0.1', port))
+print("Connected.")
+sentence= input(""")
+s.send(sentecne.encode())
+filename=input(str("Enter incoming file name:"))
+file=open(filename, 'a')
+file_data=s.recv(1024)
+file.write("\n")
+file.write(file_data.decode("utf-8"))
+file.close()
+print("File received successfully.")
+
+Client
+
+import socket
+s=socket.socket()
+host=socket.gethostname()
+port=5004
+s.connect((host, port))
+print("Connected.")
+sentence=input("")
+s.send(sentence.encode())
+filename= input(str("Enter incoming file name:"))
+file=open(filename, 'a')
+
+file_data=s.recv(1024)
+file.write("\n")
+file.write(file_data.decode("utf-8"))
+file.close()
+print("File received successfully.")
+s.close()
+
+
+#-------------------------------------------------------------------------------------------------
+ 
+AIM : ARP Implementation Using UDP
+
+
+import os
+import getmac
+
+ip = ""
+while ip != "exit":
+    ip = input("Enter IP address [or exit]: ")
+    if ip == "exit":
+        continue
+    os.system("ping {}".format(ip))
+    msg = input("Continue? (y/n): ")
+    if msg == "n":
+        continue
+    mac = getmac.get_mac_address(ip=ip)
+    print("MAC address: {}".format(mac))
+
+print("Exiting")
+
+
+#-------------------------------------------------------------------------------------------------
+
+AIM : Study Of IPv6 Addressing And Subnetting
+
+Aim- To study IPv6 addressing and subnetting IPv6 Addressing Modes Addressing mode refers
+to the mechanism of hosting an address on the network. IPv6 offers several types of modes by
+which a single host can be addressed. More than one host can be addressed at once or the host at
+the closest distance can be addressed.
+Technical Objective: IPv6 addresses use 128 bits to represent an address which includes bits to
+be used for subnetting. The second half of the address (least significant 64 bits) is always used
+for hosts only. Therefore, there is no compromise if we subnet the network. Simulate the same.
+Given Requirements: IPv6 protocol has to be studied in detail and then simulated using routers
+and PC in Cisco packet tracer simulation software with the packet ICMPv6 to demonstrate
+subnet mask feature of IPv6 protocol.
+Unicast:
+In unicast mode of addressing, an IPv6 interface (host) is uniquely identified in a network
+segment. The IPv6 packet contains both source and destination IP addresses. A host interface is
+equipped with an IP address which is unique in that network segment. When a network switch or
+a router receives a unicast IP packet, destined to a single host, it sends out one of its outgoing
+interfaces which connects to that particular host.
+
+** UNICAST IMAGE **
+
+
+Multicast :
+The IPv6 multicast mode is the same as that of IPv4. The packet destined to multiple hosts is
+sent on a special multicast address. All the hosts interested in that multicast information, need to
+join that multicast group first. All the interfaces that joined the group receive the multicast packet
+and process it, while other hosts not interested in multicast packets ignore the multicast
+information.
+
+** MULTICAST IMAGE **
+
+
+Anycast :
+IPv6 has introduced a new type of addressing, which is called Anycast addressing. In this
+addressing mode, multiple interfaces (hosts) are assigned the same Anycast IP address. When a
+host wishes to communicate with a host equipped with an Anycast IP address, it sends a Unicast
+message. With the help of a complex routing mechanism, that Unicast message is delivered to
+the host closest to the Sender in terms of Routing cost.
+
+** ANYCAST **
+
+Address Structure:
+An IPv6 address is made of 128 bits divided into eight 16-bits blocks. Each block is then
+converted into 4- digit Hexadecimal numbers separated by colon symbols. For example, given
+below is a 128-bit IPv6 address represented in binary format and divided into eight 16- bits
+blocks:
+0010000000000001 0000000000000000 0011001000111000 1101111111100001
+0000000001100011 0000000000000000 0000000000000000 1111111011111011.
+Each block is then converted into Hexadecimal and separated by ‘:’
+symbol: 2001:0000:3238:DFE1:0063:0000:0000:FEFB
+IPv6 Subnetting:
+In IPv4, addresses were created in classes. Classful IPv4 addresses clearly define the bits used
+for network prefixes and the bits used for hosts on that network. To subnet in IPv4, we play with
+the default classful netmask which allows us to borrow host bits to be used as subnet bits. This
+results in multiple subnets but less hosts per subnet. That is, when we borrow host bits to create a
+subnet, it costs us in lesser bit to be used for host addresses. IPv6 addresses use 128 bits to
+represent an address which includes bits to be used for subnetting. The second half of the address
+(least significant 64 bits) is always used for hosts only. Therefore, there is no compromise if we
+subnet the network.
+
+** DIAGRAM
+ROUTING PREFIX (48 bits) | SUBNET ID (16bits) | INTERFACE ID (64 bits)
+**
+
+16 bits of subnet is equivalent to IPv4’s Class B Network. Using these subnet bits, an
+organization can have another 65 thousand of subnets which is by far, more than enough. Thus,
+routing prefix is /64 and host portion is 64 bits. We can further subnet the network beyond 16
+bits of Subnet ID, by borrowing host bits; but it is recommended that 64 bits should always be
+used for hosts addresses because auto-configuration requires 64 bits. IPv6 subnetting works on
+the same concept as Variable Length Subnet Masking in IPv4. /48 prefix can be allocated to an
+organization providing it the benefit of having up to /64 subnet prefixes, which is 65535
+sub networks, each having 264 hosts.
+
+Result- Study IPv6 addressing and subnetting IPv6 Addressing Modes Addressing
+mode refers to the mechanism of hosting an address on the network. IPv6 offers
+several types of modes by which a single host can be addressed. More than one host
+can be addressed at once or the host at the closest distance can be addressed.
+
+#-------------------------------------------------------------------------------------------------
+
+
+AIM : Implementation of NAT
+
+Aim: To study and perform Network Address Translation (NAT) using cisco packet tracer. 
+Procedure:
+Assign the following topology with respective IP addresses to pc, routers, servers and connection
+between them.
+
+** NAT diagram **
+
+Configure static NAT configuration
+Since static NAT use manual translation, we have to map each inside local IP address(which needs a
+translation) with inside global IP address. Following command is used to map the inside local IP
+address with inside global IP address.
+Router(config)#ip nat inside source static [inside local ip address] [inside global IP address]
+And use the following commands to define inside and outside network connection for your local and
+global
+IP addresses.
+Router(config-if)#ip nat inside
+Router(config-if)#ip nat outsideImplementation of VPN
+Configure the IP routing
+IP routing is the process which allows router to route the packet between different networks.
+IP routing on router():
+
+** REF PDF very complicated IMAGES ** 
+
+#-------------------------------------------------------------------------------------------------
+
+AIM : Implementation of VPN
+
+
+Aim- To study about Virtual Private Network.
+Technical Objective:
+can be spoofed by using VPN service provided by different organizations.
+Steps to Automate VPN using Python:
+Step 1: Open your terminal (Ctrl+Alt+T) and create a file using gedit by typing the following command
+on the terminal.
+gedit gfg.py
+Step 2: import the modules of python into the opened file.
+Step 3: Create a list of Free VPN server codes provided by Windscribe (VPN).
+Step 4: Start a try block connect with Windscribe using os module
+Step 5: Start a catch block and then:
+Disconnect the VPN, it will run if it gets any error.
+Display a disconnection message here.
+
+Code
+# import required modules
+import os
+from time import sleep
+import random
+
+# list of VPN server codes
+codeList = ["TR", "US-C", "US", "US-W", "CA", "CA-W", "FR", "DE", "NL", "NO", "RO", "CH", "GB", "HK"]
+
+try:
+    # connect to VPN
+    os.system("windscribe connect")
+    
+    while True:
+        # assigning a random VPN server code
+        choiceCode = random.choice(codeList)
+        
+        # changing IP after a particular time period
+        sleep(random.randrange(120, 300))
+        
+        # connecting to a different VPN server
+        print("!!! Changing the IP Address........")
+        os.system("windscribe connect " + choiceCode)
+
+except Exception as e:
+    # disconnect VPN
+    os.system("windscribe disconnect")
+    print(f"Sorry, some error has occurred: {e}")
+
+
+Result: Implementation of VPN is executed successfully.
+
+
+#-------------------------------------------------------------------------------------------------
+
+AIM : Communication Using HDLC/PPP
+
+
+Aim- To study about HDLC (High Level Data Link Control) and PPP (point to point): protocols
+in cisco packet tracer.
+Technical Objective: The encapsulation protocols of HDLC and PPP are two different ways in
+which this is implemented within the connections, so after studying and understanding the
+differences between them, demonstrate the differences between them using Cisco packet tracer.
+Given Requirements: HDLC and PPP are two different types of communication methods, so
+give a detailed description and analysis of both and show there difference in cisco packet tracer
+simulation software.
+HDLC (High Level Data Link Control):
+HDLC is a data link protocol used on synchronous serial data links. Because the standardized
+HDLC cannot support multiple protocols on a single link (lack of a mechanism to indicate which
+protocol is carried), Cisco developed a proprietary version of HDLC, called cHDLC, with a
+proprietary field acting as a protocol field. This field makes it possible for a single serial link to
+accommodate multiple network-layer protocols.
+
+HDLC IN CISCO:
+By default, in the cisco packet tracer it is already HDLC.
+
+not we can use the CLI commands to enable it the commands are
+
+Router-B(config)#interface serial 0/0/0
+
+58
+
+Router-B(config-if)#encapsulation hdlc
+Router-B(config-if)#ip address 192.168.10.5 255.255.255.252
+Router-B(config-if)#no shutdown
+
+
+PPP (point to point):
+The username of one router should be the hostname of other and if there are two routers this
+happens.
+And the passwords should be same for both routers in case if we take any two routers.
+And we are using chap in ppp to test this ppp The commands are:-
+r1(config)# int se0/3/0
+R1(config t)# encapsulation ppp
+R1(config t)#ppp authentication chap.
+
+
+** IMAGES 
+CISCO Packet Tracer Simulation CLI
+
+CISCO Packet Tracer Simulation IPV6 Subnet Mask
+**
+
+#-------------------------------------------------------------------------------------------------
+</body>
+
+</html>

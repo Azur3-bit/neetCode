@@ -41,7 +41,13 @@ void solve() {
 	dbg(s);
 	dbg(t);
 	cout << "------------------\n";
-	cout << "new commit \n";
+	// cout << "new commit \n";
+
+	unordered_map<char, int> s_HM{};
+	for (auto it : s)
+		s_HM[it]++;
+	dbg(s_HM);
+
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {

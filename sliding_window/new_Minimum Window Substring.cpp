@@ -1,4 +1,5 @@
-// Minimum Window Substring
+// Minimum Window Substring
+
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -88,6 +89,7 @@ void solve() {
 	int ans_i = 0, ans_j = 0;
 
 	int curr_windowSize = INT_MAX;
+	cout << "\t---------sliding window start\n";
 	while (j < s.size()) {
 		// cout << "inside while loop \n";
 		s_HM[s[j]]++;
@@ -150,6 +152,7 @@ void solve() {
 		answerString += s[i];
 	dbg(answerString);
 	// return answerString;
+	cout << "---- end function \n";
 #if 0
 	// adding all the elements of s into the hashMap
 	for (auto it : s)

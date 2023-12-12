@@ -1,0 +1,60 @@
+1. Initialization:
+   - The program starts by creating a UDP socket and setting up the server address.
+   - It prompts the user to enter the server's IP address, nickname, and password.
+   - The provided information is used to set up the server's address and bind the socket.
+
+2. User Input:
+   - The program prompts the user to enter their nickname and password.
+   - It hashes the password using a simple hash function (not suitable for real security; this is just for demonstration).
+
+3. Socket Setup:
+   - The socket is set up, and the server address is configured.
+   - The program then starts the two main threads: one for receiving messages (`receive_thread`) and one for sending messages (`send_thread`).
+
+4. Chat Initialization:
+   - The program informs the user that the Walkie-Talkie has started and displays the user's nickname.
+
+5. User Interaction Loop (`send_messages`):
+   - The `send_messages` thread enters a loop where the user can type messages in the console.
+   - The user's input is encrypted and sent to the server.
+   - Special commands like 'exit', 'list', 'status', and 'users' are processed accordingly.
+
+6. Message Sending:
+   - Messages are sent to the server, and the server processes them. The server may send messages back to the client.
+
+7. User Interaction Loop (`receive_messages`):
+   - The `receive_messages` thread continuously listens for incoming messages from the server.
+   - When a message is received, it is decrypted, and information about the sender is extracted.
+   - The online user list is updated based on the sender's username.
+   - The received message is printed to the console with a timestamp.
+
+8. Online User List (`printOnlineUsers`):
+   - The user can enter the 'users' command to see the list of online users.
+   - The program prints the list of online users to the console.
+
+9. Exiting the Program:
+   - If the user types 'exit', the program sends an exit message to the server, prints an exit message to the console, and terminates both threads.
+   - The socket is closed, and the program exits.
+
+10. Error Handling:
+   - If any errors occur during socket creation, binding, or message reception, error messages are logged to the "error_log.txt" file.
+
+Sample Output Scenario:
+
+Assuming the user interacts with the program by sending and receiving messages:
+
+```
+Enter the server IP address (e.g., 127.0.0.1): 127.0.0.1
+Enter your nickname: User1
+Enter your password: password123
+Walkie-Talkie started. Your nickname is User1.
+
+Type your message (type 'exit' to quit, 'list' to see commands): Hello, how are you?
+[timestamp] User1 received from 127.0.0.1: DecryptedMessage
+
+Type your message (type 'exit' to quit, 'list' to see commands): users
+Online Users: User1 User2
+
+Type your message (type 'exit' to quit, 'list' to see commands): exit
+Exiting Walkie-Talkie.
+```
