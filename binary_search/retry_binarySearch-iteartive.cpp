@@ -34,14 +34,58 @@ void AddNode_end(ListNode *&head, int value) {ListNode *newNode = new ListNode(v
 void _showLinkedList(ListNode *head) {while (head != NULL) {cout << head->val << " -> "; head = head->next;} cout << "NULL" << endl;}
 void vec_linkedlist(ListNode*&head, vector<int> nums ) {for (auto it : nums) {AddNode_end(head, it);}}
 // ------------------------------------------------------------------ solve
+void show_vector(vector<int> nums, int l, int r) {
+	cout << "left in show_vector : " << l << "\n";
+	cout << "right in show_vector : " << r << "\n";
+	for (int i = l; i <= r; i++) {
+		cout << nums[i] << ", ";
+	}
+	cout << "\nEND of vector \n";
+}
+bool bin_search(const vector<int> &nums, int target) {
+	int left = 0;
+	int right = nums.size() - 1;
+	int ctr = 0;
+	while (left <= right) {
+		cout << "--------------------------" << ++ctr << "\n";
+		int mid = left + (right - left) / 2;
+		dbg(left);
+		dbg(mid);
+		dbg(right);
+		show_vector(nums, left, right);
+		if (nums[mid] == target) {
+			cout << "element found at index : " << mid << "\n";
+			return true;
+		}
+		if (nums[mid - 1] < target) {
+			left = mid + 1;
+		}
+		else {
+			right = mid - 1;
+		}
+	}
+	return false;
+}
 void solve() {
-	cout << "checking git checkout master to main \n";
+	// cout << "checking git checkout master to main \n";
+	vector<int> solve_nums {};
+	int target = 0;
+	cin >> target;
+	cin >> solve_nums;
+	dbg(target);
+	dbg(solve_nums);
+	bool ans = false;
+	ans = bin_search(solve_nums, target);
+	if (ans == true)
+		cout << "-----------------------------------\nelement found -- main\n";
+	else
+		cout << "-----------------------------------\nelement NOT found -- main\n";
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
 #ifndef ONLINE_JUDGE
 	freopen("input.txt", "r", stdin);
-	// freopen("output.txt", "w", stdout);
+	freopen("output.txt", "w", stdout);
 #endif
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
