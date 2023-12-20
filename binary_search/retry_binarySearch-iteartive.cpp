@@ -57,12 +57,10 @@ bool bin_search(const vector<int> &nums, int target) {
 			cout << "element found at index : " << mid << "\n";
 			return true;
 		}
-		if (nums[mid - 1] < target) {
+		if (nums[mid - 1] < target)
 			left = mid + 1;
-		}
-		else {
+		else
 			right = mid - 1;
-		}
 	}
 	return false;
 }
@@ -77,15 +75,16 @@ void solve() {
 	bool ans = false;
 	ans = bin_search(solve_nums, target);
 	if (ans == true)
-		cout << "-----------------------------------\nelement found -- main\n";
+		cout << "------------------------\nelement found -- main\n";
 	else
-		cout << "-----------------------------------\nelement NOT found -- main\n";
+		cout << "------------------------\nelement NOT found -- main\n";
+
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
 #ifndef ONLINE_JUDGE
 	freopen("input.txt", "r", stdin);
-	freopen("output.txt", "w", stdout);
+	// freopen("output.txt", "w", stdout);
 #endif
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);

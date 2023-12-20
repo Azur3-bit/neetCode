@@ -25,5 +25,5 @@ right in show_vector : 0
 1, 
 END of vector 
 element found at index : 0
------------------------------------
+------------------------
 element found -- main
