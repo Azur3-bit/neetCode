@@ -66,6 +66,9 @@ int finding_first_false(const vector<bool> &ans) {
 		else
 			end = mid;
 	}
+	// print the index of first false
+	cout <<  "index of first false : " << start << "\n";
+	// print the index of last true
 	return end;
 }
 void solve() {
