@@ -1,4 +1,5 @@
-// true_and_false_binarySearch
+// true_and_false_binarySearch
+
 // finding the first false in the array of elements consisting of only true and false
 
 // #include <bits/stdc++.h>
