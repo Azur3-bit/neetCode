@@ -35,14 +35,37 @@ void AddNode_end(ListNode *&head, int value) {ListNode *newNode = new ListNode(v
 void _showLinkedList(ListNode *head) {while (head != NULL) {cout << head->val << " -> "; head = head->next;} cout << "NULL" << endl;}
 void vec_linkedlist(ListNode*&head, vector<int> nums ) {for (auto it : nums) {AddNode_end(head, it);}}
 // ------------------------------------------------------------------ solve
-void solve() {
+int binSearch(vector<int> &nums, int target) {
+	int l = 0, r = nums.size() - 1;
+	while (r - l > 1) {
+		int mid = l + (r - l) / 2;
+		if (nums[mid] <= target)
+			l = mid;
+		else
+			r = mid - 1;
+	}
+	if (nums[l] == target)
+		return l;
+	if (nums[r] == target)
+		return r;
+	return -1;
 
+}
+void solve() {
+	vector<int> nums {};
+	int target;
+	cin >> target;
+	cin >> nums;
+	dbg(target);
+	dbg(nums);
+	int ans = binSearch(nums, target);
+	dbg(ans);
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
 #ifndef ONLINE_JUDGE
 	freopen("input.txt", "r", stdin);
-	// freopen("output.txt", "w", stdout);
+	freopen("output.txt", "w", stdout);
 #endif
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
