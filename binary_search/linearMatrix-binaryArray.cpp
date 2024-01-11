@@ -1,0 +1,2 @@
+// linearMatrix - binaryArray
+

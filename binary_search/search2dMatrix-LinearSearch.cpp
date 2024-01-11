@@ -40,14 +40,25 @@ void LinearSearch2dMatrix(vector<vector<int>> &nums, int target) {
 	int cols = nums[0].size() - 1;
 	dbg(rows);
 	dbg(cols);
-	// for(int i = 0; )
+	for (int i = 0; i <= rows; i++) {
+		for (int j = 0; j <= cols; j++) {
+			dbg(nums[i][j]);
+			if (nums[i][j] == target) {
+				cout << " --- element found ---\n";
+				return;
+			}
+		}
+	}
+	cout << "--- element not found --- \n";
+	return;
 }
 void solve() {
 	vector<vector<int>> nums = {{1, 3, 5, 7}, {10, 11, 16, 20}, {23, 30, 34, 60}};
-	int target = 3;
+	int target = 0;
 	dbg(nums);
 	dbg(target);
 	LinearSearch2dMatrix(nums, target);
+
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
