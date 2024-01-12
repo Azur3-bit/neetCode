@@ -1,0 +1,11 @@
+bool matrix(vector<vector<int>> &matrix, int target) {
+	for (int i = 0; i < matrix.size(); i++) {
+		if (target >= matrix[i][0] && target >= matrix[i][matrix[0].size() - 1]) {
+			cout << "range found in the vector : " << i << "\n";
+			dbg(matrix[i]);
+			int ans = binarySearch(matrix[i], target);
+			return ans;
+		}
+	}
+	return false;
+}
