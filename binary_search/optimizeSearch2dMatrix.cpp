@@ -1,4 +1,4 @@
-// retry_optimizd_bSearch_neetCode
+// optimizeSearch2dMatrix
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -35,8 +35,50 @@ void AddNode_end(ListNode *&head, int value) {ListNode *newNode = new ListNode(v
 void _showLinkedList(ListNode *head) {while (head != NULL) {cout << head->val << " -> "; head = head->next;} cout << "NULL" << endl;}
 void vec_linkedlist(ListNode*&head, vector<int> nums ) {for (auto it : nums) {AddNode_end(head, it);}}
 // ------------------------------------------------------------------ solve
-void solve() {
+bool optimizeSearch2D_matrix(vector<vector<int>> &vec, int &target) {
+	int total_rows = vec[0].size();
+	int total_cols = vec.size();
+	int curr_row = 0;
+	int curr_cols = total_cols - 1;
 
+	while (curr_row < total_rows && curr_cols > -1) {
+		int element = vec[curr_row][curr_cols];
+		if (element == target)
+			return true;
+		if (element < target)
+			curr_row++;
+		else
+			curr_cols--;
+	}
+	return false;
+}
+
+bool leetcode_solution(vector<vector<int>> &vec, int target) {
+	int rows = vec.size();
+	int cols = vec[0].size();
+	dbg(rows);
+	dbg(cols);
+	int row = 0;
+	int col = cols - 1;
+	while (row < rows && col > -1) {
+		int curr = vec[row][col];
+		dbg(curr);
+		break;
+	}
+
+}
+void solve() {
+	vector<vector<int>> vec = {{1, 3, 5, 7}, {10, 11, 16, 20}, {23, 30, 34, 60}};
+	int target = 13;
+	dbg(vec);
+	dbg(target);
+	bool ans = optimizeSearch2D_matrix(vec, target);
+	// leetcode_solution(vec, target);
+	if (ans) {
+		cout << "value has been found ++\n";
+	}
+	else
+		cout << "value has NOT been found --\n";
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
