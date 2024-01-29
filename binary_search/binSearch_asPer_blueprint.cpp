@@ -1,19 +1,26 @@
-// binSearch_asPer_blueprint
 class Solution {
 public:
-	int search(vector<int>& nums, int target) {
-		int low = 0;
-		int high = nums.size() - 1;
+	bool searchMatrix(vector<vector<int>>& vec, int target) {
 
-		while (high - low > 1) {
-			int mid = low + (high - low) / 2;
+		int rows = vec.size();
+		int cols = vec[0].size();
 
-			if (nums[mid] <= target) low = mid;
-			else high = mid - 1;
+		int start = 0, end = (rows * cols) - 1;
+
+		while (start <= end) {
+			int mid = start + (end - start) / 2;
+
+			int row_index = mid / cols;
+			int col_index = mid % cols;
+
+			if (vec[row_index][col_index] == target)
+				return 1;
+			else if (vec[row_index][col_index] < target) {
+				start = mid + 1;
+			} else {
+				end = mid - 1;
+			}
 		}
-
-		if (nums[low] == target) return low;
-		else if (nums[high] == target) return high;
-		return -1;
+		return 0;
 	}
 };
