@@ -1,26 +1,23 @@
-class Solution {
-public:
-	bool searchMatrix(vector<vector<int>>& vec, int target) {
 
-		int rows = vec.size();
-		int cols = vec[0].size();
+int min = *min_element(piles.begin(), piles.end());
+int max = *max_element(piles.begin(), piles.end());
+while (max - min > 1) {
+	int curr_hours = 0;
+	int mid = min + (max - min) / 2;
+	for (auto it : piles) {
+		if (it % mid == 0) {
+			curr_hours += it / mid;
 
-		int start = 0, end = (rows * cols) - 1;
-
-		while (start <= end) {
-			int mid = start + (end - start) / 2;
-
-			int row_index = mid / cols;
-			int col_index = mid % cols;
-
-			if (vec[row_index][col_index] == target)
-				return 1;
-			else if (vec[row_index][col_index] < target) {
-				start = mid + 1;
-			} else {
-				end = mid - 1;
-			}
 		}
-		return 0;
+		if (it % mid != 0) {
+			curr_hours += it / mid;
+			curr_hours++;
+		}
 	}
-};
+	// break;
+	if (curr_hours > h)
+		min = mid;
+	else
+		max = mid;
+}
+return max;
