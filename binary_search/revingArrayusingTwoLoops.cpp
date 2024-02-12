@@ -1,4 +1,4 @@
-// minElement - RotatedArray
+// revingArrayusingTwoLoops
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -35,49 +35,25 @@ void AddNode_end(ListNode *&head, int value) {ListNode *newNode = new ListNode(v
 void _showLinkedList(ListNode *head) {while (head != NULL) {cout << head->val << " -> "; head = head->next;} cout << "NULL" << endl;}
 void vec_linkedlist(ListNode*&head, vector<int> nums ) {for (auto it : nums) {AddNode_end(head, it);}}
 // ------------------------------------------------------------------ solve
-int try_one_finding_miniimumElement(vector<int> nums) {
+void reving(vector<int> nums) {
 	dbg(nums);
-	int min = 0;
-	int max = nums.size() - 1;
-	dbg(max);
-	cout << "working \n";
-	while (max > min) {
-		int mid = min + (max - min) / 2;
-		if (nums[mid - 1] < nums[mid + 1]) {
-			max = mid;
+	int n = nums.size();
+	// cout << nums[n - 2];
+
+	int ctr = 0;
+	for (int i = 0; i < n; i++) {
+		++ctr;
+		for (int j = n - ctr; j > i; j--) {
+			// cout << nums[i] << " --- " << nums[j];
+			swap(nums[i], nums[j]);
+			break;
 		}
-		else
-			min = mid;
-		// break;
 	}
-	// dbg(nums[max]);
-	// dbg(nums[min]);
-	return nums[min];
-}
-int finding_miniimumElement(vector<int> nums) {
-	int min = 0;
-	int max = nums.size() - 1;
-	while (max - min > 1) {
-		int mid = min + (max - min) / 2;
-		if (nums[mid] < nums[max])
-			max = mid;
-		else
-			min = mid;
-	}
-	dbg(nums[max]);
-	dbg(nums[min]);
-	return nums[min];
-}
-
-int answer(vector<int> nums) {
-
+	dbg(nums);
 }
 void solve() {
-	// vector<int> nums = {3, 4, 5, 1, 2};
-	// vector<int> nums = {4, 5, 6, 7, 0, 1, 2};
-	vector<int> nums = {11, 13, 15, 17};
-	int ans = answer(nums);
-	dbg(ans);
+	vector<int> nums = {1, 2, 3, 4, 5};
+	reving(nums);
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
