@@ -8,6 +8,7 @@
 #include <set>
 #include <cmath>
 #include <climits>
+#include <typeinfo>
 #include <queue>
 #include <stack>
 #include <array>
@@ -35,21 +36,43 @@ void AddNode_end(ListNode *&head, int value) {ListNode *newNode = new ListNode(v
 void _showLinkedList(ListNode *head) {while (head != NULL) {cout << head->val << " -> "; head = head->next;} cout << "NULL" << endl;}
 void vec_linkedlist(ListNode*&head, vector<int> nums ) {for (auto it : nums) {AddNode_end(head, it);}}
 // ------------------------------------------------------------------ solve
-auto lower_bound_testing(const vector<int>& nums, float target) {
+ptrdiff_t lower_bound_testing(const vector<int>& nums, int target) {
 	dbg(nums);
 	dbg(target);
-	return lower_bound(nums.begin(), nums.end(), target) - nums.begin();
+	// auto ans = lower_bound(nums.begin(), nums.end(), target) - nums.begin();
+	auto ans = lower_bound(nums.begin(), nums.end(), target);
+	cout << "type(lower_bound) : " <<  typeid(ans).name() << "\n";
+	cout << "nums.begin() - ans : " << distance(nums.begin(), ans) << "\n";
+	cout << " ++ starting index : " <<  distance(nums.begin(), ans) << "\n";
+	cout << " -- reverse index : " <<  distance(nums.end(), ans) << "\n";
+	int dis = distance(nums.begin() , ans);
+	// return ans;
+}
+
+ptrdiff_t upper_bound_testing(const vector<int>&nums, int target ) {
+	dbg(nums);
+	dbg(target);
+	return upper_bound(nums.begin(), nums.end(), target) - nums.begin();
 }
 void solve() {
 	cout << "\n\n------------- LOWER_BOUND -------------\n\n";
 	vector<int> nums = {100, 101, 102, 103, 104, 106, 107, 108, 109, 110, 111};
-	float val = 106.7;
-	int index = lower_bound_testing(nums, val);
-	dbg(index);
-	dbg(nums[index]);
+	int val = 105;
+	// float val = 106.7;
+	// auto index = lower_bound_testing(nums, val) - nums.begin();
+	auto lower_ans = lower_bound_testing(nums, val);
+	dbg(lower_ans);
+	dbg(nums[lower_ans]);
 
 	cout << "\n\n------------- ------------- -------------\n";
 	cout << "\n\n------------- UPPER_BOUND -------------\n";
+	// int value = 112;
+	auto upper_ans = upper_bound_testing(nums, val);
+	dbg(upper_ans);
+	dbg(nums[upper_ans]);
+
+	cout << "upper - lower : " << upper_ans - lower_ans << "\n";
+
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
