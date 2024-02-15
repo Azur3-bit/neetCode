@@ -1,14 +1,15 @@
-// testing_lower_bound
+// rotate_array
+
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
 #include <string>
 #include <algorithm>
 #include <map>
+#include <valarray>
 #include <set>
 #include <cmath>
 #include <climits>
-#include <typeinfo>
 #include <queue>
 #include <stack>
 #include <array>
@@ -36,43 +37,31 @@ void AddNode_end(ListNode *&head, int value) {ListNode *newNode = new ListNode(v
 void _showLinkedList(ListNode *head) {while (head != NULL) {cout << head->val << " -> "; head = head->next;} cout << "NULL" << endl;}
 void vec_linkedlist(ListNode*&head, vector<int> nums ) {for (auto it : nums) {AddNode_end(head, it);}}
 // ------------------------------------------------------------------ solve
-ptrdiff_t lower_bound_testing(const vector<int>& nums, int target) {
+vector<int> rotate_array_traditional(vector<int> nums, int t) {
 	dbg(nums);
-	dbg(target);
-	// auto ans = lower_bound(nums.begin(), nums.end(), target) - nums.begin();
-	auto ans = lower_bound(nums.begin(), nums.end(), target);
-	cout << "type(lower_bound) : " <<  typeid(ans).name() << "\n";
-	cout << "nums.begin() - ans : " << distance(nums.begin(), ans) << "\n";
-	cout << " ++ starting index : " <<  distance(nums.begin(), ans) << "\n";
-	cout << " -- reverse index : " <<  distance(nums.end(), ans) << "\n";
-	int dis = distance(nums.begin() , ans);
-	// return ans;
+	vector<int> ans = {};
+	int l = nums.size() - t;
+	dbg(l);
+	for (int i = l; i < (int)nums.size(); i++) {
+		ans.push_back(nums[i]);
+	}
+	for (int i = 0; i < (((int) nums.size()) - t); ++i) {
+		ans.push_back(nums[i]);
+	}
+	// return {1};
+	return ans;
 }
-
-ptrdiff_t upper_bound_testing(const vector<int>&nums, int target ) {
-	dbg(nums);
-	dbg(target);
-	return upper_bound(nums.begin(), nums.end(), target) - nums.begin();
+vector<int> rotate_array_slicing(vector<int> nums, int t) {
+	vector<int> ans {};
+	ans = vector<int>(nums.begin(), nums.end() - t);
+	return ans;
 }
 void solve() {
-	cout << "\n\n------------- LOWER_BOUND -------------\n\n";
-	vector<int> nums = {100, 101, 102, 103, 103, 104, 106, 107, 108, 109, 110, 111};
-	int val = 103;
-	// float val = 106.7;
-	// auto index = lower_bound_testing(nums, val) - nums.begin();
-	auto lower_ans = lower_bound_testing(nums, val);
-	dbg(lower_ans);
-	dbg(nums[lower_ans]);
-
-	cout << "\n\n------------- ------------- -------------\n";
-	cout << "\n\n------------- UPPER_BOUND -------------\n";
-	// int value = 112;
-	auto upper_ans = upper_bound_testing(nums, val);
-	dbg(upper_ans);
-	dbg(nums[upper_ans]);
-
-	cout << "upper - lower : " << upper_ans - lower_ans << "\n";
-
+	int t = 4;
+	vector<int> nums = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+	// vector<int>arr = rotate_array_traditional(nums, t);
+	vector<int>arr = rotate_array_slicing(nums, t);
+	dbg(arr);
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {

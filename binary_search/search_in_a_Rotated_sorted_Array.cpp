@@ -1,4 +1,4 @@
-// testing_lower_bound
+// search_in_a_Rotated_sorted_Array
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -8,7 +8,6 @@
 #include <set>
 #include <cmath>
 #include <climits>
-#include <typeinfo>
 #include <queue>
 #include <stack>
 #include <array>
@@ -36,43 +35,76 @@ void AddNode_end(ListNode *&head, int value) {ListNode *newNode = new ListNode(v
 void _showLinkedList(ListNode *head) {while (head != NULL) {cout << head->val << " -> "; head = head->next;} cout << "NULL" << endl;}
 void vec_linkedlist(ListNode*&head, vector<int> nums ) {for (auto it : nums) {AddNode_end(head, it);}}
 // ------------------------------------------------------------------ solve
-ptrdiff_t lower_bound_testing(const vector<int>& nums, int target) {
+int ans_1(vector<int> nums, int target) {
 	dbg(nums);
 	dbg(target);
-	// auto ans = lower_bound(nums.begin(), nums.end(), target) - nums.begin();
-	auto ans = lower_bound(nums.begin(), nums.end(), target);
-	cout << "type(lower_bound) : " <<  typeid(ans).name() << "\n";
-	cout << "nums.begin() - ans : " << distance(nums.begin(), ans) << "\n";
-	cout << " ++ starting index : " <<  distance(nums.begin(), ans) << "\n";
-	cout << " -- reverse index : " <<  distance(nums.end(), ans) << "\n";
-	int dis = distance(nums.begin() , ans);
-	// return ans;
+	int r = 0, l = (int) nums.size();
+	while (l - r >= 1) {
+		int mid = r + (l - r) / 2;
+		cout << "num at mid : " << nums[mid] << "\n";
+		if (nums[mid] == target) {
+			return mid;
+		}
+		if (nums[mid] <= nums[l])
+			l = mid;
+		else
+			r = mid;
+	}
+	dbg(nums[l]);
+	dbg(nums[r]);
+
+	if ((target <= nums[l]) && (target <= nums[(int)nums.size() - 1])) {
+		cout << "searching in the lower half \n";
+		int left = l, right = nums.size() - 1;
+		while (right - left >= 1) {
+			int mid = left + (right - left) / 2;
+			if (nums[mid] == target)
+				return nums[mid]; // change this to mid later
+			if (nums[mid] < target)
+				left = mid;
+			else
+				right = mid;
+		}
+	}
+	else {
+		int left = 0, right = l;
+		while (right - left > 1) {
+			int mid = left + (right - left) / 2;
+			if (nums[mid] == target)
+				return nums[mid]; // change this to mid later
+			if (nums[mid] < target)
+				left = mid;
+			else
+				right = mid;
+		}
+	}
+
+	return -1;
 }
 
-ptrdiff_t upper_bound_testing(const vector<int>&nums, int target ) {
+
+int ans(vector<int> nums, int target) {
 	dbg(nums);
 	dbg(target);
-	return upper_bound(nums.begin(), nums.end(), target) - nums.begin();
+	int l = 0, r = (int)nums.size() - 1;
+	while (r < l) {
+		int mid = l + (r - l) / 2;
+		if (nums[mid] > nums[l]) {
+			l = mid;
+		}
+		else
+			r = mid;
+	}
+	dbg(nums[l]);
+	dbg(nums[r]);
+	return -1;
 }
 void solve() {
-	cout << "\n\n------------- LOWER_BOUND -------------\n\n";
-	vector<int> nums = {100, 101, 102, 103, 103, 104, 106, 107, 108, 109, 110, 111};
-	int val = 103;
-	// float val = 106.7;
-	// auto index = lower_bound_testing(nums, val) - nums.begin();
-	auto lower_ans = lower_bound_testing(nums, val);
-	dbg(lower_ans);
-	dbg(nums[lower_ans]);
-
-	cout << "\n\n------------- ------------- -------------\n";
-	cout << "\n\n------------- UPPER_BOUND -------------\n";
-	// int value = 112;
-	auto upper_ans = upper_bound_testing(nums, val);
-	dbg(upper_ans);
-	dbg(nums[upper_ans]);
-
-	cout << "upper - lower : " << upper_ans - lower_ans << "\n";
-
+	vector<int> nums = {4, 5, 6, 7, 0, 1, 2};
+	// vector<int> nums = {1};
+	int target = 0;
+	int answer = ans(nums, target);
+	dbg(answer);
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {

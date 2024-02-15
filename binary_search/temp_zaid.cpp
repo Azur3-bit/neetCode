@@ -1,4 +1,4 @@
-// testing_lower_bound
+// temp_zaid
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -8,7 +8,6 @@
 #include <set>
 #include <cmath>
 #include <climits>
-#include <typeinfo>
 #include <queue>
 #include <stack>
 #include <array>
@@ -36,43 +35,62 @@ void AddNode_end(ListNode *&head, int value) {ListNode *newNode = new ListNode(v
 void _showLinkedList(ListNode *head) {while (head != NULL) {cout << head->val << " -> "; head = head->next;} cout << "NULL" << endl;}
 void vec_linkedlist(ListNode*&head, vector<int> nums ) {for (auto it : nums) {AddNode_end(head, it);}}
 // ------------------------------------------------------------------ solve
-ptrdiff_t lower_bound_testing(const vector<int>& nums, int target) {
-	dbg(nums);
-	dbg(target);
-	// auto ans = lower_bound(nums.begin(), nums.end(), target) - nums.begin();
-	auto ans = lower_bound(nums.begin(), nums.end(), target);
-	cout << "type(lower_bound) : " <<  typeid(ans).name() << "\n";
-	cout << "nums.begin() - ans : " << distance(nums.begin(), ans) << "\n";
-	cout << " ++ starting index : " <<  distance(nums.begin(), ans) << "\n";
-	cout << " -- reverse index : " <<  distance(nums.end(), ans) << "\n";
-	int dis = distance(nums.begin() , ans);
-	// return ans;
+void char_ans(int n) {
+	int output = 0;
+	string string_output = "";
+	dbg(output);
+	dbg(string_output);
+	for (int i = 'a'; i <= 'z'; i++) {
+		for (int j = 'a'; j <= 'z'; j++) {
+			for (int k = 'a'; k <= 'z'; k++) {
+				output = (i - 'a' + 1) + (j - 'a' + 1) + (k - 'a' + 1);
+				// output = (i - 'a') + (j + k ) - 'a' + 1;
+				if (output == n) {
+					dbg(i);
+					dbg(j);
+					dbg(k);
+					string_output += i;
+					string_output += j;
+					string_output += k;
+					dbg(string_output);
+					dbg(output);
+					return;
+				}
+			}
+		}
+	}
+	dbg(output);
 }
 
-ptrdiff_t upper_bound_testing(const vector<int>&nums, int target ) {
+void water_jug(vector<int> nums) {
 	dbg(nums);
-	dbg(target);
-	return upper_bound(nums.begin(), nums.end(), target) - nums.begin();
+	int sum = 0;
+	int n = nums.size();
+	int s = 0;
+	for (int i = 0; i < nums.size(); i++) {
+		sum += nums[i];
+	}
+	int temp = sum / n;
+	for (int i = 0; i < nums.size(); i++) {
+		s += nums[i] - temp;
+	}
+	if (s == 0) {
+		cout << "yes";
+		return;
+	}
+	else {
+		cout << "no";
+		return;
+	}
 }
+
 void solve() {
-	cout << "\n\n------------- LOWER_BOUND -------------\n\n";
-	vector<int> nums = {100, 101, 102, 103, 103, 104, 106, 107, 108, 109, 110, 111};
-	int val = 103;
-	// float val = 106.7;
-	// auto index = lower_bound_testing(nums, val) - nums.begin();
-	auto lower_ans = lower_bound_testing(nums, val);
-	dbg(lower_ans);
-	dbg(nums[lower_ans]);
-
-	cout << "\n\n------------- ------------- -------------\n";
-	cout << "\n\n------------- UPPER_BOUND -------------\n";
-	// int value = 112;
-	auto upper_ans = upper_bound_testing(nums, val);
-	dbg(upper_ans);
-	dbg(nums[upper_ans]);
-
-	cout << "upper - lower : " << upper_ans - lower_ans << "\n";
-
+	int n = 55;
+	char_ans(n);
+	cout << "-----------------------\n";
+	// vector<int> nums = {4, 5, 2, 1, 3};
+	vector<int> nums = {4, 5, 5, 0, 6, 4, 4};
+	water_jug(nums);
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
