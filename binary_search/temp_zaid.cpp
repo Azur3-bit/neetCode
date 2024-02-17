@@ -59,7 +59,7 @@ void char_ans(int n) {
 			}
 		}
 	}
-	dbg(output);
+		dbg(output);
 }
 
 void water_jug(vector<int> nums) {

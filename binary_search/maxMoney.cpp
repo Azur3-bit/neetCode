@@ -1,3 +1,4 @@
+// max Money
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -34,43 +35,56 @@ void AddNode_end(ListNode *&head, int value) {ListNode *newNode = new ListNode(v
 void _showLinkedList(ListNode *head) {while (head != NULL) {cout << head->val << " -> "; head = head->next;} cout << "NULL" << endl;}
 void vec_linkedlist(ListNode*&head, vector<int> nums ) {for (auto it : nums) {AddNode_end(head, it);}}
 // ------------------------------------------------------------------ solve
-int answer(vector<int> nums, int target) {
-	dbg(nums);
-	dbg(target);
+int answer(int money, vector<int> B, vector<int> A) {
+	dbg(money);
+	dbg(B);
+	dbg(A);
 
-	int l = 0, r = nums.size() - 1;
-	while (l <= r) {
-		int mid = l + (r + l) / 2;
-		if (nums[mid] == target)
-			return mid;
-		if (nums[mid] >= nums[l]) {
-			if (target >= nums[l] && target <= nums[mid]) {
-				r = mid - 1;
-			}
-			else
-				l = mid + 1;
-		}
-		else {
-			if (target >= nums[mid] && target <= nums[r]) //
-				l = mid + 1;
-			else
-				r = mid - 1;
+	int n = B.size();
+
+	int max_profit = -1;
+	int max_profit_index = -1;
+	for (int i = 0; i < n; ++i) {
+
+		int curr_profit = (A[i] - B[i]) ;
+		cout << "(A[i] - B[i]) * money : " << curr_profit << "\n";
+		if (curr_profit > max_profit) {
+			max_profit = curr_profit;
+			max_profit_index = i;
 		}
 	}
-	return -1;
+
+	dbg(max_profit);
+	dbg(max_profit_index);
+
+
+	if (max_profit > -1) {
+		return max_profit + money;
+	}
+
+	// return max(max_profit + money, money);
+
+	cout << "merchant haven't broght anything \n";
+	return money ;
 }
 
 void solve() {
-	vector<int> nums = {4, 5, 6, 7, 0, 1, 2}; // 4
-	int target = 0;
+	// vector<int> B = {1, 1, 2};
+	// vector<int> A = {2, 1, 1};
+	// int money = 8;
 
-	// vector<int> nums = {4,5,6,7,0,1,2}; // -1
-	// int target = 3;
 
-	// vector<int> nums = {1}; // -1
-	// int target = 0;
+	// vector<int> B = {15, 5, 2};
+	// vector<int> A = {6, 4, 1};
+	// int money = 10;
 
-	int ans = answer(nums, target);
+
+	vector<int> B = {6, 3, 2};
+	vector<int> A = {15, 4, 1};
+	int money = 10;
+
+
+	int ans  = answer(money, B, A);
 	dbg(ans);
 }
 // ------------------------------------------------------------------ main

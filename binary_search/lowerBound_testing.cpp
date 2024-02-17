@@ -1,3 +1,4 @@
+// lowerBound_Testing
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -34,44 +35,22 @@ void AddNode_end(ListNode *&head, int value) {ListNode *newNode = new ListNode(v
 void _showLinkedList(ListNode *head) {while (head != NULL) {cout << head->val << " -> "; head = head->next;} cout << "NULL" << endl;}
 void vec_linkedlist(ListNode*&head, vector<int> nums ) {for (auto it : nums) {AddNode_end(head, it);}}
 // ------------------------------------------------------------------ solve
-int answer(vector<int> nums, int target) {
-	dbg(nums);
-	dbg(target);
-
-	int l = 0, r = nums.size() - 1;
-	while (l <= r) {
-		int mid = l + (r + l) / 2;
-		if (nums[mid] == target)
-			return mid;
-		if (nums[mid] >= nums[l]) {
-			if (target >= nums[l] && target <= nums[mid]) {
-				r = mid - 1;
-			}
-			else
-				l = mid + 1;
-		}
-		else {
-			if (target >= nums[mid] && target <= nums[r]) //
-				l = mid + 1;
-			else
-				r = mid - 1;
-		}
-	}
-	return -1;
+int lowerBound(const vector<int>& nums, int target) {
+	return lower_bound(nums.begin(), nums.end(), target) - nums.begin();
 }
-
 void solve() {
-	vector<int> nums = {4, 5, 6, 7, 0, 1, 2}; // 4
-	int target = 0;
-
-	// vector<int> nums = {4,5,6,7,0,1,2}; // -1
-	// int target = 3;
-
-	// vector<int> nums = {1}; // -1
-	// int target = 0;
-
-	int ans = answer(nums, target);
+	vector<int> nums = {100, 101, 102, 104, 105};
+	dbg(nums);
+	int target = 103;
+	dbg(target);
+	int ans = lowerBound(nums, target);
 	dbg(ans);
+	// cout << "size : " << nums.size() << "\n";
+	if (ans > nums.size() - 1) {
+		cout << "elment not found \n";
+		return;
+	}
+	dbg(nums[ans]);
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
