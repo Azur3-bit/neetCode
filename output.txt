@@ -1,0 +1,19 @@
+
+:: Printing Vector :: 
+{ 2 }
+:: Vector Printed :: 
+try - 2
+:: Printing Vector :: 
+{ -1 }
+:: Vector Printed :: 
+size : 1
+:: printing Stack ::
+first	second
+2		0
+:: Stack printed ::
+Current ELement : 2
+Printing nxt smaller vector : 
+:: Printing Vector :: 
+{ 1 }
+:: Vector Printed :: 
+final Answer : 2
