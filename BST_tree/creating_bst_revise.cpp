@@ -47,7 +47,6 @@ public:
 		right = nullptr;
 	}
 };
-
 node * bst_addNode(node *&root, int da) {
 	cout << "adding node : " << da << " \n";
 	if (root == nullptr) {
@@ -61,7 +60,6 @@ node * bst_addNode(node *&root, int da) {
 		root->left = bst_addNode(root->left, da);
 	return root;
 }
-
 void bst_inOrder_traversal(node * root) {
 	if (root == nullptr)
 		return;
