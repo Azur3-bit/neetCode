@@ -1,4 +1,10 @@
 // insertion deletion and searching in BST
+
+// Major todo
+// --- adding a node iterativily
+// --- finding a node iterativily
+// ---
+
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -85,6 +91,63 @@ void bst_traversal_PreOrder(node * root) {
 }
 
 
+void printingQueue_Nodes(queue<node *> q) {
+	while (!q.empty()) {
+		node * currentElemenet = q.front();
+		q.pop();
+		cout << currentElemenet->data << " ";
+	}
+	cout << "\n";
+}
+
+void bst_traversal_levelOrder(node * root) {
+
+	// base case
+
+	// queue creation
+
+
+	// adding root to the queue
+
+	// go untill doesnt get empty
+
+
+
+	// check if it has any right or left children
+
+
+
+}
+
+
+void levelOrderTraversal_correct_original(node* root) {
+
+	if (root == nullptr)
+		return;
+
+	queue<node * > q {};
+	q.push(root);
+
+
+	// printingQueue_Nodes(q);
+
+
+	while (!q.empty()) {
+		int lvl_size = q.size();
+		for (int i = 0; i < lvl_size; ++i) {
+			node * tempNode = q.front();
+			q.pop();
+			cout << tempNode->data << " ";
+
+			// adding all the elements from left and right
+			if (tempNode->left)
+				q.push(tempNode->left);
+			if (tempNode->right)
+				q.push(tempNode->right);
+		}
+		cout << "\n";
+	}
+}
 // --- insertion
 node * bst_insertNode(node * root, int d) {
 	if (root == nullptr) {
@@ -134,6 +197,9 @@ int min_value(node * root) {
 }
 
 
+// --- Deletion of node in bst
+
+
 // --- main execution
 void solve() {
 	// vector<int> nums = {10, 8, 21, 7, 27, 5, 4, 3};
@@ -172,9 +238,16 @@ void solve() {
 	int ans_min_value = min_value(root);
 	dbg(ans_min_value);
 
+
+	cout << "\n Printing level Order Traversal \n";
+	bst_traversal_levelOrder(root);
+
+	// cout << "correct level Order Traversal\n";
+	// levelOrderTraversal_correct_original(root);
+
 }
 // ------------------------------------------------------------------ main
-int main(int argc, char const* argv[]) {
+int main(int argc, char const * argv[]) {
 #ifndef ONLINE_JUDGE
 	freopen("input.txt", "r", stdin);
 	freopen("output.txt", "w", stdout);
