@@ -35,26 +35,149 @@ void AddNode_end(ListNode *&head, int value) {ListNode *newNode = new ListNode(v
 void _showLinkedList(ListNode *head) {while (head != NULL) {cout << head->val << " -> "; head = head->next;} cout << "NULL" << endl;}
 void vec_linkedlist(ListNode*&head, vector<int> nums ) {for (auto it : nums) {AddNode_end(head, it);}}
 // ------------------------------------------------------------------ solve
+
 /*
 									// TODO
-	- insertion
-	- traeversing inorder
-	- traeversing preorder
-	- traeversing postnorder
-	- searching
-	- min/max
+	- (done) insertion
+	- (done) traeversing inorder
+	- (done) traeversing preorder
+	- (done) traeversing postnorder
+	- (done) book tracing - inOrder postOrder preOrder
+	- (done) searching
+	- (done) min/max
 	- deletion
 */
 
+class node {
+public:
+	int data;
+	node * right ;
+	node * left ;
+
+	// constructor
+	node(int da ) : data(da), right(nullptr), left(nullptr) {}
+};
+
+// --- traversals
+void bst_traversal_inOrder(node * root) {
+	if (root == nullptr)
+		return;
+	bst_traversal_inOrder(root->left);
+	cout << root->data << " ";
+	bst_traversal_inOrder(root->right);
+}
+
+void bst_traversal_postOrder(node * root) {
+	if (root == nullptr)
+		return;
+	bst_traversal_postOrder(root->left);
+	bst_traversal_postOrder(root->right);
+	cout << root->data << " ";
+}
+
+void bst_traversal_PreOrder(node * root) {
+	if (root == nullptr)
+		return;
+	cout << root->data << " ";
+	bst_traversal_PreOrder(root->left);
+	bst_traversal_PreOrder(root->right);
+
+}
+
+
+// --- insertion
+node * bst_insertNode(node * root, int d) {
+	if (root == nullptr) {
+		return root = new node(d);
+	}
+
+	if (root->data > d)
+		root->left = bst_insertNode(root->left, d);
+	else
+		root->right = bst_insertNode(root->right, d);
+}
+
+void bst_vector(node * &root, vector<int> nums) {
+	cout << "adding nodes to the root node ..\n";
+	for (int it : nums) {
+		cout << "adding node : " << it << "\n";
+		root = bst_insertNode(root, it);
+	}
+	cout << "nodes added to the root node ..\n";
+}
+
+// --- UTILITY functions
+bool bst_find_element(node * root, int num) {
+	if (root == nullptr)
+		return false;
+	if (root->data == num)
+		return true;
+	if (root->data < num) {
+		return bst_find_element(root->right, num);
+	}
+	if (root->data > num)
+		return bst_find_element(root->left, num);
+}
+
+int max_value(node * root) {
+	if (root->right == nullptr)
+		return root->data;
+	else
+		return max_value(root->right);
+}
+
+int min_value(node * root) {
+	if (root->left == nullptr)
+		return root->data;
+	else
+		return min_value(root->left);
+}
+
+
+// --- main execution
 void solve() {
-	vector<int> nums = {10, 8, 21, 7, 27, 5, 4, 3};
+	// vector<int> nums = {10, 8, 21, 7, 27, 5, 4, 3};
+	vector<int> nums {};
+	cin >> nums;
+	dbg(nums);
+
+	node * root = nullptr;
+	bst_vector(root, nums);
+
+	cout << "\nPrinting tree in - IN Order\n";
+	bst_traversal_inOrder(root);
+
+	cout << "\n\nPrinting tree in - PRE Order\n";
+	bst_traversal_PreOrder(root);
+
+
+	cout << "\n\nPrinting tree in - POST Order\n";
+	bst_traversal_postOrder(root);
+
+
+	cout << "\n\nfinding element in bst \n";
+	int element_to_be_found = 100;
+	bool ans_find_element = bst_find_element(root, element_to_be_found);
+	if (ans_find_element)
+		cout << "++ present\n";
+	else
+		cout << "-- absent\n";
+
+
+	cout << "\nfinding max value ...\n";
+	int ans_max_value = max_value(root);
+	dbg(ans_max_value);
+
+	cout << "\nfinding min value ...\n";
+	int ans_min_value = min_value(root);
+	dbg(ans_min_value);
 
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
 #ifndef ONLINE_JUDGE
 	freopen("input.txt", "r", stdin);
-	// freopen("output.txt", "w", stdout);
+	freopen("output.txt", "w", stdout);
 #endif
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);

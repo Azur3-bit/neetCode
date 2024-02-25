@@ -1,0 +1,32 @@
+nums : [10, 8, 21, 7, 27, 5, 4, 3, 6, 23, 99]
+adding nodes to the root node ..
+adding node : 10
+adding node : 8
+adding node : 21
+adding node : 7
+adding node : 27
+adding node : 5
+adding node : 4
+adding node : 3
+adding node : 6
+adding node : 23
+adding node : 99
+nodes added to the root node ..
+
+Printing tree in - IN Order
+3 4 5 6 7 8 10 21 23 27 99 
+
+Printing tree in - PRE Order
+10 8 7 5 4 3 6 21 27 23 99 
+
+Printing tree in - POST Order
+3 4 6 5 7 8 23 99 27 21 10 
+
+finding element in bst 
+-- absent
+
+finding max value ...
+ans_max_value : 99
+
+finding min value ...
+ans_min_value : 3
