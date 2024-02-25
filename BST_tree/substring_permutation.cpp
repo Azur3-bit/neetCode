@@ -1,4 +1,3 @@
-// insertion deletion and searching in BST
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -35,20 +34,61 @@ void AddNode_end(ListNode *&head, int value) {ListNode *newNode = new ListNode(v
 void _showLinkedList(ListNode *head) {while (head != NULL) {cout << head->val << " -> "; head = head->next;} cout << "NULL" << endl;}
 void vec_linkedlist(ListNode*&head, vector<int> nums ) {for (auto it : nums) {AddNode_end(head, it);}}
 // ------------------------------------------------------------------ solve
-/*
-									// TODO
-	- insertion
-	- traeversing inorder
-	- traeversing preorder
-	- traeversing postnorder
-	- searching
-	- min/max
-	- deletion
-*/
+void print_range(int l, int h, string s) {
+	for (int i = l; i <= h; i++) {
+		cout << s[i] << " ";
+	}
+}
+string get_string_index(int low, int high, string s) {
+	string emp = "";
+	for (int i = low; i <= high; i++) {
+		emp += s[i];
+	}
+	dbg(emp);
+	return emp;
+}
+bool ans(string s1, string s2) {
+	dbg(s1);
+	dbg(s2);
+	string s1_sorted = s1;
+	sort(s1_sorted.begin(), s1_sorted.end());
+	dbg(s1_sorted);
+	int low = 0;
+	int high = 0;
+	while (high < s2.size()) {
+		if (high - low + 1 < s1.size()) {
+			high++;
+		}
+		else {
+			string index_string = get_string_index(low, high, s2);
+			dbg(index_string);
+
+			string sorted_index_string = index_string;
+			sort(sorted_index_string.begin(), sorted_index_string.end());
+
+			dbg(sorted_index_string);
+
+			if (sorted_index_string == s1_sorted) {
+				return true;
+			}
+
+			low++;
+			high++;
+		}
+	}
+
+	return false;
+}
+
 
 void solve() {
-	vector<int> nums = {10, 8, 21, 7, 27, 5, 4, 3};
-
+	string s1 = "ab";
+	string s2 = "eidboaoo";
+	bool answer = ans(s1, s2);
+	if (answer)
+		cout << "\n\n yes \n";
+	else
+		cout << "\n\n no \n";
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
