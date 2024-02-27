@@ -102,42 +102,43 @@ void printingQueue_Nodes(queue<node *> q) {
 
 void bst_traversal_levelOrder(node * root) {
 
-	// base case
-
-	// queue creation
-
-
-	// adding root to the queue
-
-	// go untill doesnt get empty
-
-
-
-	// check if it has any right or left children
-
-
-
-}
-
-
-void levelOrderTraversal_correct_original(node* root) {
+	cout << "\n\n\n ----- level order traversal function \n";
 
 	if (root == nullptr)
 		return;
-
-	queue<node * > q {};
+	queue<node *> q {};
 	q.push(root);
-
-
-	// printingQueue_Nodes(q);
-
 
 	while (!q.empty()) {
 		int lvl_size = q.size();
 		for (int i = 0; i < lvl_size; ++i) {
 			node * tempNode = q.front();
-			q.pop();
 			cout << tempNode->data << " ";
+			q.pop();
+			if (tempNode->left) {
+				q.push(tempNode->left);
+			}
+			if (tempNode->right) {
+				q.push(tempNode->right);
+			}
+		}
+		cout << "\n";
+	}
+
+
+}
+void levelOrderTraversal_correct_original(node* root) {
+	if (root == nullptr)
+		return;
+	queue<node * > q {};
+	q.push(root);
+	// printingQueue_Nodes(q);
+	while (!q.empty()) {
+		int lvl_size = q.size();
+		for (int i = 0; i < lvl_size; ++i) {
+			node * tempNode = q.front();
+			cout << tempNode->data << " ";
+			q.pop();
 
 			// adding all the elements from left and right
 			if (tempNode->left)
@@ -197,8 +198,24 @@ int min_value(node * root) {
 }
 
 
-// --- Deletion of node in bst
+node * helper_bst_delete_node(node * root) {
 
+}
+node * bst_delete_node(node * root, int val) {
+
+	if (root == nullptr) { // agar mera root null hai tho return kar diya ki koi node nhi hai
+		return nullptr;
+	}
+	if (root->data == val) {
+		// agar root hi mera woh node hai jis ko delete karna hai
+		return helper_bst_delete_node(root);
+	}
+
+	node * dummy = root; // kyuki root pe traversal hoga and dummy woh node hoga jis ko hum fianlly delete karenge
+
+
+
+}
 
 // --- main execution
 void solve() {
@@ -245,12 +262,22 @@ void solve() {
 	// cout << "correct level Order Traversal\n";
 	// levelOrderTraversal_correct_original(root);
 
+
+	// ------ deletion of node
+	// -- both the childs are null
+	// node * deleteNode_both_null_call = deleteNode_both_null(root, 3);
+
+	cout << "main :: root->data : " << root->data << "\n";
+
+	find_parent_recurrsive(root, 10);
+
+
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const * argv[]) {
 #ifndef ONLINE_JUDGE
 	freopen("input.txt", "r", stdin);
-	freopen("output.txt", "w", stdout);
+	// freopen("output.txt", "w", stdout);
 #endif
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
