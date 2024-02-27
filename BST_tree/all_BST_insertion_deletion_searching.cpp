@@ -51,7 +51,7 @@ void vec_linkedlist(ListNode*&head, vector<int> nums ) {for (auto it : nums) {Ad
 	- (done) book tracing - inOrder postOrder preOrder
 	- (done) searching
 	- (done) min/max
-	- deletion
+	- (done) deletion
 */
 
 class node {
@@ -198,7 +198,29 @@ int min_value(node * root) {
 }
 
 
+node * bst_findLastRightChild(node * root) {
+	if (root->right == nullptr)
+		return root;
+	return bst_findLastRightChild(root->right);
+}
+
 node * helper_bst_delete_node(node * root) {
+
+	// connection if any one side of the sub-tree is null
+	// agar koi ek side null hai tho ovio ki opp. side se hi connection banega
+	if (root->right == nullptr)
+		return root->left;
+	if (root->left == nullptr)
+		return root->right;
+
+	// current right
+	node * currRight = root->right;
+	// max value in the left sub tree
+	node * max_value_left_subtree = bst_findLastRightChild(root->left);
+	// connect LeftSubtree-MaxValue child to the right node of the current root node
+	max_value_left_subtree->right = currRight;
+
+	return root->left;
 
 }
 node * bst_delete_node(node * root, int val) {
@@ -212,9 +234,28 @@ node * bst_delete_node(node * root, int val) {
 	}
 
 	node * dummy = root; // kyuki root pe traversal hoga and dummy woh node hoga jis ko hum fianlly delete karenge
+	while (root != nullptr) {
 
-
-
+		if (root->data < val) {
+			if (root->right != nullptr && root->right->data == val) {
+				root->right = helper_bst_delete_node(root->right);
+				break;
+			}
+			else {
+				root = root->right;
+			}
+		}
+		else {
+			if (root->left != nullptr && root->left->data == val) {
+				root->left = helper_bst_delete_node(root->left);
+				break;
+			}
+			else {
+				root = root->left;
+			}
+		}
+	}
+	return dummy;
 }
 
 // --- main execution
@@ -269,8 +310,10 @@ void solve() {
 
 	cout << "main :: root->data : " << root->data << "\n";
 
-	find_parent_recurrsive(root, 10);
-
+	// root = bst_delete_node(root, 3);
+	// root = bst_delete_node(root, 99);
+	root = bst_delete_node(root, 5);
+	bst_traversal_levelOrder(root);
 
 }
 // ------------------------------------------------------------------ main
