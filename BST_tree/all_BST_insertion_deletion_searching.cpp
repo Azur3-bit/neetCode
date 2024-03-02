@@ -101,9 +101,7 @@ void printingQueue_Nodes(queue<node *> q) {
 }
 
 void bst_traversal_levelOrder(node * root) {
-
 	cout << "\n\n\n ----- level order traversal function \n";
-
 	if (root == nullptr)
 		return;
 	queue<node *> q {};
@@ -124,8 +122,6 @@ void bst_traversal_levelOrder(node * root) {
 		}
 		cout << "\n";
 	}
-
-
 }
 void levelOrderTraversal_correct_original(node* root) {
 	if (root == nullptr)
