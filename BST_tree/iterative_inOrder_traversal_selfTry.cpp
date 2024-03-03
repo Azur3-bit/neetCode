@@ -29,6 +29,8 @@ template <typename T>
 ostream& operator<<(ostream& os, const unordered_set<T>& s) {os << "["; for (auto it = s.begin(); it != s.end(); ++it) {os << *it; if (next(it) != s.end())os << ", ";} os << "]"; return os;}
 template <typename T, typename S>
 ostream& operator<<(ostream& os, const pair<T, S>& p) {os << "(" << p.first << ", " << p.second << ")"; return os;}
+template <typename T>
+std::ostream& operator<<(std::ostream& os, const std::stack<T>& s) {std::stack<T> temp = s; os << "["; while (!temp.empty()) {os << temp.top(); temp.pop(); if (!temp.empty()) {os << ", ";}} os << "]"; return os;}
 // --- Linked list
 struct ListNode {int val; ListNode * next; ListNode (int _val) : val(_val), next(nullptr) {}};
 void AddNode_end(ListNode *&head, int value) {ListNode *newNode = new ListNode(value); if (head == NULL) {head = newNode; return;} ListNode *temp = head; while (temp->next != NULL) {temp = temp->next;} temp->next = newNode;}
@@ -43,21 +45,65 @@ void bst_levelOrder(treenode * root) {if (root == nullptr) {return;} queue<treen
 treenode * bst_inserttreenode(treenode * root, int d) {if (root == nullptr) {return root = new treenode(d);} if (root->data > d) {root->left = bst_inserttreenode(root->left, d);} else {root->right = bst_inserttreenode(root->right, d);}}
 void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root = bst_inserttreenode(root, it);} cout << "nodes added to bst !\n";}
 // ------------------------------------------------------------------ solve
+void iteative_inorder_traversal(treenode * rooti) {
+	if (rooti == nullptr)
+		return;
+
+	vector<int> ans {};
+	stack<treenode *> leftStack {};
+	stack<pair<treenode *, treenode *>> rightStack {};
+
+	treenode * root = rooti;
+
+	// leftStack.push(root);
+
+	while (true) {
+
+		if (root->left == nullptr) {
+			ans.push_back(root->data);
+			root = leftStack.top();
+			break;
+		}
+
+		if (root->left != nullptr) {
+			leftStack.push(root);
+		}
+		if (root->right != nullptr) {
+			rightStack.push(make_pair(root, root->right));
+		}
+
+		if (root->left != nullptr)
+			root = root->left;
+
+		// break;
+	}
+	dbg(root);
+	dbg(ans);
+	dbg(leftStack);
+	dbg(rightStack);
+}
+void getAdd(treenode * root, map<treenode *, int> &HM) {
+	if (root == nullptr)
+		return;
+
+	getAdd(root->left, HM);
+	HM[root] = root->data;
+	getAdd(root->right, HM);
+}
 void solve() {
-	vector<int> nums{};
+	vector<int> nums {};
 	cin >> nums;
-	treenode* root = nullptr;
+	treenode * root = nullptr;
 	bst_vector(root, nums);
-	dbg(nums);
-	cout << "IN-Order Traversal : ";
+
+	cout << " bst_traversal_inOrder : ";
 	bst_traversal_inOrder(root);
 	cout << "\n";
-	// bst_traversal_postOrder(root);
-	// cout << "\n";
-	// bst_traversal_PreOrder(root);
-	// cout << "\n";
-
-	bst_levelOrder(root);
+	// creating a HM for nodes with their address
+	map<treenode*, int> HM{};
+	getAdd(root, HM);
+	dbg(HM);
+	iteative_inorder_traversal(root);
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
