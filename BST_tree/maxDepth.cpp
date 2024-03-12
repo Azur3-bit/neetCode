@@ -1,6 +1,3 @@
-// maxDepth
-
-
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -47,35 +44,30 @@ void bst_traversal_PreOrder(treenode * root) {if (root == nullptr) {return;} cou
 void bst_levelOrder(treenode * root) {if (root == nullptr) {return;} queue<treenode *> q {}; q.push(root); while (!q.empty()) {int lvl_size = q.size(); for (int i = 0; i < lvl_size; ++i) {treenode * temptreenode = q.front(); cout << temptreenode->data << " "; q.pop(); if (temptreenode->left) {q.push(temptreenode->left);} if (temptreenode->right) {q.push(temptreenode->right);}} cout << "\n";}}
 treenode * bst_inserttreenode(treenode * root, int d) {if (root == nullptr) {return root = new treenode(d);} if (root->data > d) {root->left = bst_inserttreenode(root->left, d);} else {root->right = bst_inserttreenode(root->right, d);}}
 void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root = bst_inserttreenode(root, it);} cout << "nodes added to bst !\n";}
+treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
+
 // ------------------------------------------------------------------ solve
-
-treenode * createBinaryTree(const vector<int>& vec, int index) {
-	if (index >= vec.size() || vec[index] == -1) {
-		return nullptr;
-	}
-
-	treenode* node = new treenode(vec[index]);
-
-	node->left = createBinaryTree(vec, 2 * index + 1);
-	node->right = createBinaryTree(vec, 2 * index + 2);
-
-	return node;
-}
-
 void solve() {
-	treenode * root = nullptr;
-	vector<int> nums {};
-	cin >> nums;
-	dbg(nums);
 
-	bst_vector(root, nums);
+	vector<int> nums_1 = {1, 1};
+	vector<int> nums_2 = {1, -1, 1};
+	dbg(nums_1);
+	dbg(nums_2);
 
-	// bst_levelOrder(root);
-	bst_traversal_inOrder(root);
+	treenode * p = nullptr;
+	treenode * q = nullptr;
 
+	p = createBinaryTree(nums_1);
+	q = createBinaryTree(nums_2);
 
+	cout << "p -------------------\n";
+	bst_levelOrder(p);
+	cout << "q -------------------\n";
+	bst_levelOrder(q);
 
-
+	bst_traversal_inOrder(p);
+	cout << "\n";
+	bst_traversal_inOrder(q);
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
