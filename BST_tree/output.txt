@@ -1,10 +1,12 @@
-nums_1 : [1, 1]
-nums_2 : [1, -1, 1]
-p -------------------
-1 
-1 
-q -------------------
-1 
-1 
-1 1 
-1 1 
+nums : [3, 2, 4]
+HM : ---- Printing Ordered - Map
+KEY	VALUE
+2	0
+3	0
+4	0
+
+nums[i] : 3
+find_ele : 3
+nums[i] : 2
+find_ele : 4
+element found with item : 4 
