@@ -47,10 +47,53 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
+
+int height(treenode * root) {
+	if (root == nullptr)
+		return 0;
+	int l = height(root->left);
+	int r = height(root->right);
+
+	return max(l, r) + 1;
+}
+
+
+void inOrderUtil(treenode * root, bool &ans) {
+	if (root == nullptr)
+		return;
+
+	inOrderUtil(root->left, ans);
+
+	int lh = height(root->left);
+	int rh = height(root->right);
+
+	if (abs(lh - rh) > 1) {
+		ans = ans && false;
+	}
+	inOrderUtil(root->right, ans);
+
+}
+
+bool isBal(treenode * root) {
+
+	bool ans = true;
+	inOrderUtil(root, ans);
+	return ans;
+
+}
+
 void solve() {
 	vector<int> nums {};
 	cin >> nums;
 	dbg(nums);
+	treenode * root = createBinaryTree(nums);
+	bst_levelOrder(root);
+
+	bool answer = isBal(root);
+	if (answer)
+		cout << "++++ tree is balanced \n";
+	else
+		cout << " ---- tree is NOT balanced \n";
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
