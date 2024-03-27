@@ -1,5 +1,3 @@
-// diameter
-
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -47,69 +45,18 @@ void bst_levelOrder(treenode * root) {if (root == nullptr) {return;} queue<treen
 treenode * bst_inserttreenode(treenode * root, int d) {if (root == nullptr) {return root = new treenode(d);} if (root->data > d) {root->left = bst_inserttreenode(root->left, d);} else {root->right = bst_inserttreenode(root->right, d);}}
 void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root = bst_inserttreenode(root, it);} cout << "nodes added to bst !\n";}
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
+
 // ------------------------------------------------------------------ solve
-// adding node with address in the map for reference
-void address(treenode * root, map<int, treenode *> &hashmap) {
-	if (root == nullptr)
-		return ;
-	address(root->left, hashmap);
-	hashmap[root->data] = root;
-	address(root->right, hashmap);
-
-}
-
-
-pair<int, int> ericto_dfs_answer(treenode * root) {
-	if (root == nullptr) {
-		return {0, 0};
-	}
-	dbg(root);
-	pair<int, int>left = ericto_dfs_answer(root->left);
-	pair<int, int>right = ericto_dfs_answer(root->right);
-
-	int dia = max({left.first, right.first, left.second + right.second});
-	cout << "returing : ";
-	cout << dia << " " << max(left.second, right.second) + 1;
-	cout << "\n";
-	return {dia, max(left.second, right.second) + 1};
-}
-
-int dfs_simple(treenode * root) {
-	if (root == nullptr)
-		return 0;
-	dbg(root);
-	int l = dfs_simple(root->left);
-	int r = dfs_simple(root->right);
-	int ans = max(ans, l + r);
-	cout << "returing : " << (1 + max(l, r)) << "\n";
-	return (1 + max(l , r));
-}
-
 void solve() {
-	vector<int> nums{};
+	vector<int> nums {};
 	cin >> nums;
-	dbg(nums)
-	treenode * root = nullptr;
-	root = createBinaryTree(nums);
-	bst_levelOrder(root);
-
-	map<int, treenode * > hashmap{};
-	address(root, hashmap);
-	dbg(hashmap);
-	// int answer = ericto_dfs_answer(root).first;
-
-	int answer = dfs_simple(root);
-
-	dbg(answer);
+	dbg(nums);
 }
-
-// 5 2 -1 4 3 1
-
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
 #ifndef ONLINE_JUDGE
 	freopen("input.txt", "r", stdin);
-	freopen("output.txt", "w", stdout);
+	// freopen("output.txt", "w", stdout);
 #endif
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
