@@ -48,7 +48,42 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
+vector<vector<int>> zigZag(treenode * root) {
+	vector<vector<int>> ans {};
+
+	queue<treenode *> q {};
+	q.push(root);
+	while (!q.empty()) {
+		int level_Size = q.size();
+		vector<int> this_level {};
+		for (int i = 0; i < level_Size; i++) {
+			treenode * temp = q.front();
+			q.pop();
+			this_level.push_back(temp->data);
+			if (temp->left)
+				q.push(temp->left);
+			if (temp->right)
+				q.push(temp->right);
+		}
+		ans.push_back(this_level);
+	}
+
+	dbg(ans);
+	for (int i = 1; i < ans.size() - 1; i += 2) {
+		reverse(ans[i].begin(), ans[i].end());
+	}
+
+	return ans;
+}
 void solve() {
+	vector<int> n;
+	cin >> n;
+	dbg(n);
+	treenode * root = createBinaryTree(n);
+	bst_levelOrder(root);
+
+	vector<vector<int>> answer = zigZag(root);
+	dbg(answer);
 
 }
 // ------------------------------------------------------------------ main
