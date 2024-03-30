@@ -1,4 +1,4 @@
-// verticalOrderTraversal
+// testingPairHM
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -48,71 +48,9 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
-
-// #if 0
-void helper(treenode * root, int m_row, int m_col, map<int, vector<int>> &hm) {
-	if (root == nullptr) {
-		return;
-	}
-	cout << "node : " << root->val << "\n";
-	dbg(m_row);
-	dbg(m_col);
-	cout << "------------------\n";
-
-	// adding element in the hashmap
-	auto it = hm.find(m_col);
-	if (it != hm.end()) {
-		vector<int> it_vec = hm[m_col];
-		it_vec.push_back(root->val);
-		hm[m_col] = it_vec;
-	}
-	else
-		hm[m_col] = {root->val};
-
-	helper(root->left, m_row + 1, m_col - 1, hm);
-	helper(root->right, m_row + 1, m_col + 1, hm);
-
-}
-
-vector<vector<int>> verticalOrder(treenode * root) {
-	if (root == nullptr)
-		return {{}};
-
-	map<int, vector<int>> hm;
-	// map<int, map<vector<int>>> hm;
-
-	helper(root, 0, 0, hm);
-	dbg(hm);
-
-	vector<vector<int>> ans {};
-	dbg(ans);
-
-	for (auto it : hm) {
-		vector<int> currVec = it.second;
-		ans.push_back(currVec);
-	}
-	return ans;
-}
-
-// #endif
-
-
-
 void solve() {
-	vector<int> v{};
-	cin >> v;
-	dbg(v);
-	treenode * root = createBinaryTree(v);
-	bst_levelOrder(root);
-	cout << "===============================\n";
-
-	vector<vector<int>> ans =  verticalOrder(root);
-	dbg(ans);
-
-	// dbg(HM_helper);
-	// hash_helper(root);
-	// dbg(HM_helper);
-
+	map<int, int> HM{};
+	dbg(HM);
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
