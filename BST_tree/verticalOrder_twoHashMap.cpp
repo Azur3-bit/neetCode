@@ -1,4 +1,4 @@
-// verticalOrderTraversal
+// verticalOrder_twoHashMap
 
 // #include <bits/stdc++.h>
 #include <iostream>
@@ -49,55 +49,115 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
+#if 0
+void trashCode(treenode * root, int row, int col, map <int, map<int, vector<int>>> &ans) {
 
-// #if 0
-void helper(treenode * root, int m_row, int m_col, map<int, vector<int>> &hm) {
-	if (root == nullptr) {
+	if (root == nullptr)
 		return;
+	// same row can have multiple nodes
+	map<int, vector<int>> innerhm;
+	ans[col] = innerhm;
+	if (innerhm.find(row) == innerhm.end()) {
+		cout << "---------- node " << root->val << "\n";
+		vector<int> temp = innerhm[row];
+		temp.push_back(root->val);
+		innerhm[row] = temp;
 	}
-	cout << "node : " << root->val << "\n";
-	dbg(m_row);
-	dbg(m_col);
-	cout << "------------------\n";
-
-	// adding element in the hashmap
-	auto it = hm.find(m_col);
-	if (it != hm.end()) {
-		vector<int> it_vec = hm[m_col];
-		it_vec.push_back(root->val);
-		hm[m_col] = it_vec;
+	else {
+		innerhm[row] = {root->val};
 	}
-	else
-		hm[m_col] = {root->val};
 
-	helper(root->left, m_row + 1, m_col - 1, hm);
-	helper(root->right, m_row + 1, m_col + 1, hm);
+	ans[col] = innerhm;
 
+
+	helper(root->left, row + 1, col - 1, ans);
+	helper(root->right, row + 1, col + 1, ans);
 }
 
-vector<vector<int>> verticalOrder(treenode * root) {
+void goodhelper(treenode *root, int row, int col, map<int, vector<int>> &ans) {
+	if (root == nullptr)
+		return;
+
+
+	auto it = ans.find(col);
+	if (it == ans.end()) {
+		ans[col] = {root->val};
+	}
+	else {
+		vector<int> nums = ans[col];
+		nums.push_back(root->val);
+		ans[col] = nums;
+	}
+	cout << "\troot : " << root->val;
+	dbg(ans);
+
+	helper(root->left, row + 1, col - 1, ans);
+	helper(root->right, row + 1, col + 1, ans);
+}
+----------------------------------------------------------------------------------------------------------
+#endif
+
+void ganda_helper(treenode *root, int row, int col, map<int, map<int, vector<int>>> &ans) {
+	if (root == nullptr)
+		return;
+
+	auto it_col = ans.find(col);
+
+	if (it_col == ans.end()) {
+		map<int, vector<int>> temp {};
+		vector<int> temp_vec = {};
+		temp_vec.push_back(root->val);
+
+
+		// !---------------- ! changes
+		temp[row] = temp_vec;
+		ans[col] = temp;
+	}
+	else {
+		map<int, vector<int>> &temp = it_col->second;
+		// check if the row is present in the inner hashmap
+		auto it = temp.find(row);
+		if (it == temp.end()) {
+			temp[row] = {root->val}; // might have to change
+		}
+		else {
+			it->second.push_back(root->val);
+		}
+		// add the hashmap to the ans
+		ans[col] = temp;
+	}
+
+	ganda_helper(root->left, row + 1, col - 1, ans);
+	ganda_helper(root->right, row + 1, col + 1, ans);
+}
+
+vector<vector<int>> ganda_runner(treenode * root) {
 	if (root == nullptr)
 		return {{}};
 
-	map<int, vector<int>> hm;
-	// map<int, map<vector<int>>> hm;
-
-	helper(root, 0, 0, hm);
-	dbg(hm);
-
-	vector<vector<int>> ans {};
+	map<int, map<int, vector<int>>> ans;
+	ganda_helper(root, 0, 0, ans);
 	dbg(ans);
 
-	for (auto it : hm) {
-		vector<int> currVec = it.second;
-		ans.push_back(currVec);
+	// copy elements to final vector
+	vector<vector<int>> nums {};
+
+
+	// primary map traversal
+	for (auto it : ans) {
+		vector<int> temp {};
+		// secondry map traversal
+		for (auto z : it.second) {
+			// vector traversal
+			for (auto q : z.second) {
+				temp.push_back(q);
+			}
+		}
+		nums.push_back(temp);
 	}
-	return ans;
+	dbg(nums);
+	return nums;
 }
-
-// #endif
-
-
 
 void solve() {
 	vector<int> v{};
@@ -105,18 +165,12 @@ void solve() {
 	dbg(v);
 	treenode * root = createBinaryTree(v);
 	bst_levelOrder(root);
-	cout << "===============================\n";
-
-	vector<vector<int>> ans =  verticalOrder(root);
+	cout << "-------------\n";
+	vector<vector<int>> ans =  ganda_runner(root);
 	dbg(ans);
-
-	// dbg(HM_helper);
-	// hash_helper(root);
-	// dbg(HM_helper);
-
 }
 // ------------------------------------------------------------------ main
-int main(int argc, char const* argv[]) {
+int main(int argc, char const * argv[]) {
 #ifndef ONLINE_JUDGE
 	freopen("input.txt", "r", stdin);
 	// freopen("output.txt", "w", stdout);
@@ -128,3 +182,46 @@ int main(int argc, char const* argv[]) {
 	while (t--) {solve();}
 	return 0;
 }
+
+
+
+#if 0
+------------------ correct code --------------------------------------------------------------
+void final_helper(treenode *root, int row, int col, map<int, map<int, vector<int>>> &ans) {
+	if (root == nullptr)
+		return;
+
+	auto it_col = ans.find(col);
+
+	if (it_col == ans.end()) {
+		map<int, vector<int>> temp {};
+		vector<int> temp_vec = {};
+		temp_vec.push_back(root->val);
+		temp[row] = temp_vec;
+		ans[col] = temp;
+	}
+	else {
+		map<int, vector<int>> &temp = it_col->second;
+		auto it = temp.find(row);
+		if (it == temp.end()) {
+			temp[row] = {root->val};
+		}
+		else {
+			it->second.push_back(root->val);
+		}
+		ans[col] = temp;
+	}
+
+	final_helper(root->left, row + 1, col - 1, ans);
+	final_helper(root->right, row + 1, col + 1, ans);
+}
+
+void final_runner(treenode * root) {
+	if (root == nullptr)
+		return;
+	map<int, map<int, vector<int>>> ans {};
+	final_helper(root, 0, 0, ans);
+	dbg(ans);
+}
+
+#endif
