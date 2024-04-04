@@ -1,4 +1,5 @@
-// topView
+// top_view_Striver
+
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -48,80 +49,42 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
-int max_size(vector<vector<int>> nums) {
-	int ans = INT_MIN;
-	for (auto it : nums) {
-		ans = max((int)it.size(), ans);
-	}
-	return ans;
-}
-
-void get_node_map(treenode * root, map < treenode * , int> &hm ) {
+vector<int> answer(treenode *root) {
 	if (!root)
-		return;
-	get_node_map(root->left, hm);
-	hm[root] = root->val;
-	get_node_map(root->right, hm );
-}
+		return {};
 
-void get_pair_order(treenode *root, int row, int col , map<int, pair<int, int >> &hm_pair) {
-	if (!root)
-		return;
-	hm_pair[root ->val] = make_pair(row, col);
-	get_pair_order(root->left, row + 1, col - 1, hm_pair);
-	get_pair_order(root->right, row + 1, col + 1, hm_pair);
-}
-
-vector<int> answer(treenode * root) {
-	if (!root) { return {} ;}
-
-	// find the level order traverasl list
-	vector<vector<int>> nums {};
-	queue<treenode *> q{};
-	q.push(root);
+	map<int, int> ans_hm{};
+	queue<pair<treenode *, int>> q{};
+	q.push(make_pair(root, 0));
 	while (!q.empty()) {
 		int levelSize = q.size();
-		vector<int> temp_vec {};
 		for (int i = 0; i < levelSize; i++) {
-			treenode * temp = q.front();
+			treenode * temp = q.front().first;
+			int col = q.front().second;
 			q.pop();
-			temp_vec.push_back(temp->val);
+			// check if it is present in the answer hashmap
+			if (ans_hm.find(col) == ans_hm.end()) {
+				ans_hm[col] = temp->val;
+			}
 			if (temp->left)
-				q.push(temp->left);
+				q.push(make_pair(temp->left, col - 1));
 			if (temp->right)
-				q.push(temp->right);
+				q.push(make_pair(temp->right, col + 1));
 		}
-		nums.push_back(temp_vec);
 	}
-
-	dbg(nums);
-	cout << "max size => " << max_size(nums) << "\n";
-	int maxSize = max_size(nums);
-
-	vector<int> ans((maxSize) * 2);
-	dbg(ans);
-
-	// get the pair order
-	map<int, pair<int, int>> hm_pair {};
-	get_pair_order(root, 0, 0, hm_pair);
-	dbg(hm_pair);
-
-	//
-
-	return {};
+	dbg(ans_hm);
+	vector<int> ans {};
+	for (auto it : ans_hm)
+		ans.push_back(it.second);
+	return ans;
 }
-
 void solve() {
 	vector<int> v{};
 	cin >> v;
 	dbg(v);
-	treenode * root = createBinaryTree(v);
+	treenode *root = createBinaryTree(v);
 	bst_levelOrder(root);
-	cout << "--------------------------\n";
-	map<treenode *, int> hm {};
-	get_node_map(root, hm);
-	dbg(hm);
-	cout << "--------------------------\n";
+	cout << "-------------------------------\n";
 	vector<int> ans = answer(root);
 	dbg(ans);
 }
@@ -129,7 +92,7 @@ void solve() {
 int main(int argc, char const* argv[]) {
 #ifndef ONLINE_JUDGE
 	freopen("input.txt", "r", stdin);
-	freopen("output.txt", "w", stdout);
+	// freopen("output.txt", "w", stdout);
 #endif
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
