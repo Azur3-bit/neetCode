@@ -47,17 +47,38 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
-void dfs(treenode * root, vector<int> &nums) {
+void dfs(treenode * root, vector<int> &local_vec, vector<vector<int>> &ans ) {
 	if (root == nullptr)
 		return;
-
+	cout << "root.val : " << root->val << "\n";
+	local_vec.push_back(root->val);
+	if (root->right == nullptr && root->left == nullptr) {
+		ans.push_back(local_vec);
+	}
+	dfs(root->left, local_vec, ans);
+	dfs(root->right, local_vec, ans);
+	cout << "deleting : " << root->val << "\n";
+	local_vec.pop_back();
 }
 
 vector<string> answer(treenode *root) {
 	if (!root)	return {};
 	vector<vector<int>> routes {};
-	return {};
+	vector<int> local_vec {};
+	dfs(root, local_vec, routes);
+	dbg(routes);
 
+	// converting into string
+	vector<string> ans {};
+	for (auto it : routes) {  // vector<int>
+		string temp = "";
+		for (auto i : it) { // int
+			temp += to_string(i);
+			temp += " ";
+		}
+		ans.push_back(temp);
+	}
+	return ans;
 }
 
 void solve() {
