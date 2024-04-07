@@ -47,11 +47,31 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
+void dfs(treenode * root, vector<int> &nums) {
+	if (root == nullptr)
+		return;
+
+}
+
+vector<string> answer(treenode *root) {
+	if (!root)	return {};
+	vector<vector<int>> routes {};
+	return {};
+
+}
+
 void solve() {
 	vector<int> v{};
 	cin >> v;
 	dbg(v);
+	treenode * root = createBinaryTree(v);
+	bst_levelOrder(root);
 
+	cout << "-------\n";
+	bst_traversal_inOrder(root);
+	cout << "\n------------------------\n";
+	vector<string> ans = answer(root);
+	dbg(ans);
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
