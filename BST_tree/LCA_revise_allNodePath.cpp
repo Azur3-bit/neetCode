@@ -1,4 +1,4 @@
-// LCA in binary Trees
+// LCA_revise_allNodePath
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -48,87 +48,88 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
-treenode * pointer(treenode * root, int data) {
+treenode * find_node(treenode * root, int data) {
 	if (!root)
-		return nullptr;
+		return NULL;
 
 	if (root->val == data)
 		return root;
 
-	treenode * left_subtree = pointer(root->left, data);
-	if (left_subtree) {
-		if (left_subtree->val == data)
-			return left_subtree;
+	treenode * left = find_node(root->left, data);
+	treenode * right = find_node(root->right, data);
+
+	if (left) {
+		if (left->val == data)
+			return left;
 	}
-	treenode * right_subtree = pointer(root->right, data);
-	if (right_subtree) {
-		if (right_subtree->val == data)
-			return right_subtree;
+	if (right) {
+		if (right->val == data) {
+			return right;
+		}
 	}
-	return nullptr;
 }
 
-bool dfs(treenode * root, treenode * p, vector<int> &nums) {
-	if (!root)
+bool helper(treenode * root, treenode * x, vector<int> &ans) {
+	if (root == nullptr)
 		return false;
-	nums.push_back(root->val);
-	if (root == p)
+	ans.push_back(root->val);
+	if (root == x)
 		return true;
-	if (dfs(root->left, p, nums) || dfs(root->right, p, nums))
+	if (helper(root->left, x, ans) || helper(root->right, x, ans)) {
 		return true;
-	nums.pop_back();
+	}
+	ans.pop_back();
 	return false;
 }
 
+treenode * answer(treenode * root, treenode * first, treenode * second) {
+	if (root == nullptr)
+		return nullptr;
 
-int answer(treenode * root, treenode *p, treenode *q) {
-	vector<int> p_vec{};
-	vector<int> q_vec{};
-	dfs(root, p, p_vec);
-	dfs(root, q, q_vec);
+	vector<int> first_vec{};
+	vector<int> second_vec{};
 
+	helper(root, first, first_vec);
+	helper(root, second, second_vec);
+	dbg(first_vec);
+	dbg(second_vec);
 
-	dbg(p_vec);
-	dbg(q_vec);
+	// first_vec : [3, 5]
+	// second_vec : [3, 5, 2, 4]
 
-
-	for (int i = q_vec.size() - 1; i >= 0; i--) {
-		if (find(p_vec.begin(), p_vec.end(), q_vec[i]) != p_vec.end()) {
-			return q_vec[i];
+	int local_answer = 0;
+	for (int i = second_vec.size() - 1; i >= 0; i--) {
+		// cout << "finding : " << second_vec[i] << "\n";
+		if (find(first_vec.begin(), first_vec.end(), second_vec[i]) != first_vec.end()) {
+			local_answer = second_vec[i];
+			break;
 		}
 	}
-
-	return -100;
+	treenode * ans = find_node(root, local_answer);
+	return ans;
 }
 
 void solve() {
+	int x_int , y_int ;
+	cin >> x_int >> y_int;
+	dbg(x_int);
+	dbg(y_int);
 	vector<int> v{};
-	int p_int, q_int;
-	cin >> p_int >> q_int ;
 	cin >> v;
-	dbg(p_int);
-	dbg(q_int);
 	dbg(v);
 	treenode * root = createBinaryTree(v);
 	bst_levelOrder(root);
-	cout << "------------------------------------\n";
-	treenode * p = pointer(root, p_int);
-	if (p)
-		cout << "p.val : " << p->val << "\n";
+	cout << "--------------------------------\n";
+	treenode * x = find_node(root, x_int);
+	treenode *y = find_node(root, y_int);
+	cout << "x.val " << x->val << "\n";
+	cout << "y.val " << y->val << "\n";
+
+	treenode * ans = answer(root, x, y);
+	if (ans)
+		cout << "ans.val : " << ans->val << "\n";
 	else
-		cout << "p pointer is null \n";
-
-	treenode * q = pointer(root, q_int);
-	if (q)
-		cout << "q.val : " << q->val << "\n";
-	else
-		cout << "q pointer is null \n";
-	cout << "------------------------------------\n";
-
-
-
-	int ans = answer(root, p, q);
-	dbg(ans);
+		cout << "returns nullptr\n";
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {

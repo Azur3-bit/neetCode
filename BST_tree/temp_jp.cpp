@@ -1,4 +1,4 @@
-// LCA in binary Trees
+// temp_jp
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -48,87 +48,8 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
-treenode * pointer(treenode * root, int data) {
-	if (!root)
-		return nullptr;
-
-	if (root->val == data)
-		return root;
-
-	treenode * left_subtree = pointer(root->left, data);
-	if (left_subtree) {
-		if (left_subtree->val == data)
-			return left_subtree;
-	}
-	treenode * right_subtree = pointer(root->right, data);
-	if (right_subtree) {
-		if (right_subtree->val == data)
-			return right_subtree;
-	}
-	return nullptr;
-}
-
-bool dfs(treenode * root, treenode * p, vector<int> &nums) {
-	if (!root)
-		return false;
-	nums.push_back(root->val);
-	if (root == p)
-		return true;
-	if (dfs(root->left, p, nums) || dfs(root->right, p, nums))
-		return true;
-	nums.pop_back();
-	return false;
-}
-
-
-int answer(treenode * root, treenode *p, treenode *q) {
-	vector<int> p_vec{};
-	vector<int> q_vec{};
-	dfs(root, p, p_vec);
-	dfs(root, q, q_vec);
-
-
-	dbg(p_vec);
-	dbg(q_vec);
-
-
-	for (int i = q_vec.size() - 1; i >= 0; i--) {
-		if (find(p_vec.begin(), p_vec.end(), q_vec[i]) != p_vec.end()) {
-			return q_vec[i];
-		}
-	}
-
-	return -100;
-}
-
 void solve() {
-	vector<int> v{};
-	int p_int, q_int;
-	cin >> p_int >> q_int ;
-	cin >> v;
-	dbg(p_int);
-	dbg(q_int);
-	dbg(v);
-	treenode * root = createBinaryTree(v);
-	bst_levelOrder(root);
-	cout << "------------------------------------\n";
-	treenode * p = pointer(root, p_int);
-	if (p)
-		cout << "p.val : " << p->val << "\n";
-	else
-		cout << "p pointer is null \n";
-
-	treenode * q = pointer(root, q_int);
-	if (q)
-		cout << "q.val : " << q->val << "\n";
-	else
-		cout << "q pointer is null \n";
-	cout << "------------------------------------\n";
-
-
-
-	int ans = answer(root, p, q);
-	dbg(ans);
+	cout << "working \n";
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
