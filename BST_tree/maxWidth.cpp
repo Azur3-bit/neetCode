@@ -52,7 +52,39 @@ int helper(treenode * root) {
 }
 int answer(treenode * root) {
 	if (root == NULL)
-		return 0;
+		return 1;
+
+	int ans = INT_MIN;
+	queue<pair<treenode *, int>> q{};
+	q.push(make_pair(root, 0));
+	int mmin;
+	int firs_t , last ;
+	while (!q.empty()) {
+		int size = q.size();
+		int mmin = q.front().second; // changed
+		for (int i = 0; i < size; i++) {
+			// changes
+			int curr_i = q.front().second - mmin;
+			treenode * node = q.front().first;
+			q.pop();
+			if (i == 0) {
+				firs_t = curr_i;
+			}
+			if (curr_i == size) {
+				last = curr_i;
+			}
+			// changes end
+
+			if (node ->left) {
+				q.push(make_pair(node->left, 2 * curr_i + 1));
+			}
+			if (node->right)
+				q.push(make_pair(node->left, 2 * curr_i + 2));
+		}
+		ans = max(ans, last - firs_t  + 1);
+	}
+	return ans;
+
 }
 void solve() {
 	vector<int> v{};
