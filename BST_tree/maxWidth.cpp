@@ -47,9 +47,7 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
-int helper(treenode * root) {
-	return 0;
-}
+
 int answer(treenode * root) {
 	if (root == NULL)
 		return 1;
@@ -58,7 +56,7 @@ int answer(treenode * root) {
 	queue<pair<treenode *, int>> q{};
 	q.push(make_pair(root, 0));
 	int mmin;
-	int firs_t , last ;
+	int firs_t = 0, last = 0 ;
 	while (!q.empty()) {
 		int size = q.size();
 		int mmin = q.front().second; // changed
@@ -67,10 +65,11 @@ int answer(treenode * root) {
 			int curr_i = q.front().second - mmin;
 			treenode * node = q.front().first;
 			q.pop();
+
 			if (i == 0) {
 				firs_t = curr_i;
 			}
-			if (curr_i == size) {
+			if (curr_i == size - 1) {
 				last = curr_i;
 			}
 			// changes end
