@@ -1,4 +1,4 @@
-// childernSumProperty
+// All_Nodes_Distance_K_in_Binary_Tree
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -48,52 +48,16 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
-void answer(treenode * &root) {
-	if (root == nullptr)
-		return;
-	int sum = 0;
-	if (root->left) {
-		sum += root->left->val;
-	}
-	if (root->right) {
-		sum += root->right->val;
-	}
-
-	if (sum > root->val) {
-		root->val = sum;
-	}
-	else {
-		if (root->left)
-			root->left->val = root->val;
-		if (root->right)
-			root->right->val = root->val;
-	}
-
-
-	// go left and rigth
-	answer(root->left);
-	answer(root->right);
-
-	int total = 0;
-	if (root->left)
-		total += root->left->val;
-	if (root->right)
-		total += root->right->val;
-
-	if (root->right || root->left ) {
-		root->val = total;
-	}
-}
 void solve() {
-	vector<int> v{};
+	int target_node;
+	cin >> target_node;
+	int distance;
+	cin >> distance;
+	vector<int> v {};
 	cin >> v;
-	dbg(v);
 	treenode * root = createBinaryTree(v);
 	bst_levelOrder(root);
-	cout << "---------------------------------\n";
-	answer(root);
-	cout << "\t\tANSWER\n";
-	bst_levelOrder(root);
+	cout << "----------------------------------\n";
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
