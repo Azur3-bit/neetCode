@@ -1,4 +1,5 @@
-// All_Nodes_Distance_K_in_Binary_Tree
+// All_Nodes_Distance_K_in_Binary_Tree
+
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -48,6 +49,98 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
+treenode * get_to_targetNode(treenode * root, map<treenode *, int> hm, int e) {
+	for (auto it : hm) {
+		if (it.second == e) {
+			return it.first;
+		}
+	}
+	return nullptr;
+}
+void helper_map(treenode * root, map<treenode *, int> &hm) {
+	if (!root)
+		return;
+	helper_map(root->left, hm);
+	hm[root] = root->val;
+	helper_map(root->right, hm);
+}
+
+void createParentMap(treenode * root, map<treenode *, treenode *> &parentMap) {
+	if (!root)
+		return;
+	// levelOrder Traversal
+	queue<treenode *> q{};
+	q.push(root);
+	while (!q.empty()) {
+		int size = q.size();
+		for (int i = 0; i < size; i++) {
+			treenode * node = q.front();
+			q.pop();
+			if (node->left) {
+				parentMap[node->left] = node;
+				q.push(node->left);
+			}
+			if (node->right) {
+				parentMap[node->right] = node;
+				q.push(node->right);
+			}
+		}
+	}
+}
+vector<int> answer(treenode * root, int target_node, int distance) {
+	if (root == nullptr)
+		return {};
+	map<treenode *, int> h_map {};
+	helper_map(root, h_map);
+	dbg(h_map);
+	// node pointer
+	treenode * target = get_to_targetNode(root, h_map, target_node);
+	dbg(target->val);
+	dbg(distance);
+	cout << "\n";
+
+	// Actual solution start
+	map<treenode *, treenode *> parentMap {};
+	createParentMap(root, parentMap);
+	dbg(parentMap);
+
+	map<treenode *, bool> visisted {};
+	vector<vector<int>> ans {};
+	queue<treenode *> q{};
+	q.push(target);
+	visisted[target] = true;
+	while (!q.empty()) {
+		int size = q.size();
+		vector<int> temp_ans{};
+		for (int i = 0; i < size; i++) {
+			treenode * node = q.front();
+			q.pop();
+			if (node->left && !visisted[node->left]) {
+				q.push(node->left);
+				visisted[node->left] = true;
+				temp_ans.push_back(node->left->val);
+			}
+			if (node->right && !visisted[node->right]) {
+				q.push(node->right);
+				visisted[node->right] = true;
+				temp_ans.push_back(node->right->val);
+			}
+			if (parentMap.find(node) != parentMap.end()) {
+				treenode * parent_node = parentMap[node];
+				if (!visisted[parent_node]) {
+					q.push(parent_node);
+					visisted[parent_node] = true;
+					temp_ans.push_back(parent_node->val);
+				}
+			}
+		}
+		ans.push_back(temp_ans);
+	}
+
+	dbg(ans);
+	return ans[distance - 1];
+}
+
 void solve() {
 	int target_node;
 	cin >> target_node;
@@ -58,6 +151,9 @@ void solve() {
 	treenode * root = createBinaryTree(v);
 	bst_levelOrder(root);
 	cout << "----------------------------------\n";
+
+	vector<int> ans = answer(root, target_node, distance);
+	dbg(ans);
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
