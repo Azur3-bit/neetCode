@@ -48,8 +48,48 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
+void get_target(treenode * root, int k, treenode *&target) {
+	if (root == nullptr)
+		return;
+	get_target(root->left, k, target);
+	if (root->val == k) {
+		target = root;
+		return;
+	}
+	get_target(root->right, k, target);
+}
+void parent_node_mapping(treenode * root, map<int, int> &hm) {
+	if (root == nullptr)
+		return;
+	queue<treenode *> q{};
+	while (!q.empty()) {
+		int size = q.size();
+		for (int i = 0 ; i < size ; i++) {
+			treenode * node = q.front();
+			q.pop();
+			if (node->left) {
+				hm[node->left->val] = root->val;
+				q.push(node->left);
+			}
+			if (node->right) {
+				hm[node->right->val] = root->val;
+				q.push(node->right);
+			}
+		}
+	}
+}
 void solve() {
-	cout << "helol world \n";
+	int k;
+	cin >> k;
+	vector<int> v{};
+	cin >> v;
+	treenode * root = createBinaryTree(v);
+	bst_levelOrder(root);
+	cout << "----------------------------------\n";
+	treenode * target = nullptr;
+	get_target(root, k, target);
+	cout << "target.val : " << target->val << "\n";
+
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
