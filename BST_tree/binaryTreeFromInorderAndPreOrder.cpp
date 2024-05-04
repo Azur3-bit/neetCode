@@ -1,4 +1,4 @@
-// Nodes In Complete Binary Tree
+// binaryTreeFromInorderAndPreOrder
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -47,79 +47,21 @@ treenode * bst_inserttreenode(treenode * root, int d) {if (root == nullptr) {ret
 void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root = bst_inserttreenode(root, it);} cout << "nodes added to bst !\n";}
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
-// ------------------------------------------------------------------
+// ------------------------------------------------------------------ solve
+treenode * answer(vector<int> inorder, vector<int> preorder) {
 
-// find right height
-// find left heght
-// if right == left then return height of the tree 2^h - 1
-// if (right != left){
-//	again repeat for both left sub tree and right sub tree
-// }
-// return left + right + 1
-
-int find_right_h(treenode * root) {
-	if (root == nullptr) {
-		return 0;
-	}
-	int ans = 0;
-	while (root) {
-		root = root->right;
-		ans++;
-	}
-	return ans;
 }
-
-int find_left_h(treenode * root) {
-	int ans = 0;
-	if (!root)
-		return ans;
-	while (root) {
-		++ans;
-		root = root->left;
-
-	}
-	return ans;
-}
-
-int answer(treenode * root) {
-	if (!root)
-		return 0;
-	int l, r;
-	int left_h = find_left_h(root);
-	int right_h = find_right_h(root);
-	if (left_h == right_h) {
-		return pow(2, left_h) - 1;
-	}
-	else {
-		l = answer(root->left);
-		r = answer(root->right);
-	}
-	return l + r + 1;
-}
-
 void solve() {
-	vector<int> v{};
-	cin >> v;
-	dbg(v);
+	vector<int> inorder = {};
+	vector<int> preorder = {};
 
-	treenode * root = createBinaryTree(v);
-	bst_levelOrder(root);
-	cout << "------------------------------------------\n";
-
-	int right_height = find_right_h(root);
-	dbg(right_height);
-
-	int left_height = find_left_h(root);
-	dbg(left_height);
-
-	cout << "------------ XX ----------------\n";
-	int ans = answer(root);
-	cout << "------------ XX ----------------\n";
-	dbg(ans);
+	cout << "=---------------------------=\n";
+	treenode * ans = answer(inorder, preorder);
+	bst_levelOrder(ans);
 
 }
 // ------------------------------------------------------------------ main
-int main(int argc, char const * argv[]) {
+int main(int argc, char const* argv[]) {
 #ifndef ONLINE_JUDGE
 	freopen("input.txt", "r", stdin);
 	// freopen("output.txt", "w", stdout);
