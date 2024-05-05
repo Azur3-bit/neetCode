@@ -1,3 +1,5 @@
+// iterative_fib
+
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -47,38 +49,37 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
+int helper(int n) {
+	vector<int> nums(n + 2, 0);
+	dbg(nums);
 
+	nums[0] = 0;
+	nums[1] = 1;
+	// [0,1,1]
+	// presum = 2
+	// index = 3
+	int presum = 1;
 
-int fib(int n) {
-	if (n == 0 || n == 1) {
-		return n;
+	int index = 2;
+	while (index < nums.size()) {
+		nums[index] = nums[index - 1] + nums[index - 2];
+		presum += nums[index++];
 	}
-
-	return fib(n - 1) + fib(n - 2);
+	dbg(nums);
+	return presum;
 }
 
 void solve() {
-
-	int a, b;
-	cin >> a >> b;
-	dbg(a);
-	dbg(b);
-
-	vector<int> ans_a{};
-	vector<int> ans_b{};
-	int ans = 0;
-
-	for (int i = a; i <= b; i++) {
-		int temp = fib(i);
-		ans += temp;
-		ans_a.push_back(temp);
-	}
-	dbg(ans_a);
+	int n, m;
+	cin >> n >> m;
+	dbg(n);
+	dbg(m);
+	int ans_1 = helper(n);
+	int ans_2 = helper(m - 1);
+	dbg(ans_1);
+	dbg(ans_2);
+	int ans = ans_2 - ans_1;
 	dbg(ans);
-
-
-
-
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
