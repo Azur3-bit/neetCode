@@ -1,0 +1,401 @@
+.vs/ProjectSettings.json
+.vs/VSWorkspaceState.json
+.vs/neetCode/FileContentIndex/5e868468-749e-47ae-9963-86f97e426afd.vsidx
+.vs/neetCode/FileContentIndex/b0e92a9c-62e7-4f4e-86b1-0d6143d4dece.vsidx
+.vs/neetCode/FileContentIndex/c91644c8-fd85-4498-949e-8a2407f19bf0.vsidx
+.vs/neetCode/v17/.wsuo
+.vs/neetCode/v17/Browse.VC.db
+.vs/neetCode/v17/ipch/AutoPCH/7102a8d54e5fdccd/LONGEST REPEATING CHARACTER REPLACEMENT.ipch
+.vs/neetCode/v17/ipch/AutoPCH/ba9824f9d3a440cb/NMWOAB1D..ipch
+.vs/slnx.sqlite
+.vscode/settings.json
+.vscode/tasks.json
+BST_tree/All_Nodes_Distance_K_in_Binary_Tree.cpp
+BST_tree/BoundryOrderTraversal.cpp
+BST_tree/CreatingBST.cpp
+BST_tree/CreatingBST_failed.cpp
+BST_tree/Creating_BST_practice.cpp
+BST_tree/LCA_Striver.cpp
+BST_tree/LCA_bt.cpp
+BST_tree/LCA_revise_allNodePath.cpp
+BST_tree/Nodes In Complete Binary Tree.cpp
+BST_tree/SortArrayIncreasingFrequency.cpp
+BST_tree/a.exe
+BST_tree/a.out
+BST_tree/all_BST_insertion_deletion_searching.cpp
+BST_tree/all_BST_insertion_deletion_searching.exe
+BST_tree/balancedBST.cpp
+BST_tree/balancedBST.exe
+BST_tree/balancedTree_retry.cpp
+BST_tree/binaryTreeFromInorderAndPreOrder.cpp
+BST_tree/bottomView.cpp
+BST_tree/boudryTraversal_retry.cpp
+BST_tree/bst_boilerPlate,cpp
+BST_tree/bst_boilerPlate.cpp
+BST_tree/bst_revise_deletion.cpp
+BST_tree/bst_revise_deletion.exe
+BST_tree/childenSumProperty.cpp
+BST_tree/childernSumProperty.cpp
+BST_tree/creating_bst_revise.cpp
+BST_tree/diameterOfBST.cpp
+BST_tree/diameterOfBST.exe
+BST_tree/diameterOfBT.cpp
+BST_tree/diameterOfBT.exe
+BST_tree/diameterOfBinaryTree.cpp
+BST_tree/fib.cpp
+BST_tree/input.txt
+BST_tree/invert_binaryTree.cpp
+BST_tree/invert_binaryTree.exe
+BST_tree/iterativeWays.cpp
+BST_tree/iterative_fib.cpp
+BST_tree/iterative_inOrder_traversal.cpp
+BST_tree/iterative_inOrder_traversal_selfTry.cpp
+BST_tree/kth_smallest_element.cpp
+BST_tree/map_revise.cpp
+BST_tree/map_revise.exe
+BST_tree/maxDepth.cpp
+BST_tree/maxDepth.exe
+BST_tree/maxDiameter.cpp
+BST_tree/maxPathSumBT.cpp
+BST_tree/maxPathSumBT.exe
+BST_tree/maxPathSumBT_selfTry_failed.cpp
+BST_tree/maxPathSum_retry.cpp
+BST_tree/maxWidth.cpp
+BST_tree/maxWidth_retry.cpp
+BST_tree/output.txt
+BST_tree/pattern.cpp
+BST_tree/printing_bst_levelWise.cpp
+BST_tree/retryTwoSum.cpp
+BST_tree/retryTwoSum.exe
+BST_tree/root_to_leaf.cpp
+BST_tree/subTreeOfAnotherTree.cpp
+BST_tree/substring_permutation.cpp
+BST_tree/symmertricTree.cpp
+BST_tree/temp1.cpp
+BST_tree/temp_jp.cpp
+BST_tree/testingMax.cpp
+BST_tree/testingMax.exe
+BST_tree/testingPairHM.cpp
+BST_tree/testing_treeBoiler_plate.cpp
+BST_tree/timeToBurn.cpp
+BST_tree/timeTogetInfected.cpp
+BST_tree/topView.cpp
+BST_tree/topView.exe
+BST_tree/topView_retry.cpp
+BST_tree/top_view_Striver.cpp
+BST_tree/verticalOrderTraversal.cpp
+BST_tree/verticalOrderTraversal.exe
+BST_tree/verticalOrder_twoHashMap.cpp
+BST_tree/zigZagTraversal.cpp
+Checking the Operation of Find and Count.cpp
+CppProperties.json
+Creating a Boiler Plate For CompCoding.cpp
+ExpectedOutput.txt
+Implementing Buckets.cpp
+Implementing BucketsSelf.cpp
+Implementing Min Heap.cpp
+Implementing Set.cpp
+Implementing Stacks and its functions.cpp
+Learning Heap.cpp
+Learning Priority queue.cpp
+LeetCodeSol - Grouped anagram.cpp
+Leetcode_leetcode_faster_code_fast.cpp
+Maps.cpp
+TestForTimer.cpp
+TestingSetOperations.cpp
+TestingTImerFuntion.cpp
+TimerClock.cpp
+TimerClock.h
+To do.txt
+a.exe
+array_hashing/Group Anagram.cpp
+array_hashing/Group anagrams Try -2 .cpp
+array_hashing/Group anagrams try - 6.cpp
+array_hashing/Group anagrams try -3.cpp
+array_hashing/Group anagrams try-4.cpp
+array_hashing/Matrix Row_Col formula..cpp
+array_hashing/Practicing Maps-LoveBabbar.cpp
+array_hashing/Sudoko Checker.cpp
+array_hashing/Suduko Checker leetCode.cpp
+array_hashing/Suduko Col Checker.cpp
+array_hashing/Top K frequent Elements try - 2.cpp
+array_hashing/Top K frequent element.cpp
+array_hashing/TopK_frequent Elements.cpp
+array_hashing/Two Sum - Browser Solution Practice - 1.cpp
+array_hashing/Two Sum-neetCode(HashMap - HalfCompleted).cpp
+array_hashing/Two Sum-neetCode.cpp
+array_hashing/TwoSum.cpp
+array_hashing/containsDuplicate.cpp
+array_hashing/groupAnagrams try - 5.cpp
+array_hashing/neetCode - TwoSum.cpp
+array_hashing/neetCode - TwoSum.txt
+array_hashing/output.txt
+array_hashing/try 7 Group anagram.cpp
+array_hashing/validAnagram.cpp
+binary_search/2dSeach-leetcode-mostOptimized.cpp
+binary_search/2dmatrix_searchElement.cpp
+binary_search/2dmatrix_searchElement.exe
+binary_search/AlgoTry_iterative_binarySeach.cpp
+binary_search/MinimumInRotatedSortedArray.cpp
+binary_search/a.exe
+binary_search/a.out
+binary_search/asPerBluePrint_practice.cpp
+binary_search/asPerBluePrint_practice.exe
+binary_search/asPerBlueprint_retry-practice.cpp
+binary_search/asPerBlueprint_retry-practice.exe
+binary_search/binSeach-Recursive.cpp
+binary_search/binSearch_asPer_blueprint.cpp
+binary_search/binarySearch-neetCode.cpp
+binary_search/binarySearchAlgoTry.cpp
+binary_search/consecutive_digits.cpp
+binary_search/finding_first_true.cpp
+binary_search/finding_subArraySorted.cpp
+binary_search/hari_koko.cpp
+binary_search/input.txt
+binary_search/kokoEatingBananas.cpp
+binary_search/linearMatrix-binaryArray.cpp
+binary_search/linearMatrix-binaryArray.exe
+binary_search/linearMatrix_binaryArrayRetry.cpp
+binary_search/lowerBound_testing.cpp
+binary_search/mat.jpg
+binary_search/maxMoney.cpp
+binary_search/medianOfTwoSortedArray_Sorting.cpp
+binary_search/medianOfTwoSortedArray_combineWithoutSorting.cpp
+binary_search/medianOfTwoSortedArray_solution_optimized.cpp
+binary_search/minElement-RotatedArray.cpp
+binary_search/optimizeSearch2dMatrix.cpp
+binary_search/optimized_bSeach_algo_neetcode-bSp1.cpp
+binary_search/output.txt
+binary_search/retry_binarySearch-iteartive.cpp
+binary_search/retry_binarySearch-iteartive.exe
+binary_search/retry_optimizd_2d_bSearch_neetCode.cpp
+binary_search/return.cpp
+binary_search/revingArrayusingTwoLoops.cpp
+binary_search/revise-bin_search.cpp
+binary_search/revise_slidingWindow.cpp
+binary_search/rotate_array.cpp
+binary_search/rsearch2dMatrix.cpp
+binary_search/search2dMatrix-LinearSearch.cpp
+binary_search/search2dMatrix_highlyoptimized_leetcode.cpp
+binary_search/search_in_a_Rotated_sorted_Array.cpp
+binary_search/simple_median.cpp
+binary_search/temp.cpp
+binary_search/temp_zaid.cpp
+binary_search/test_ceil.cpp
+binary_search/testing_lower_bound.cpp
+binary_search/timeBasedKey_val.cpp
+binary_search/true_and_false_binarySearch.cpp
+boilerPlate Performance Monitor.cpp
+cin_vector.png
+compile.bat
+compile.txt
+consecutiveNumber-Using Sets.cpp
+consecutiveNumbers using HashMap.cpp
+del linked list try.cpp
+delete node from a tree.cpp
+deletion in Heaps.cpp
+hari Original Code.cpp
+input pairs istream.png
+input.txt
+insertion in Heap - C++.cpp
+insertion in Heaps - try_2 -- self.cpp
+insertion in heaps practice - 3.cpp
+leaf_node_deletion--Hari.cpp
+leaf_node_deletion--Hari.exe
+linked_list/CosmicByte_keyBoard_invoice.pdf
+linked_list/Doubly_linked list.cpp
+linked_list/Doubly_linked list.exe
+linked_list/Find the Duplicate Number.cpp
+linked_list/Find the Duplicate Number.exe
+linked_list/LRU.cpp
+linked_list/LRU.exe
+linked_list/Leetcode - copy linked list .cpp
+linked_list/Leetcode - copy linked list .exe
+linked_list/Linked List Cycle.cpp
+linked_list/Linked List Cycle.exe
+linked_list/Merge K sorted Lists - Iterative.cpp
+linked_list/Merge k Sorted Lists _ Merge Sort.cpp
+linked_list/Merge k Sorted Lists _ PriorityQueue.cpp
+linked_list/Merge k Sorted Lists _ PriorityQueue.exe
+linked_list/Merge k Sorted Lists.cpp
+linked_list/MergeSort-Retry.cpp
+linked_list/MergeSort_retry.cpp
+linked_list/Priority Queue _ merge k sorted List.cpp
+linked_list/ReverseNodes-subProblem-array.cpp
+linked_list/ReverseNodes-subProblem-array.exe
+linked_list/ReverseNodes_inK-Group.cpp
+linked_list/ReverseNodes_inK-Group.exe
+linked_list/Sentinal Nodes D_LL.cpp
+linked_list/TimerClock.h
+linked_list/a.exe
+linked_list/a.out
+linked_list/add two number.cpp
+linked_list/add two number.exe
+linked_list/add two number_try2.cpp
+linked_list/add two number_try2.exe
+linked_list/addtwonumber1.jpg
+linked_list/boilerplate_newtest.cpp
+linked_list/circularlinkedlist.png
+linked_list/copy Linked list random pointer.cpp
+linked_list/copy Linked list random pointer.exe
+linked_list/copy linked list with a random pointer.cpp
+linked_list/copy linked list with a random pointer.exe
+linked_list/debug_competetiveCodingSnippet.png
+linked_list/doublyLinked list with Sentinal Nodes.cpp
+linked_list/doublyLinkedList.cpp
+linked_list/doublyLinkedList.exe
+linked_list/example img copy linked list with a random pointer.png
+linked_list/exp_output.txt
+linked_list/final LinkedList BoilerPlate.cpp
+linked_list/input.txt
+linked_list/istrean_test.cpp
+linked_list/linkedlist boilerplate.cpp
+linked_list/linkedlist boilerplate.exe
+linked_list/mergeSort.cpp
+linked_list/merging Sorted linked list try _ 2.cpp
+linked_list/merging Sorted linked list try _ 2.exe
+linked_list/merging two sorted linked list.cpp
+linked_list/merging two sorted linked list.exe
+linked_list/new Doubly linked list.cpp
+linked_list/new Doubly linked list.exe
+linked_list/newTest.cpp
+linked_list/optimized_ReverseNodes-subProblem-array.cpp
+linked_list/output.txt
+linked_list/output1.txt
+linked_list/pair SortAlgo.cpp
+linked_list/reOrderLinkedList.cpp
+linked_list/reOrderLinkedList.exe
+linked_list/reOrderList.cpp
+linked_list/reOrderList.exe
+linked_list/remove nth Node.cpp
+linked_list/remove nth Node.exe
+linked_list/res.out
+linked_list/reverseLinkedlist.cpp
+linked_list/reverseLinkedlist.exe
+linked_list/reverse_ex1.jpg
+linked_list/reving a linked list new Method.cpp
+linked_list/reving a linked list new Method.exe
+linked_list/revise_reving_linked list.cpp
+linked_list/revising_reving Linked list.cpp
+linked_list/simple_cycle.png
+linked_list/something_new.cpp
+linked_list/temp.cpp
+linked_list/temp.exe
+linked_list/temp.py
+linked_list/test.cpp
+linked_list/test.exe
+linked_list/testCase Add number_linkedlist.png
+linked_list/testing Min priority Queue.cpp
+linked_list/testing Priority Queue.cpp
+linked_list/testing divide by 2 right shift.cpp
+linked_list/todo
+longestConsecutive - hashSet.cpp
+longestConsecutive.cpp
+new_testing_boiler.cpp
+output.txt
+output/Group Anagram.exe
+output/Group anagrams try - 6.exe
+output/Group anagrams try -3.exe
+output/Maps.exe
+output/Sudoko Checker.exe
+output/Two Sum-neetCode.exe
+output/TwoSum.exe
+output/boilerPlate Check.exe
+output/consecutiveNumbers using HashMap.exe
+output/containsDuplicate.exe
+output/output.txt
+output/product of array except self.exe
+output/validAnagram.exe
+personalServer_gitRemoteServer.txt
+pointers test.cpp
+practicing Heaps insertion and deletion.cpp
+product of array except self.cpp
+python template.py
+result.txt
+singleUserInput_Map.cpp
+sliding_window/003. Longest Substring Without Repeating Characters.png
+sliding_window/AnagramOccrance.cpp
+sliding_window/BestTime_BuySellStock.cpp
+sliding_window/Longest Repeating character Replacement.cpp
+sliding_window/Longest Repeating character Replacement.exe
+sliding_window/Longest Substring With Unique Characters.cpp
+sliding_window/Longest Substring Without Repeating Characters.cpp
+sliding_window/Minimum Window Substring - simpleHashmap_approach.cpp
+sliding_window/Minimum Window Substring - simpleHashmap_approach.exe
+sliding_window/Minimum Window Substring running notes.txt
+sliding_window/Minimum Window Substring.cpp
+sliding_window/Minimum Window Substring.exe
+sliding_window/TimerClock.h
+sliding_window/a.exe
+sliding_window/a.out
+sliding_window/bestTimeBuyAndSellStock.cpp
+sliding_window/codeExplaination_wakieTalkie.txt
+sliding_window/final_MInimumWIndowSubstring.cpp
+sliding_window/firstNegativeNumber.cpp
+sliding_window/firstOccranceSlidingWindow.cpp
+sliding_window/ftp/FTP_client.py
+sliding_window/ftp/FTP_server.py
+sliding_window/gdb_t.cpp
+sliding_window/ibm.cpp
+sliding_window/ibm.exe
+sliding_window/input.txt
+sliding_window/kadanesAlgo.cpp
+sliding_window/kadanesAlgo.exe
+sliding_window/leetcodeSubmission_MinimumWindowSubstring.cpp
+sliding_window/leetcodeSubmission_MinimumWindowSubstring.exe
+sliding_window/leetcode_permutation.cpp
+sliding_window/leetcode_permutation.exe
+sliding_window/lerning_slidingWindow-MinMaxSum.cpp
+sliding_window/longestSubstrig_without_repeatingCharacter.cpp
+sliding_window/maximum of all subArray of size K.cpp
+sliding_window/new Sorted Array.cpp
+sliding_window/newCN.html
+sliding_window/new_Minimum Window Substring.cpp
+sliding_window/new_Minimum Window Substring.exe
+sliding_window/optimized Longest Repeating Character Replacement.cpp
+sliding_window/optimized Longest Repeating Character Replacement.exe
+sliding_window/output.txt
+sliding_window/permutations_in_string.cpp
+sliding_window/permutations_in_string.exe
+sliding_window/permutations_usingVector.cpp
+sliding_window/permutations_usingVector.exe
+sliding_window/rent.cpp
+sliding_window/rent.exe
+sliding_window/retry_leetcodeSubmission_MinimumWindowSubstring.cpp
+sliding_window/retry_leetcodeSubmission_MinimumWindowSubstring.exe
+sliding_window/target Sum Variable size window.cpp
+sliding_window/temp_check.cpp
+sliding_window/temp_hashMap.cpp
+sliding_window/understaning - Sliding window.txt
+sliding_window/varibale size sliding window.cpp
+sliding_window/wakie__talkie.bat
+sliding_window/wakie_talkie.cpp
+stacks/BracketGenerate try -2.cpp
+stacks/Daily Temperatures.cpp
+stacks/Evaluate Reverse Polish Notation.cpp
+stacks/Generate Parentheses.cpp
+stacks/Largest Rectangle in Histogram.cpp
+stacks/carFleet_new.cpp
+stacks/minStack.cpp
+stacks/stack finding minimum element till now.cpp
+stacks/stack_validParentheses Try - 2.cpp
+stacks/stacks_ValidParen.cpp
+temp git changes.cpp
+temp.cpp
+temp.html
+temptest.cpp
+test.cpp
+testFortimer2.cpp
+testrun.cpp
+three Sum Try - 2.cpp
+timer
+try.exe
+trying PushBack in Unordered_Maps.cpp
+two_pointers/3Sum Two pointers.cpp
+two_pointers/ContainerWithMostWater.cpp
+two_pointers/trappingRainWater.cpp
+two_pointers/two sum Sorted Array.cpp
+two_pointers/valid Palindrome.cpp
+using STL - Heap.cpp
+wakieTakie/cppfile.cpp
+wakieTakie/test.bat
