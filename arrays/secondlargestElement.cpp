@@ -56,14 +56,16 @@ int answer(vector<int> nums){
         pq.push(nums[i]);
     }
     int largest = pq.top();
-    pq.pop();
-    while (!pq.empty() && pq.top() == largest) {
-        pq.pop();
-    }    
+	pq.pop();  
+	int nextTop = pq.top();
+	while(pq.top() == largest){
+		pq.pop();
+	}
+	int ans = pq.top();
     if (pq.empty()) {
         return -1; 
     }    
-    return pq.top();
+    return ans;
 }
 
 int answer_retry(vector<int> nums, int n){
