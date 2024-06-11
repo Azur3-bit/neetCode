@@ -48,18 +48,43 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 int answer(vector<int> nums){
-	
+    if (nums.size() < 2) {
+        return -1;
+    }
+    priority_queue<int> pq;
+    for (int i = 0; i < nums.size(); i++) {
+        pq.push(nums[i]);
+    }
+    int largest = pq.top();
+    pq.pop();
+    while (!pq.empty() && pq.top() == largest) {
+        pq.pop();
+    }    
+    if (pq.empty()) {
+        return -1; 
+    }    
+    return pq.top();
 }
+
+int answer_retry(vector<int> nums, int n){
+	return INT_MIN;
+}
+
+// sort it and check the output 
+// retry the code 
+
 void solve() {
     vector<int> nums {};
     cin >> nums;
     dbg(nums);
+    int ans = answer(nums);
+    dbg(ans);
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
 #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    // freopen("output.txt", "w", stdout);
 #endif
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
