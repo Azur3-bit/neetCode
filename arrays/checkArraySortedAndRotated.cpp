@@ -1,3 +1,4 @@
+// checkArraySortedAndRotated
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -47,77 +48,48 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
-int answer_priorityqueue(vector<int> nums){
-    if (nums.size() < 2) {
-        return -1;
-    }
-    priority_queue<int> pq;
-    for (int i = 0; i < nums.size(); i++) {
-        pq.push(nums[i]);
-    }
-    int largest = pq.top();
-    pq.pop();
-    while (!pq.empty() && pq.top() == largest) {
-        pq.pop();
-    }    
-    if (pq.empty()) {
-        return -1; 
-    }    
-    return pq.top();
-}
-int answer_sorting(vector<int> &nums){
-    sort(nums.begin(), nums.end());
+bool answer(vector<int> nums){
+	int min_ele = INT_MAX;
+	int min_index = 0;
 
-    for(int i = nums.size() - 1 ; i >=0;i--){
-        if(nums[nums.size() - 1] != nums[i]){
-            return nums[i];
-        }
-    }
-    return -1;
-}
-int answer_2pass(vector<int> &nums){
-    int largest = INT_MIN;
-    int second_largest = -1;
-    for(auto it : nums)
-        largest = max(it, largest);
+	for(int i = 0 ; i < nums.size(); i++){
+		if(nums[i] < min_ele){
+			min_ele = nums[i];
+			min_index = i;
+		}
+	}
+	dbg(min_ele);
+	dbg(min_index);
 
-    for(int i = 0; i < nums.size();i++){
+	bool flag = true; 
+	
+	for(int i = 0; i< min_index - 1;i++){
+		if(nums[i] > nums[i + 1]){
+			cout << nums[i] << " --- " << nums[i + 1] << "\n";
+			flag = false;
+		}
+	}
 
-        if(nums[i] != largest){
-            second_largest = max(nums[i], second_largest);
-        }
-    }
-    if(second_largest)
-        return second_largest;
-    return -1;
-}
+	for(int i = min_index; i < nums.size(); i++){
+		if(nums[i] > nums[i + 1]){
+			cout << nums[i] << " --- " << nums[i + 1] << "\n";
+			flag = false;
+		}
+	}
 
-int answer_singlePass(vector<int> &nums){
-    int largest = nums[0];
-    int second_largest = -1;
+	return flag;
 
-
-    for(int i = 0; i<nums.size();i++){
-        if(nums[i] > largest){
-            second_largest = largest;
-            largest = nums[i];
-        }
-        if(nums[i] != largest){
-            second_largest = max(nums[i], second_largest);
-        }
-    }
-    return second_largest;
 }
 
 void solve() {
     vector<int> nums {};
     cin >> nums;
     dbg(nums);
-    // int ans = answer_priorityqueue(nums);
-    // int ans = answer_sorting(nums);
-    // int ans = answer_2pass(nums);
-    int ans = answer_singlePass(nums);
-    dbg(ans);
+    bool ans = answer(nums);
+    if(ans)
+    	cout << " +++ array sorted \n";
+    else
+    	cout << " --- array not sorted\n";
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
