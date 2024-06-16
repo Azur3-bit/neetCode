@@ -1,4 +1,4 @@
-// checkArraySortedAndRotated
+// rotateArrayByOne
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -48,107 +48,37 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
-void rotate(vector<int> &nums){
-	dbg(nums);
+
+vector<int> rotate(vector<int> nums){
 	reverse(nums.begin(), nums.end());
-	reverse(nums.begin()+1, nums.end());
-}
-
-bool answer_rotate(vector<int> nums){
-	int times = nums.size();
-	vector<int> ans = nums;
-	sort(ans.begin(), ans.end());
-
-	cout << "starting to rotate \n";
-	while(times--){
-		rotate(ans);
-		if(nums == ans){
-			return true;
-		}
-	}
-	return false;
-}
-
-
-bool answer_one(vector<int> nums){
-	// passes some cases 
-	int min_ele = INT_MAX;
-	int min_index = 0;
-
-	for(int i = 0 ; i < nums.size(); i++){
-		if(nums[i] < min_ele){
-			min_ele = nums[i];
-			min_index = i;
-		}
-	}
-	dbg(min_ele);
-	dbg(min_index);
-
-	bool flag = true; 
-	
-	for(int i = 0; i< min_index - 1;i++){
-			cout << nums[i] << " --- " << nums[i + 1] << "\n";
-		if(nums[i] > nums[i + 1]){
-			cout << " flag = false\n";
-			flag = false;
-		}
-	}
-
-	cout << "next looop\n";
-
-	for(int i = min_index; i < nums.size(); i++){
-			cout << nums[i] << " --- " << nums[i + 1] << "\n";
-		if(nums[i] > nums[i + 1]){
-			cout << " flag = false\n";
-			flag = false;
-		}
-	}
-
-	if(nums[min_index] < nums[0]){
-		flag = false;
-	}
-	return flag;
+	reverse(nums.begin() + 1, nums.end());
+	// dbg(nums);
+	return nums;
 }
 
 bool answer(vector<int> arr){
-	// based on checking the count of pivot elements
-	// 2 1 3 4
-	int count = 0;
-	for(int i = 0; i<arr.size() - 1;i++){
-		if(arr[i] > arr[(i + 1) % arr.size()]){
-			cout << "wrap around at : " << i << "\n";
-			cout << "arr [i] : " << arr[i] << "\n";			
-			cout << "arr [(i + 1) % mize] : " << arr[(i + 1) % arr.size()] << "\n";		
-			cout << "----------------------------------------\n";	
-			count++;
-		}
-	}
-
-	if(arr[arr.size() - 1] > arr[0]){
-		cout << "extra condition\n";
-		count++;
-	}
+	vector<int> nums = arr;
+	sort(nums.begin(), nums.end());
+	dbg(nums);
 
 
-	if(count > 1)
-		return 0;
+	int rotate_times = 1;
+	while(rotate_times--)
+		nums = rotate(nums);
 
-	return 1;
+	dbg(nums);
+	return false;
 
 }
-
-
 void solve() {
-    vector<int> nums {};
-    cin >> nums;
-    dbg(nums);
-    // bool ans = answer_one(nums);
-    // bool ans = answer(nums);
-    bool ans = answer_rotate(nums);
-    if(ans)
-    	cout << " +++ array sorted \n";
+    vector<int> arr {};
+    cin >> arr;
+    dbg(arr);
+    bool ans = answer(arr);
+    if (ans)
+    	cout << "++ Sorted\n";
     else
-    	cout << " --- array not sorted\n";
+    	cout << "-- not Sorted\n";
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
