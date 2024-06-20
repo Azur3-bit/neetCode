@@ -1,4 +1,4 @@
-// missingElement
+// maxConsecutiveOne
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -48,26 +48,37 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
+
 int answer(vector<int> nums){
-	int size = nums.size();
-	int a = 0;
-	for(int i = 0; i<= size; i++){
-		dbg(i);
-		a = a ^ i;
+	int ans = 0;
+	int start = 0;
+	int end = 0;
+
+	while(end < nums.size()){
+		if(nums[end] == 1){
+			ans = max(end - start + 1, ans);
+			end++;
+			continue;
+		}
+		if(nums[start]== 0){
+			start++;
+		}
+
+		if(nums[start] == 1){
+			end = start + 1;
+		}
+		if(nums[end] == 0)
+			start = end;
 	}
-	int b = 0;
-	for(auto it : nums){
-		b = it ^ b;
-	}
-	return a ^ b;
+	return ans;
 }
 
 void solve() {
     vector<int> nums{};
     cin >> nums;
     dbg(nums);
+    cout << "-----------------------------\n";
     int ans = answer(nums);
-    cout << "------------------------\n";
     dbg(ans);
 }
 // ------------------------------------------------------------------ main
