@@ -1,4 +1,4 @@
-// maxConsecutiveOne
+// LongestSub-ArraywithSumK
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -48,43 +48,55 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
-
-int answer_orderOfn2(vector<int> nums){
-
+int answer(vector<int> nums, int k){
 	int ans = INT_MIN;
 
-	for(int i = 0; i< nums.size();i++){
-		dbg(i);
-		if(nums[i] == 1){
-			for(int j = i; j<nums.size();j++){
-				dbg(j);
-				if(nums[j] == 0){
+	vector<vector<int>> arr {};
+
+
+	for(int i = 0; i<nums.size();i++){
+		int curr_sum = 0;
+		vector<int> temp {};
+		if(curr_sum < k){
+			for(int j = i; j < nums.size();j++){
+				if(curr_sum ==  k){
+					// temp.pop_back();
+					arr.push_back(temp);
 					break;
 				}
-				if(nums[j] == 1){
-						ans = max(j - i + 1, ans);
+				else{
+					temp.push_back(nums[j]);
+					curr_sum+=nums[j];
 				}
 			}
-			cout << "-- X --\n";
+		}
+		if(curr_sum == k){
+			arr.push_back(temp);
+		}
+	
+		if(curr_sum > k){
+			continue;
 		}
 	}
+
+	dbg(arr);
+
+	for(auto it : arr){
+		int size = it.size();
+		ans = max(size, ans);
+	}
+
 	return ans;
-}
-
-int answer(vector<int> nums){
-	int start = 0;
-	int end = 0;
-
-	
 }
 
 void solve() {
     vector<int> nums{};
     cin >> nums;
     dbg(nums);
-    cout << "-----------------------------\n";
-    // int ans = answer_orderOfn2(nums);
-    int ans = answer(nums);
+	int k = 15;
+    dbg(k);
+    cout << "------------------\n";
+    int ans = answer(nums, k);
     dbg(ans);
 }
 // ------------------------------------------------------------------ main
