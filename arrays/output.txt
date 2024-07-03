@@ -1,5 +1,14 @@
-nums : [10, 5, 2, 7, 1, 9]
+nums : [-13, 0, 6, 15, 16, 2, 15, -12, 17, -16, 0, -3, 19, -3, 2, -9, -6]
 k : 15
 ------------------
-ans : 0
-working this new line
+++++ ans changed 
+
+3 till 1 
+++++ ans changed 
+
+6 till 1 
+++++ ans changed 
+
+14 till 5 
+ans : 5
+working this new line .

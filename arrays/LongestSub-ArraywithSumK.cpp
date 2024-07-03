@@ -87,12 +87,64 @@ int answer_prev(vector<int> nums, int k){
 }
 
 
-int answer(vector<int> nums, int k){
-
+int answer_tle(vector<int> nums, int k){
+	// produces tle over 189/1193 T.C
 	// dbg(nums);
 
 
-	return 0;
+	vector<pair<int, int >> arr_ans {};
+	int ans = 0;
+
+	for(int i = 0; i < nums.size(); i++){
+		// cout << " i " << i << "\n";
+		int sum = 0;
+		for(int j = i; j < nums.size(); j++){
+			// cout << "j :" << j << " ";
+			sum += nums[j];
+			if(sum == k){
+				arr_ans.push_back(make_pair(i,j));
+				// dbg(abs(j - i + 1));
+				ans = max(ans, abs(j -i + 1));
+			}
+		}
+		cout << "\n";
+	}
+
+	for(auto it : arr_ans){
+		dbg(it);
+	}
+	return ans;
+
+}
+
+int answer(vector<int> nums, int k){
+	// using hashing solution of presum 
+
+	map<int, int> hm{};
+	int ans = 0;
+	int sum = 0;
+	// int len = 0;
+	for(int i = 0; i < nums.size();i++){
+		// dbg(hm);
+		sum+= nums[i];
+
+		if(sum == k){
+			ans = max(i + 1, ans);
+		}
+		if(hm.find(sum -k ) != hm.end()){
+			cout << "++++ ans changed \n";
+			int len = i - hm[sum - k];
+			cout << "\n";
+			cout <<  i << " till " << len << " \n";
+			ans = max(len, ans);
+		}
+		if(hm.find(sum) == hm.end()){
+			hm[sum] = i;
+		}
+	}
+
+	// dbg(ans);
+	return ans;
 
 }
 
@@ -108,7 +160,7 @@ void solve() {
     int ans = answer(nums, k);
     dbg(ans);
 
-    cout << "working this new line\n";
+    cout << "working this new line .\n";
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
