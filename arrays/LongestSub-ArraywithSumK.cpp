@@ -48,13 +48,10 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
-int answer(vector<int> nums, int k){
+int answer_prev(vector<int> nums, int k){
 	int ans = INT_MIN;
-
 	vector<vector<int>> arr {};
-
-
-	for(int i = 0; i<nums.size();i++){
+	for(int i = 0; i<(int)nums.size();i++){
 		int curr_sum = 0;
 		vector<int> temp {};
 		if(curr_sum < k){
@@ -89,6 +86,18 @@ int answer(vector<int> nums, int k){
 	return ans;
 }
 
+
+int answer(vector<int> nums, int k){
+
+	// dbg(nums);
+
+
+	return 0;
+
+}
+
+
+
 void solve() {
     vector<int> nums{};
     cin >> nums;
@@ -98,12 +107,14 @@ void solve() {
     cout << "------------------\n";
     int ans = answer(nums, k);
     dbg(ans);
+
+    cout << "working this new line\n";
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
 #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
-    // freopen("output.txt", "w", stdout);
+    freopen("output.txt", "w", stdout);
 #endif
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
