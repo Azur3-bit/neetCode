@@ -1,4 +1,4 @@
-// SortColours_dnf-sort
+// majority_element
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -48,34 +48,42 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
-void answer(vector<int> &nums){
-	int low = 0, high = nums.size() - 1, mid = 0;
-
-	while(mid <= high){
-		if(nums[mid] == 0){
-			swap(nums[mid], nums[low]);
-			mid++;
-			low++;
+int answer(vector<int> nums){
+	int element = 0;
+	int ctr = 0;
+	// moore's voting algo
+	for(auto it : nums){
+		if(ctr == 0){
+			ctr = 1;
+			element = it;
 		}
-		else if(nums[mid] == 1){mid++;}
-		// if(nums[mid] == 2){
+		if(element == it){
+			ctr++;
+		}
 		else{
-			swap(nums[mid], nums[high]);
-			high--;
+			ctr--;
 		}
-	} 
-	dbg(low);
-	dbg(mid);
-	dbg(high);
+	}
+
+	// checking 
+	ctr = 0;
+	for(auto it : nums){
+		if(it == element){
+			ctr++;
+		}
+	}
+	if(ctr > nums.size() / 2)
+		return element;
+	return -1;
 }
 
 void solve() {
     vector<int> nums{};
     cin >> nums;
     dbg(nums);
-    answer(nums);
-    cout << "----------------\n";
-    dbg(nums);
+    cout << "--------------------\n";
+    int ans = answer(nums);
+    dbg(ans);
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
