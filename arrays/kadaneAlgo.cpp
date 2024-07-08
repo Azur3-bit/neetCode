@@ -53,7 +53,7 @@ int answer_kadane(vector<int> nums){
 	int sum = INT_MIN;
 	int ans = 0;
 
-	for(auto it : nums){
+	for(auto it : nums){                 // o(n)
 	
 		sum += it;
 		ans = max(ans, sum);
@@ -68,6 +68,30 @@ int answer_kadane(vector<int> nums){
 int answer(vector<int> nums){
 
 	int ans = INT_MIN;
+	// vector<vector<int>> all {};
+
+
+	for(int i = 0; i < nums.size(); i++){
+		int sum = 0;
+		for(int j = i; j < nums.size(); j++){
+
+			sum += nums[j]; 					// o (n ^ 2)
+			// vector<int> temp {};
+			// for(int k = i; k <= j; k++){
+			// 	// temp.push_back(nums[k]);     // o(n^3)
+			// 	sum += nums[k];
+			// }
+			// all.push_back(temp);
+			ans = max(sum, ans);
+		}
+	}
+
+
+
+
+
+	// for(auto it : all)
+		// dbg(it);
 
 	return ans;
 }
