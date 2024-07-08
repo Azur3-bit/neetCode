@@ -48,23 +48,30 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 
-int answer(vector<int> nums){
-	for(int i = 0; i < nums.size();i++){
-		vector<int> temp {};
+int answer_kadane(vector<int> nums){
 
-		for(int j = 0;j < i;j++){
-			temp.push_back(nums[j]);
-		}
-		dbg(temp);
-		temp = {};
+	int sum = INT_MIN;
+	int ans = 0;
 
-		for(int j = i; j < nums.size() ; j++){
-			temp.push_back(nums[j]);
-		}
-		dbg(temp);
+	for(auto it : nums){
+	
+		sum += it;
+		ans = max(ans, sum);
+
+		sum = max(sum, 0);
+
 	}
-	return 0;
+	return ans;
 }
+
+
+int answer(vector<int> nums){
+
+	int ans = INT_MIN;
+
+	return ans;
+}
+
 
 void solve() {
     vector<int> nums {};
