@@ -1,4 +1,3 @@
-// testing
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -48,10 +47,75 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
+auto answer_Sorting(vector<int> nums){
+
+	int ans = 0;
+	sort(nums.begin(), nums.end());
+	dbg(nums);
+
+
+	vector<int> temp {};
+	int ctr = 0;
+	for(int i = 0; i < nums.size(); i++){
+		dbg(temp);
+		if((nums[i] + 1) == nums[i + 1]){
+			ctr++;
+			temp.push_back(nums[i]);
+			ans = max(ctr, ans);
+		}
+		else if(nums[i] == nums[i + 1]){
+			continue; // 0 1 1 2 (neccessay for test case )
+		}
+		else {
+			temp = {};
+			ctr = 0;
+		}
+	}
+	return ans + 1;
+
+}
+
+
+// using map or set
+
+
+auto answer(vector<int> nums){
+
+// wrong approach -> will surely skip elements like 3 and 4 for number = 1 and for the test case  {100 4 200 1 3 2}
+
+	int ans = 1;
+
+	for(int i = 0; i < nums.size(); i++){
+		vector<int> temp {};
+		int ctr = 1;
+		// temp.push_back(nums[i]);
+		int number = nums[i];
+		for(int j = 0; j < nums.size(); j++){
+			if(number + 1== nums[j]){
+			cout << number << " => " << nums[j] << "\n"; 
+				temp.push_back(number);
+				ctr++;
+				// number = nums[j];
+				number++;
+				ans = max(ctr, ans);
+			}
+		}
+		dbg(temp);
+	}
+
+	return ans;
+}
+
 void solve() {
-    // int arr[];
-    // int index = 0;
-    cout << "---\n";
+	vector<int> nums {};
+	cin >> nums;
+	dbg(nums);
+	cout << "-----------------------\n";
+	
+	// vector<int> ans = answer(nums);
+	// int ans = answer(nums);
+	int ans = answer_Sorting(nums);
+	dbg(ans);
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {

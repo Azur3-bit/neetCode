@@ -1,4 +1,4 @@
-// testing
+// secondMinimum
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -48,10 +48,31 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
+vector<int> answer(vector<int> nums){
+
+	int last = INT_MAX;
+	int second_last = INT_MAX;
+
+	for(auto it : nums){
+		if(it < last){
+			second_last = last;
+			last = it;
+		}
+	}
+
+	return {last, second_last};
+
+}
+
 void solve() {
-    // int arr[];
-    // int index = 0;
-    cout << "---\n";
+    vector<int> nums{};
+    cin >> nums;
+    dbg(nums);
+    cout << "--------------------------\n";
+
+    vector<int> ans = answer(nums);
+    dbg(ans);
+
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {

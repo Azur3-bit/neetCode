@@ -1,4 +1,3 @@
-// testing
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -48,11 +47,91 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
-void solve() {
-    // int arr[];
-    // int index = 0;
-    cout << "---\n";
+
+void helper(vector<int> nums, vector<vector<int>> &ans_1, vector<vector<int>> &ans_2, vector<int> &ds, map<int, bool> & visited, vector<int> &freq){
+
+
+	if(nums.size() == ds.size()){
+		ans_1.push_back(ds);
+		ans_2.push_back(ds);
+		return;
+	}
+
+	for(int i = 0; i < nums.size(); i++){
+
+		if(!freq[i]){
+			freq[i] = 1;
+			ds.push_back(nums[i]);
+			helper(nums, ans_1, ans_2, ds, visited, freq);
+			freq[i] = 0;
+			ds.pop_back();
+		}
+	
+		if(visited[i]){
+			visited[nums[i]] = true;
+			ds.push_back(nums[i]);
+			helper(nums, ans_1, ans_2, ds, visited, freq);
+			visited[nums[i]] = false;
+			ds.pop_back();	
+		}
+
+		cout << "i : " << i << "\n";
+		dbg(visited);
+		dbg(freq);
+		cout << "-- X -- \n";
+	} 
 }
+
+auto answer(vector<int> nums){
+	vector<vector<int>> ans_1 {};
+	vector<vector<int>> ans_2 {};
+	// vector<int> ds(nums.size() , 0);
+	vector<int> ds {};
+
+	map<int, bool> visited {};
+
+	for(int i = 0; i < nums.size(); i++){
+		visited[nums[i]] = false;
+	}
+	dbg(visited);
+
+	vector<int> freq(nums.size());
+	for(int i = 0; i < nums.size(); i++){
+		freq[i] = 0;
+	}
+
+	dbg(freq);
+
+	helper(nums, ans_1, ans_2, ds, visited, freq);
+
+
+	cout << "=== -- final -- === \n";
+	// dbg(ans_2);
+
+
+	sort(ans_1.begin(), ans_1.end());
+	dbg(ans_1);
+
+	// return ans_1;
+	return ans_1 == ans_2;
+}
+
+
+void solve() {
+	vector<int> nums {};
+	cin >> nums;
+	dbg(nums);
+	cout << "-----------------------\n";
+	
+	// vector<vector<int>> ans = answer(nums);
+	bool ans = answer(nums);
+	dbg(ans);
+	if(ans){
+		cout << "visited worked correctly \n";
+	}
+	else 
+		cout << "visited didn't worked correctly \n";
+}		
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
 #ifndef ONLINE_JUDGE

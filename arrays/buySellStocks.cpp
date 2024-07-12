@@ -1,4 +1,4 @@
-// testing
+// buySellStocks
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -48,10 +48,28 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
+int answer(vector<int> nums){
+	int ans = INT_MIN;
+	int profit = 0;
+
+	for(int i = 0; i < nums.size(); i++){
+		for(int j = i; j < nums.size(); j++){
+			profit = nums[j] - nums[i];
+		ans = max(profit, ans);
+		}
+	}
+
+	return ans;
+}
+
 void solve() {
-    // int arr[];
-    // int index = 0;
-    cout << "---\n";
+    vector<int> nums {};
+    cin >> nums;
+    dbg(nums);
+
+    cout << "--------------------------\n";
+    int ans = answer(nums);
+    dbg(ans);
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {

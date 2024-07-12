@@ -1,4 +1,5 @@
-// testing
+// maxSumInSubArray
+
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -48,10 +49,129 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
+
+
+pair<long long, long long> helper_old(vector<long long> nums) {
+    if (nums.size() < 2) {
+        return {0, 0};
+    }
+
+    long long last = INT_MAX;
+    long long second_last = INT_MAX;
+
+    for (auto it : nums) {
+        if (it < last) {
+            second_last = last;
+            last = it;
+        } else if (it < second_last && it != last) {
+            second_last = it;
+        }
+    }
+    return make_pair(last, second_last);
+}
+
+long long answer_old(vector<long long> nums){
+
+	long long ans = INT_MIN;
+
+	vector<vector<long long>> all {};
+
+	for(int i = 0; i < nums.size(); i++){
+		for(int j = i; j < nums.size(); j++){
+			// int score = 0;
+			vector<long long> temp {};
+			for(int k = i; k <= j; k++){
+				temp.push_back(nums[k]);
+			}
+			all.push_back(temp);
+		}
+	}
+
+	for(auto it : all){
+		dbg(it);
+
+		pair<long long , long long> p =  helper_old(it);
+		long long score = p.first+ p.second;
+		dbg(score);
+		ans = max(score, ans);
+		cout << "\n";
+	}
+	return ans;
+
+}
+
+
+
+
+int helper(vector<int> nums){
+	dbg(nums);
+    int secondLast = INT_MAX;
+    int last = nums[0];
+    for(auto it : nums){
+        if(it < last){
+            secondLast = last;
+            last = it;
+        }
+        else if(it < secondLast && it != last){
+            secondLast = it;
+        }
+    }
+    return last + secondLast;
+}
+int answer_new(vector<int> arr) {
+    int ans = INT_MIN;
+    int N = arr.size();
+    
+    for(int i = 0; i < N; i++){
+        vector<int> temp{};
+        for (int j = i; j < N; j++){
+                temp.push_back(arr[j]);
+            int score = helper(temp);
+            ans = max(ans, score);
+        }
+    }
+    return ans;
+
+
+}
+
+
+long long answer(vector<int> arr) {
+	int N = arr.size();
+    long long last = arr[0];
+    long long secondLast = LLONG_MAX;
+    
+    long long ans = LLONG_MIN;
+    
+    for(int i = 1; i < N; i++){
+        
+        if(arr[i] < last){
+            secondLast = last;
+            last = arr[i];
+        }
+        else if(arr[i] < secondLast && arr[i] != last){
+            secondLast = arr[i];
+        }
+        
+        if(secondLast != LLONG_MAX){
+            long long score = last + secondLast;
+            ans = max(score, ans);
+        }
+        
+    }
+    return ans;
+}
+
+
 void solve() {
-    // int arr[];
-    // int index = 0;
-    cout << "---\n";
+    vector<int> nums{};
+    cin >> nums;
+
+    dbg(nums);
+
+    cout << "----------------------\n";
+    long long ans = answer(nums);
+    dbg(ans);
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {

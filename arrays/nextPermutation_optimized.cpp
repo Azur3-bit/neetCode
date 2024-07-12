@@ -1,4 +1,4 @@
-// testing
+// nextPermutation_optimized
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -48,10 +48,66 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
+// void answer_1(vector<int> &nums){
+void answer(vector<int> &nums){
+
+	// 1. finding the dip point 
+	int n = nums.size() - 1;
+	int dipIndex = -1;
+
+	for(int i = n; i >=0 ; i--){
+		if(nums[i - 1] < nums[i]){
+			cout << "-\n";
+			dipIndex = i - 1;
+			break;
+		}
+		cout << "---\n";
+	}
+	// get the lowest maximum element
+	int closetMaxIndex = n;
+	dbg(nums[closetMaxIndex]);
+
+	for(int i = n; i >= dipIndex; i--){
+		if(nums[i] > nums[dipIndex]){
+			// closetMaxIndex = i;
+			closetMaxIndex = min(nums[i], closetMaxIndex); 
+		}
+	}
+
+
+	dbg(nums[dipIndex]);
+	dbg(nums[closetMaxIndex]);
+	// dbg(closetMaxIndex);
+	if(dipIndex == -1){
+		reverse(nums.begin(), nums.end());
+		return;
+	}
+
+	// swaping the next greatest number with dip Index 
+	swap(nums[closetMaxIndex], nums[dipIndex]);
+
+	// sorting the remaining array to get the minimum lexcographical order
+	sort(nums.begin() + dipIndex + 1, nums.end());
+
+	// answer is the nums array
+}
+
+
+void answer_1(vector<int> &nums ){
+// void answer(vector<int> &nums ){
+	next_permutation(nums.begin(), nums.end());
+
+}
+
 void solve() {
-    // int arr[];
-    // int index = 0;
-    cout << "---\n";
+    vector<int> nums{};
+    cin >> nums;
+    dbg(nums);
+    cout << "----------------------------------------\n";
+    // vector<int> ans = answer(nums);
+
+    answer(nums);
+    dbg(nums);
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
