@@ -1,3 +1,4 @@
+// RotateImage
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -47,46 +48,71 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
-auto answer(vector<int> nums){
-	// vector<int> ans {};
-	// int ans = 0;
-	// cout << "fucntion\n";
-	// dbg(ans);
+void answer_Extraspace(vector<vector<int>> &nums){
 
-	map<int, int> mp {};
+	int n = nums.size() - 1;
+	int m = nums[0].size() - 1;
 
-	for(auto it : nums){
-		mp[it]++;
-	}
+	vector<vector<int>> ans = nums;
 
-	dbg(mp);
 
-	int ans = 1;
-	for(auto it : mp){
-		int number = it.first;
-		int ctr = 1;
-		while(mp.find(number + 1) != mp.end()){
-			number++;
-			ctr++;
+	for(int i = 0; i <= n; i++){
+		for(int j = 0; j <= m ; j++){
+
+			// cout << "nums[i][j] : "<< nums[i][j] << "\n"; 
+			// cout << "i : " << i << " => [i] : " << (i + n) - i << " \n" ;
+			// cout << "j : " << j << " => [j] : " << i << " \n" ;
+			ans[j][n - i] = nums[i][j]; 
 		}
-		ans = max(ctr, ans);
-
 	}
 
+	dbg(ans);
 
-	return ans;
+	nums = ans;
+
+}
+
+void answer(vector<vector<int>> &nums){
+	// dbg(nums);
+
+	// finding the transpose the the matrix in simple one loop
+
+	int n = nums.size();
+
+	// vector<vector<>>
+	vector<int> visited_col(n , 0);
+	vector<int> visited_row(n , 0);
+
+	for(int i = 0; i < n; i++){
+		dbg(visited_row);
+		dbg(visited_col);
+		for(int j = 0; j < n; j++){
+			// nums[j][i] = nums[i][j];
+			if(!visited_row[i] || !visited_col[i]){
+				cout << nums[i][j] << "\t" << nums[j][i] << "\n";
+				swap(nums[i][j], nums[j][i]);
+				visited_row[i] = 1;
+				visited_col[j] = 1;
+			}
+		}
+	}
+
+	for(int i = 0; i< n; i++){
+		reverse(nums[i].begin(), nums[i].end());
+	}
+
 }
 
 
 void solve() {
-	vector<int> nums {};
-	cin >> nums;
+	vector<vector<int>> nums  = {{1,2,3},{4,5,6},{7,8,9}};
+	// cin >> nums;
 	dbg(nums);
 	cout << "-----------------------\n";
 	
 	// vector<int> ans = answer(nums);
-	int ans = answer(nums);
-	dbg(ans);
+	answer(nums);
+	dbg(nums);
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {

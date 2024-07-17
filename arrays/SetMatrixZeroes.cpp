@@ -1,3 +1,4 @@
+// SetMatrixZeroes
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -47,46 +48,59 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
-auto answer(vector<int> nums){
+void answer(vector<vector<int>> &nums){
 	// vector<int> ans {};
-	// int ans = 0;
-	// cout << "fucntion\n";
-	// dbg(ans);
 
-	map<int, int> mp {};
+	vector<vector<int>> ans {};
 
-	for(auto it : nums){
-		mp[it]++;
-	}
+	
+	// cout << "funciton\n";
 
-	dbg(mp);
+	int n = nums.size();
+	int m = nums[0].size();
 
-	int ans = 1;
-	for(auto it : mp){
-		int number = it.first;
-		int ctr = 1;
-		while(mp.find(number + 1) != mp.end()){
-			number++;
-			ctr++;
+
+	vector<int> rows(n, 0);
+	vector<int> cols(m, 0);
+
+	dbg(rows);
+	dbg(cols);
+
+	for(int i = 0; i < n; i++){
+		for(int j = 0;j < m; j++){
+			if(nums[i][j] == 0){
+				rows[i] = 1;
+				cols[j] = 1;
+			}
 		}
-		ans = max(ctr, ans);
+	}
 
+	for(int i = 0; i < n; i++){
+		for(int j = 0; j < m; j++){
+			if(rows[i] == 1 || rows[j] == 1){
+				nums[i][j] = 0;
+			}
+			if(cols[i] == 1 || cols[j] == 1){
+				nums[i][j] = 0;
+			}
+		}
 	}
 
 
-	return ans;
+	// return ans;
 }
 
 
 void solve() {
-	vector<int> nums {};
-	cin >> nums;
+	// vector<int> nums {};
+	vector<vector<int>> nums =  {{0,1,2,0},{3,4,5,2},{1,3,1,5}};
+	// cin >> nums;
 	dbg(nums);
 	cout << "-----------------------\n";
 	
-	// vector<int> ans = answer(nums);
-	int ans = answer(nums);
-	dbg(ans);
+	// vector<vector<int>> ans = answer(nums);
+	answer(nums);
+	dbg(nums);
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
