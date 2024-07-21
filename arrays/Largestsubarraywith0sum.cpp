@@ -1,3 +1,6 @@
+// Largestsubarraywith0sum
+
+
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -47,81 +50,51 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
-auto answer(vector<int> nums, int k){
-	map<int, int> mpp{};
-    int ans = 0;
-    int sum = 0;
-    for(int i = 0; i < nums.size(); i++){
-        sum += nums[i];
-        int req = abs(sum - k);
-        dbg(sum);
-        dbg(req);
-        if(sum == k){
-            mpp[sum]++;
-            ans++;
-        }
-        else if(mpp.find(req) != mpp.end()){
-        	cout << "gotcha \n";
-            ans += mpp[req];
-            mpp[sum]++;
-        }
-        else{
-            mpp[sum]++;
-        }
-        cout << " __ X __\n";
-    }
-
-    dbg(mpp);
-    return ans;
-}
-
-int answer_later(vector<int> nums, int k){
-
-	// generate all the sub arrays 
+auto answer_bruteforce(vector<int> nums, int k){
+	// vector<int> ans {};
+	
 	vector<vector<int>> ans {};
+	int a = 0;
 	int n = nums.size();
 
+	// generate all the sub arrays and find if some one is equal to k
+
 	for(int i = 0; i < n; i++){
-
-
 		for(int j = i; j < n; j++){
 			vector<int> temp {};
-
 			for(int k = i; k <= j; k++){
 				temp.push_back(nums[k]);
 			}
 			ans.push_back(temp);
 		}
-
-
-	}
-
-	// dbg(ans);
-	for(auto it : ans){
-		dbg(it);
-		// cout << "\n";
 	}
 
 
-	int ctr = 0;
-	// check if any subarray sum is equal to k 
 	for(auto it : ans){
 		dbg(it);
 		int sum = 0;
 		for(auto i : it){
 			sum += i;
 		}
-		dbg(sum);
-		if(sum == k){
-			cout << "ctr++\n"; 
-			ctr++;
+
+		if(sum == 0){
+			int size = it.size();
+			a = max(a, size);
 		}
-		cout << "\n- X -\n";
-		// if yes => ctr; 
+
 	}
 
-	return ctr;
 
+	return a;
+}
+
+
+auto answer(vector<int> nums, int k){
+
+	int ans = 0;
+
+
+	return ans;
 }
 
 
@@ -132,11 +105,9 @@ void solve() {
 	cin >> nums;
 	dbg(k);
 	dbg(nums);
-
 	cout << "-----------------------\n";
 	
-	// vector<int> ans = answer(nums);
-	int ans = answer(nums, k);
+	auto ans = answer(nums, k);
 	dbg(ans);
 }
 // ------------------------------------------------------------------ main

@@ -47,96 +47,93 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
-auto answer(vector<int> nums, int k){
-	map<int, int> mpp{};
-    int ans = 0;
-    int sum = 0;
-    for(int i = 0; i < nums.size(); i++){
-        sum += nums[i];
-        int req = abs(sum - k);
-        dbg(sum);
-        dbg(req);
-        if(sum == k){
-            mpp[sum]++;
-            ans++;
-        }
-        else if(mpp.find(req) != mpp.end()){
-        	cout << "gotcha \n";
-            ans += mpp[req];
-            mpp[sum]++;
-        }
-        else{
-            mpp[sum]++;
-        }
-        cout << " __ X __\n";
-    }
+auto answer_practice(vector<int> nums){
+	// vector<int> ans {};
+	 
+	// testing moore's voting algo -- Pratice part
 
-    dbg(mpp);
-    return ans;
+	int ans = 0;
+	int k = 3;
+	int ele = nums[0];
+	int ctr = 0;
+
+	for(auto it : nums){
+		if(ctr == 0){
+			ele = it;
+			ctr = 1;
+		}
+		else if(it == k)
+			ctr++;
+		else 
+			ctr--;
+	}
+
+
+	return ele;
 }
 
-int answer_later(vector<int> nums, int k){
 
-	// generate all the sub arrays 
-	vector<vector<int>> ans {};
-	int n = nums.size();
+auto answer(vector<int> nums){
+	vector<int> ans {};
+	
+	// int ans = 0;
 
-	for(int i = 0; i < n; i++){
+	int ele1 = INT_MIN, ctr1 = 0;
+	int ele2 = INT_MIN, ctr2 = 0;
 
 
-		for(int j = i; j < n; j++){
-			vector<int> temp {};
-
-			for(int k = i; k <= j; k++){
-				temp.push_back(nums[k]);
-			}
-			ans.push_back(temp);
+	for(auto it : nums){
+		if(ctr1 == 0 && it != ele2){
+			ele1 = it;
+			ctr1 = 1;
+		}
+		if(ctr2 == 0 && it != ele1){
+			ele2 = it;
+			ctr2 = 1;
 		}
 
-
-	}
-
-	// dbg(ans);
-	for(auto it : ans){
-		dbg(it);
-		// cout << "\n";
-	}
-
-
-	int ctr = 0;
-	// check if any subarray sum is equal to k 
-	for(auto it : ans){
-		dbg(it);
-		int sum = 0;
-		for(auto i : it){
-			sum += i;
+		else if(it == ele1){
+			ctr1++;
 		}
-		dbg(sum);
-		if(sum == k){
-			cout << "ctr++\n"; 
-			ctr++;
+		else if(it == ele2){
+			ctr2++;
 		}
-		cout << "\n- X -\n";
-		// if yes => ctr; 
+
+		else{
+			ctr2--;
+			ctr1--;
+		}
 	}
 
-	return ctr;
+	ctr1 = 0;
+	ctr2 = 0;
 
+	for(auto it : nums){
+		if(it == ele1)
+			ctr1++;
+		if(it == ele2)
+			ctr2++;
+	}
+
+
+	int times = nums.size() / 3;
+
+	if(ctr1 > times)
+		ans.push_back(ele1);
+	if(ctr2 > times)
+		ans.push_back(ele2);
+
+	return ans;
 }
 
 
 void solve() {
 	vector<int> nums {};
-	int k;
-	cin >> k;
 	cin >> nums;
-	dbg(k);
 	dbg(nums);
-
 	cout << "-----------------------\n";
 	
-	// vector<int> ans = answer(nums);
-	int ans = answer(nums, k);
+	auto ans = answer(nums);
 	dbg(ans);
 }
 // ------------------------------------------------------------------ main

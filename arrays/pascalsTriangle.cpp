@@ -1,3 +1,4 @@
+// pascalsTriangle
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -47,97 +48,65 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
-auto answer(vector<int> nums, int k){
-	map<int, int> mpp{};
-    int ans = 0;
-    int sum = 0;
-    for(int i = 0; i < nums.size(); i++){
-        sum += nums[i];
-        int req = abs(sum - k);
-        dbg(sum);
-        dbg(req);
-        if(sum == k){
-            mpp[sum]++;
-            ans++;
-        }
-        else if(mpp.find(req) != mpp.end()){
-        	cout << "gotcha \n";
-            ans += mpp[req];
-            mpp[sum]++;
-        }
-        else{
-            mpp[sum]++;
-        }
-        cout << " __ X __\n";
-    }
 
-    dbg(mpp);
-    return ans;
+vector<int> helper(vector<int> p_num, int level){
+
+	vector<int> ans(level, 0);
+	ans[0] = 1;
+	ans[level - 1] = 1;
+
+	for(int i = 1; i < level - 1; i++){
+		ans[i] = p_num[i] + p_num[i - 1];
+	}
+
+	return ans;
+
 }
 
-int answer_later(vector<int> nums, int k){
-
-	// generate all the sub arrays 
+auto answer(int k){
 	vector<vector<int>> ans {};
-	int n = nums.size();
+	
+	// int ans = 0;
+	vector<int> one(1,1);
+	dbg(one);
 
-	for(int i = 0; i < n; i++){
+	// vector<int> two (2,1);
 
 
-		for(int j = i; j < n; j++){
-			vector<int> temp {};
+	ans.push_back(one);
+	// ans.push_back(two);
+	k--;
+	int ctr = 1;
 
-			for(int k = i; k <= j; k++){
-				temp.push_back(nums[k]);
-			}
-			ans.push_back(temp);
-		}
+	while(k--){
 
+		vector<int> temp = helper(one, ++ctr);
+		// dbg(temp);
+		one = temp;
+		ans.push_back(temp);
 
 	}
 
-	// dbg(ans);
-	for(auto it : ans){
-		dbg(it);
-		// cout << "\n";
-	}
 
 
-	int ctr = 0;
-	// check if any subarray sum is equal to k 
-	for(auto it : ans){
-		dbg(it);
-		int sum = 0;
-		for(auto i : it){
-			sum += i;
-		}
-		dbg(sum);
-		if(sum == k){
-			cout << "ctr++\n"; 
-			ctr++;
-		}
-		cout << "\n- X -\n";
-		// if yes => ctr; 
-	}
-
-	return ctr;
-
+	dbg(ans);
+	return ans;
 }
 
 
 void solve() {
 	vector<int> nums {};
+	// cin >> nums;
 	int k;
 	cin >> k;
-	cin >> nums;
 	dbg(k);
-	dbg(nums);
-
-	cout << "-----------------------\n";
 	
-	// vector<int> ans = answer(nums);
-	int ans = answer(nums, k);
-	dbg(ans);
+	vector<vector<int>> ans = answer(k);
+	// int ans = answer(num);
+	cout << "-----------------------\n";
+	for(auto it : ans)
+		dbg(it);
+
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
