@@ -90,8 +90,11 @@ auto answer_bruteforce(vector<int> nums, int k){
 
 
 auto answer(vector<int> nums, int k){
+	// storing the presum value
 
 	int ans = 0;
+
+	map<int, int> mpp {};
 
 
 	return ans;

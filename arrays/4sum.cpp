@@ -1,4 +1,4 @@
-// 3sum
+// 4sum
 
 // #include <bits/stdc++.h>
 #include <iostream>
@@ -49,103 +49,14 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
-auto answer_tle(vector<int> nums){
-	
-	set<vector<int>> ans {};
-	int n = nums.size();
-
-
-	for(int i = 0; i < n; i++){
-		for(int j = i + 1; j < n; j++){
-			for(int k = j + 1; k < n; k++){
-				if(nums[i] + nums[j] + nums[k] == 0){
-					vector<int> temp = {nums[i], nums[j], nums[k]};
-					sort(temp.begin(), temp.end());
-					ans.insert(temp);
-				}
-			}
-		}
-	}
-
-	return ans;
-}
-
-auto answer_semiOptimal(vector<int> nums){
-	set<vector<int>> ans {};
-	int n = nums.size();
-
-	for(int i = 0; i < n; i++){
-		set<int> mp {};
-		for(int j = i + 1; j < n; j++){
-
-			int req = -(nums[i] + nums[j]);
-
-			if(mp.find(req) != mp.end()){
-				vector<int> temp = {nums[i], nums[j], req};
-				sort(temp.begin(), temp.end());
-
-				ans.insert(temp);
-			}
-			mp.insert(nums[j]);
-		}
-	}
-
-	return ans;
-}
-
-
 auto answer(vector<int> nums){
-
-	vector<vector<int>> ans {};
-	int n = nums.size();
-
-
-	sort(nums.begin(), nums.end());
-
-	for(int i = 0; i < n; i++){
-
-		if(nums[i] == nums[i - 1] && i != 0)
-			continue;
-
-		int front = i + 1;
-		int back = n - 1;
-
-		while(back > front){
-
-			int sum = nums[front] + nums[back] + nums[i];
-			if(sum > 0){
-				front++;
-			}
-			else if(sum < 0){
-				back--;
-			}
-			else{
-				vector<int> temp = {nums[i], nums[front], nums[back]};
-				sort(temp.begin(), temp.end());
-
-
-				ans.push_back(temp);
-				dbg(temp);
-
-				while(nums[back] == nums[back - 1]){
-					back--;
-				}
-				while(nums[front] == nums[front + 1]){
-					front++;
-				}
-				
-				front++;
-				back--;
-			}
-		}
-
-	}
-
+	// vector<int> ans {};
+	
+	int ans = 0;
 
 
 	return ans;
 }
-
 
 
 void solve() {
