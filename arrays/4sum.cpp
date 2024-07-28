@@ -47,30 +47,33 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
-auto answer(vector<int> nums, int target){
-	// vector<int> ans {};
-	
-	// int ans = 0;
-	int n = nums.size();
+auto answer(vector<int> nums, int target){int n = nums.size();
         sort(nums.begin(), nums.end());
         set<vector<int>> temp_ans {};
         vector<vector<int>> ans {};
+        
 
-        for(int i = 0; i < n - 3; i++) {
-            if(i > 0 && nums[i] == nums[i - 1])
+
+        for(int i = 0; i < n - 3; i++){
+            if(nums[i] == nums[i - 1] && i > 0)
                 continue;
 
-            for(int j = i + 1; j < n - 2; j++) {
-                if(j > i + 1 && nums[j] == nums[j - 1])
+            for(int j = i + 1; j < n - 2; j++){
+                if(nums[j] == nums[j - 1] && j > i + 1){
                     continue;
+                }
 
                 int low = j + 1;
                 int high = n - 1;
 
-                while(high > low) {
-                    long long sum = (long long) nums[i] + nums[j] + nums[low] + nums[high];
 
-                    if(sum == target) {
+                while(high > low){
+                    long long sum = nums[i];
+                    sum += nums[j];
+                    sum += nums[low];
+                    sum += nums[high];
+
+                    if(sum == target){
                         temp_ans.insert({nums[i], nums[j], nums[low], nums[high]});
                         low++;
                         high--;
@@ -82,18 +85,18 @@ auto answer(vector<int> nums, int target){
                     }
                     else if(sum > target)
                         high--;
-                    else
+                    else 
                         low++;
                 }
-            }
-        }
 
-        for(auto it : temp_ans) {
+            }
+        }       
+
+        for(auto it : temp_ans){
             ans.push_back(it);
         }
 
         return ans;
-
 }
 
 
