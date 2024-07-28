@@ -1,3 +1,4 @@
+// MaximumScorefromSubarrayMinimums
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -47,66 +48,30 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
-auto answer(vector<int> nums, int target){
+auto answer(vector<int> nums){
 	// vector<int> ans {};
 	
-	// int ans = 0;
+
+	int ans = 0;
 	int n = nums.size();
-        sort(nums.begin(), nums.end());
-        set<vector<int>> temp_ans {};
-        vector<vector<int>> ans {};
+	
+	for(int i = 0;i < n - 1; i++){
+		int sum = nums[i] + nums[i + 1];
+		dbg(sum);
+		ans = max(ans, sum);
+	}
 
-        for(int i = 0; i < n - 3; i++) {
-            if(i > 0 && nums[i] == nums[i - 1])
-                continue;
-
-            for(int j = i + 1; j < n - 2; j++) {
-                if(j > i + 1 && nums[j] == nums[j - 1])
-                    continue;
-
-                int low = j + 1;
-                int high = n - 1;
-
-                while(high > low) {
-                    long long sum = (long long) nums[i] + nums[j] + nums[low] + nums[high];
-
-                    if(sum == target) {
-                        temp_ans.insert({nums[i], nums[j], nums[low], nums[high]});
-                        low++;
-                        high--;
-
-                        while(low < high && nums[low] == nums[low - 1])
-                            low++;
-                        while(low < high && nums[high] == nums[high + 1])
-                            high--;
-                    }
-                    else if(sum > target)
-                        high--;
-                    else
-                        low++;
-                }
-            }
-        }
-
-        for(auto it : temp_ans) {
-            ans.push_back(it);
-        }
-
-        return ans;
-
+	return ans;
 }
 
 
 void solve() {
 	vector<int> nums {};
-	int k;
-	cin >> k;
 	cin >> nums;
-	dbg(k);
 	dbg(nums);
 	cout << "-----------------------\n";
 	
-	auto ans = answer(nums, k);
+	auto ans = answer(nums);
 	cout << "-----------------------\n";
 	dbg(ans);
 }
