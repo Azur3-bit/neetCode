@@ -47,14 +47,82 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
-auto answer(vector<int> nums){
+auto answer_tle(vector<int> nums){
 	// vector<int> ans {};
-	
+
 	int ans = 0;
+
+	// generate all the subaray and calculate the sum if 0 then its our answer 
+	vector<vector<int>> temp_ans {};
+
+
+	int n = nums.size();
+
+
+	for(int i = 0; i < n; i++){
+		for(int j = i; j < n; j++){
+			vector<int> temp{};
+			for(int k = i; k <= j; k++){
+				temp.push_back(nums[k]);
+			}
+			temp_ans.push_back(temp);
+		}
+	}
+
+
+	for(auto it :  temp_ans){
+		dbg(it);
+
+		int sum = 0;
+		for(auto i : it)
+			sum += i;
+
+		if(sum == 0)
+			ans = max((int)it.size(), ans);
+
+	}
+
+
 
 
 	return ans;
 }
+
+auto answer(vector<int> nums){
+	// vector<int> ans {};
+	int n = nums.size();
+	int ans = 0;
+
+	map<int, int> mpp {};
+
+	int sum = 0;
+
+	for(int i = 0; i < n; i++){
+		sum += nums[i];
+
+		if(sum == 0){
+			ans = i + 1;
+		}
+
+		if(mpp.find(sum) != mpp.end()){
+			int index = mpp[sum];
+
+			ans = max(i - index, ans);
+
+		}
+		else{
+			mpp[sum] = i;
+		}
+	}
+
+	dbg(mpp);
+
+
+
+
+	return ans;
+}
+
 
 
 void solve() {
