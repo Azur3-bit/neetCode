@@ -1,6 +1,3 @@
-// Largestsubarraywith0sum
-
-
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -50,51 +47,10 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
-auto answer_bruteforce(vector<int> nums, int k){
+auto answer(vector<int> nums){
 	// vector<int> ans {};
 	
-	vector<vector<int>> ans {};
-	int a = 0;
-	int n = nums.size();
-
-	// generate all the sub arrays and find if some one is equal to k
-
-	for(int i = 0; i < n; i++){
-		for(int j = i; j < n; j++){
-			vector<int> temp {};
-			for(int k = i; k <= j; k++){
-				temp.push_back(nums[k]);
-			}
-			ans.push_back(temp);
-		}
-	}
-
-
-	for(auto it : ans){
-		dbg(it);
-		int sum = 0;
-		for(auto i : it){
-			sum += i;
-		}
-
-		if(sum == 0){
-			int size = it.size();
-			a = max(a, size);
-		}
-
-	}
-
-
-	return a;
-}
-
-
-auto answer(vector<int> nums, int k){
-	// storing the presum value
-
 	int ans = 0;
-
-	map<int, int> mpp {};
 
 
 	return ans;
@@ -103,14 +59,12 @@ auto answer(vector<int> nums, int k){
 
 void solve() {
 	vector<int> nums {};
-	int k;
-	cin >> k;
 	cin >> nums;
-	dbg(k);
 	dbg(nums);
 	cout << "-----------------------\n";
 	
-	auto ans = answer(nums, k);
+	auto ans = answer(nums);
+	cout << "-----------------------\n";
 	dbg(ans);
 }
 // ------------------------------------------------------------------ main
