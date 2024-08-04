@@ -49,18 +49,131 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
-auto answer(vector<vector<int>> nums){
+auto answer_wrong(vector<vector<int>> nums){
+
+
+	//  fails at this test case ; [[1,4],[5,6]]
+	// expected answer ; [[1,4],[5,6]] 
+
+
 	// vector<int> ans {};
 	
-	int ans = 0;
+	// int ans = 0;
+	int n = nums.size();
+	vector<int> visited (10024, 0);
+	// dbg(visited);
 
+	for(int i = 0; i < n; i++){
+		int start = nums[i][0];
+		int end = nums[i][1];
+
+		for(int j = start; j <= end; j++){
+			visited[j] = 1;
+		}
+	}
+
+	// dbg(visited);
+
+	vector<vector<int>> ans {};
+
+	int start = 0;
+	int end = 0;
+	bool flag = false; 
+
+	for(int i = 0; i < visited.size(); i++){
+		// cout << visited[i] << "\n";
+		if(visited[i] == 1 && flag == false){
+			cout << "if " << i << " \n";
+			start = i;
+			flag = true;
+		}
+		if(visited[i] == 0 && flag == true){
+			cout << "else if " << i << "\n";
+			flag = false;
+			end = i - 1;
+			ans.push_back({start,end});
+			cout << start << "  ----  " << end << "\n"; 
+		}
+	}
+
+	long long temp = 1000000000;
+	int tempo = INT_MAX;
+	if(temp < tempo){
+		cout << "range valid \n";
+	}
+	else 
+		cout << "range invalid\n";
+
+	// dbg(ans);
+
+	return ans;
+}
+
+
+auto answer(vector<vector<int>> nums){
+
+
+	//  fails at this test case ; [[1,4],[5,6]]
+	// expected answer ; [[1,4],[5,6]] 
+
+	
+	// vector<int> ans {};
+	
+	// int ans = 0;
+	int n = nums.size();
+	vector<int> visited (10024, 0);
+	// dbg(visited);
+
+	for(int i = 0; i < n; i++){
+		int start = nums[i][0];
+		int end = nums[i][1];
+
+		for(int j = start; j <= end; j++){
+			visited[j] = 1;
+		}
+	}
+
+	// dbg(visited);
+
+	vector<vector<int>> ans {};
+
+	int start = 0;
+	int end = 0;
+	bool flag = false; 
+
+	for(int i = 0; i < visited.size(); i++){
+		// cout << visited[i] << "\n";
+		if(visited[i] == 1 && flag == false){
+			cout << "if " << i << " \n";
+			start = i;
+			flag = true;
+		}
+		if(visited[i] == 0 && flag == true){
+			cout << "else if " << i << "\n";
+			flag = false;
+			end = i - 1;
+			ans.push_back({start,end});
+			cout << start << "  ----  " << end << "\n"; 
+		}
+	}
+
+	long long temp = 1000000000;
+	int tempo = INT_MAX;
+	if(temp < tempo){
+		cout << "range valid \n";
+	}
+	else 
+		cout << "range invalid\n";
+
+	// dbg(ans);
 
 	return ans;
 }
 
 
 void solve() {
-	vector<vector<int>> nums = {{1,3},{2,6},{8,10},{15,18}};
+	// vector<vector<int>> nums = {{1,3},{2,6},{8,10},{15,18}};
+	vector<vector<int>> nums = {{1,4},{4,5}};
 	// cin >> nums;
 	dbg(nums);
 	cout << "-----------------------\n";
