@@ -112,68 +112,47 @@ auto answer_wrong(vector<vector<int>> nums){
 
 auto answer(vector<vector<int>> nums){
 
-
-	//  fails at this test case ; [[1,4],[5,6]]
-	// expected answer ; [[1,4],[5,6]] 
-
-	
-	// vector<int> ans {};
-	
-	// int ans = 0;
+	vector<vector<int>> ans {};
 	int n = nums.size();
-	vector<int> visited (10024, 0);
-	// dbg(visited);
+	// const int start = 0;
+	// const int end = 1;
+
+	sort(nums.begin(), nums.end());
+
+
 
 	for(int i = 0; i < n; i++){
+
 		int start = nums[i][0];
 		int end = nums[i][1];
 
-		for(int j = start; j <= end; j++){
-			visited[j] = 1;
+
+		// skipping merged intervals
+		if(!ans.empty() && end <= ans.back()[1]){
+			continue;
 		}
-	}
 
-	// dbg(visited);
-
-	vector<vector<int>> ans {};
-
-	int start = 0;
-	int end = 0;
-	bool flag = false; 
-
-	for(int i = 0; i < visited.size(); i++){
-		// cout << visited[i] << "\n";
-		if(visited[i] == 1 && flag == false){
-			cout << "if " << i << " \n";
-			start = i;
-			flag = true;
+		for(int j = i + 1; j < n; j++){
+			if(nums[j][0] <= end){
+				end = max(nums[j][1], end);
+			}
+			else{
+				break;
+			}
 		}
-		if(visited[i] == 0 && flag == true){
-			cout << "else if " << i << "\n";
-			flag = false;
-			end = i - 1;
-			ans.push_back({start,end});
-			cout << start << "  ----  " << end << "\n"; 
-		}
-	}
+		ans.push_back({start, end});
 
-	long long temp = 1000000000;
-	int tempo = INT_MAX;
-	if(temp < tempo){
-		cout << "range valid \n";
 	}
-	else 
-		cout << "range invalid\n";
-
-	// dbg(ans);
 
 	return ans;
+
+
 }
 
 
 void solve() {
-	// vector<vector<int>> nums = {{1,3},{2,6},{8,10},{15,18}};
-	vector<vector<int>> nums = {{1,4},{4,5}};
+	vector<vector<int>> nums = {{1,3},{2,6},{8,10},{15,18}};
+	// vector<vector<int>> nums = {{1,4},{4,5}};
 	// cin >> nums;
 	dbg(nums);
 	cout << "-----------------------\n";
@@ -186,7 +165,7 @@ void solve() {
 int main(int argc, char const* argv[]) {
 #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    // freopen("output.txt", "w", stdout);
 #endif
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
