@@ -50,14 +50,14 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 auto answer(vector<int> nums1){
-	// vector<int> ans {};
+	vector<int> ans {};
 	
-	int ans = 0;
+	// int ans = 0;
 
-	int n = 3;
-	int m = 3;
+	int m = 3; // arr1 size
+	int n = 3; // arr2 size
 
-	vector<int> nums2 = {2,5,6};
+	vector<int> nums2 = {2 , 5, 6};
 
 	dbg(nums1);
 	dbg(n);
@@ -65,12 +65,25 @@ auto answer(vector<int> nums1){
 	dbg(m);
 
 
+	int index = nums1.size();
+	dbg(index);
+	int ptr1 = 0;
+	int ptr2 = 0;
 
 
-	
+	// while()
+	int size = min(m, n);
 
+	for(int i = 0; i < size; i++){
+		if(nums1[ptr1] > nums2[ptr2]){
+			swap(nums1[ptr1], nums2[ptr2]);
+			ptr1++;
+		}
+	}
 
-	return ans;
+	dbg(nums1);
+
+	return nums1;
 }
 
 
