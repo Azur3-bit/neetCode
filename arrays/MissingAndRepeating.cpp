@@ -1,5 +1,4 @@
-// mergeTwoSortedArrays
-
+// MissingAndRepeating
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -49,64 +48,40 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
-auto answer(vector<int> nums1){
+auto answer(vector<int> nums){
 	vector<int> ans {};
 	
 	// int ans = 0;
-
-	int m = 3; // arr1 size
-	int n = 3; // arr2 size
-
-	vector<int> nums2 = {2 , 5, 6};
-
-	dbg(nums1);
-	dbg(n);
-	dbg(nums2);
-	dbg(m);
+	map<int, int> mpp{};
 
 
+	// finding the repeating element 
+	for(auto it : nums)
+		mpp[it]++;
 
+	int repeatingNumber = -100;
+	int missingNumber = -99;
 
-	int ptr1 = m - 1;
-	int ptr2 = n - 1;
-
-
-	dbg(nums1[ptr1]); 
-	dbg(nums2[ptr2]); 
-
-	int index = nums1.size() - 1;
-	dbg(index);
-	cout << "\n\n\n";
-
-	while(ptr1 >= 0 && ptr2 >= 0){
-
-		if(nums1[ptr1] > nums2[ptr2]){
-			cout << "if \n";
-			nums1[index] = nums1[ptr1];
-			ptr1--;
-			index--;
+	for(auto it : mpp){
+		if(it.second > 1){
+			repeatingNumber = it.first;
+			break;
 		}
-		// else if(nums2[ptr2] > nums1[ptr1]){
-		else{
-			cout << "else\n";
-			nums1[index] = nums2[ptr2];
-			ptr2--;
-			index--;
-		}
-		// else{
-		// 	cout << "else \n";
-		// 	nums1[index] = nums2[ptr2];
-		// 	ptr2--;
-		// 	index--;
-		// }
-
-
 	}
 
+	dbg(repeatingNumber);
 
-	dbg(nums1);
+	for(int i = 1; i <= nums.size(); i++){
+		if(mpp.find(i) == mpp.end()){
+			missingNumber = i;
+			break;
+		}
+	}
 
-	return nums1;
+	ans = {repeatingNumber, missingNumber};
+
+
+	return ans;
 }
 
 
