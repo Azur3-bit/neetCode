@@ -1,4 +1,3 @@
-// ReversePairs
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -48,75 +47,90 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
+void merge(vector<int> &nums, int start, int mid, int end, int &ans){
+
+	int left = start;
+	int right = mid + 1;
+
+	// counting reverse pairs
+
+	for(int i = left; i <= mid; i++){
+
+		while(right <= end && nums[i] > 2LL * nums[right]){
+
+			cout << "answer -- " << nums[i] << " " << nums[right] << "\n";
+			right++;
+		}
+		// dbg(right - (mid + 1));
+		if(right - (mid + 1)){
+			cout << "ans --- " << right << " " << mid << " => " << right - (mid + 1) << "\n";
+		}
+		ans += (right - (mid + 1));
+
+	}
 
 
-void merge(vector<int> &nums, int low, int mid, int high, int &ans){
+	// actual merge sort code 
 
+	left = start;
+	right = mid + 1;
 	vector<int> temp {};
 
-
-	// check for reverse pair before the actual exectuion of the function
-
-	int l = low;
-	int r = mid + 1;
-
-
-	while(l <= mid && r <= high){
-
-		if(nums[l] <= nums[r]){
-
-			temp.push_back(nums[l]);
-			l++;
+	while(left <= mid && right <= end){
+		if(nums[left] < nums[right]){
+			temp.push_back(nums[left]);
+			left++;
 		}
-
 		else{
-			temp.push_back(nums[r]);
-			r++;
+			temp.push_back(nums[right]);
+			right++;
 		}
 	}
 
-	// adding all the elements of the l <= mid
-	while(l <= mid){
-		temp.push_back(nums[l]);
-		l++;
+	while(left <= mid){
+		temp.push_back(nums[left]);
+		left++;
 	}
 
-
-	while(r <= high){
-		temp.push_back(nums[r]);
-		r++;
+	while(right <= end){
+		temp.push_back(nums[right]);
+		right++;
 	}
 
-	// adding all the elements back to the original array 
-	for(int i = low; i <= high; i++){
-		nums[i] = nums[i - low];
+	for(int i = start; i <= end; i++){
+		nums[i] = temp[i - start];
 	}
 
-	dbg(temp);
+	// dbg(temp);
+	// return;
+
 }
 
-void helper(vector<int> &nums, int low, int high, int &ans){
 
-	if(low >= high){
+void helper(vector<int> &nums, int start, int end, int &ans){
+
+	if(start >= end)
 		return;
-	}
 
-	int mid = (low + high) / 2;
+	int mid = (start + end) / 2;
 
-	helper(nums, low, mid, ans);
-	helper(nums, mid + 1, high, ans);
+	helper(nums, start, mid, ans);
+	helper(nums, mid + 1, end, ans);
 
-
-	merge(nums, low, mid, high, ans);
-
+	merge(nums, start, mid, end, ans);
 
 }
 
 auto answer(vector<int> nums){
 	// vector<int> ans {};
 	int ans = 0;
-    helper(nums, 0, nums.size() - 1, ans);
-    return ans;
+	int n = nums.size();
+
+	helper(nums, 0, n - 1, ans);
+
+	dbg(nums);
+
+	return ans;
 }
 
 
