@@ -1,3 +1,6 @@
+// mergeSort_re-revise.cpp
+
+
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -47,66 +50,58 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
+void merge(vector<int> &nums, int low, int high, int mid){
 
-void merge(vector<int> &nums, int left, int mid, int right, set<vector<int>> &ans){
 
+	// if(low > high)
+	// 	return;
 
-	int low = left;
-	int high = mid + 1;
 	vector<int> temp {};
 
-	while(low <= mid && high <= right){
+	// pointers 
+	int left = low;
+	int right = mid + 1;
 
-		if(nums[low] < nums[high]){
-			temp.push_back(nums[low]);
-			low++;
+
+	while(left <= mid && right <= high){
+		if(nums[left] < nums[right]){
+			temp.push_back(nums[left]);
+			left++;
 		}
 		else{
-			temp.push_back(nums[high]);
-			cout << "answer found => " << nums[low] << " , " << nums[high] << "\n";
-			ans.insert({nums[low], nums[high]});
-			high++;
+			temp.push_back(nums[right]);
+			right++;
 		}
-
 	}
 
-	// add remaining elements from left to mid 
-	while(low <= mid){
-		if(nums[low] > nums[right]){
-			cout << "again answer found => " << nums[low] << " , " << nums[high] << "\n";
-
-			ans.insert({nums[low], nums[right]});
-		}
-		temp.push_back(nums[low]);
-		low++;
+	while(left <= mid){
+		temp.push_back(nums[left]);
+		left++;
 	}
 
-	// add remaining elements from mid to right
-	while(high <= right){
-		temp.push_back(nums[high]);
-		high++;
+	while(right <= high){
+		temp.push_back(nums[right]);
+		right++;
 	}
 
-	// transfer all the elements to the original array
-	for(int i = left; i <= right; i++){
-		nums[i] = temp[i - left];
+	for(int i = low; i <= high; i++){
+		nums[i] = temp[i - low];
 	}
-
-	dbg(temp);
 
 }
 
-void helper(vector<int> &nums, int left, int right, set<vector<int>> &ans){
-	if(left >= right)
+void mergesort(vector<int> &nums, int low, int high){
+
+	if(low >= high)
 		return;
 
-	int mid = (left + right) / 2;
+	int mid = (low + high) / 2;
 
-	helper(nums, left, mid, ans);
-	helper(nums, mid + 1, right, ans);
 
-	merge(nums, left, mid, right, ans);
+	mergesort(nums, low, mid);
+	mergesort(nums, mid + 1, high);
 
+	merge(nums, low, high, mid);
 
 }
 
@@ -115,24 +110,13 @@ auto answer(vector<int> nums){
 	// vector<int> ans {};
 	// int ans = 0;
 
-	set<vector<int>> ans {};
 	int n = nums.size() - 1;
 
-	helper(nums, 0, n, ans);
+	mergesort(nums, 0, n);
+	// dbg(nums);
 
 
-	dbg(ans);
-
-	vector<vector<int>> actual_ans {};
-
-	for(auto it : ans){
-		actual_ans.push_back(it);
-	}
-
-
-
-
-	return actual_ans;
+	return nums;
 }
 
 

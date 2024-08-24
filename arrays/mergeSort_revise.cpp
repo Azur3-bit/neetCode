@@ -1,5 +1,3 @@
-// mergeSort_revise
-
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -50,68 +48,69 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 
-void merge(vector<int> &nums, int start, int end, int mid){
-
-	vector<int> temp{};
-	
-	int l = start;
-	int r = mid + 1;
+void merge(vector<int> &nums, int low, int mid, int high){
 
 
-	while(l <= mid && r >= end){
+	vector<int> temp {};
+	int left = low;
+	int right = mid + 1;
 
-		if(nums[l] >= nums[r]){
-			temp.push_back(nums[r]);
-			r++;
+
+	while(left <= mid && right <= high){
+		if(nums[left] < nums[right]){
+			temp.push_back(nums[left]);
+			left++;
 		}
 		else{
-			temp.push_back(nums[l]);
-			l++;
+			temp.push_back(nums[right]);
+			right++;
 		}
-
 	}
 
-	// add remaining elements 
-	while(l <= mid){
-		temp.push_back(nums[r]);
+	while(left <= mid){
+		temp.push_back(nums[left]);
+		left++;
+	}
+	while(right <= high){
+		temp.push_back(nums[right]);
+		right++;
 	}
 
-	while(r >= end){
-		temp.push_back(nums[r]);
+	for(int i = low; i <= high; i++){
+		nums[i] = temp[i - low];
 	}
 
+
+	dbg(temp);
 
 }
 
-void mergeSort(vector<int> &nums, int start, int end){
+
+void mergesort(vector<int> &nums, int start, int end){
 
 
-	if(end <= start)
+	if(start >= end)
 		return;
 
 	int mid = (start + end) / 2;
 
-	mergeSort(nums, low, mid); // changed to 0 => low 
-	mergeSort(nums, mid + 1, end);  // check for the end variable
+	mergesort(nums, start, mid);
+	mergesort(nums, mid + 1, end);
 
 	merge(nums, start, mid, end);
 
-
 }
+
 
 auto answer(vector<int> nums){
 	// vector<int> ans {};
-	int ans = 0;
+	// int ans = 0;
+	int n = nums.size() - 1;
 
-	mergeSort(nums);
-	
-	cout << "array sorted \n";
-
+	mergesort(nums, 0, n);
 	dbg(nums);
-	
 
-
-	return ans;
+	return nums;
 }
 
 
@@ -129,7 +128,7 @@ void solve() {
 int main(int argc, char const* argv[]) {
 #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    // freopen("output.txt", "w", stdout);
 #endif
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);

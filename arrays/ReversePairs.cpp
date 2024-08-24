@@ -1,3 +1,4 @@
+// ReversePairs
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -48,91 +49,74 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 
-void merge(vector<int> &nums, int left, int mid, int right, set<vector<int>> &ans){
 
+void merge(vector<int> &nums, int low, int mid, int high, int &ans){
 
-	int low = left;
-	int high = mid + 1;
 	vector<int> temp {};
 
-	while(low <= mid && high <= right){
 
-		if(nums[low] < nums[high]){
-			temp.push_back(nums[low]);
-			low++;
+	// check for reverse pair before the actual exectuion of the function
+
+	int l = low;
+	int r = mid + 1;
+
+
+	while(l <= mid && r <= high){
+
+		if(nums[l] <= nums[r]){
+
+			temp.push_back(nums[l]);
+			l++;
 		}
+
 		else{
-			temp.push_back(nums[high]);
-			cout << "answer found => " << nums[low] << " , " << nums[high] << "\n";
-			ans.insert({nums[low], nums[high]});
-			high++;
+			temp.push_back(nums[r]);
+			r++;
 		}
-
 	}
 
-	// add remaining elements from left to mid 
-	while(low <= mid){
-		if(nums[low] > nums[right]){
-			cout << "again answer found => " << nums[low] << " , " << nums[high] << "\n";
-
-			ans.insert({nums[low], nums[right]});
-		}
-		temp.push_back(nums[low]);
-		low++;
+	// adding all the elements of the l <= mid
+	while(l <= mid){
+		temp.push_back(nums[l]);
+		l++;
 	}
 
-	// add remaining elements from mid to right
-	while(high <= right){
-		temp.push_back(nums[high]);
-		high++;
+
+	while(r <= high){
+		temp.push_back(nums[r]);
+		r++;
 	}
 
-	// transfer all the elements to the original array
-	for(int i = left; i <= right; i++){
-		nums[i] = temp[i - left];
+	// adding all the elements back to the original array 
+	for(int i = low; i <= high; i++){
+		nums[i] = nums[i - low];
 	}
 
 	dbg(temp);
-
 }
 
-void helper(vector<int> &nums, int left, int right, set<vector<int>> &ans){
-	if(left >= right)
+void helper(vector<int> &nums, int low, int high, int &ans){
+
+	if(low >= high){
 		return;
+	}
 
-	int mid = (left + right) / 2;
+	int mid = (low + high) / 2;
 
-	helper(nums, left, mid, ans);
-	helper(nums, mid + 1, right, ans);
+	helper(nums, low, mid, ans);
+	helper(nums, mid + 1, high, ans);
 
-	merge(nums, left, mid, right, ans);
+
+	merge(nums, low, mid, high, ans);
 
 
 }
-
 
 auto answer(vector<int> nums){
 	// vector<int> ans {};
-	// int ans = 0;
-
-	set<vector<int>> ans {};
-	int n = nums.size() - 1;
-
-	helper(nums, 0, n, ans);
-
-
-	dbg(ans);
-
-	vector<vector<int>> actual_ans {};
-
-	for(auto it : ans){
-		actual_ans.push_back(it);
-	}
-
-
-
-
-	return actual_ans;
+	int ans = 0;
+    helper(nums, 0, nums.size() - 1, ans);
+    return ans;
 }
 
 
