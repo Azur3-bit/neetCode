@@ -50,29 +50,26 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 #if 0
-auto answer_bruteforce(vector<int> nums){
+// auto answer_bruteforce(vector<int> nums){
+auto answer(vector<int> nums){
 	// vector<int> ans {};
 	int ans = 0;
 	int n = nums.size();
 
-
 	for(int i = 0; i < n; i++){
 		// vector<int> temp {};
-
-		for(int j = i + 1; j < n; j++){
+		for(int j = i; j < n; j++){
 			int temp_product = 1;
+			vector<int> temp {};
 			for(int k = i; k <= j; k++){
+				temp.push_back(nums[k]);
 				temp_product = temp_product * nums[k];
 			}
+			dbg(temp);
 			ans = max(ans, temp_product);
 		}
-
-
 	}
 	
-	
-
-
 	return ans;
 }
 #endif
@@ -82,7 +79,8 @@ auto answer(vector<int> nums){
 	int ans = 0;
 	int n = nums.size();
 
-
+	// result will be minimized beacuse of odd numbers of negative elements
+	// and will be 0 if any element is 0. 
 
 	return ans;
 }
