@@ -1,5 +1,3 @@
-// MaximumProductSubarray
-
 // #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
@@ -49,63 +47,63 @@ void bst_vector(treenode * &root, vector<int> nums) {for (int it : nums) {root =
 treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nullptr;} treenode* root = new treenode(vec[0]); vector<treenode*> nodes; nodes.push_back(root); for (int i = 1; i < vec.size(); ++i) {treenode* node = nullptr; if (vec[i] != -1) {node = new treenode(vec[i]); nodes.push_back(node);} treenode* parent = nodes[(i - 1) / 2]; if (i % 2 == 1) {parent->left = node;} else {parent->right = node;}} return root;}
 
 // ------------------------------------------------------------------ solve
-#if 0
-// auto answer_bruteforce(vector<int> nums){
-auto answer(vector<int> nums){
+auto answer_iterative(vector<int> nums){
 	// vector<int> ans {};
-	int ans = 0;
-	int n = nums.size();
+	int ans = INT_MIN;
+	int target = 2;
 
-	for(int i = 0; i < n; i++){
-		// vector<int> temp {};
-		for(int j = i; j < n; j++){
-			int temp_product = 1;
-			vector<int> temp {};
-			for(int k = i; k <= j; k++){
-				temp.push_back(nums[k]);
-				temp_product = temp_product * nums[k];
-			}
-			dbg(temp);
-			ans = max(ans, temp_product);
-		}
-	}
-	
-	return ans;
-}
-#endif
-
-auto answer(vector<int> nums){
-	// vector<int> ans {};
-	int n = nums.size();
-
-	// result will be minimized beacuse of odd numbers of negative elements
-	// and will be 0 if any element is 0. 
-
-
-	int ans = nums[0];
-	int pre = 1;
-	int suff = 1;
-
-	for(int i = 0; i < n; i++){
-
-		if(pre == 0){
-			pre = 1;
-		}
-		if(suff == 0)
-			suff = 1;
-
-		pre *= nums[i];
-		suff *= nums[n - i - 1];
-
-		ans = max(ans, max(pre, suff));
-
-	}
+	int low = 0;
+	int high = nums.size() - 1;
 	
 
+	while(low <= high){
+
+		int mid = (low + high) / 2;
+
+		if(nums[mid] == target){
+			return mid;
+		}
+
+		if(nums[mid] > target)
+			high = mid - 1;
+		else
+			low = mid + 1;
+	}
 	return ans;
 }
+
+int binary_seach_recurrsive(vector<int> nums, int low, int high, int target){
+
+	if(low > high)
+		return -1;
+
+	int mid = (high + low) / 2;
+
+	if(nums[mid] == target){
+		return mid;
+	}
+	else if(nums[mid] > target){
+		return binary_seach_recurrsive(nums, low, mid - 1, target);
+	}
+	else
+		return binary_seach_recurrsive(nums, mid + 1, high, target);
+
+}
+
+auto answer(vector<int> nums){
+
+	int n = nums.size() - 1;
+	int target = 9;
+	int ans = binary_seach_recurrsive(nums, 0, n, target);
+
+	return ans;
+
+}
+
+
 
 void solve() {
+
 	vector<int> nums {};
 	cin >> nums;
 	dbg(nums);
