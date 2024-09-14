@@ -50,28 +50,71 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 // ------------------------------------------------------------------ solve
 
 
-auto answer(vector<int> nums) {
-    // Example: sum all elements in the vector
-    // int sum = accumulate(nums.begin(), nums.end(), 0);
+auto answer(vector<int> nums){
+    // vector<int> ans {};
+    int ans = INT_MIN;
+
+    int n = nums.size();
+
+    // if size - 1;
+    if(n == 1){
+    	return 0;
+    }
+
+    // if size - 2;
+
+    if(n == 2){
+    	if(nums[n - 1] > nums[n - 2]){
+    		return n;
+    	}
+    	else{
+    		return n - 1;
+    	}
+    }
+
+    int low  = 1;
+    int high = nums.size() - 2;
+    
+
+    while(low <= high){
+
+    	int mid = (low + high) / 2;
+
+    	// base case 
+    	if(nums[mid] > nums[mid - 1] && nums[mid] > nums[mid + 1]){
+    		return mid;
+    	}
 
 
-	int sum = 0;
-    cout << "working \n";
-    return sum;
+	   	// move right
+	   	else if(nums[mid] < nums[mid + 1]){
+	   		low = mid + 1;
+	   	}
+
+	   	// move left 
+	   	else{
+	   		high = mid - 1;
+	   	}
+
+    }
+
+
+    
+
+    return ans;
 }
 
 
 void solve() {
-    vector<int> nums {1, 2, 3, 4, 5};
+    vector<int> nums {};
+    cin >> nums;
     dbg(nums);
-    int ans = 0;
     cout << "-----------------------\n";
     
-    // auto ans = answer(nums); // Assuming your logic works
+    auto ans = answer(nums);
     cout << "-----------------------\n";
     dbg(ans);
 }
-
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
 #ifndef ONLINE_JUDGE
