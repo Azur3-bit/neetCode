@@ -1,4 +1,3 @@
-// SingleElementinaSortedArray
 
 // #include <bits/stdc++.h>
 #include <iostream>
@@ -51,15 +50,28 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 // ------------------------------------------------------------------ solve
 
 
+auto answer(vector<int> nums){
+    // vector<int> ans {};
+    int ans = 0;
+
+    
+
+
+    
+
+    return ans;
+}
+
+
 void solve() {
-	vector<int> nums {};
-	cin >> nums;
-	dbg(nums);
-	cout << "-----------------------\n";
-	
-	auto ans = answer(nums);
-	cout << "-----------------------\n";
-	dbg(ans);
+    vector<int> nums {};
+    cin >> nums;
+    dbg(nums);
+    cout << "-----------------------\n";
+    
+    auto ans = answer(nums);
+    cout << "-----------------------\n";
+    dbg(ans);
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
@@ -71,6 +83,6 @@ int main(int argc, char const* argv[]) {
     cin.tie(NULL);
     int t = 1; 
     // cin >> t;
-	while (t--) {solve();}
+    while (t--) {solve();}
     return 0;
 }

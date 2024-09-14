@@ -1,4 +1,3 @@
-// SingleElementinaSortedArray
 
 // #include <bits/stdc++.h>
 #include <iostream>
@@ -51,16 +50,28 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 // ------------------------------------------------------------------ solve
 
 
-void solve() {
-	vector<int> nums {};
-	cin >> nums;
-	dbg(nums);
-	cout << "-----------------------\n";
-	
-	auto ans = answer(nums);
-	cout << "-----------------------\n";
-	dbg(ans);
+auto answer(vector<int> nums) {
+    // Example: sum all elements in the vector
+    // int sum = accumulate(nums.begin(), nums.end(), 0);
+
+
+	int sum = 0;
+    cout << "working \n";
+    return sum;
 }
+
+
+void solve() {
+    vector<int> nums {1, 2, 3, 4, 5};
+    dbg(nums);
+    int ans = 0;
+    cout << "-----------------------\n";
+    
+    // auto ans = answer(nums); // Assuming your logic works
+    cout << "-----------------------\n";
+    dbg(ans);
+}
+
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
 #ifndef ONLINE_JUDGE
@@ -71,6 +82,6 @@ int main(int argc, char const* argv[]) {
     cin.tie(NULL);
     int t = 1; 
     // cin >> t;
-	while (t--) {solve();}
+    while (t--) {solve();}
     return 0;
 }
