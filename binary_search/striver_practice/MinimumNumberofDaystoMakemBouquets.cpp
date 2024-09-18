@@ -1,6 +1,4 @@
-// FindNthrootofM
-
-
+// MinimumNumberofDaystoMakemBouquets
 
 // #include <bits/stdc++.h>
 #include <iostream>
@@ -55,37 +53,12 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 auto answer(vector<int> nums){
     // vector<int> ans {};
-    int ans = -1;
+    int ans = 0;
 
     
 
 
-    // int n = 2, m = 9;
-    int n = 3, m = 9;
-    dbg(n);
-    dbg(m);
-
-    int low = 0;
-    int high = m;
-
-
-    while(low <= high){
-    	int mid = low + (high - low) / 2;
-    	int temp = 1;
-    	for(int i = 0; i < n; i++){
-    		temp *= mid;
-    	}
-    	if(temp == n){
-    		return mid;
-    	}
-
-    	else if(temp < m){
-    		// ans = mid;
-    		low = mid +  1;
-    	}
-    	else 
-    		high = mid - 1;
-    }
+    
 
     return ans;
 }
