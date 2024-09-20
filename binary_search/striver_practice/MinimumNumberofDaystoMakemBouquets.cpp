@@ -52,15 +52,66 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 
 auto answer(vector<int> nums){
-    // vector<int> ans {};
-    int ans = 0;
-
-    
 
 
-    
+    int noOfB = 3, noOfContinous_flowers = 1;
+    int n = nums.size();
 
-    return ans;
+    vector<int> flowerStatus(n, 0); 
+
+    for(int i = 0; i < nums.size(); i++){
+        flowerStatus[i] = -1 * nums[i];
+    }
+
+    dbg(flowerStatus);
+
+    int req = noOfB;
+
+    int days = 0;
+    while(req){
+
+        ++days;
+
+        // flower bloosm
+        for(int i = 0; i < n; i++){
+            flowerStatus[i]++;
+        }
+
+
+        int count = 0;
+        int count_start = 0;
+        bool flag = false;
+        // count no of continous elements greater than or equal to 0
+        for(int i = 0; i < n; i++){
+            if(flag == true && flowerStatus[i] >= 0){
+                ++count;
+            }
+            else if(flag == false && flowerStatus[i] >= 0){
+                count++;
+                count_start = i;
+            }
+
+
+            else if(flag == true && flowerStatus[i] < 0){
+                // calculation 
+                int canBeMade = count / noOfContinous_flowers;
+                req = req - canBeMade;
+
+                int count_end = i;
+
+                for(int j = count_start; j <= count_end; j++){
+                    flowerStatus[j] = nums[j] * -1;
+                }
+
+                flag = false;
+                count = 0;
+            }
+        }
+
+    }
+
+
+    return days;
 }
 
 
