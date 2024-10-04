@@ -1,4 +1,4 @@
-// CapacityToShipPackagesWithinDDays
+// KthMissingPositiveNumber
 
 
 // #include <bits/stdc++.h>
@@ -51,113 +51,88 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 
-bool helper(vector<int> nums, int days, int number){
 
-	cout << "\n----------------------------------\n";
-
-	dbg(number);
-
-	int sum = 0;
-	int day_ctr = 0;
-
-	for(auto it : nums){
-
-		cout << it << " ";
-
-		if( sum + it > number){
-			if(it > number){
-
-				cout << "item having more weight than it can carry \n";
-
-				return false;
-			}
-
-			// cout << "day + 1\n";
-
-			cout << "\nday ctr increased from : " << day_ctr << " to => ";
-			day_ctr++;
-			cout << day_ctr << "\n";
-
-			dbg(sum);
-
-			sum = 0;
-			sum += it;
-		}
-		else{
-			sum += it;
-			// dbg(sum);
-		}
-	}
-
-	cout << "\n[focus] day_ctr : " << day_ctr << "\n"; 
-
-	if(sum > number){
-		cout << "returning false \n";
-		return false;
-	}
-
-	if(sum > 0){
-
-		cout << "adding one more day after the loop \n";
-		dbg(day_ctr);
-		day_ctr++;
-		sum = 0;
-	}
+// bool helper(vector<int> nums, int number){
 
 
-	if(day_ctr <= days){
-		dbg(day_ctr);
-		return true;
-	}
 
 
-	dbg(day_ctr);
-	// cout << "returning false\n";
-
-	return false;
-}
-
+// }
 
 auto answer(vector<int> nums){
     // vector<int> ans {};
-    int ans = INT_MAX;
+    int ans = 0;
 
-    int days = 2;
+    
+    int k = 2;
 
-
-    int low = 0;
-
-    int sum = 0;
-    for(auto it : nums){
-    	sum += it;
+    for(int i = 0; i < nums.size(); i++){
+    	cout << nums[i] << " => " << abs(nums[i] - i - 1) << "\n";
     }
 
-    int high = sum;
+    int n = nums.size();
+    int low = 0;
+    int high = n - 1;
+    // dbg(high);
+    int missing = INT_MAX;
+
+
+    if(abs(nums[n - 1] - n - 2) <= k){
+
+
+	cout <<  "[focus] abs(nums[n - 1] - n - 2 : "<< abs(nums[n - 1] - n - 2)<< "\n";
+
+
+    	int count_missing = abs(nums[n - 1] - n - 2);
+    	dbg(count_missing);
+
+    	int number = nums[n - 1];
+    	while(count_missing--){
+    		number++;
+    	}
+
+    	dbg(number);
+
+    	return number;
+
+    }
 
 
     while(low <= high){
 
     	int mid = low + (high - low) / 2;
-
-    	if(helper(nums, days, mid) == true){
-    		//  go lower 
-    		ans = min(ans, mid);
-    		dbg(ans);
-    		high = mid - 1;
+    	dbg(mid);
+    	cout << "abs(nums[mid] - mid - 1) : " << abs(nums[mid] - mid - 1) << "\n";
+    	if(abs(nums[mid] - mid - 1) < k){
+    		// go in the right 
+    		ans = mid;
+    		low = mid + 1;
     	}
     	else{
-    		// go higher
-    		low = mid + 1;
-
+    		high = mid - 1;
     	}
-
     }
 
+    dbg(nums[low]);
+    dbg(nums[high]);
+    dbg(ans);
 
 
-    
+    cout << "elements to be found : " << k - ans << "\n";
 
-    return ans;
+    low = nums[high];
+    high = nums[low];
+
+    int counts = k - ans;
+
+    while(counts--){
+    	low++;
+    }
+
+    dbg(low);
+
+
+    return low;
 }
 
 

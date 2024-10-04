@@ -1,9 +1,11 @@
-nums : [1, 2, 5, 9]
+nums : [1, 2, 3, 4]
 -----------------------
-number : 5
-ctr : 5
-number : 2
-number : 3
-number : 4
+1 => 0
+2 => 0
+3 => 0
+4 => 0
+[focus] abs(nums[n - 1] - n - 2 : 2
+count_missing : 2
+number : 6
 -----------------------
-ans : 5
+ans : 6
