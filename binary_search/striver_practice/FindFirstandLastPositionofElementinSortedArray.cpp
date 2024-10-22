@@ -117,7 +117,7 @@ int upperBound(vector<int> nums, int x){
 auto answer(vector<int> nums){
 	vector<int> ans {};
 	// int ans = 0;
-	int x = 6;
+	int x = 3;
 	int lb = lowerBound(nums, x);
 	int ub = upperBound(nums, x);
 	
