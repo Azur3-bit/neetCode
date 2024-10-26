@@ -87,6 +87,12 @@ auto answer(vector<int> nums){
                 dbg(mid);
                 cout << "elment missing before this elment : " << nums[mid - 1] - mid << "\n";
                 cout << "[helper function call]\n";
+                
+
+                int range = k - prev_missing_elements;
+                ans = nums[prev_element_index] + range;
+
+
                 break;
 
             }
@@ -94,6 +100,15 @@ auto answer(vector<int> nums){
         }
 
 
+    }
+
+
+    if(ans == 0){
+        int last_index = nums.size() - 1;
+        int prev_missing_elements = nums[last_index] - last_index - 1;
+        
+        int range = k - prev_missing_elements;
+        ans = nums[last_index] + range;
     }
 
 
