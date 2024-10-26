@@ -1,5 +1,3 @@
-// KthMissingPositiveNumber
-
 
 // #include <bits/stdc++.h>
 #include <iostream>
@@ -52,87 +50,56 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 // ------------------------------------------------------------------ solve
 
 
-// bool helper(vector<int> nums, int number){
-
-
-
-
-// }
-
 auto answer(vector<int> nums){
     // vector<int> ans {};
     int ans = 0;
 
-    
-    int k = 2;
 
-    for(int i = 0; i < nums.size(); i++){
-    	cout << nums[i] << " => " << abs(nums[i] - i - 1) << "\n";
-    }
-
-    int n = nums.size();
+    int k = 2;    
     int low = 0;
-    int high = n - 1;
-    // dbg(high);
-    int missing = INT_MAX;
+    int high = nums.size() - 1;
 
-
-    if(abs(nums[n - 1] - n - 2) <= k){
-
-
-	cout <<  "[focus] abs(nums[n - 1] - n - 2 : "<< abs(nums[n - 1] - n - 2)<< "\n";
-
-
-    	int count_missing = abs(nums[n - 1] - n - 2);
-    	dbg(count_missing);
-
-    	int number = nums[n - 1];
-    	while(count_missing--){
-    		number++;
-    	}
-
-    	dbg(number);
-
-    	return number;
-
-    }
 
 
     while(low <= high){
 
-    	int mid = low + (high - low) / 2;
-    	dbg(mid);
-    	cout << "abs(nums[mid] - mid - 1) : " << abs(nums[mid] - mid - 1) << "\n";
-    	if(abs(nums[mid] - mid - 1) < k){
-    		// go in the right 
-    		ans = mid;
-    		low = mid + 1;
-    	}
-    	else{
-    		high = mid - 1;
-    	}
+        int mid = low + (high - low) / 2;
+        cout << "middle element : " << nums[mid] << "\n";
+
+        if(nums[mid] - mid - 1 < k){
+            // cout << "moving right \n";
+            low = mid + 1;
+        }
+        else{
+            // move left
+            int prev_element_index = mid - 1;
+            int prev_missing_elements = nums[prev_element_index] - prev_element_index - 1;
+
+
+            if(prev_missing_elements > k){
+                // move left 
+                high = mid - 1;
+            }
+            else{
+
+
+                dbg(nums[mid - 1]);
+                dbg(mid);
+                cout << "elment missing before this elment : " << nums[mid - 1] - mid << "\n";
+                cout << "[helper function call]\n";
+                break;
+
+            }
+
+        }
+
+
     }
 
-    dbg(nums[low]);
-    dbg(nums[high]);
-    dbg(ans);
 
+    
 
-    cout << "elements to be found : " << k - ans << "\n";
-
-    low = nums[high];
-    high = nums[low];
-
-    int counts = k - ans;
-
-    while(counts--){
-    	low++;
-    }
-
-    dbg(low);
-
-
-    return low;
+    return ans;
 }
 
 

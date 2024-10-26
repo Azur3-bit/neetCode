@@ -1,4 +1,10 @@
-nums : [1, 2, 3, 4]
+nums : [2, 3, 4, 7, 11]
 -----------------------
+middle element : 4
+middle element : 7
+nums[mid - 1] : 4
+mid : 3
+elment missing before this elment : 1
+[helper function call]
 -----------------------
-ans : [2, 2]
+ans : 0
