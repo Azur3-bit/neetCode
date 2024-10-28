@@ -1,3 +1,6 @@
+// kthmissing_element_help
+
+
 
 // #include <bits/stdc++.h>
 #include <iostream>
@@ -54,63 +57,32 @@ auto answer(vector<int> nums){
     // vector<int> ans {};
     int ans = 0;
 
-
-    int k = 5;    
-    int low = 0;
-    int high = nums.size() - 1;
+    int k = 5;
 
 
-
-    while(low <= high){
-
-        int mid = low + (high - low) / 2;
-        cout << "middle element : " << nums[mid] << "\n";
-
-        if(nums[mid] - mid - 1 < k){
-            // cout << "moving right \n";
-            low = mid + 1;
-        }
-        else{
-            // move left
-            int prev_element_index = mid - 1;
-            int prev_missing_elements = nums[prev_element_index] - prev_element_index - 1;
+  	int low = 0;
+  	int high = nums.size() - 1;
 
 
-            if(prev_missing_elements > k){
-                // move left 
-                high = mid - 1;
-            }
-            else{
+
+  	while(low <= high){
+
+  		int mid = low + (high - low) / 2;
+
+  		int missing_ele = nums[mid] - mid - 1;
+
+  		if(missing_ele < k){
+  			//  move right
+  			low = mid + 1;
+  			ans = low;
+  		} 
+  		else{
+  			high = mid - 1;
+  		}
+  	}
 
 
-                dbg(nums[mid - 1]);
-                dbg(mid);
-                cout << "elment missing before this elment : " << nums[mid - 1] - mid << "\n";
-                cout << "[helper function call]\n";
-                
-
-                int range = k - prev_missing_elements;
-                ans = nums[prev_element_index] + range;
-
-
-                break;
-
-            }
-
-        }
-
-
-    }
-
-
-    if(ans == 0){
-        int last_index = nums.size() - 1;
-        int prev_missing_elements = nums[last_index] - last_index - 1;
-        
-        int range = k - prev_missing_elements;
-        ans = nums[last_index] + range;
-    }
-
+  	cout << "answer is : " << ans + k << "\n";
 
     
 
