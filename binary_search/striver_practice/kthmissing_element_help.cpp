@@ -1,4 +1,6 @@
-// FindFirstandLastPositionofElementinSortedArray
+// kthmissing_element_help
+
+
 
 // #include <bits/stdc++.h>
 #include <iostream>
@@ -50,94 +52,53 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 
-int lowerBound(vector<int> nums, int x){
-
-	int ans = INT_MAX;
-	int start = 0;
-	int end = nums.size() - 1;
-
-
-	while(start <= end){
-
-		int mid = start + (end - start) / 2;
-
-		if(nums[mid] == x){
-			ans = min(ans, mid);
-			// move left
-			end = mid - 1;
-		}
-
-		else if(nums[mid] > x){
-			// move left
-			end = mid - 1;
-		}
-
-		else{
-			// move right
-			start = mid + 1;
-		}
-	}
-	if(ans == INT_MAX){
-		return -1;
-	}
-	return ans;
-}
-
-
-int upperBound(vector<int> nums, int x){
-
-	int ans = -1;
-	int start = 0;
-	int end = nums.size() - 1;
-
-
-	while(start <= end){
-
-		int mid = start + (end - start) / 2;
-
-		if(nums[mid] == x){
-			ans = max(ans, mid);
-			// move right
-			start = mid + 1;
-		}
-		
-		else if(nums[mid] > x){
-			// move right
-			end = mid - 1;
-		}
-		else {
-			// move left
-			start = mid + 1;
-		}
-	}
-
-	return ans;
-}
 
 auto answer(vector<int> nums){
-	vector<int> ans {};
-	// int ans = 0;
-	int x = 3;
-	int lb = lowerBound(nums, x);
-	int ub = upperBound(nums, x);
-	
-	ans.push_back(lb);
-	ans.push_back(ub);
-	return ans;
+    // vector<int> ans {};
+    int ans = 0;
 
-	// return ans;
+    int k = 5;
+
+
+  	int low = 0;
+  	int high = nums.size() - 1;
+
+
+
+  	while(low <= high){
+
+  		int mid = low + (high - low) / 2;
+
+  		int missing_ele = nums[mid] - mid - 1;
+
+  		if(missing_ele < k){
+  			//  move right
+  			low = mid + 1;
+  			ans = low;
+  		} 
+  		else{
+  			high = mid - 1;
+  		}
+  	}
+
+
+  	cout << "answer is : " << ans + k << "\n";
+
+    
+
+    return ans;
 }
 
 
 void solve() {
-	vector<int> nums {};
-	cin >> nums;
-	dbg(nums);
-	cout << "-----------------------\n";
-	
-	auto ans = answer(nums);
-	cout << "-----------------------\n";
-	dbg(ans);
+    vector<int> nums {};
+    cin >> nums;
+    dbg(nums);
+    cout << "-----------------------\n";
+    
+    auto ans = answer(nums);
+    cout << "-----------------------\n";
+    dbg(ans);
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
@@ -149,6 +110,6 @@ int main(int argc, char const* argv[]) {
     cin.tie(NULL);
     int t = 1; 
     // cin >> t;
-	while (t--) {solve();}
+    while (t--) {solve();}
     return 0;
 }

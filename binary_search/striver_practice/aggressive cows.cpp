@@ -1,4 +1,7 @@
-// FindFirstandLastPositionofElementinSortedArray
+// aggressive cows
+
+
+
 
 // #include <bits/stdc++.h>
 #include <iostream>
@@ -50,94 +53,90 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 
-int lowerBound(vector<int> nums, int x){
+bool possible(vector<int> nums,int mid, int cows){
 
-	int ans = INT_MAX;
-	int start = 0;
-	int end = nums.size() - 1;
+	dbg(mid);
+	int last = nums[0];
+	// cows--;
+	int cows_placed = 1;
 
-
-	while(start <= end){
-
-		int mid = start + (end - start) / 2;
-
-		if(nums[mid] == x){
-			ans = min(ans, mid);
-			// move left
-			end = mid - 1;
+	for(int i = 1; i < nums.size(); i++){
+		// cout << "nums[i] - last : " << nums[i] - last << "\n";
+		dbg(last);
+		if(nums[i] - last >= mid){
+			// cout << "=> last cow at : " << last << "\n";
+			last = nums[i];
+			// cows--;
+			cows_placed++;
 		}
 
-		else if(nums[mid] > x){
-			// move left
-			end = mid - 1;
-		}
-
-		else{
-			// move right
-			start = mid + 1;
-		}
 	}
-	if(ans == INT_MAX){
-		return -1;
+
+	if(cows_placed >= cows){
+		return true;
 	}
-	return ans;
+	return false;
+
+
 }
 
 
-int upperBound(vector<int> nums, int x){
-
-	int ans = -1;
-	int start = 0;
-	int end = nums.size() - 1;
-
-
-	while(start <= end){
-
-		int mid = start + (end - start) / 2;
-
-		if(nums[mid] == x){
-			ans = max(ans, mid);
-			// move right
-			start = mid + 1;
-		}
-		
-		else if(nums[mid] > x){
-			// move right
-			end = mid - 1;
-		}
-		else {
-			// move left
-			start = mid + 1;
-		}
-	}
-
-	return ans;
-}
 
 auto answer(vector<int> nums){
-	vector<int> ans {};
-	// int ans = 0;
-	int x = 3;
-	int lb = lowerBound(nums, x);
-	int ub = upperBound(nums, x);
-	
-	ans.push_back(lb);
-	ans.push_back(ub);
-	return ans;
+    // vector<int> ans {};
+    int ans = 0;  
 
-	// return ans;
+    int cows = 3;
+    int stalls = 5;
+
+    sort(nums.begin(), nums.end());
+    dbg(nums);
+
+
+    int low = 0;
+    int high = nums.back();
+    dbg(high);
+
+
+    while(low <= high){
+
+    	int mid = low + (high - low) / 2;
+
+
+
+    	if(possible(nums, mid, cows)){
+    		// move left
+    		ans = low;
+    		low = mid + 1;
+    	}
+    	else{
+    		high = mid - 1;
+    	}
+
+    	// break;
+    }
+
+    // bool res = possible(nums, 4, 3);
+    // if(res){
+    // 	cout << "all the cows placed\n";
+    // }
+    // else{
+    // 	cout << "NOT PLACED \n";
+    // }
+
+    return ans;
 }
 
 
 void solve() {
-	vector<int> nums {};
-	cin >> nums;
-	dbg(nums);
-	cout << "-----------------------\n";
-	
-	auto ans = answer(nums);
-	cout << "-----------------------\n";
-	dbg(ans);
+    vector<int> nums {};
+    cin >> nums;
+    dbg(nums);
+    cout << "-----------------------\n";
+    
+    auto ans = answer(nums);
+    cout << "-----------------------\n";
+    dbg(ans);
 }
 // ------------------------------------------------------------------ main
 int main(int argc, char const* argv[]) {
@@ -149,6 +148,6 @@ int main(int argc, char const* argv[]) {
     cin.tie(NULL);
     int t = 1; 
     // cin >> t;
-	while (t--) {solve();}
+    while (t--) {solve();}
     return 0;
 }
