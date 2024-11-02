@@ -1,0 +1,9 @@
+"I am Sunil Kumar Sharma, a final-year Computer Science and Engineering student at SRM Institute of Science and 
+Technology, currently holding a percentage of 88.7%. I have a strong foundation in programming with languages 
+like Python and C/C++, and I’ve worked on projects 
+such as a Secure Multi-Factor Authentication System that significantly enhanced login efficiency. 
+Additionally, I created a command-line Music Player using Python, leveraging web scraping and containerized deployment.
+
+I’m experienced in implementing data structures and algorithms and have participated in several hackathons, 
+which honed my problem-solving and adaptability skills. I’m eager to leverage my technical background to tackle 
+challenging problems and contribute effectively to impactful projects."
