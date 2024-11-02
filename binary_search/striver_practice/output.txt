@@ -1,26 +1,24 @@
-nums : [1, 2, 8, 4, 9]
+nums : [12, 34, 67, 90]
 -----------------------
-nums : [1, 2, 4, 8, 9]
-high : 9
-mid : 4
-last : 1
-last : 1
-last : 1
-last : 8
-mid : 1
-last : 1
-last : 2
-last : 4
-last : 8
+mid : 45
+curr_pages : 203
+mid : 22
+curr_pages : 203
+mid : 11
+curr_pages : 203
+mid : 5
+curr_pages : 203
 mid : 2
-last : 1
-last : 1
-last : 4
-last : 8
+curr_pages : 46
+curr_pages : 157
+student_ctr : 2
+all the student got the books
 mid : 3
-last : 1
-last : 1
-last : 4
-last : 8
+curr_pages : 113
+curr_pages : 90
+student_ctr : 2
+all the student got the books
+mid : 4
+curr_pages : 203
 -----------------------
-ans : 3
+ans : 113
