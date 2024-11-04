@@ -1,4 +1,5 @@
-// Allocate Books
+// allocate_books_retry_practice
+
 
 
 
@@ -52,108 +53,66 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 
-int helper_pageCount(vector<int> nums, int mid, int students){
 
-	dbg(mid);
-	int bookctr = 0;
-	int ans = INT_MIN;
-	int curr_pages = 0;
-	int student_ctr = 0;
-	// int last = 0;
+int helper(vector<int> nums, int mid){
 
+
+	int book_ctr = 0;
+	int student_Ctr = 1;
 
 
 	for(int i = 0; i < nums.size(); i++){
 
-		if(bookctr == mid){i
-			dbg(curr_pages);
-			ans = max(curr_pages, ans);
-			student_ctr++;
-			bookctr = 0;
-			curr_pages = 0;
+		if(nums[i] + book_ctr <= mid){
+			book_ctr += nums[i];
 		}
-
-		bookctr++;
-		curr_pages += nums[i];
+		else{
+			book_ctr = nums[i];
+			student_Ctr++;
+		}
 	}
 
-	dbg(curr_pages);             
+	return student_Ctr;
 
-	ans = max(curr_pages,ans);
-	// dbg(++student_ctr);
-	++student_ctr;
-
-	if(student_ctr == students){
-		dbg(student_ctr);
-		cout << "all the student got the books\n";
-		return ans;
-	}
-
-	return INT_MAX;
 }
 
 
 auto answer(vector<int> nums){
     // vector<int> ans {};
-    int ans = INT_MAX;
+    int ans = 0;
 
     
-    int n, m;
-    // n => number of books
-    // m => number of students
+    int n = 5;
+    int m = 4;
+
+    // n = > number of books
+    // m = > number of students 
+
+    if(n < m){
+    	return -1;
+    }
 
 
-    n = 5;
-    m = 4;
+    int low = *max_element(nums.begin(), nums.end());
+    int high = 0;
 
-
-	int temp = helper_pageCount(nums, 2, 2);
-	dbg(temp);
-
-    // int help = helper(nums, m);
-    // dbg(help);
-
-    // for(int i = 1; i < n; i++){
-    // 	int temp = helper_pageCount(nums, i, m);
-    // 	ans = min(temp, ans);
-    // 	cout << endl;
-    // }
-
-    sort(nums.begin(), nums.end());
-
-
-    int low = nums.back();
-    int high = 0; 
+    ans = low;
 
     for(int it : nums){
     	high += it;
     }
 
 
-    while(low <= high){
+    for(int i = low; i <= high; i++){
 
-    	int mid = low + (high - low) / 2;
-    	int res = helper_pageCount(nums, mid, m);
+    	int res = helper(nums, i);
+    	dbg(i);
     	dbg(res);
-    	if(res == INT_MAX){
-    		// move left
-    		high = mid - 1;
-    	}
-    	else{
-    		// move right
-    		ans = min(res, ans);
-    		low = mid + 1;
-    	}
-
+    	if(res == m){
+    		return i;
+    	} 
     }
-
-
-
-    if(ans == INT_MAX){
-    	return -1;
-    }
-   
-
+    
     return ans;
 }
 
@@ -172,7 +131,7 @@ void solve() {
 int main(int argc, char const* argv[]) {
 #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
-    // freopen("output.txt", "w", stdout);
+    freopen("output.txt", "w", stdout);
 #endif
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);

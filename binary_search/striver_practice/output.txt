@@ -1,24 +1,50 @@
-nums : [12, 34, 67, 90]
+nums : [25, 46, 28, 49, 24]
 -----------------------
-mid : 45
-curr_pages : 203
-mid : 22
-curr_pages : 203
-mid : 11
-curr_pages : 203
-mid : 5
-curr_pages : 203
-mid : 2
-curr_pages : 46
-curr_pages : 157
-student_ctr : 2
-all the student got the books
-mid : 3
-curr_pages : 113
-curr_pages : 90
-student_ctr : 2
-all the student got the books
-mid : 4
-curr_pages : 203
+i : 49
+res : 5
+i : 50
+res : 5
+i : 51
+res : 5
+i : 52
+res : 5
+i : 53
+res : 5
+i : 54
+res : 5
+i : 55
+res : 5
+i : 56
+res : 5
+i : 57
+res : 5
+i : 58
+res : 5
+i : 59
+res : 5
+i : 60
+res : 5
+i : 61
+res : 5
+i : 62
+res : 5
+i : 63
+res : 5
+i : 64
+res : 5
+i : 65
+res : 5
+i : 66
+res : 5
+i : 67
+res : 5
+i : 68
+res : 5
+i : 69
+res : 5
+i : 70
+res : 5
+i : 71
+res : 4
 -----------------------
-ans : 113
+ans : 71
