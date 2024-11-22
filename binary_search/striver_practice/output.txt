@@ -1,6 +1,8 @@
-nums : [1, 4, 4]
+nums : [1, 2]
 -----------------------
-low : 1
-high : 9
+size : 4
+final : [1, 2, 3, 4]
+(double)final[size / 2] : 3
+(double)final[(size / 2) - 1] : 2
 -----------------------
-ans : 1
+ans : 2.5
