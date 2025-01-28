@@ -1,7 +1,3 @@
-// aggressive cows
-
-
-
 
 // #include <bits/stdc++.h>
 #include <iostream>
@@ -53,80 +49,46 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 
-bool possible(vector<int> nums,int mid, int cows){
-
-	dbg(mid);
-	int last = nums[0];
-	// cows--;
-	int cows_placed = 1;
-
-	for(int i = 1; i < nums.size(); i++){
-		// cout << "nums[i] - last : " << nums[i] - last << "\n";
-		dbg(last);
-		if(nums[i] - last >= mid){
-			// cout << "=> last cow at : " << last << "\n";
-			last = nums[i];
-			// cows--;
-			cows_placed++;
-		}
-
-	}
-
-	if(cows_placed >= cows){
-		return true;
-	}
-	return false;
-
-
-}
-
-
 
 auto answer(vector<int> nums){
     // vector<int> ans {};
-    int ans = 0;  
+    int ans = 0;
 
-    int cows = 3;
-    int stalls = 5;
-
-    sort(nums.begin(), nums.end());
-    dbg(nums);
+    
 
 
-    int low = 0;
-    int high = nums.back();
-    dbg(high);
+    string s = "the sky is blue";
 
+    dbg(s); 
+    vector<string> ansi {};
 
-    while(low <= high){
+    int start = 0;
+    int end = 0;
 
-    	int mid = low + (high - low) / 2;
+    string temp = "";
 
+    for(auto it : s){
 
-
-    	if(possible(nums, mid, cows)){
-    		// move left
-    		ans = low;
-    		low = mid + 1;
+    	if(it == ' '){
+    		ansi.push_back(temp);
+    		temp = "";
     	}
     	else{
-    		high = mid - 1;
+    		temp += it;
     	}
-
-    	// break;
     }
 
-    // bool res = possible(nums, 4, 3);
-    // if(res){
-    // 	cout << "all the cows placed\n";
-    // }
-    // else{
-    // 	cout << "NOT PLACED \n";
-    // }
+    if(!temp.empty()){
+    	ansi.push_back(temp);
+    }
+
+    dbg(ansi);
+
+    reverse(ansi.begin(), ansi.end());
+
+    dbg(ansi);
 
     return ans;
-
-
 }
 
 
