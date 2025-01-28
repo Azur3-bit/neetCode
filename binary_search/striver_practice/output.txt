@@ -1,12 +1,23 @@
 nums : [1, 2]
 -----------------------
-3
-res : 3
-2
-res : 2
-4
-res : 4
-0
-res : 0
+rows : 0
+cols : 4
+rows : 1
+cols : 4
+rows : 2
+cols : 4
+rows : 2
+cols : 3
+rows : 3
+cols : 3
+rows : 4
+cols : 3
+rows : 4
+cols : 2
+rows : 4
+cols : 1
+rows : 4
+cols : 0
+element NOT found 
 -----------------------
-ans : 2
+ans : 0
