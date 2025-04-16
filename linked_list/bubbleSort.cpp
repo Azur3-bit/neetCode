@@ -1,6 +1,3 @@
-// bubbleSort.cpp
-
-
 
 // #include <bits/stdc++.h>
 #include <iostream>
@@ -52,41 +49,36 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 
+
+
 void bubbleSort(vector<int> &nums){
 
 
-	int n = nums.size();
+    int size = nums.size();
 
-	for(int i = 0; i < n; i++){
+    for(int i = size - 1; i >= 1; i--){
 
-		for(int j = 0; j < n; j++){
+        for(int j = 0; j < size - 1; j++){
 
-			if(nums[i] < nums[j]){
-				swap(nums[i], nums[j]);
-				dbg(nums);
-			}
+            if(nums[j] > nums[j + 1]){
+                swap(nums[j], nums[j + 1]);
+            }
 
-		}
+        }
 
-	}
+    }
 
-
-	// dbg(nums);
-
-
-	// return;
 
 }
-
 
 auto answer(vector<int> nums){
     // vector<int> ans {};
     int ans = 0;
 
     
-    bubbleSort(nums);
-    // dbg(nums);
 
+    bubbleSort(nums);
+    dbg(nums);
     
 
     return ans;
