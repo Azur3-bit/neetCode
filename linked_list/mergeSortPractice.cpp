@@ -93,6 +93,8 @@ void merge(vector<int> &nums, int start, int mid, int end){
 
 }
 
+cout << "temp\n";
+
 
 void mergeSort(vector<int> &nums, int start, int end){
 
