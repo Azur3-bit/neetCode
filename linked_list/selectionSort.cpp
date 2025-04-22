@@ -49,29 +49,30 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 
-
-
 void selectionSort(vector<int> &nums){
 
-	int n = nums.size();
+    int n = nums.size();
+
+    for(int i = 0; i < n - 1; i++){
+
+        int mini = i;
+
+        for(int j = i; j <= n - 1; j++){
+
+            if(nums[mini] > nums[j]){
+        
+                mini = j;
+            }
 
 
-	for(int i = 0; i < n; i++){
+        }
+        swap(nums[mini], nums[i]);
 
-		int mini = i;
+    }
 
-		for(int j = i; j < n; j++){
-
-			if(nums[j] < nums[mini]){
-				mini = j;
-			}
-
-		}
-		swap(nums[mini], nums[i]);
-
-	}
 
 }
+
 
 auto answer(vector<int> nums){
     // vector<int> ans {};
@@ -81,7 +82,6 @@ auto answer(vector<int> nums){
 
     selectionSort(nums);
     dbg(nums);
-    
 
     return ans;
 }

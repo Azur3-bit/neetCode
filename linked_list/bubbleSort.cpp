@@ -50,15 +50,15 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 // ------------------------------------------------------------------ solve
 
 
-
 void bubbleSort(vector<int> &nums){
 
 
-    int size = nums.size();
+    int n = nums.size();
 
-    for(int i = size - 1; i >= 1; i--){
 
-        for(int j = 0; j < size - 1; j++){
+    for(int i = n - 1; i >= 1; i--){
+
+        for(int j = 0; j < n; j++){
 
             if(nums[j] > nums[j + 1]){
                 swap(nums[j], nums[j + 1]);
@@ -75,10 +75,11 @@ auto answer(vector<int> nums){
     // vector<int> ans {};
     int ans = 0;
 
-    
-
     bubbleSort(nums);
+
     dbg(nums);
+
+
     
 
     return ans;

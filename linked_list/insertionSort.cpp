@@ -1,5 +1,3 @@
-// insertionSort.cpp
-
 
 // #include <bits/stdc++.h>
 #include <iostream>
@@ -51,28 +49,27 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 
-void insertionSort(vector<int> &nums){
+
+void selectionSort(vector<int> &nums){
 
 
-	int size = nums.size();
+    int n = nums.size();
+
+    for(int i = 1; i < n; i++){
+
+        int j = i;
 
 
+        while(j > 0 && nums[j] < nums[j - 1]){
 
-	for(int i = 0; i < size; i++){
+            swap(nums[j], nums[j - 1]);
+            j--;
 
-		int j = i;
-
-		while(j > 0 && nums[j] < nums[j - 1]){
-
-			swap(nums[j], nums[j - 1]);
-			j--;
-
-		}
-
-	}
+        }
 
 
-	// return;
+    }
+
 
 }
 
@@ -83,8 +80,12 @@ auto answer(vector<int> nums){
 
     
 
-    insertionSort(nums);
+    selectionSort(nums);
+
     dbg(nums);
+
+
+
 
     return ans;
 }
