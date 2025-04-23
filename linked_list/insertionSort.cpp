@@ -49,26 +49,25 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 
-
-void selectionSort(vector<int> &nums){
+void insertionSort(vector<int> &nums){
 
 
     int n = nums.size();
 
-    for(int i = 1; i < n; i++){
+    for(int i = 0; i < n; i++){
 
         int j = i;
-
 
         while(j > 0 && nums[j] < nums[j - 1]){
 
             swap(nums[j], nums[j - 1]);
+
             j--;
 
         }
 
-
     }
+
 
 
 }
@@ -80,10 +79,9 @@ auto answer(vector<int> nums){
 
     
 
-    selectionSort(nums);
 
+    insertionSort(nums);
     dbg(nums);
-
 
 
 
