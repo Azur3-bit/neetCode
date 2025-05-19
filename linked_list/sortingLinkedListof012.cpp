@@ -50,14 +50,94 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 // ------------------------------------------------------------------ solve
 
 
+void solution(ListNode * &head){
+
+    ListNode * zeroHead = new ListNode(-1);
+    ListNode * oneHead = new ListNode(-1);
+    ListNode * twoHead = new ListNode(-1);
+
+
+    ListNode * zero = zeroHead;
+    ListNode * one = oneHead;
+    ListNode * two = twoHead;
+
+    ListNode * temp = head;
+
+    while(temp != nullptr){
+
+
+        if(temp->val == 1){
+            one->next = temp;
+            one = one->next;
+            temp = temp->next;
+        }
+
+        else if(temp->val == 0){
+            zero->next = temp;
+            zero = zero->next;
+            temp = temp->next;
+
+        }
+
+        // if(temp->val == 2){
+        else{
+            two->next = temp;
+            two = two->next;
+            temp = temp->next;
+        
+        }
+                
+    }
+
+    if(zeroHead->next)
+        zeroHead = zeroHead->next;
+    
+    if(oneHead->next)
+        oneHead = oneHead->next;
+    
+    if(twoHead->next)
+        twoHead = twoHead->next;
+
+
+    zero->next = nullptr;
+    one->next = nullptr;
+    two->next = nullptr;
+
+    _showLinkedList(zeroHead);
+    _showLinkedList(oneHead);
+    _showLinkedList(twoHead);
+
+
+
+    head = zeroHead;
+    zero->next = oneHead;
+    one->next = twoHead;
+
+    _showLinkedList(head);
+
+
+}
+
+
 auto answer(vector<int> nums){
     // vector<int> ans {};
     int ans = 0;
 
     
 
-    
-    
+    ListNode * head = nullptr;
+
+
+    vec_linkedlist(head, nums);
+    _showLinkedList(head);
+
+    solution(head);
+
+
+
+    cout << " --- -XX ---- \n";
+
+    _showLinkedList(head);
 
     return ans;
 }
