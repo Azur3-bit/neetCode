@@ -53,14 +53,93 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 // ------------------------------------------------------------------ solve
 
 
-void revingLinkedList(ListNode * &head){
+ListNode * revingLinkedList(ListNode * &head){
 
-	
+	ListNode * prev = nullptr;
+	ListNode * curr = head;
+
+
+	while(curr){
+
+		ListNode * after = curr->next;
+
+		curr->next = prev;
+		prev = curr;
+		curr = after;
+
+	} 
+
+	return prev;
+
+
 
 }
 
 
 ListNode * sol(ListNode * head){
+
+
+	head = revingLinkedList(head);
+
+	_showLinkedList(head);
+
+
+
+	ListNode * temp = head;
+	int carry = 0;
+
+
+	while(temp){
+
+		_showLinkedList(head);
+
+		if(temp == head){
+
+			if(temp->val < 9){
+				temp->val++;
+				temp = temp->next;
+			}
+			else{
+				carry = 1;
+				temp = temp->next;
+			}
+		}
+
+
+		if(carry == 1){
+
+			if(temp->next == nullptr){
+
+				temp->val = 0;
+				
+				ListNode * newi = new ListNode(1);
+				temp->next = newi;
+				temp = temp->next;
+
+			}
+
+			else if (temp->val < 9){
+				int ele = temp->val;
+				ele++;
+				temp->val = ele;			
+				carry = 0;
+			}
+		}
+
+		if(temp->val == 9){
+			carry = 1;
+			temp->val = 0;
+		}
+
+		temp = temp->next;
+
+	}
+
+
+	_showLinkedList(head);
+
+	revingLinkedList(head);
+
 
 
 }
@@ -77,8 +156,9 @@ auto answer(vector<int> nums){
     vec_linkedlist(head, nums);
     _showLinkedList(head);
 
-    head = sol(head);
+    // head = revingLinkedList(head);
 
+    head = sol(head);
 
     cout << "---- XXX --- \n";
     _showLinkedList(head);
@@ -104,7 +184,7 @@ void solve() {
 int main(int argc, char const* argv[]) {
 #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    // freopen("output.txt", "w", stdout);
 #endif
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
