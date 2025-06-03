@@ -1,4 +1,4 @@
-// AddingOneToLinkedList
+// AddTwoNumbers
 
 
 
@@ -53,98 +53,6 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 // ------------------------------------------------------------------ solve
 
 
-ListNode * revingLinkedList(ListNode * &head){
-
-	ListNode * prev = nullptr;
-	ListNode * curr = head;
-
-
-	while(curr){
-
-		ListNode * after = curr->next;
-
-		curr->next = prev;
-		prev = curr;
-		curr = after;
-
-	} 
-
-	return prev;
-
-
-
-}
-
-
-ListNode * sol(ListNode * head){
-
-
-	head = revingLinkedList(head);
-
-	_showLinkedList(head);
-
-
-
-	ListNode * temp = head;
-	int carry = 0;
-
-
-	while(temp){
-
-		_showLinkedList(head);
-
-		if(temp == head){
-
-			if(temp->val < 9){
-				temp->val++;
-				temp = temp->next;
-			}
-			else{
-				carry = 1;
-				temp = temp->next;
-			}
-		}
-
-
-		if(carry == 1){
-
-			if(temp->next == nullptr){
-
-				temp->val = 0;
-				
-				ListNode * newi = new ListNode(1);
-				temp->next = newi;
-				temp = temp->next;
-
-			}
-
-			else if (temp->val < 9){
-				int ele = temp->val;
-				ele++;
-				temp->val = ele;			
-				carry = 0;
-			}
-		}
-
-		if(temp->val == 9){
-			carry = 1;
-			temp->val = 0;
-		}
-
-		temp = temp->next;
-
-	}
-
-
-	_showLinkedList(head);
-
-	revingLinkedList(head);
-
-
-
-}
-
-
 auto answer(vector<int> nums){
     // vector<int> ans {};
     int ans = 0;
@@ -152,19 +60,16 @@ auto answer(vector<int> nums){
     
 
 
-    ListNode * head = nullptr;
-    vec_linkedlist(head, nums);
-    _showLinkedList(head);
+    ListNode * l1 = nullptr;
+    ListNode * l2 = nullptr;
 
-    // head = revingLinkedList(head);
+    vector<int> nums2 = {5,6,4};
 
-    head = sol(head);
+    vec_linkedlist(l1, nums);
+    vec_linkedlist(l2, nums2);
 
-    cout << "---- XXX --- \n";
-    _showLinkedList(head);
-
-
-
+    _showLinkedList(l1);
+    _showLinkedList(l2);
 
     return ans;
 }
