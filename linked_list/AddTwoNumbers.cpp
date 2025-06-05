@@ -1,3 +1,6 @@
+// AddTwoNumbers
+
+
 
 // #include <bits/stdc++.h>
 #include <iostream>
@@ -49,15 +52,75 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 
+ListNode * sol(ListNode * l1, ListNode * l2){
+
+	ListNode * head = new ListNode(-100);
+        ListNode * curr = head;
+
+        int carry = 0;
+
+        while(l1 != nullptr || l2 != nullptr){ // check
+
+            int sum = 0;
+
+            if(l1){
+                sum += l1->val;
+                l1 = l1->next;
+            }
+            if(l2){
+                sum += l2->val;
+                l2 = l2->next;
+            }
+
+            sum += carry;
+
+            int data = sum % 10;
+            carry = sum / 10;
+
+            ListNode * temp = new ListNode(data);
+            curr->next = temp;
+            curr = curr->next;
+        }
+
+        if(carry != 0){
+
+            ListNode * temp = new ListNode(carry);
+            curr->next = temp;
+            curr = curr->next;
+
+        }
+
+
+
+
+        return head->next;
+
+
+
+
+
+}
+
+
 
 auto answer(vector<int> nums){
     // vector<int> ans {};
     int ans = 0;
 
-    
+    ListNode * l1 = nullptr;
+    ListNode * l2 = nullptr;
+
+    vector<int> nums2 = {9};
+
+    vec_linkedlist(l1, nums);
+    vec_linkedlist(l2, nums2);
+
+    _showLinkedList(l1);
+    _showLinkedList(l2);
 
 
-    
+    ListNode * out = sol(l1, l2);
+    _showLinkedList(out);
 
     return ans;
 }
