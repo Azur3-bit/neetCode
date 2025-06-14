@@ -78,7 +78,6 @@ ListNode * revingLinkedList(ListNode * &head){
 
 ListNode * sol(ListNode * head){
 
-
 	head = revingLinkedList(head);
 
 	_showLinkedList(head);
@@ -86,25 +85,17 @@ ListNode * sol(ListNode * head){
 
 
 	ListNode * temp = head;
-	int carry = 0;
+	int carry = 1;
 
 
 	while(temp){
 
-		_showLinkedList(head);
-
-		if(temp == head){
-
-			if(temp->val < 9){
-				temp->val++;
-				temp = temp->next;
-			}
-			else{
-				carry = 1;
-				temp = temp->next;
-			}
+		if(carry == 0){
+			cout << "breaking \n";
+			break;
 		}
 
+		_showLinkedList(head);
 
 		if(carry == 1){
 
@@ -116,6 +107,16 @@ ListNode * sol(ListNode * head){
 				temp->next = newi;
 				temp = temp->next;
 
+				cout << "case 1 \n";
+
+			}
+
+			else if(temp->val == 9){
+				carry = 1;
+				temp->val = 0;
+
+				cout << "case 2 \n";
+
 			}
 
 			else if (temp->val < 9){
@@ -123,13 +124,14 @@ ListNode * sol(ListNode * head){
 				ele++;
 				temp->val = ele;			
 				carry = 0;
+
+				cout << "case 3 \n";
+
 			}
 		}
 
-		if(temp->val == 9){
-			carry = 1;
-			temp->val = 0;
-		}
+
+
 
 		temp = temp->next;
 
