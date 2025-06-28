@@ -49,113 +49,66 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 
+ListNode * rotateRight(ListNode * head, int k){
 
-ListNode * ReverseLinkedList(ListNode * &head){
+	ListNode * p1 = head;
+	ListNode * p2 = head;
 
-	// can change flag 
+	int size = 0;
 
-	ListNode * prevNode = nullptr;
-	ListNode * temp = head;
-	
-	while(temp){
-		ListNode * nxtNode = temp->next;
-		temp->next = prevNode;
-		prevNode = temp;
-		temp = nxtNode;
+	while(p1){
+		size++;
+		p1 = p1->next;
 	}
 
-
-	return prevNode;
-
-}
-
-ListNode * getKthNode(ListNode * head, int k){
-
-	// k = k - 1;
-
-	// while(k-- && head){
-	// 	head = head->next;
-	// 	if(head->next == nullptr && k > 0){
-	// 		return nullptr;
-	// 	}
-	// }
-
-	// return head;
+	p1 = head;
 
 
+	k = k % size;
 
-	k = k - 1;
 
-	while(head && k > 0){
-		k--;
-		head = head->next;
+// moving p1 till k 
+	while(k-- && p1){
+		p1 = p1->next;
 	}
+
+	// cout << p1->val << "\n";
+
+
+	while(p1 && p1->next){
+		p1 = p1->next;
+		p2 = p2->next;
+	}
+
+	// cout << p1->val << "\n";
+	// cout << p2->val << "\n";
+
+	p1->next = head;
+	head = p2->next;
+	p2->next = nullptr;
 
 	return head;
 
 }
 
 
-ListNode * helper(ListNode * head, int k){
-
-
-	ListNode * temp = head;
-	ListNode * prevNode = nullptr;
-
-	while(temp){
-
-		ListNode * kthNode = getKthNode(temp, k);
-
-		if(kthNode == nullptr){
-
-			if(prevNode){
-				// just link the prevNode to temp
-				cout << "linking the prevNode to temp\n ";
-				prevNode->next = temp;
-			}
-			break;
-
-
-		}
-
-		ListNode * nextNode = kthNode->next; // missed kthNode->(next)
-		kthNode->next = nullptr;
-
-		ListNode * newHead = ReverseLinkedList(temp);
-
-		if(head == temp){
-			head = newHead;
-		}
-		else{
-			prevNode->next = newHead; 
-		}
-
-		prevNode = temp;
-		temp = nextNode;
-	}
-
-	return head;
-
-}
 
 auto answer(vector<int> nums){
     // vector<int> ans {};
     int ans = 0;
 
+    
     ListNode * head = nullptr;
+
     vec_linkedlist(head, nums);
 
-
     _showLinkedList(head);
+
+
+    head = rotateRight(head, 4);
     
+    _showLinkedList(head);
 
-
-
-    // ListNode * revhead = ReverseLinkedList(head);
-    // _showLinkedList(revhead);
-
-    ListNode * helper_answer = helper(head, 3);
-    _showLinkedList(helper_answer);
 
 
     return ans;
@@ -176,7 +129,7 @@ void solve() {
 int main(int argc, char const* argv[]) {
 #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
-    // freopen("output.txt", "w", stdout);
+    freopen("output.txt", "w", stdout);
 #endif
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
