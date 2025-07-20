@@ -84,7 +84,7 @@ auto answer(vector<int> nums){
     int ans = 0;  
 
     
-    string s = "45";
+    string s = "42";
     int i = 0;
     int sign = 1;
 
