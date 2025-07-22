@@ -53,41 +53,20 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 
-long long powr(long long x, long long y){
-
-    cout << "-------\n";
-    dbg(x);
-    dbg(y);
-    // dbg(ans);
+int goodNum(int n){
 
 
-    if(y == 0)
-        return 1;
-
-    long long ans = powr(x, y / 2);
-    ans = ans * ans;
-
-    if(y % 2 != 0){
-        cout << "y is odd \n";
-        dbg(ans);
-        dbg(x);
-        ans = ans * x;
-    }
-
-    dbg(ans);
-    cout << "-------\n";
-
-
-    return ans;
 
 }
 
-
 auto answer(vector<int> nums){
     // vector<int> ans {};
-    long long ans = 1;  
+    int ans = 0;  
 
-    ans = powr(2,3);
+    int n = 2;
+
+    ans = goodNum(n);
+
 
     
     return ans;
