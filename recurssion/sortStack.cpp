@@ -53,6 +53,33 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 
+
+void go(stack<int> &s){
+
+
+    if(s.size() == 1){
+        return ;
+    }
+
+    int currEle = s.top();
+    s.pop();
+    go(s);
+
+    if(s.top() > currEle){
+
+        dbg(s);
+
+        int temp = s.top();
+        s.pop();
+
+        s.push(currEle);
+        s.push(temp);
+
+    }
+
+}
+
+
 auto answer(vector<int> nums){
     // vector<int> ans {};
     int ans = 0;  
@@ -65,15 +92,19 @@ auto answer(vector<int> nums){
     s.push(4);
     s.push(1);
 
+    dbg(s);
 
-    while(!s.empty()){
-        cout << s.top() << "\n";
-        s.pop();
-    }
+
+
+    cout << "-- ---- \n";
+    go(s);
+    cout << "-- ---- \n";
+
+
+    dbg(s);
 
     
     return ans;
-
 
 }
 
