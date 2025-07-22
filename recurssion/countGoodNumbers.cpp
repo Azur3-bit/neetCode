@@ -53,19 +53,55 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 
+
+int mod = 1e9 + 7;
+
+int helper(int x, int y){
+
+    // base case 
+    if(y == 0)
+        return 1;
+
+    // normal mul.
+    int ans = helper(x, y / 2);
+    ans = ans * ans;
+
+
+    // odd case 
+    if(y % 2 != 0){
+        ans = ans * x;
+    }
+
+    return ans;
+
+}
+
 int goodNum(int n){
 
 
+    int odd = n / 2;
 
+    int even = n / 2 + n % 2;
+
+    dbg(odd);
+    dbg(even);
+
+    int odd_nums = helper(4, odd);
+    int even_nums = helper(5, even);
+
+    dbg(odd_nums);
+    dbg(even_nums);
+
+
+    return odd_nums * even_nums;
 }
 
 auto answer(vector<int> nums){
     // vector<int> ans {};
-    int ans = 0;  
 
     int n = 2;
 
-    ans = goodNum(n);
+    int ans = goodNum(2);
 
 
     
