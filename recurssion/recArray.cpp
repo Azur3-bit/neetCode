@@ -56,12 +56,54 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 // ------------------------------------------------------------------ solve
 
 
+void helper(vector<int> &nums, int temp){
+
+    // base case
+    if(nums.size() == 0 || nums[nums.size() - 1] <= temp){
+        nums.push_back(temp);
+        return;
+    }
+
+    // break into smaller parts
+    int last = nums[nums.size() - 1];
+    nums.pop_back();
+    helper(nums, temp);
+    nums.push_back(last);
+
+    return;
+
+}
+
+void func(vector<int> &nums){
+
+    // base case 
+    if(nums.size() <= 1){
+        return;
+    }
+
+    // break into smaller chunks
+    int last = nums[nums.size() - 1];
+    nums.pop_back();
+
+    func(nums);
+
+    helper(nums, last);
+
+    return;
+
+}
 
 
 
 auto answer(vector<int> nums){
     // vector<int> ans {};
     int ans = 0;  
+
+
+    
+    func(nums);
+    dbg(nums);
+
 
     
     return ans;
