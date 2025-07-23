@@ -1,3 +1,5 @@
+// 
+
 // aggressive cows
 
 
@@ -54,59 +56,14 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 // ------------------------------------------------------------------ solve
 
 
-void go(stack<int> &s){
-
-
-    if(s.size() == 1){
-        return ;
-    }
-
-    int currEle = s.top();
-    s.pop();
-    go(s);
-
-
-    if(s.top() < currEle){
-
-        dbg(s);
-
-
-        int temp = s.top();
-        s.pop();
-
-        s.push(temp);
-        s.push(currEle);
-
-    }
-
-}
-
 
 auto answer(vector<int> nums){
     // vector<int> ans {};
     int ans = 0;  
 
-
-    stack<int> s;
-    s.push(1);
-    s.push(2);
-    s.push(3);
-    s.push(5);
-    s.push(4);
-
-    dbg(s);
-
-
-
-    cout << "-- ---- \n";
-    go(s);
-    cout << "-- ---- \n";
-
-
-    dbg(s);
-
     
     return ans;
+
 
 }
 
