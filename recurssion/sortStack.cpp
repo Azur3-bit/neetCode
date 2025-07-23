@@ -53,60 +53,73 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 
-
-void go(stack<int> &s){
-
-
-    if(s.size() == 1){
-        return ;
-    }
-
-    int currEle = s.top();
-    s.pop();
-    go(s);
+void helper(stack<int> &s, int temp){
 
 
-    if(s.top() < currEle){
-
-        dbg(s);
-
-
-        int temp = s.top();
-        s.pop();
-
+    // base case 
+    if(s.empty() || s.top() <= temp){
         s.push(temp);
-        s.push(currEle);
-
+        return;
     }
+
+    // break into smalller parts
+    int val = s.top();
+    s.pop();
+
+    helper(s, temp);
+    s.push(val);
+
+    return;
 
 }
 
+
+void func(stack<int> &s){
+
+    // base case
+    if(s.size() == 1){
+        return;
+    }
+
+
+    // break into smaller chunks 
+    int topEle = s.top();
+    s.pop();
+
+    func(s);
+
+    helper(s, topEle);
+
+    return;
+
+
+
+}
 
 auto answer(vector<int> nums){
     // vector<int> ans {};
     int ans = 0;  
 
+    stack<int> s {};
 
-    stack<int> s;
     s.push(1);
-    s.push(2);
-    s.push(3);
+    s.push(0);
     s.push(5);
-    s.push(4);
+
+    cout << "at top : " << s.top() << "\n";
 
     dbg(s);
 
 
-
-    cout << "-- ---- \n";
-    go(s);
-    cout << "-- ---- \n";
-
+    func(s);
 
     dbg(s);
 
-    
+    cout << "at top : " << s.top() << "\n";
+
+
     return ans;
+
 
 }
 
