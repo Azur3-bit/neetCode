@@ -99,12 +99,8 @@ auto answer(vector<int> nums){
     // vector<int> ans {};
     int ans = 0;  
 
-
-    
     func(nums);
     dbg(nums);
-
-
     
     return ans;
 
