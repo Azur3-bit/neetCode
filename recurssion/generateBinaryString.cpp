@@ -95,6 +95,8 @@ auto answer(vector<int> nums){
 
     dbg(ans);
 
+    cout << "answer size : " << ans.size() << "\n";
+
     return ans;
 }
 
