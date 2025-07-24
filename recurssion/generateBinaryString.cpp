@@ -53,23 +53,49 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 
+void generate(string s,vector<string> &ans, int i, int end){
 
+    dbg(i);
+    if(i >= end){
+        cout << "base condition \n";
+        ans.push_back(s);
+        return;
+    }
 
+    if(s[i] == '?'){
+        cout << "found \n";
+        s[i] = '0';
+        generate(s, ans, i+ 1, end);
+        s[i] = '1';
+        generate(s, ans, i + 1, end);
+        i++;
+    }
+    else{
+        generate(s, ans, i + 1, end);
+    }
+    // return;
+}
 
 auto answer(vector<int> nums){
     // vector<int> ans {};
     // int ans = 0;  
 
-    string s = "1??0";
-
+    string s = "1??0?101";
     vector<string> ans {};
 
+    dbg(s);
+    int end = s.size() - 1;
+    dbg(end);
 
+    cout << "\t-- last element : " << s[end] << "\n";
 
+    int i = 0;
+
+    generate(s, ans, i, end);
+
+    dbg(ans);
 
     return ans;
-
-
 }
 
 
