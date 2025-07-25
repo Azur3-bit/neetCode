@@ -65,7 +65,7 @@ void generate(string s,vector<string> &ans, int i, int end){
     if(s[i] == '?'){
         cout << "found \n";
         s[i] = '0';
-        generate(s, ans, i+ 1, end);
+        generate(s, ans, i + 1, end);
         s[i] = '1';
         generate(s, ans, i + 1, end);
         i++;
