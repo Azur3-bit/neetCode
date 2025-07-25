@@ -53,10 +53,42 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 
+void func(int n, string str, vector<string> &ans, int open, int close){
+
+    // base case 
+
+    if((open == n) && (close == n)){
+        ans.push_back(str);
+        return;
+    }
+
+    // adding '('
+
+    if(open <= n){
+        func(n, str + '(', ans, open + 1, close);
+    }
+
+    // adding ')'
+
+    if(open > close){
+        func(n, str + ')', ans, open, close + 1);
+    }
+
+
+}
+
 auto answer(vector<int> nums){
     // vector<int> ans {};
-    int ans = 0;  
 
+    int n = 3;
+
+    vector<string> ans {};
+    int open = 0, close = 0;
+    string str = "";
+
+    func(n,str, ans, open, close);
+    dbg(n);
+    dbg(ans.size());
     
     return ans;
 
