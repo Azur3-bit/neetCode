@@ -9,6 +9,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <bitset>
 #include <algorithm>
 #include <map>
 #include <set>
@@ -56,8 +57,45 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 // ------------------------------------------------------------------ solve
 
 auto answer(vector<int> nums){
-    // vector<int> ans {};
-    int ans = 0;  
+   
+    vector<vector<int>> ans {};
+    // int ans = 0;  
+
+    vector<int> t {};
+
+    int n = nums.size();
+
+    int end = pow(2,n);
+
+    dbg(end);
+
+    cout << "Decimal \tBinary \n";
+
+    for(int i = 0; i < end; i++){
+
+        bitset<8> binary_i(i);
+
+        cout << "i : " << i << "\t\t" << binary_i << "\n";
+
+        vector<int> temp {};
+        for(int j = 0; j < n; j++){
+
+            bitset<8> binary_j(j);
+
+            cout << "j : " << j << " \t\t" << binary_j << "\n";
+
+            cout << "=> (1 << j) : " << (1 << j) << " __ left shift\n";
+
+            if(i & (1 << j)){
+
+                cout << "++ Adding -> index : " << j << ", element : " << nums[j] << "\n";
+
+                temp.push_back(nums[j]);
+            }
+        }
+        dbg(temp);
+        ans.push_back(temp);
+    }
 
     
     return ans;
