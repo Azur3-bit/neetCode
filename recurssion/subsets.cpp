@@ -1,5 +1,3 @@
-// subsets
-
 // aggressive cows
 
 
@@ -9,7 +7,6 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <bitset>
 #include <algorithm>
 #include <map>
 #include <set>
@@ -56,51 +53,45 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 
+void func(int index, int n, vector<int> nums, vector<int> &ds, vector<vector<int>> &ans){
+
+
+    if(index >= n){
+        ans.push_back(ds);
+        return;
+    }
+
+
+    // adding element in the array
+    ds.push_back(nums[index]);
+    func(index + 1, n, nums, ds, ans);
+    ds.pop_back();
+    func(index + 1, n, nums, ds, ans);    
+
+}
+
 auto answer(vector<int> nums){
-   
-    vector<vector<int>> ans {};
+    // vector<int> ans {};
     // int ans = 0;  
 
-    vector<int> t {};
 
     int n = nums.size();
+    vector<int> ds {};
+    vector<vector<int>> ans {};
 
-    int end = pow(2,n);
+    func(0, n, nums, ds, ans);
 
-    dbg(end);
-
-    cout << "Decimal \tBinary \n";
-
-    for(int i = 0; i < end; i++){
-
-        bitset<8> binary_i(i);
-
-        cout << "i : " << i << "\t\t" << binary_i << "\n";
-
-        vector<int> temp {};
-        for(int j = 0; j < n; j++){
-
-            bitset<8> binary_j(j);
-
-            cout << "j : " << j << " \t\t" << binary_j << "\n";
-
-            cout << "=> (1 << j) : " << (1 << j) << " __ left shift\n";
-
-            if(i & (1 << j)){
-
-                cout << "++ Adding -> index : " << j << ", element : " << nums[j] << "\n";
-
-                temp.push_back(nums[j]);
-            }
+    for(auto it : ans){
+        if(it.size() == 0) cout << "{}\n";
+        for(auto i : it){
+            cout << i << " "; 
         }
-        dbg(temp);
-        ans.push_back(temp);
+        cout << "\n";
+
     }
 
     
-    return ans;
-
-
+    return 0;
 }
 
 
