@@ -53,9 +53,61 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 
+// 1. (done) getting the sum subsequence.
+// 2. (done) getting only one sum  subsequence.
+// 3. () getting the total number of subsequence without additional space.
+
+int func(int index, vector<int> nums, int n, vector<int> &temp, vector<vector<int>> &ans, int &sum, int k){
+
+    // creating all the subsequece 
+    if(index == n){
+
+        if(sum == k){
+            ans.push_back(temp);
+            return 1;
+        }
+
+        return 0;
+    }
+
+    // adding element in the temp Array
+    temp.push_back(nums[index]);
+    sum += nums[index];
+    int l = func(index + 1, nums, n, temp, ans, sum, k);
+
+    // not Adding the element
+    temp.pop_back();
+    sum -= nums[index];
+    int r = func(index + 1, nums, n, temp, ans, sum, k);
+
+    return l + r;
+}
+
+
 auto answer(vector<int> nums){
     // vector<int> ans {};
-    int ans = 0;  
+    // int ans = 0;  
+
+    vector<vector<int>> ans {};
+    int index = 0;
+    int n = nums.size();
+    vector<int> temp {};
+
+    int sum = 0;
+    int k = 6;
+
+    dbg(k);
+
+    int count_ans = func(index, nums, n, temp, ans, sum, k);
+    dbg(count_ans);
+
+    dbg(ans);
+    if(ans.size() == count_ans){
+        cout << "++ correct ans ++\n";
+    }
+    else{
+        cout << "-- wrong ans --\n";
+    }
 
     
     return ans;
