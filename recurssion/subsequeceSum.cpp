@@ -55,7 +55,7 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // 1. (done) getting the sum subsequence.
 // 2. (done) getting only one sum  subsequence.
-// 3. () getting the total number of subsequence without additional space.
+// 3. (done) getting the total number of subsequence without additional space.
 
 int func(int index, vector<int> nums, int n, vector<int> &temp, vector<vector<int>> &ans, int &sum, int k){
 
