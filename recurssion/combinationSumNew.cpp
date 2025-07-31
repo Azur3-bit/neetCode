@@ -56,51 +56,42 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 
-void helper(int index, vector<int> nums, vector<vector<int>> &ans, vector<int> &temp, int sum, int target){
+void helper(int index, vector<int> nums, vector<vector<int>> &ans, vector<int> &temp, int req){
 
-    if(sum > target){
+    if(req == 0){
+        ans.push_back(temp);
         return;
     }
 
-    // base case 
-    if(index >= nums.size()){
-
-        if(sum == target){
-            ans.push_back(temp);
-            return;
-        }
+    if(index >= nums.size() || req < 0){
         return;
     }
 
+    if(nums[index] <= req){
+        temp.push_back(nums[index]);
+        helper(index, nums, ans, temp, req - nums[index]);
+        temp.pop_back();
+    }
 
-    // adding the element 
-        // same element
-    temp.push_back(nums[index]);
-    helper(index, nums, ans, temp, sum + nums[index], target);
-
-        // different element 
-    helper(index + 1, nums, ans, temp, sum + nums[index], target);
-
-    // not adding the element
-    helper(index + 1, nums, ans, temp, sum, target);
+    helper(index + 1, nums, ans, temp, req);
 
     return;
-    
 }
+
+
 
 auto answer(vector<int> nums){
 
 
     vector<vector<int>> ans {};
     vector<int> temp {};
-    int sum = 0;
     int index = 0;
-    int target = 7;
 
+    int targetSum = 7;
 
-    helper(index, nums, ans, temp, sum, target);
+    helper(index, nums, ans, temp, targetSum);
 
-
+    dbg(ans);
     
     return ans;
 
