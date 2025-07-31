@@ -56,9 +56,50 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 
+void helper(int index, vector<int> nums, vector<vector<int>> &ans, vector<int> &temp, int sum, int target){
+
+    if(sum > target){
+        return;
+    }
+
+    // base case 
+    if(index >= nums.size()){
+
+        if(sum == target){
+            ans.push_back(temp);
+            return;
+        }
+        return;
+    }
+
+
+    // adding the element 
+        // same element
+    temp.push_back(nums[index]);
+    helper(index, nums, ans, temp, sum + nums[index], target);
+
+        // different element 
+    helper(index + 1, nums, ans, temp, sum + nums[index], target);
+
+    // not adding the element
+    helper(index + 1, nums, ans, temp, sum, target);
+
+    return;
+    
+}
+
 auto answer(vector<int> nums){
-    // vector<int> ans {};
-    int ans = 0;  
+
+
+    vector<vector<int>> ans {};
+    vector<int> temp {};
+    int sum = 0;
+    int index = 0;
+    int target = 7;
+
+
+    helper(index, nums, ans, temp, sum, target);
+
 
     
     return ans;
