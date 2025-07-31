@@ -1,6 +1,3 @@
-// combinationSum
-
-
 // aggressive cows
 
 
@@ -22,7 +19,7 @@
 #include <unordered_set>
 // #include "TimerClock.h" // For Performance Monitor
 using namespace std;
-#define dbg(x) cout <<  #x  << " : " << x << "\n";
+#define dbg(x) cout << #x << " : " << x << "\n";
 template <typename T>
 ostream& operator<<(ostream& os, const vector<T>& v) {os << "["; for (int i = 0; i < v.size(); ++i) {os << v[i]; if (i != v.size() - 1)os << ", ";} os << "]"; return os;}
 template <typename T>
@@ -57,32 +54,7 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 // ------------------------------------------------------------------ solve
 
 
-void helper(int index, const vector<int> &nums, int n, int sum, int target, vector<int> temp, set<vector<int>> &ans){
-
-    if(sum > target){
-        return;
-    }
-
-    if(index >= n){
-        if(sum == target){
-            ans.insert(temp);
-            return;   
-        }
-        return;
-    }
-
-    // adding the same element again 
-    sum += nums[index];
-    temp.push_back(nums[index]);
-    helper(index, nums, n, sum, target, temp, ans);
-    
-    // adding the next element 
-    helper(index + 1, nums, n, sum, target, temp, ans);
-
-    // NOT addint next element
-    temp.pop_back();
-    sum -= nums[index];
-    helper(index + 1, nums, n, sum, target, temp, ans);
+void helper(){
     
 }
 
@@ -90,21 +62,15 @@ auto answer(vector<int> nums){
     // vector<int> ans {};
     // int ans = 0;  
 
-
-    set<vector<int>> ans {};
-    vector<int> temp {};
-    int n = nums.size();
-
-    int index = 0;
     int sum = 0;
-    int target = 8;
+    vector<vector<int>> ans {};
 
-
-    helper(index, nums, n, sum, target, temp, ans);
-
-    dbg(ans);
     
+
+
     return ans;
+
+
 }
 
 
