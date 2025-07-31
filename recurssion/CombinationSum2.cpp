@@ -1,5 +1,4 @@
-// combinationSumNew
-
+// Combination Sum II
 
 // aggressive cows
 
@@ -56,42 +55,13 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 
-void helper(int index, vector<int> nums, vector<vector<int>> &ans, vector<int> &temp, int req){
-
-    if(req == 0){
-        ans.push_back(temp);
-        return;
-    }
-
-    if(index >= nums.size() || req < 0){
-        return;
-    }
-
-    if(nums[index] <= req){
-        temp.push_back(nums[index]);
-        helper(index, nums, ans, temp, req - nums[index]);
-        temp.pop_back();    // moving this lower
-    }
-
-    helper(index + 1, nums, ans, temp, req);
-
-    return;
-}
 
 
 
 auto answer(vector<int> nums){
+    // vector<int> ans {};
+    int ans = 0;  
 
-
-    vector<vector<int>> ans {};
-    vector<int> temp {};
-    int index = 0;
-
-    int targetSum = 7;
-
-    helper(index, nums, ans, temp, targetSum);
-
-    dbg(ans);
     
     return ans;
 
