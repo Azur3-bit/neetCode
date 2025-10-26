@@ -55,11 +55,49 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 
+void helper(int index, int req, vector<int> nums, vector<vector<int>>& ans, vector<int> temp){
+
+    if(req < 0 || index > nums.size()){
+        return;
+    }
+
+    if(req == 0){
+        ans.push_back(temp);
+        return;
+    }
+
+    // do
+    temp.push_back(nums[index]);
+    
+    // explore 
+    helper(index, req - nums[index], nums, ans, temp);
+
+    // undo 
+    temp.pop_back();
+
+
+    helper(index + 1, req, nums, ans, temp);
+    return;
+}
+
+
 auto answer(vector<int> nums){
     // vector<int> ans {};
-    int ans = 0;  
-
     
+    int target = 8;
+
+ 
+    int req = target;
+
+
+    vector<int> temp {};
+    vector<vector<int>> ans {};
+    int index = 0;
+
+
+    helper(index, req, nums, ans, temp);
+
+
     return ans;
 
 
