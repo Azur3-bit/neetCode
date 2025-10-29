@@ -59,10 +59,29 @@ void helper(vector<int>nums, vector<vector<int>>&ans, vector<int>&temp, int inde
     }
 
 
-    // avoid repeated elements
-    // make sure we use our current element 
+// size :     3 
+    // array 
+// 0 1 2   3 - 1
+// 2 < 3 
+// 3 < 3 false
 
-    // backtracking 
+    for(int i = index; i < nums.size(); i++){
+
+        // avoid repeated elements
+        // make sure we use our current element 
+        if(i != index && nums[i] == nums[i - 1]){
+            continue;
+        }
+
+        // exploring the sub array after it 
+
+        temp.push_back(nums[i]);
+        helper(nums, ans, temp, i + 1, target - nums[i]);
+        // backtracking 
+        temp.pop_back();
+
+    }
+
 
 
 }
@@ -78,6 +97,8 @@ auto answer(vector<int> nums){
     vector<vector<int>> ans {};
     vector<int> temp {};
     int index = 0;
+
+    sort(nums.begin(), nums.end());
 
     helper(nums, ans, temp, index, target);
 
