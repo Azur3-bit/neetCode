@@ -51,13 +51,11 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 void helper(vector<int>nums, vector<vector<int>>&ans, vector<int>&temp, int index, int target){
 
-
     // base case : when we get our answer 
     if(target == 0){
         ans.push_back(temp);
         return;
     }
-
 
 // size :     3 
     // array 
@@ -72,7 +70,6 @@ void helper(vector<int>nums, vector<vector<int>>&ans, vector<int>&temp, int inde
         if(i != index && nums[i] == nums[i - 1]){
             continue;
         }
-
         // exploring the sub array after it 
 
         temp.push_back(nums[i]);
@@ -81,8 +78,6 @@ void helper(vector<int>nums, vector<vector<int>>&ans, vector<int>&temp, int inde
         temp.pop_back();
 
     }
-
-
 
 }
 
