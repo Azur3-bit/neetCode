@@ -98,10 +98,6 @@ auto answer(vector<int> nums){
     helper(nums, ans, temp, index, target);
 
 
-
-
-    
-
     return ans;
 }
 
