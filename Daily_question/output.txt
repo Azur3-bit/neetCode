@@ -1,0 +1,8 @@
+nums : []
+-----------------------
+printing the square coordincate : 
+area of sqaure - 1 area : 4
+area of sqaure - 2 area : 1
+total area : 5
+-----------------------
+ans : 0
