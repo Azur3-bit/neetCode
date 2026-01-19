@@ -79,16 +79,7 @@ auto answer(vector<int> nums){
     		// entire matrix
 
     	for(int j = 0; j < m; j++){
-
-
     		cout << mat[i][j] << " ";
-    			// for(int s = j; c < j + w; j++){
-
-    			// 	int anti = mat[i + w][j + ] 
-    			// }
-    		// cout << "d : " << mat[i + w][j + k] << " ";
-    		// cout << "a : " << mat[i + w][j + k ] << " ";
-
     	}
     	cout << "\n";
     }
@@ -101,12 +92,10 @@ auto answer(vector<int> nums){
     for(int i = 0; i < min(n,m); i++){
 
     		// diagonal
+    		dbg(mat[i][i]);
+    		dbg(mat[i][w - 1 - i]);
     		d_sum += mat[i][i];
-    		ad_sum += mat[w - 1 - i][i];
-
-
-    		// mat [0 - 1][1]
-    		// mat[-1][1]
+    		ad_sum += mat[i][w - 1 - i];
 
     	cout << "\n";
     }
