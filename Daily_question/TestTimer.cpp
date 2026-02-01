@@ -54,10 +54,47 @@ auto answer(vector<int> nums){
     // vector<int> ans {};
     int ans = 0;
 
-    
 
 
+
     
+{
+	timer time;
+
+
+	for(int i = 0; i < 10000; i++){
+		// cout << i << "\n";
+	}
+
+}
+
+
+
+	
+    timer* temp = new timer();
+
+
+	for(int i = 0; i < 10; i++){
+		// cout << i << "\n";
+	}
+
+
+
+	for(int i = 100; i >= 0; i--){
+		// cout << i << "\n";
+	}
+
+
+
+	delete temp;
+
+
+
+
+
+    
+// 26397us ( 26.397ms )
+
 
     return ans;
 }
@@ -77,7 +114,7 @@ void solve() {
 int main(int argc, char const* argv[]) {
 #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    // freopen("output.txt", "w", stdout);
 #endif
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
