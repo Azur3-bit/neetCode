@@ -1,4 +1,4 @@
-// 762-PrimeNumberofSetBitsinBinaryRepresentation
+// 1680-ConcatenationofConsecutiveBinaryNumbers
 
 
 
@@ -52,84 +52,93 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 
-bool isprime(int n){
+
+int mod = 1e9 + 7;
+
+string helper(int n){
 
 
-	if(n == 1 || n == 0){
-		return false;
-	}
+	string s = "";
+	for(int i = 1; i <= n; i++){
 
-	for(int i = 2; i <= sqrt(n); i++){
+		string temp = "";
+		int currNum = i;
+		cout << "currNum : " << currNum << "\n"; 
 
-		if(n % i == 0){
-			return false;
+		while(currNum > 0) {
+			int last_bit = currNum & 1;
+			currNum = currNum >> 1;
+			char bit = '0' + last_bit;
+			// cout << bit << " ";
+			temp += bit;
 		}
+		// cout << "\n";
+		cout << temp << "\n";
+		reverse(temp.begin(), temp.end());
+
+		s += temp;
 	}
 
-	return true;
-
+	return s;
 }
 
+// int binary_to_decimal(string s){
 
-int sol(int left, int right){
+// 	// cout << "-----------\n";
+// 	dbg(s);
+// 	int n = s.size();
+// 	// cout << s[n] << "\n";
 
-	int ans = 0;
+// 	int idx = 0;
+// 	long long ans = 0;
 
-	for(int i = left; i <= right; i++){
+// 	while(n--){
+// 		cout << s[n] << "\n";
+// 		if(s[n] == '1'){
+// 			cout << "got 1 at idx : " << idx << "\n";
+// 			// ans += pow(2, idx);			
+// 			ans += (1LL << idx) % mod;
+// 		}
 
+// 		idx++;
 
-		// count set bits
+// 	}
 
-		int curr = i;
-		int ctr = 0;
+// 	return ans;
+// }
 
-		while(curr){
+int binary_to_decimal(string s){
+    long long ans = 0;
 
-			if(curr & 1){
-				ctr++;
-			}
+    for(char c : s){
+        ans = (( ans << 1) + (c - '0')) % mod;
+    }
 
-			curr = curr >> 1;
-
-		}
-
-
-
-		if(isprime(ctr)){
-			// cout << "i : " << i << "\n";
-			ans++;
-		}
-	}
-
-
-	return ans;
-
+    return ans;
 }
 
 
 auto answer(vector<int> nums){
     int ans = 0;
-     
-    // int left = 6;
-    // int right = 10;
 
-    // ans = sol(left, right);
+    int n = nums[0];
 
-    // int left = 10;
-    // int right = 15;
+    dbg(n);
 
-    // ans = sol(left, right);
+    string s = helper(n);
 
+    dbg(s);
 
-    int a = 1;
-
+    // int num = 0;
+    // char s = '0' + num;
+    // cout << "s : "<< s << "\n";
 
 
-	char c = a == 0 ? '0' : '1';
 
-
-    dbg(c);
-
+	cout << "-----------\n";
+    
+    // ans = binary_to_decimal(s);
+    ans = binary_to_decimal(s);
 
 
     return ans;
@@ -137,8 +146,8 @@ auto answer(vector<int> nums){
 
 void solve() {
     vector<int> nums {};
-    // cin >> nums; 
-    // dbg(nums);
+    cin >> nums; 
+    dbg(nums);
     cout << "-----------------------\n";
     
     auto ans = answer(nums);

@@ -1,3 +1,31 @@
+nums : [12]
 -----------------------
+n : 12
+currNum : 1
+1
+currNum : 2
+01
+currNum : 3
+11
+currNum : 4
+001
+currNum : 5
+101
+currNum : 6
+011
+currNum : 7
+111
+currNum : 8
+0001
+currNum : 9
+1001
+currNum : 10
+0101
+currNum : 11
+1101
+currNum : 12
+0011
+s : 1101110010111011110001001101010111100
+-----------
 -----------------------
-ans : 5
+ans : 505379714
