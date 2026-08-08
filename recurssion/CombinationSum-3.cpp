@@ -52,8 +52,8 @@ void helper(set<vector<int>> &ans, vector<int> nums, int index, vector<int> temp
 
 	// base case 
 
-	if(req <= 0 || index > 8){
-		if(temp.size() == k && req == 0){
+	if(req <= 0 || index > 8 || temp.size() >= k){
+		if(temp.size() == k && req == 0 ){
 			sort(temp.begin(), temp.end());
 			ans.insert(temp);
 			return;
@@ -89,7 +89,7 @@ auto answer(vector<int> num){
 
 
     vector<int> nums = {1,2,3,4,5,6,7,8,9};
-    dbg(nums);
+    // dbg(nums);
 
 
 	set<vector<int>> ans {};
@@ -98,7 +98,7 @@ auto answer(vector<int> num){
 
 	helper(ans, nums, index, temp, req, k, n);
 
-	dbg(ans);
+	// dbg(ans);
     
 
     return ans;
