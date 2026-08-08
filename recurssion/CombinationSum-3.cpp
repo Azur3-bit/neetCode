@@ -48,22 +48,57 @@ treenode* createBinaryTree(const vector<int>& vec) {if (vec.empty()) {return nul
 
 // ------------------------------------------------------------------ solve
 
+void helper(set<vector<int>> &ans, vector<int> nums, int index, vector<int> temp, int req, const int &k,const int &n){
 
+	// base case 
+
+	if(req <= 0 || index > 8){
+		if(temp.size() == k && req == 0){
+			sort(temp.begin(), temp.end());
+			ans.insert(temp);
+			return;
+		}
+		else{
+			// cout << "Not a valid answer : " << temp << "\n";
+			return;
+		}
+	}
+
+
+	// take the element and recurse
+	temp.push_back(nums[index]);
+	helper(ans, nums, index + 1, temp, req - nums[index], k, n);
+
+	// moving on without the current element 
+	temp.pop_back();
+	helper(ans, nums, index + 1, temp, req, k, n);
+
+
+}
 
 
 
 auto answer(vector<int> num){
-    int ans = 0;
+    // int ans = 0;
     
-    // cout << "new line \n"; 
 
     int k = 3;
-    int n = 7;
+    int n = 9;
+
+    int req = n;
 
 
     vector<int> nums = {1,2,3,4,5,6,7,8,9};
     dbg(nums);
 
+
+	set<vector<int>> ans {};
+	int index = 0;
+	vector<int> temp;
+
+	helper(ans, nums, index, temp, req, k, n);
+
+	dbg(ans);
     
 
     return ans;
